@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[基于Github和Hexo的个人博客搭建]]></title>
+    <url>%2F2018%2F04%2F23%2F%E5%9F%BA%E4%BA%8EGithub%E5%92%8CHexo%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[写在前面&emsp;&emsp;去年起看了很多大牛的博客，也萌生了搭建个人博客的想法，为什么搭建博客，总结下来有以下好处： 书写是为了更好的思考 激励自己持续学习 尝试持之以恒的去做一些事情 &emsp;&emsp;这次趁着大论文盲审结果还没出来和导师还没反馈小论文修改意见的间隙，花了一个周末的时间搭建好了自己的个人博客。在此将搭建过程作为自己的第一篇博客记录下来。 Hexo简介&emsp;&emsp;Hexo 是一个基于 Node.js 的静态博客程序，可以方便的生成静态网页托管在github和Heroku上。Hexo有着丰富的主题，可以定制多种样式。hexo特性： 速度快：Hexo基于Node.js，支持多进程，几百篇文章也可以秒生成； 撰写工具丰富：支持GitHub Flavored Markdown和所有Octopress的插件； 扩展性强： Hexo支持EJS、Swig和Stylus。通过插件支持Haml、Jade和Less。 &emsp;&emsp;使用hexo时，有以下常用命令：12345678910npm install hexo -g #安装npm install hexo -g #安装 npm update hexo -g #升级 hexo init #初始化hexo n &quot;我的博客&quot; == hexo new &quot;我的博客&quot; #新建文章hexo p == hexo publishhexo g == hexo generate#生成hexo s == hexo server #启动服务预览hexo d == hexo deploy#部署hexo new 创建文章 环境搭建(node,hexo,git)&emsp;&emsp;前面说过hexo是基于node.js，因此需要先安装node.js。git的配置这里就不再赘述，可以参考廖雪峰老师的Git教程。安装好Git后，需要将其与自己的GitHub账号关联上。安装好node.js后，仅需一步即可安装hexo的相关套件。在命令行输入: npm install hexo -g hexo-cli &emsp;&emsp;到这一步就安装好了所需的所用环境。 设置&emsp;&emsp;在搭建自己的博客前，需要设置一个博客的根目录。使用命令行切换到该根目录下，输入： hexo init blog &emsp;&emsp;等待片刻，成功后会提示INFO Start blogging with Hexo!初始化成功后，目录如下： . ├── _config.yml ├── package.json ├── scaffolds ├── source | ├── _drafts | └── _posts └── themes &emsp;&emsp;source的_posts目录下会自带一篇题为“Hello World”的示例文章，直接执行以下操作可以看到网站初步的模样: $ hexo generate # 启动本地服务器 $ hexo server # 在浏览器输入 http://localhost:4000/就可以看见网页和模板了,若端口号被占用，可输入hexo server -p 4001改为其他端口号。 &emsp;&emsp;访问http://localhost:4000/，界面如下： 部署及配置博客配置SSH&emsp;&emsp;在上一步看到了网站的默认效果，此时需要将该博客部署到Github上，登陆Github，创建名为your_name.github.io(your_name替换成你的用户名)的仓库。重新打开CMD,输入： ssh-keygen -t rsa -C &quot;Github的注册邮箱地址&quot; &emsp;&emsp;一路Enter，得到信息：Your public key has been saved in /c/Users/user/.ssh/id_rsa.pub.根据保存的路径找到id_rsa.pub文件，用编辑器打开，复制所有内容，然后Sign in to GitHub，按以下步骤配置SSH：&emsp;&emsp;New SSH key ——&gt;Title：blog ——&gt; Key：输入刚才复制的—— &gt;Add SSH key 配置博客&emsp;&emsp;在blog目录下，用编辑器打开_config.yml，修改其中的配置信息。&emsp;&emsp;修改网站中的相关信息 ：1234567title: #标题subtitle: #副标题description: #站点描述author: #作者language: zh-Hansemail: #电子邮箱timezone: Asia/Shanghai &emsp;&emsp;配置部署仓库 1234deploy: type: git repo: 刚刚github创库地址.git branch: master &emsp;&emsp;特别提醒，在每个参数的：后都要加一个空格。以上操作完成后，执行： 1234hexo clean #清除缓存 网页正常情况下可以忽略此条命令hexo generate #生成hexo server #启动服务预览，非必要，可本地浏览网页hexo deploy #部署发布 &emsp;&emsp;得到提示信息INFO Deploy done: git表示成功发布到Github上。然后在浏览器里输入your_name.github.io就可以访问刚刚配置好的博客了。 后记&emsp;&emsp;到此为止，最基本的hexo+github搭建博客完结。hexo有许多优美简洁的主题，网上也有许多关于主题美化的教程，可以根据自己的喜好添加各种或实用或酷炫的功能。]]></content>
+      <categories>
+        <category>Hexo博客搭建教程</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+</search>
