@@ -11,9 +11,7 @@
         <tag>深度学习</tag>
         <tag>卷积神经网络</tag>
         <tag>Faster R-CNN</tag>
-        <tag>特征可视化</tag>
-        <tag>Loss</tag>
-        <tag>PR</tag>
+        <tag>可视化</tag>
       </tags>
   </entry>
   <entry>
@@ -26,9 +24,6 @@
       <tags>
         <tag>深度学习</tag>
         <tag>卷积神经网络</tag>
-        <tag>网络模型</tag>
-        <tag>卷积</tag>
-        <tag>池化</tag>
         <tag>LeNet5</tag>
         <tag>AlexNet</tag>
         <tag>ZFNet</tag>
@@ -47,10 +42,10 @@
       <tags>
         <tag>深度学习</tag>
         <tag>卷积神经网络</tag>
-        <tag>卷积</tag>
-        <tag>池化</tag>
         <tag>BP算法</tag>
         <tag>感知机</tag>
+        <tag>卷积</tag>
+        <tag>池化</tag>
         <tag>全连接</tag>
       </tags>
   </entry>
@@ -76,6 +71,7 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+        <tag>github</tag>
       </tags>
   </entry>
 </search>
