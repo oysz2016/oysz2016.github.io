@@ -37,9 +37,9 @@
       <category term="深度学习笔记" scheme="https://oysz2016.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="深度学习" scheme="https://oysz2016.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="卷积神经网络" scheme="https://oysz2016.github.io/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="深度学习" scheme="https://oysz2016.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="Faster R-CNN" scheme="https://oysz2016.github.io/tags/Faster-R-CNN/"/>
     
@@ -66,9 +66,9 @@
       <category term="深度学习笔记" scheme="https://oysz2016.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="深度学习" scheme="https://oysz2016.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="卷积神经网络" scheme="https://oysz2016.github.io/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="深度学习" scheme="https://oysz2016.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="LeNet5" scheme="https://oysz2016.github.io/tags/LeNet5/"/>
     
@@ -102,10 +102,6 @@
       <category term="深度学习笔记" scheme="https://oysz2016.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="深度学习" scheme="https://oysz2016.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="卷积神经网络" scheme="https://oysz2016.github.io/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
       <category term="BP算法" scheme="https://oysz2016.github.io/tags/BP%E7%AE%97%E6%B3%95/"/>
     
       <category term="感知机" scheme="https://oysz2016.github.io/tags/%E6%84%9F%E7%9F%A5%E6%9C%BA/"/>
@@ -115,6 +111,10 @@
       <category term="池化" scheme="https://oysz2016.github.io/tags/%E6%B1%A0%E5%8C%96/"/>
     
       <category term="全连接" scheme="https://oysz2016.github.io/tags/%E5%85%A8%E8%BF%9E%E6%8E%A5/"/>
+    
+      <category term="卷积神经网络" scheme="https://oysz2016.github.io/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="深度学习" scheme="https://oysz2016.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
