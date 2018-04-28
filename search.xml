@@ -8,8 +8,8 @@
         <category>深度学习笔记</category>
       </categories>
       <tags>
-        <tag>卷积神经网络</tag>
         <tag>深度学习</tag>
+        <tag>卷积神经网络</tag>
         <tag>Faster R-CNN</tag>
         <tag>可视化</tag>
       </tags>
@@ -22,8 +22,8 @@
         <category>深度学习笔记</category>
       </categories>
       <tags>
-        <tag>卷积神经网络</tag>
         <tag>深度学习</tag>
+        <tag>卷积神经网络</tag>
         <tag>LeNet5</tag>
         <tag>AlexNet</tag>
         <tag>ZFNet</tag>
@@ -40,13 +40,13 @@
         <category>深度学习笔记</category>
       </categories>
       <tags>
+        <tag>深度学习</tag>
+        <tag>卷积神经网络</tag>
         <tag>BP算法</tag>
         <tag>感知机</tag>
         <tag>卷积</tag>
         <tag>池化</tag>
         <tag>全连接</tag>
-        <tag>卷积神经网络</tag>
-        <tag>深度学习</tag>
       </tags>
   </entry>
   <entry>
