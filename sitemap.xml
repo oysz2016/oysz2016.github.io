@@ -2,9 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://oysz2016.github.io/2018/05/09/cascade-cnn/</loc>
+    <loc>https://oysz2016.github.io/post/d76cc2d4.html</loc>
     
-    <lastmod>2018-05-09T16:06:38.970Z</lastmod>
+    <lastmod>2018-05-09T16:13:58.794Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://oysz2016.github.io/post/43b16a18.html</loc>
+    
+    <lastmod>2018-05-09T16:13:13.923Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://oysz2016.github.io/post/c57581c4.html</loc>
+    
+    <lastmod>2018-05-09T16:13:13.920Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://oysz2016.github.io/post/4ec18e58.html</loc>
+    
+    <lastmod>2018-05-09T16:13:13.917Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://oysz2016.github.io/post/d86a012b.html</loc>
+    
+    <lastmod>2018-05-09T16:13:13.801Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://oysz2016.github.io/post/ef0c22d1.html</loc>
+    
+    <lastmod>2018-05-09T16:13:13.797Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://oysz2016.github.io/post/309a28b1.html</loc>
+    
+    <lastmod>2018-05-09T16:13:13.793Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://oysz2016.github.io/post/79a2296e.html</loc>
+    
+    <lastmod>2018-05-09T16:13:13.789Z</lastmod>
     
   </url>
   
@@ -16,58 +65,9 @@
   </url>
   
   <url>
-    <loc>https://oysz2016.github.io/2018/04/23/%E5%9F%BA%E4%BA%8EGithub%E5%92%8CHexo%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
-    
-    <lastmod>2018-05-05T04:00:38.346Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://oysz2016.github.io/2018/05/03/%E4%BB%8E0%E5%88%B01%E2%80%94%E2%80%94%E5%BC%80%E5%90%AF%E5%95%86%E4%B8%9A%E4%B8%8E%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%A7%98%E5%AF%86/</loc>
-    
-    <lastmod>2018-05-03T05:03:58.691Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://oysz2016.github.io/2018/04/30/%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E4%B8%80%E6%9C%AC%E4%B9%A6/</loc>
-    
-    <lastmod>2018-05-03T04:32:44.857Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://oysz2016.github.io/about/index.html</loc>
     
     <lastmod>2018-05-01T02:48:15.481Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://oysz2016.github.io/2018/04/27/Caffe%E7%89%88Faster%20R-CNN%E5%8F%AF%E8%A7%86%E5%8C%96%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B,%E5%9B%BE%E5%83%8F%E7%89%B9%E5%BE%81,Loss%E5%9B%BE,PR%E6%9B%B2%E7%BA%BF/</loc>
-    
-    <lastmod>2018-04-30T10:16:35.643Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://oysz2016.github.io/2018/04/26/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E8%A7%A3%E8%AF%BB%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94LeNet5%EF%BC%8CAlexNet%E3%80%81ZFNet%E3%80%81VGG16%E3%80%81GoogLeNet%E5%92%8CResNet/</loc>
-    
-    <lastmod>2018-04-28T02:25:40.723Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://oysz2016.github.io/2018/04/25/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BB%93%E6%9E%84%E4%B8%8E%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95/</loc>
-    
-    <lastmod>2018-04-28T02:22:08.955Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://oysz2016.github.io/2018/04/24/%E4%BB%80%E4%B9%88%E6%98%AF%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    
-    <lastmod>2018-04-24T08:36:14.726Z</lastmod>
     
   </url>
   
