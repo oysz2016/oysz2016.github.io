@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>https://oysz2016.github.io/post/d76cc2d4.html</loc>
+    <lastmod>2018-05-09T16:13:58.794Z</lastmod>
+    <data>
+        <display>
+        <title>级联R-CNN:深入研究高质量目标检测</title>
+        <pubTime>2018-05-09T08:28:28.386Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>CVPR</tag>
+         
+        <tag>目标检测</tag>
+         
+        <tag>图像处理</tag>
+         
+         
+           
+             
+              <breadCrumb title="论文笔记" url="https://oysz2016.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://oysz2016.github.io/post/43b16a18.html</loc>
+    <lastmod>2018-05-09T16:13:13.923Z</lastmod>
+    <data>
+        <display>
+        <title>如何阅读一本书</title>
+        <pubTime>2018-04-30T06:33:39.454Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+         
+           
+             
+              <breadCrumb title="读书笔记" url="https://oysz2016.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://oysz2016.github.io/post/c57581c4.html</loc>
+    <lastmod>2018-05-09T16:13:13.920Z</lastmod>
+    <data>
+        <display>
+        <title>基于Github和Hexo的个人博客搭建</title>
+        <pubTime>2018-04-23T06:58:31.854Z</pubTime>
+        
+        <tag>hexo</tag>
+         
+        <tag>Github</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo博客搭建教程" url="https://oysz2016.github.io/categories/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://oysz2016.github.io/post/4ec18e58.html</loc>
+    <lastmod>2018-05-09T16:13:13.917Z</lastmod>
+    <data>
+        <display>
+        <title>卷积神经网络的结构与相关算法</title>
+        <pubTime>2018-04-25T04:08:42.925Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>卷积神经网络</tag>
+         
+        <tag>BP算法</tag>
+         
+        <tag>感知机</tag>
+         
+        <tag>卷积</tag>
+         
+        <tag>池化</tag>
+         
+        <tag>全连接</tag>
+         
+         
+           
+             
+              <breadCrumb title="深度学习笔记" url="https://oysz2016.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://oysz2016.github.io/post/d86a012b.html</loc>
+    <lastmod>2018-05-09T16:13:13.801Z</lastmod>
+    <data>
+        <display>
+        <title>卷积神经网络模型解读汇总——LeNet5，AlexNet、ZFNet、VGG16、GoogLeNet和ResNet</title>
+        <pubTime>2018-04-26T08:43:22.888Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>卷积神经网络</tag>
+         
+        <tag>LeNet5</tag>
+         
+        <tag>AlexNet</tag>
+         
+        <tag>ZFNet</tag>
+         
+        <tag>VGG16</tag>
+         
+        <tag>GoogLeNet</tag>
+         
+        <tag>ResNet</tag>
+         
+         
+           
+             
+              <breadCrumb title="深度学习笔记" url="https://oysz2016.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://oysz2016.github.io/post/ef0c22d1.html</loc>
+    <lastmod>2018-05-09T16:13:13.797Z</lastmod>
+    <data>
+        <display>
+        <title>从0到1:开启商业与未来的秘密</title>
+        <pubTime>2018-05-03T04:31:15.356Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+         
+           
+             
+              <breadCrumb title="读书笔记" url="https://oysz2016.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://oysz2016.github.io/post/309a28b1.html</loc>
+    <lastmod>2018-05-09T16:13:13.793Z</lastmod>
+    <data>
+        <display>
+        <title>什么是深度学习</title>
+        <pubTime>2018-04-24T07:53:22.592Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>机器学习</tag>
+         
+        <tag>特征提取</tag>
+         
+         
+           
+             
+              <breadCrumb title="深度学习笔记" url="https://oysz2016.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://oysz2016.github.io/post/79a2296e.html</loc>
+    <lastmod>2018-05-09T16:13:13.789Z</lastmod>
+    <data>
+        <display>
+        <title>Caffe版Faster R-CNN可视化——网络模型,图像特征,Loss图,PR曲线</title>
+        <pubTime>2018-04-27T04:35:20.661Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>卷积神经网络</tag>
+         
+        <tag>Faster R-CNN</tag>
+         
+        <tag>可视化</tag>
+         
+         
+           
+             
+              <breadCrumb title="深度学习笔记" url="https://oysz2016.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+    
+    
+    
+    
+</urlset>
