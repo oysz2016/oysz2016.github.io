@@ -4,6 +4,54 @@
 
     
   <url>
+    <loc>https://oysz2016.github.io/post/8611e6fb.html</loc>
+    <lastmod>2018-05-31T11:20:46.798Z</lastmod>
+    <data>
+        <display>
+        <title>数学公式语法——Mathjax教程</title>
+        <pubTime>2018-05-31T11:02:33.380Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+        <tag>Mathjax</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo博客搭建教程" url="https://oysz2016.github.io/categories/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://oysz2016.github.io/post/d76cc2d4.html</loc>
+    <lastmod>2018-05-31T11:04:27.470Z</lastmod>
+    <data>
+        <display>
+        <title>《Cascade R-CNN:Delving into High Quality Object Detection》论文笔记</title>
+        <pubTime>2018-05-09T08:28:28.386Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>CVPR</tag>
+         
+        <tag>目标检测</tag>
+         
+        <tag>图像处理</tag>
+         
+         
+           
+             
+              <breadCrumb title="论文笔记" url="https://oysz2016.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://oysz2016.github.io/post/1b649e52.html</loc>
     <lastmod>2018-05-30T05:56:41.827Z</lastmod>
     <data>
@@ -29,32 +77,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>https://oysz2016.github.io/post/d76cc2d4.html</loc>
-    <lastmod>2018-05-09T16:13:58.794Z</lastmod>
-    <data>
-        <display>
-        <title>级联R-CNN:深入研究高质量目标检测</title>
-        <pubTime>2018-05-09T08:28:28.386Z</pubTime>
-        
-        <tag>深度学习</tag>
-         
-        <tag>CVPR</tag>
-         
-        <tag>目标检测</tag>
-         
-        <tag>图像处理</tag>
-         
-         
-           
-             
-              <breadCrumb title="论文笔记" url="https://oysz2016.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>https://oysz2016.github.io/post/43b16a18.html</loc>
