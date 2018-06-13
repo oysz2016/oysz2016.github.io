@@ -3,9 +3,10 @@
 
 
     
+    
   <url>
     <loc>https://oysz2016.github.io/post/ad14e7f5.html</loc>
-    <lastmod>2018-06-05T07:35:45.332Z</lastmod>
+    <lastmod>2018-06-05T08:44:41.583Z</lastmod>
     <data>
         <display>
         <title>极简人类史</title>
@@ -26,6 +27,32 @@
 
     
   <url>
+    <loc>https://oysz2016.github.io/post/1b649e52.html</loc>
+    <lastmod>2018-06-05T08:35:12.859Z</lastmod>
+    <data>
+        <display>
+        <title>《Relation Networks for Object Detection》论文笔记</title>
+        <pubTime>2018-05-29T07:33:04.487Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>CVPR</tag>
+         
+        <tag>目标检测</tag>
+         
+        <tag>图像处理</tag>
+         
+         
+           
+             
+              <breadCrumb title="论文笔记" url="https://oysz2016.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://oysz2016.github.io/post/5d962f61.html</loc>
     <lastmod>2018-06-03T15:58:25.725Z</lastmod>
     <data>
@@ -33,9 +60,9 @@
         <title>《Deep Facial Expression Recognition:A Survey》论文笔记</title>
         <pubTime>2018-06-01T09:22:25.558Z</pubTime>
         
-        <tag>CVPR</tag>
-         
         <tag>深度学习</tag>
+         
+        <tag>CVPR</tag>
          
         <tag>FER</tag>
          
@@ -58,11 +85,11 @@
         <title>《Cascade R-CNN:Delving into High Quality Object Detection》论文笔记</title>
         <pubTime>2018-05-09T08:28:28.000Z</pubTime>
         
+        <tag>深度学习</tag>
+         
         <tag>CVPR</tag>
          
         <tag>目标检测</tag>
-         
-        <tag>深度学习</tag>
          
         <tag>图像处理</tag>
          
@@ -124,32 +151,6 @@
            
              
               <breadCrumb title="Hexo博客搭建教程" url="https://oysz2016.github.io/categories/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://oysz2016.github.io/post/1b649e52.html</loc>
-    <lastmod>2018-05-30T05:56:41.827Z</lastmod>
-    <data>
-        <display>
-        <title>《Relation Networks for Object Detection》论文笔记</title>
-        <pubTime>2018-05-29T07:33:04.487Z</pubTime>
-        
-        <tag>CVPR</tag>
-         
-        <tag>目标检测</tag>
-         
-        <tag>深度学习</tag>
-         
-        <tag>图像处理</tag>
-         
-         
-           
-             
-              <breadCrumb title="论文笔记" url="https://oysz2016.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
           
         </display>
     </data>
