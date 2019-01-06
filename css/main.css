@@ -2109,7 +2109,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff7fec;
+  background: #1bf2ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -11794,7 +11794,7 @@ span#inline-purple {
   height: 24px;
   width: 24px;
   cursor: pointer;
-  background: url("http://p7jiixmp8.bkt.clouddn.com/wechat.svg");
+  background: url("https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wechat.svg");
   background-size: 24px 24px;
 }
 .weixin-hover {
@@ -11805,7 +11805,7 @@ span#inline-purple {
   width: 0px;
   border-radius: 3px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.35);
-  background: url("http://p7jiixmp8.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.svg");
+  background: url("https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.svg");
   background-color: #fff;
   background-repeat: no-repeat;
   background-size: 150px 150px;
