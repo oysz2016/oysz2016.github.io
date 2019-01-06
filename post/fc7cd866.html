@@ -136,19 +136,16 @@
 
 
 
-<meta name="description" content="目前部署服务的主流语言还是C++，因此项目上线前，在需要部署调试的时候需要对Faster R-CNN工程化为C++代码。这篇博文总结的部分主要将python版本的demo.py代码及其相关的部分改写成C++版本。 封装1封装听起来很复杂，其实就是隐藏代码的实现细节，只暴露出对应的接口。Faster R-CNN具有很广泛的流行度了，相关的资料在可以说在目标检测模型里是最多的。为了方便理解，首先给">
 <meta name="keywords" content="深度学习,代码部署">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Faster R-CNN代码的caffe封装">
 <meta property="og:url" content="https://oysz2016.github.io/post/fc7cd866.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
-<meta property="og:description" content="目前部署服务的主流语言还是C++，因此项目上线前，在需要部署调试的时候需要对Faster R-CNN工程化为C++代码。这篇博文总结的部分主要将python版本的demo.py代码及其相关的部分改写成C++版本。 封装1封装听起来很复杂，其实就是隐藏代码的实现细节，只暴露出对应的接口。Faster R-CNN具有很广泛的流行度了，相关的资料在可以说在目标检测模型里是最多的。为了方便理解，首先给">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/caffe.jpg">
-<meta property="og:updated_time" content="2019-01-06T04:02:01.051Z">
+<meta property="og:updated_time" content="2019-01-06T09:11:34.893Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Faster R-CNN代码的caffe封装">
-<meta name="twitter:description" content="目前部署服务的主流语言还是C++，因此项目上线前，在需要部署调试的时候需要对Faster R-CNN工程化为C++代码。这篇博文总结的部分主要将python版本的demo.py代码及其相关的部分改写成C++版本。 封装1封装听起来很复杂，其实就是隐藏代码的实现细节，只暴露出对应的接口。Faster R-CNN具有很广泛的流行度了，相关的资料在可以说在目标检测模型里是最多的。为了方便理解，首先给">
 <meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/caffe.jpg">
 
 
@@ -499,7 +496,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/caffe.jpg" rel="gallery_cjqklsza60003s4tphbd6z796"
+                 href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/caffe.jpg" rel="gallery_cjqkujeh20002sotpud6in018"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/caffe.jpg" itemprop="contentUrl"/>
               </a>
@@ -512,7 +509,7 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><a id="more"></a>
+        <script src="\assets\js\APlayer.min.js"> </script><p></p><p class="description"></p><br><a id="more"></a><p></p>
 <p>目前部署服务的主流语言还是C++，因此项目上线前，在需要部署调试的时候需要对Faster R-CNN工程化为<code>C++</code>代码。这篇博文总结的部分主要将python版本的demo.py代码及其相关的部分改写成<code>C++</code>版本。</p>
 <h2 id="封装1"><a href="#封装1" class="headerlink" title="封装1"></a>封装1</h2><p>封装听起来很复杂，其实就是隐藏代码的实现细节，只暴露出对应的接口。Faster R-CNN具有很广泛的流行度了，相关的资料在可以说在目标检测模型里是最多的。<br>为了方便理解，首先给出<code>C++</code>工程demo的目录结构。</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">└── <span class="class"><span class="keyword">lib</span></span></span><br><span class="line">│   │── faster_rcnn.cpp</span><br><span class="line">│   │── faster_rcnn.hpp</span><br><span class="line">│   │── CMakeLists.txt</span><br><span class="line">│—— CMakeLists.txt</span><br><span class="line">│—— main.cpp</span><br></pre></td></tr></table></figure>
@@ -602,7 +599,7 @@
   <p><span>本文标题:</span>Faster R-CNN代码的caffe封装</a></p>
   <p><span>文章作者:</span>冲弱</a></p>
   <p><span>发布时间:</span>2019年01月06日 - 11:59:02</p>
-  <p><span>最后更新:</span>2019年01月06日 - 12:02:01</p>
+  <p><span>最后更新:</span>2019年01月06日 - 17:11:34</p>
   <p><span>原始链接:</span><a href="/post/fc7cd866.html" title="Faster R-CNN代码的caffe封装">https://oysz2016.github.io/post/fc7cd866.html</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://oysz2016.github.io/post/fc7cd866.html"  aria-label="复制成功！"></i></span>
   </p>

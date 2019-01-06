@@ -136,19 +136,16 @@
 
 
 
-<meta name="description" content="论文链接：https://arxiv.org/abs/1711.07767论文代码：https://github.com/ruinmessi/RFBNet这篇文章是CV领域顶会ECCV2018中关于目标检测的文章,文中以SSD模型为基础提出了RFB结构,强调兼顾速度与性能。说来也巧,因为项目需要,在看这篇论文之前正好看过提出dilated convolution的那篇文章，但是dilated">
 <meta name="keywords" content="深度学习,目标检测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记">
 <meta property="og:url" content="https://oysz2016.github.io/post/f38a4f4.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
-<meta property="og:description" content="论文链接：https://arxiv.org/abs/1711.07767论文代码：https://github.com/ruinmessi/RFBNet这篇文章是CV领域顶会ECCV2018中关于目标检测的文章,文中以SSD模型为基础提出了RFB结构,强调兼顾速度与性能。说来也巧,因为项目需要,在看这篇论文之前正好看过提出dilated convolution的那篇文章，但是dilated">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755296592.jpg">
-<meta property="og:updated_time" content="2019-01-06T07:55:05.970Z">
+<meta property="og:updated_time" content="2019-01-06T09:12:00.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记">
-<meta name="twitter:description" content="论文链接：https://arxiv.org/abs/1711.07767论文代码：https://github.com/ruinmessi/RFBNet这篇文章是CV领域顶会ECCV2018中关于目标检测的文章,文中以SSD模型为基础提出了RFB结构,强调兼顾速度与性能。说来也巧,因为项目需要,在看这篇论文之前正好看过提出dilated convolution的那篇文章，但是dilated">
 <meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755296592.jpg">
 
 
@@ -499,7 +496,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755296592.jpg" rel="gallery_cjqklszae0004s4tpbgbkgb72"
+                 href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755296592.jpg" rel="gallery_cjqkujey9001psotpyv82frdx"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755296592.jpg" itemprop="contentUrl"/>
               </a>
@@ -512,8 +509,7 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><a id="more"></a>
-<p>论文链接：<a href="https://arxiv.org/abs/1711.07767" target="_blank" rel="noopener">https://arxiv.org/abs/1711.07767</a><br>论文代码：<a href="https://github.com/ruinmessi/RFBNet" target="_blank" rel="noopener">https://github.com/ruinmessi/RFBNet</a><br>这篇文章是CV领域顶会ECCV2018中关于目标检测的文章,文中以SSD模型为基础提出了RFB结构,强调兼顾速度与性能。说来也巧,因为项目需要,在看这篇论文之前正好看过提出dilated convolution的那篇文章，但是dilated convolution的结构获得更大感受野的方式确实对细粒度的分割会比较好，适用图像分割领域。当我还在想能怎么用在目标检测上时，就看到了RFB网络。虽然作者说是为了兼顾速度与性能将其应用到one stage的SSD上，但我也在two stage的faster rcnn上，复现出了较好的效果。这是一篇我个人很喜欢的文章，实验充分，模拟视觉细胞的结构让我觉得即简单又巧妙。因此简单总结下这篇文章。</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p></p><p class="description"></p><br><a id="more"></a><br>论文链接：<a href="https://arxiv.org/abs/1711.07767" target="_blank" rel="noopener">https://arxiv.org/abs/1711.07767</a><br>论文代码：<a href="https://github.com/ruinmessi/RFBNet" target="_blank" rel="noopener">https://github.com/ruinmessi/RFBNet</a><br>这篇文章是CV领域顶会ECCV2018中关于目标检测的文章,文中以SSD模型为基础提出了RFB结构,强调兼顾速度与性能。说来也巧,因为项目需要,在看这篇论文之前正好看过提出dilated convolution的那篇文章，但是dilated convolution的结构获得更大感受野的方式确实对细粒度的分割会比较好，适用图像分割领域。当我还在想能怎么用在目标检测上时，就看到了RFB网络。虽然作者说是为了兼顾速度与性能将其应用到one stage的SSD上，但我也在two stage的faster rcnn上，复现出了较好的效果。这是一篇我个人很喜欢的文章，实验充分，模拟视觉细胞的结构让我觉得即简单又巧妙。因此简单总结下这篇文章。<p></p>
 <h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>作者指出目前图像领域深度学习的发展越来越倾向于用更深的网络以达到更好的效果，然而像ResNet等很深的网络往往具有较大的计算量，导致速度受限。相比之下作者提出的RFB结构具有以下优点：</p>
 <ol>
 <li>模拟了人类视觉系统RFs的大小和离心率设置，增强轻量级CNN网络的特征提取能力</li>
@@ -618,7 +614,7 @@
   <p><span>本文标题:</span>《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记</a></p>
   <p><span>文章作者:</span>冲弱</a></p>
   <p><span>发布时间:</span>2019年01月06日 - 15:50:46</p>
-  <p><span>最后更新:</span>2019年01月06日 - 15:55:05</p>
+  <p><span>最后更新:</span>2019年01月06日 - 17:12:00</p>
   <p><span>原始链接:</span><a href="/post/f38a4f4.html" title="《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记">https://oysz2016.github.io/post/f38a4f4.html</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://oysz2016.github.io/post/f38a4f4.html"  aria-label="复制成功！"></i></span>
   </p>
