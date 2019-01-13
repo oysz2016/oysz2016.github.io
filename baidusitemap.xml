@@ -4,12 +4,32 @@
 
     
   <url>
-    <loc>https://oysz2016.github.io/post/4395ef5a.html</loc>
-    <lastmod>2019-01-12T12:12:27.483Z</lastmod>
+    <loc>https://oysz2016.github.io/post/7fda15c2.html</loc>
+    <lastmod>2019-01-13T09:19:32.539Z</lastmod>
     <data>
         <display>
-        <title>(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记</title>
-        <pubTime>2019-01-12T05:40:24.263Z</pubTime>
+        <title>简单线性回归</title>
+        <pubTime>2019-01-13T09:10:18.243Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://oysz2016.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://oysz2016.github.io/post/f38a4f4.html</loc>
+    <lastmod>2019-01-12T13:30:12.043Z</lastmod>
+    <data>
+        <display>
+        <title>《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记</title>
+        <pubTime>2019-01-06T07:50:46.841Z</pubTime>
         
         <tag>深度学习</tag>
          
@@ -26,12 +46,12 @@
 
     
   <url>
-    <loc>https://oysz2016.github.io/post/f38a4f4.html</loc>
-    <lastmod>2019-01-06T12:27:25.257Z</lastmod>
+    <loc>https://oysz2016.github.io/post/4395ef5a.html</loc>
+    <lastmod>2019-01-12T13:23:16.165Z</lastmod>
     <data>
         <display>
-        <title>《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记</title>
-        <pubTime>2019-01-06T07:50:46.841Z</pubTime>
+        <title>(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记</title>
+        <pubTime>2019-01-12T05:40:24.263Z</pubTime>
         
         <tag>深度学习</tag>
          
