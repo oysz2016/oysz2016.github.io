@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://oysz2016.github.io/"/>
-  <updated>2019-06-08T06:45:21.511Z</updated>
+  <updated>2019-06-08T07:20:44.007Z</updated>
   <id>https://oysz2016.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://oysz2016.github.io/post/79b7b6f1.html"/>
     <id>https://oysz2016.github.io/post/79b7b6f1.html</id>
     <published>2019-06-08T06:35:12.157Z</published>
-    <updated>2019-06-08T06:45:21.511Z</updated>
+    <updated>2019-06-08T07:20:44.007Z</updated>
     
-    <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p></p><p class="description"></p><br><a id="more"></a><p></p><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近实在是太忙了，很久没更新博客。想起前几周花了一些功夫给组内的小伙伴们做了个分享，为了做分享时自己能讲清楚，找了不少我认为描述的比较好的图片。Faster R-CNN可以说是目标检测领域的开山之作了，即使现今的顶会论文中，目标检测方面 的论文也有不少是对Faster R-CNN做的改进。这么经典的文章，细节又多如牛毛，真是常读常新。所以搬运到博客上应该也是有一些价值的。</p><h2 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h2><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280732.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280606.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280736.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280473.jpg" alt="enter description here"></p><p>写作的过程是将网状的思考用树状的语法结构转换成线性的文字，阅读则是其逆向过程。读文章时并不用逐字逐句的按文章的书写顺序去读。可以按照合适的方式去更好的还原作者的思考过程。及时的停止读一篇文章，能及时止损，每个人精力和注意力都是宝贵的，不应该把时间花在读了对自己没价值的文章上。</p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280736.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280737.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280804.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280702.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280813.jpg" alt="enter description here"></p><p>检测任务目前的弊病之一就在于其网络的特征提取层直接从分类网络迁移学习来，并不是很贴合检测任务。</p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280703.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280814.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280704.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280704.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280731.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280830.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280474.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280813.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280732.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280605.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559976280805.jpg" alt="enter description here"></p>]]></content>
+    <content type="html"><![CDATA[<script src="\assets\js\APlayer.min.js"> </script><p></p><p class="description"></p><br><a id="more"></a><p></p><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote><p>最近实在是太忙了，很久没更新博客。想起前几周花了一些功夫给组内的小伙伴们做了个分享，为了做分享时自己能讲清楚，找了不少我认为描述的比较好的图片。Faster R-CNN可以说是目标检测领域的开山之作了，即使现今的顶会论文中，目标检测方面 的论文也有不少是对Faster R-CNN做的改进。这么经典的文章，细节又多如牛毛，真是常读常新。所以搬运到博客上应该也是有一些价值的。</p></blockquote><h2 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h2><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196152.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195967.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196153.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195729.jpg" alt="enter description here"></p><blockquote><p>写作的过程是将网状的思考用树状的语法结构转换成线性的文字，阅读则是其逆向过程。读文章时并不用逐字逐句的按文章的书写顺序去读。可以按照合适的方式去更好的还原作者的思考过程。及时的停止读一篇文章，能及时止损，每个人精力和注意力都是宝贵的，不应该把时间花在读了对自己没价值的文章上。</p></blockquote><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196154.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196156.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196019.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196293.jpg" alt="enter description here"></p><blockquote><p>检测任务目前的弊病之一就在于其网络的特征提取层直接从分类网络迁移学习来，并不是很贴合检测任务。</p></blockquote><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196020.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196294.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196021.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196024.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196026.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196314.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195920.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196289.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196118.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195946.jpg" alt="enter description here"></p><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196290.jpg" alt="enter description here"></p>]]></content>
     
     <summary type="html">
     
@@ -370,9 +370,9 @@
     
       <category term="深度学习" scheme="https://oysz2016.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="目标检测" scheme="https://oysz2016.github.io/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
-    
       <category term="CVPR" scheme="https://oysz2016.github.io/tags/CVPR/"/>
+    
+      <category term="目标检测" scheme="https://oysz2016.github.io/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
     
       <category term="图像处理" scheme="https://oysz2016.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
     
@@ -398,9 +398,9 @@
     
       <category term="深度学习" scheme="https://oysz2016.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="目标检测" scheme="https://oysz2016.github.io/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
-    
       <category term="CVPR" scheme="https://oysz2016.github.io/tags/CVPR/"/>
+    
+      <category term="目标检测" scheme="https://oysz2016.github.io/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
     
       <category term="图像处理" scheme="https://oysz2016.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
     
