@@ -123,7 +123,7 @@
 
 
 
-  <meta name="keywords" content="视频理解,多模态," />
+  <meta name="keywords" content="OY" />
 
 
 
@@ -136,20 +136,16 @@
 
 
 
-<meta name="description" content="由于之前看图片相关的论文比较多，而这篇论文偏向于视频理解的任务，为了避免有其他不了解这篇论文领域的同学看的时候比较吃力，在解读这篇论文前先介绍这篇论文的任务。任务定义: R-VOS(Referring video object segmentation): 给出一种物体对应的语言描述，分割出该物体对应的mask。这篇论文的相关视频在reddit上热度非常高，感兴趣的同学可以看下视频，相信也能对这">
-<meta name="keywords" content="视频理解,多模态">
-<meta property="og:type" content="article">
-<meta property="og:title" content="《ReferTransformer》论文笔记">
-<meta property="og:url" content="https://oysz2016.github.io/post/149f20a.html">
+<meta name="description" content="输出即获得，分享即反哺">
+<meta property="og:type" content="website">
+<meta property="og:title" content="冲弱&#39;s Blog">
+<meta property="og:url" content="https://oysz2016.github.io/archives/2022/11/index.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
-<meta property="og:description" content="由于之前看图片相关的论文比较多，而这篇论文偏向于视频理解的任务，为了避免有其他不了解这篇论文领域的同学看的时候比较吃力，在解读这篇论文前先介绍这篇论文的任务。任务定义: R-VOS(Referring video object segmentation): 给出一种物体对应的语言描述，分割出该物体对应的mask。这篇论文的相关视频在reddit上热度非常高，感兴趣的同学可以看下视频，相信也能对这">
+<meta property="og:description" content="输出即获得，分享即反哺">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/1664638539496.jpg">
-<meta property="og:updated_time" content="2022-10-01T10:01:07.363Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《ReferTransformer》论文笔记">
-<meta name="twitter:description" content="由于之前看图片相关的论文比较多，而这篇论文偏向于视频理解的任务，为了避免有其他不了解这篇论文领域的同学看的时候比较吃力，在解读这篇论文前先介绍这篇论文的任务。任务定义: R-VOS(Referring video object segmentation): 给出一种物体对应的语言描述，分割出该物体对应的mask。这篇论文的相关视频在reddit上热度非常高，感兴趣的同学可以看下视频，相信也能对这">
-<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/1664638539496.jpg">
+<meta name="twitter:title" content="冲弱&#39;s Blog">
+<meta name="twitter:description" content="输出即获得，分享即反哺">
 
 
 
@@ -179,13 +175,13 @@
 
 
 
-  <link rel="canonical" href="https://oysz2016.github.io/post/149f20a.html"/>
+  <link rel="canonical" href="https://oysz2016.github.io/archives/2022/11/"/>
 
 
 
 
 
-  <title>《ReferTransformer》论文笔记 | 冲弱's Blog</title>
+  <title>归档 | 冲弱's Blog</title>
   
 
 
@@ -208,7 +204,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -352,363 +348,74 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        嗯..! 目前共计 29 篇日志。 继续努力。
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2022">2022</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/149f20a.html">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冲弱">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="冲弱's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/post/63606c55.html" itemprop="url">
+              
+                <span itemprop="name">《VAE》论文笔记</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">《ReferTransformer》论文笔记</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-10-01T18:01:02+08:00">
-                2022-10-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/论文笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">论文笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/post/149f20a.html" class="leancloud_visitors" data-flag-title="《ReferTransformer》论文笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,710 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"> 6 分钟
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-      
-      
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/1664638539496.jpg" rel="gallery_cla9nswab000asgv72auiptcx"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/1664638539496.jpg" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
-
-      
-        <script src="\assets\js\APlayer.min.js"> </script><p>由于之前看图片相关的论文比较多，而这篇论文偏向于视频理解的任务，为了避免有其他不了解这篇论文领域的同学看的时候比较吃力，在解读这篇论文前先介绍这篇论文的任务。<br><strong>任务定义</strong>: R-VOS(Referring video object segmentation): 给出一种物体对应的语言描述，分割出该物体对应的mask。<br>这篇论文的相关视频在reddit上热度非常高，感兴趣的同学可以看下视频，相信也能对这篇论文应用的方向有更清晰的了解。<a href="https://www.reddit.com/r/MachineLearning/comments/t7qe6b/r_endtoend_referring_video_object_segmentation/?utm_source=share&amp;utm_medium=web2x&amp;context=3" target="_blank" rel="noopener">[R] End-to-End Referring Video Object Segmentation with Multimodal Transformers</a></p>
-<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作:"></a>相关工作:</h2><p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233717@2x.png" alt="enter description here"></p>
-<h3 id="Bottom-up"><a href="#Bottom-up" class="headerlink" title="Bottom-up"></a>Bottom-up</h3><ul>
-<li><strong>方法:</strong> 如图1(a)所示，用early-feature的方式融合视觉和语言特征，再用FCN decoder目标的掩码。</li>
-<li><strong>缺点:</strong> early-feature的方法无法获得较好的多模态特征，无法为跨模态推理提供明确的知识，并且会遇到由于场景变化而导致预测对象的差异。</li>
-</ul>
-<h3 id="Top-down"><a href="#Top-down" class="headerlink" title="Top-down"></a>Top-down</h3><ul>
-<li><strong>方法:</strong> 如图1(b)所示，两阶段的方式，先对图片/视频中所有的物体做实例分割，将实例分割的结果在视频中关联起来，形成一系列候选，再通过语言模型和Grounding Model筛选出语言描述提到的物体</li>
-<li><strong>缺点:</strong> 相比bottom-up的方式有更好的性能，但整个pipeline由于多阶段的方式太重。例如最近的一些方法，如HTC,CFBI中都需要再ImageNet，COCO，RefCOCO中预训练，然后在R-VOS数据集中fintune。而且将R-VOS的任务拆解为几个子问题分别优化由于误差传递等问题会造成次优的解决方案。</li>
-</ul>
-<h2 id="本文方法"><a href="#本文方法" class="headerlink" title="本文方法"></a>本文方法</h2><p>该论文的方法图1(c):</p>
-<ul>
-<li>将文字的特征和queries的特征融合，作为conditional queries，生成的queries可以只聚焦在文字所提到的目标特征上，可以极大的减少queries的数量(例如detr中的100个)</li>
-<li>考虑到需要从queries的特征中decode出object mask，使用instance-aware dynamic kernels从提取分割的mask特征</li>
-<li>受启发于FPN，设计了CM-FPN(cross modal features pyramid network), 提取多模态的金字塔特征</li>
-</ul>
-<p>网络结构如图2所示，主要由backbone,language as queries,Cross-modal Feature Pyramid Network,Instance Sequence Matching and Loss，inference五部分组成。下面我写的尽量详细点。<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233751@2x.png" alt="enter description here"></p>
-<h3 id="backbone"><a href="#backbone" class="headerlink" title="backbone"></a>backbone</h3><p><strong>visual encoder</strong><br>使用通用的视觉backbone做视觉特征的编码器，例如可以使用经典的ResNet网络或者3D的特征编码器，如Video swin transformer。生成的特征是如下Sequence $F_v=\{F_t\}^T_{t=1}$,其中T表示T桢图像<br><strong>linguistic encoder</strong><br>使用现成的语言模型,如RoBERTa，提取文本的特征$F_e=\{F_i\}^L_{i=1}$，其中L表示L个word。在该任务中需要将$F_e$通过pooling提取句子级别的特征，这是由于该任务使用句子级别的特征和queries融合用于跨模态的特征融合</p>
-<h3 id="language-as-queries"><a href="#language-as-queries" class="headerlink" title="language as queries:"></a>language as queries:</h3><p><strong>transformer encoder</strong>: encoder部分和detr中一样，先用1x1卷积进行<strong>通道数压缩</strong>,再把宽和高压缩为一个维度，将<strong>特征序列化</strong>，再做<strong>位置编码</strong><br><strong>transformer decoder</strong>: decoder部分也和detr比较类似，但有些差异。使用N个object queries提取每帧实例中的特征，区别在于queries在视频帧之间共享权重，好处是可以更灵活的处理长视频，并且对于同样的实例queries学习的特征更鲁棒。将句子级别的特征$F_e$复制N份和每一个object queries一起作为decoder的输入。对于T帧图像，会得到$N_q=T<em>N$的预测集合<br><strong>prediction heads</strong>：具有三个预测头,分别是box head，mask head，class head(二分类，输出是否是文本中提到的目标)<br><strong>dynamic convolution</strong>： 使用动态卷积生成binary segmentation masks<br><em>*illustration of conditional queries</em></em>：得益于transformer的注意力机制，输入object queries和text embedding可以让object queries聚焦于text提到的物体</p>
-<h3 id="cross-model-Feature-Pyramid-Network"><a href="#cross-model-Feature-Pyramid-Network" class="headerlink" title="cross-model Feature Pyramid Network"></a>cross-model Feature Pyramid Network</h3><p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233822@2x.png" alt="enter description here"></p>
-<p>该部分可以认为是这篇论文最大的创新点，提出了多模态融合的FPN网络，网络结构图如图4所示，和传统FPN网络的区别在于加入了vision-language fusion模块，该模块的结构类似transformer网络，图像特征作为encoder部分qkv的输入，文本特征作为decoder部分k和v的输入。</p>
-<h3 id="Instance-Sequence-Matching-and-Loss"><a href="#Instance-Sequence-Matching-and-Loss" class="headerlink" title="Instance Sequence Matching and Loss"></a>Instance Sequence Matching and Loss</h3><p>前面提到过，对于T帧图像，N个object queries，会得到$N_q=T*N$个预测结果。由于视频中跨帧的物体在相邻帧间保持相对相同的位置，可以将预测结果看成是N个实例在T帧上的轨迹</p>
-<p>因此可以用instance matching strategy的方式对预测整体监督。将预测集集表示为$y=\{y_i\}^N_{i=1}$，第i个实例的预测表示为:</p>
-<script type="math/tex; mode=display">y_i=\{p^t_i, b^t_i, s^t_i\}^T_{t=1}</script><p>$p^t$表示一个概率的标量，用于表示实例是否在文本中被提到且在当前帧出现的概率；$b^t_i$是一个长度为4的向量，表示实例的坐标，具体定义是目标的中心坐标和宽高；<br>$s^t_i$的维度为(H/4 * W/4),表示实例的分割mask。<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-235737@2x.png" alt="enter description here"></p>
-<p>损失函数部分由3部分组成，分类loss为focal loss，坐标回归loss为L1 Loss和GIOU Loss，分割loss为DICE Loss和binary mask focal loss</p>
-<h3 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h3><p>在推理时，模型会预测所有帧中对应实例类别的置信度，选择平均置信度最高的实例类别对应的定位和分割结果作为最终的输出结果</p>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>论文中有非常详细的和其他方法的对比和消融实验<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233839@2x.png" alt="enter description here"></p>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233851@2x.png" alt="enter description here"></p>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233900@2x.png" alt="enter description here"></p>
-<p>表4中baseline的方法训练和推理阶段使用的都是长度为5帧的视频，baseline的方法不能有效的区分距离较近的相似物体，容易分割出最显著的区域，相比之下，通过表6(a)可以看出，只需要一个object queries就可以获得比baseline更好的效果，也证明了动态卷积对于分割任务是必要的</p>
-<ul>
-<li>baseline的方式使用图像level的特征分割物体，而本文的方法是用图像-文本融合后的多模态特征</li>
-<li>本文将动态卷积核的相对坐标和掩码特征融合起来，有助于模型定位出文本中提到的目标</li>
-</ul>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233911@2x.png" alt="enter description here"></p>
-<p>不同backbone的影响<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233918@2x.png" alt="enter description here"></p>
-<p><strong>object queries数量的影响</strong>，从实验结果来看数量也不是越多越好，5个是实验中的最好效果。<br><strong>训练和测试帧数的影响</strong>，最好的是5帧的参数，但理论上应该帧数增多，效果还会提升，可能是受限于计算资源的影响<br><strong>预测头的影响</strong>，类别，边框回归，分割三个任务都预测，效果是最好的<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-234022@2x.png" alt="enter description here"></p>
-
-      
-    </div>
-    
-    
-    
-    <div>
-        
-          <div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-smile-o"></i>感谢您的阅读-------------</div>
-    
-</div>
-        
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2022-11-09T21:08:51+08:00"
+              content="2022-11-09" >
+          11-09
+        </time>
       </div>
-    
 
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wechatpay.jpg" alt="冲弱 微信支付"/>
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/alipay.jpg" alt="冲弱 支付宝"/>
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
-      
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/视频理解/" rel="tag"><i class="fa fa-tag"></i> 视频理解</a>
-          
-            <a href="/tags/多模态/" rel="tag"><i class="fa fa-tag"></i> 多模态</a>
-          
-        </div>
-        <div>
-        
-          
-<div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-  
-  <!-- JS库 sweetalert 可修改路径 -->
-  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
-  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-
-  <p><span>本文标题:</span>《ReferTransformer》论文笔记</a></p>
-  <p><span>文章作者:</span>冲弱</a></p>
-  <p><span>发布时间:</span>2022年10月01日 - 18:01:02</p>
-  <p><span>最后更新:</span>2022年10月01日 - 18:01:07</p>
-  <p><span>原始链接:</span><a href="/post/149f20a.html" title="《ReferTransformer》论文笔记">https://oysz2016.github.io/post/149f20a.html</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://oysz2016.github.io/post/149f20a.html"  aria-label="复制成功！"></i></span>
-  </p>
-  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
-</div>
-<script> 
-    var clipboard = new Clipboard('.fa-clipboard');
-    clipboard.on('success', $(function(){
-      $(".fa-clipboard").click(function(){
-        swal({   
-          title: "",   
-          text: '复制成功',   
-          html: false,
-          timer: 500,   
-          showConfirmButton: false
-        });
-      });
-    }));  
-</script>
-
-
-        
-      </div>
-      
-
-      
-      
-        <div class="post-widgets">
-        
-          
-          <div class="wp_rating">
-          <div style="color: rgba(0, 0, 0, 0.75); font-size:13px; letter-spacing:3px">(&gt;给我的文章打个分吧&lt;)</div>
-            <div id="wpac-rating"></div>
-          </div>
-        
-
-        
-
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/post/79b7b6f1.html" rel="next" title="《Faster R-CNN》详解">
-                <i class="fa fa-chevron-left"></i> 《Faster R-CNN》详解
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/f84aad11.html" rel="prev" title="《GAN》论文笔记">
-                《GAN》论文笔记 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
-        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<div class="addthis_inline_share_toolbox">
-  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5adaebc9009ff58b" async = "async" ></script>
-</div>
 
-      
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -716,15 +423,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTg2Ni8xMjQwMg=="></div>
-    </div>
-
-  
-
-
 
         </div>
         
@@ -747,17 +445,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1089,22 +778,6 @@ show_date_time();
       </section>
 
       
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关工作"><span class="nav-number">1.</span> <span class="nav-text">相关工作:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bottom-up"><span class="nav-number">1.1.</span> <span class="nav-text">Bottom-up</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-down"><span class="nav-number">1.2.</span> <span class="nav-text">Top-down</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本文方法"><span class="nav-number">2.</span> <span class="nav-text">本文方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#backbone"><span class="nav-number">2.1.</span> <span class="nav-text">backbone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#language-as-queries"><span class="nav-number">2.2.</span> <span class="nav-text">language as queries:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cross-model-Feature-Pyramid-Network"><span class="nav-number">2.3.</span> <span class="nav-text">cross-model Feature Pyramid Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instance-Sequence-Matching-and-Loss"><span class="nav-number">2.4.</span> <span class="nav-text">Instance Sequence Matching and Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inference"><span class="nav-number">2.5.</span> <span class="nav-text">Inference</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
 
       
 
@@ -1258,13 +931,6 @@ show_date_time();
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-<script src="/js/src/photoswipe.js?v=5.1.4"></script>
-<script src="/js/src/photoswipe-ui-default.js?v=5.1.4"></script>
-
-
 
   
 
@@ -1293,17 +959,6 @@ show_date_time();
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 
@@ -1438,23 +1093,6 @@ show_date_time();
 
   
   
-  <script type="text/javascript">
-  wpac_init = window.wpac_init || [];
-  wpac_init.push({widget: 'Rating', id: 11277,
-    el: 'wpac-rating',
-    color: 'f79533'
-  });
-  (function() {
-    if ('WIDGETPACK_LOADED' in window) return;
-    WIDGETPACK_LOADED = true;
-    var mc = document.createElement('script');
-    mc.type = 'text/javascript';
-    mc.async = true;
-    mc.src = '//embed.widgetpack.com/widget.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-  })();
-  </script>
-
 
   
   
