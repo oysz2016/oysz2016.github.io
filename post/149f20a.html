@@ -136,19 +136,19 @@
 
 
 
-<meta name="description" content="由于之前看图片相关的论文比较多，而这篇论文偏向于视频理解的任务，为了避免有其他不了解这篇论文领域的同学看的时候比较吃力，在解读这篇论文前先介绍这篇论文的任务。任务定义: R-VOS(Referring video object segmentation): 给出一种物体对应的语言描述，分割出该物体对应的mask。这篇论文的相关视频在reddit上热度非常高，感兴趣的同学可以看下视频，相信也能对这">
+<meta name="description" content="论文链接: https://arxiv.org/abs/2201.00487 代码链接: https://github.com/wjn922/ReferFormer 由于之前看图片相关的论文比较多，而这篇论文偏向于视频理解的任务，为了避免有其他不了解这篇论文领域的同学看的时候比较吃力，在解读这篇论文前先介绍这篇论文的任务。 任务定义: R-VOS(Referring video object s">
 <meta name="keywords" content="视频理解,多模态">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《ReferTransformer》论文笔记">
 <meta property="og:url" content="https://oysz2016.github.io/post/149f20a.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
-<meta property="og:description" content="由于之前看图片相关的论文比较多，而这篇论文偏向于视频理解的任务，为了避免有其他不了解这篇论文领域的同学看的时候比较吃力，在解读这篇论文前先介绍这篇论文的任务。任务定义: R-VOS(Referring video object segmentation): 给出一种物体对应的语言描述，分割出该物体对应的mask。这篇论文的相关视频在reddit上热度非常高，感兴趣的同学可以看下视频，相信也能对这">
+<meta property="og:description" content="论文链接: https://arxiv.org/abs/2201.00487 代码链接: https://github.com/wjn922/ReferFormer 由于之前看图片相关的论文比较多，而这篇论文偏向于视频理解的任务，为了避免有其他不了解这篇论文领域的同学看的时候比较吃力，在解读这篇论文前先介绍这篇论文的任务。 任务定义: R-VOS(Referring video object s">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/1664638539496.jpg">
-<meta property="og:updated_time" content="2022-10-01T10:01:07.363Z">
+<meta property="og:updated_time" content="2022-11-25T02:12:54.058Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《ReferTransformer》论文笔记">
-<meta name="twitter:description" content="由于之前看图片相关的论文比较多，而这篇论文偏向于视频理解的任务，为了避免有其他不了解这篇论文领域的同学看的时候比较吃力，在解读这篇论文前先介绍这篇论文的任务。任务定义: R-VOS(Referring video object segmentation): 给出一种物体对应的语言描述，分割出该物体对应的mask。这篇论文的相关视频在reddit上热度非常高，感兴趣的同学可以看下视频，相信也能对这">
+<meta name="twitter:description" content="论文链接: https://arxiv.org/abs/2201.00487 代码链接: https://github.com/wjn922/ReferFormer 由于之前看图片相关的论文比较多，而这篇论文偏向于视频理解的任务，为了避免有其他不了解这篇论文领域的同学看的时候比较吃力，在解读这篇论文前先介绍这篇论文的任务。 任务定义: R-VOS(Referring video object s">
 <meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/1664638539496.jpg">
 
 
@@ -280,16 +280,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-photos">
-          <a href="/photos/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-photo"></i> <br />
-            
-            相册
           </a>
         </li>
       
@@ -448,6 +438,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
             <div class="post-wordcount">
@@ -460,7 +455,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,710 字
+                  1,738 字
                 </span>
               
 
@@ -499,7 +494,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/1664638539496.jpg" rel="gallery_claq1m96b000au4v76ofi0jso"
+                 href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/1664638539496.jpg" rel="gallery_claz4gewx000icgv7ursa26rb"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/1664638539496.jpg" itemprop="contentUrl"/>
               </a>
@@ -512,8 +507,11 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><p>由于之前看图片相关的论文比较多，而这篇论文偏向于视频理解的任务，为了避免有其他不了解这篇论文领域的同学看的时候比较吃力，在解读这篇论文前先介绍这篇论文的任务。<br><strong>任务定义</strong>: R-VOS(Referring video object segmentation): 给出一种物体对应的语言描述，分割出该物体对应的mask。<br>这篇论文的相关视频在reddit上热度非常高，感兴趣的同学可以看下视频，相信也能对这篇论文应用的方向有更清晰的了解。<a href="https://www.reddit.com/r/MachineLearning/comments/t7qe6b/r_endtoend_referring_video_object_segmentation/?utm_source=share&amp;utm_medium=web2x&amp;context=3" target="_blank" rel="noopener">[R] End-to-End Referring Video Object Segmentation with Multimodal Transformers</a></p>
-<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作:"></a>相关工作:</h2><p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233717@2x.png" alt="enter description here"></p>
+        <script src="\assets\js\APlayer.min.js"> </script><p><strong>论文链接</strong>: <a href="https://arxiv.org/abs/2201.00487" target="_blank" rel="noopener">https://arxiv.org/abs/2201.00487</a></p>
+<p><strong>代码链接</strong>: <a href="https://github.com/wjn922/ReferFormer" target="_blank" rel="noopener">https://github.com/wjn922/ReferFormer</a></p>
+<p>由于之前看图片相关的论文比较多，而这篇论文偏向于视频理解的任务，为了避免有其他不了解这篇论文领域的同学看的时候比较吃力，在解读这篇论文前先介绍这篇论文的任务。</p>
+<p><strong>任务定义</strong>: R-VOS(Referring video object segmentation): 给出一种物体对应的语言描述，分割出该物体对应的mask。<br>这篇论文的相关视频在reddit上热度非常高，感兴趣的同学可以看下视频，相信也能对这篇论文应用的方向有更清晰的了解。<a href="https://www.reddit.com/r/MachineLearning/comments/t7qe6b/r_endtoend_referring_video_object_segmentation/?utm_source=share&amp;utm_medium=web2x&amp;context=3" target="_blank" rel="noopener">[R] End-to-End Referring Video Object Segmentation with Multimodal Transformers</a></p>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233717@2x.png" alt="enter description here"></p>
 <h3 id="Bottom-up"><a href="#Bottom-up" class="headerlink" title="Bottom-up"></a>Bottom-up</h3><ul>
 <li><strong>方法:</strong> 如图1(a)所示，用early-feature的方式融合视觉和语言特征，再用FCN decoder目标的掩码。</li>
 <li><strong>缺点:</strong> early-feature的方法无法获得较好的多模态特征，无法为跨模态推理提供明确的知识，并且会遇到由于场景变化而导致预测对象的差异。</li>
@@ -530,7 +528,7 @@
 </ul>
 <p>网络结构如图2所示，主要由backbone,language as queries,Cross-modal Feature Pyramid Network,Instance Sequence Matching and Loss，inference五部分组成。下面我写的尽量详细点。<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233751@2x.png" alt="enter description here"></p>
 <h3 id="backbone"><a href="#backbone" class="headerlink" title="backbone"></a>backbone</h3><p><strong>visual encoder</strong><br>使用通用的视觉backbone做视觉特征的编码器，例如可以使用经典的ResNet网络或者3D的特征编码器，如Video swin transformer。生成的特征是如下Sequence $F_v=\{F_t\}^T_{t=1}$,其中T表示T桢图像<br><strong>linguistic encoder</strong><br>使用现成的语言模型,如RoBERTa，提取文本的特征$F_e=\{F_i\}^L_{i=1}$，其中L表示L个word。在该任务中需要将$F_e$通过pooling提取句子级别的特征，这是由于该任务使用句子级别的特征和queries融合用于跨模态的特征融合</p>
-<h3 id="language-as-queries"><a href="#language-as-queries" class="headerlink" title="language as queries:"></a>language as queries:</h3><p><strong>transformer encoder</strong>: encoder部分和detr中一样，先用1x1卷积进行<strong>通道数压缩</strong>,再把宽和高压缩为一个维度，将<strong>特征序列化</strong>，再做<strong>位置编码</strong><br><strong>transformer decoder</strong>: decoder部分也和detr比较类似，但有些差异。使用N个object queries提取每帧实例中的特征，区别在于queries在视频帧之间共享权重，好处是可以更灵活的处理长视频，并且对于同样的实例queries学习的特征更鲁棒。将句子级别的特征$F_e$复制N份和每一个object queries一起作为decoder的输入。对于T帧图像，会得到$N_q=T<em>N$的预测集合<br><strong>prediction heads</strong>：具有三个预测头,分别是box head，mask head，class head(二分类，输出是否是文本中提到的目标)<br><strong>dynamic convolution</strong>： 使用动态卷积生成binary segmentation masks<br><em>*illustration of conditional queries</em></em>：得益于transformer的注意力机制，输入object queries和text embedding可以让object queries聚焦于text提到的物体</p>
+<h3 id="language-as-queries"><a href="#language-as-queries" class="headerlink" title="language as queries"></a>language as queries</h3><p><strong>transformer encoder</strong>: encoder部分和detr中一样，先用1x1卷积进行<strong>通道数压缩</strong>,再把宽和高压缩为一个维度，将<strong>特征序列化</strong>，再做<strong>位置编码</strong><br><strong>transformer decoder</strong>: decoder部分也和detr比较类似，但有些差异。使用N个object queries提取每帧实例中的特征，区别在于queries在视频帧之间共享权重，好处是可以更灵活的处理长视频，并且对于同样的实例queries学习的特征更鲁棒。将句子级别的特征$F_e$复制N份和每一个object queries一起作为decoder的输入。对于T帧图像，会得到$N_q=T<em>N$的预测集合<br><strong>prediction heads</strong>：具有三个预测头,分别是box head，mask head，class head(二分类，输出是否是文本中提到的目标)<br><strong>dynamic convolution</strong>： 使用动态卷积生成binary segmentation masks<br><em>*illustration of conditional queries</em></em>：得益于transformer的注意力机制，输入object queries和text embedding可以让object queries聚焦于text提到的物体</p>
 <h3 id="cross-model-Feature-Pyramid-Network"><a href="#cross-model-Feature-Pyramid-Network" class="headerlink" title="cross-model Feature Pyramid Network"></a>cross-model Feature Pyramid Network</h3><p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233822@2x.png" alt="enter description here"></p>
 <p>该部分可以认为是这篇论文最大的创新点，提出了多模态融合的FPN网络，网络结构图如图4所示，和传统FPN网络的区别在于加入了vision-language fusion模块，该模块的结构类似transformer网络，图像特征作为encoder部分qkv的输入，文本特征作为decoder部分k和v的输入。</p>
 <h3 id="Instance-Sequence-Matching-and-Loss"><a href="#Instance-Sequence-Matching-and-Loss" class="headerlink" title="Instance Sequence Matching and Loss"></a>Instance Sequence Matching and Loss</h3><p>前面提到过，对于T帧图像，N个object queries，会得到$N_q=T*N$个预测结果。由于视频中跨帧的物体在相邻帧间保持相对相同的位置，可以将预测结果看成是N个实例在T帧上的轨迹</p>
@@ -549,6 +547,9 @@
 <p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233911@2x.png" alt="enter description here"></p>
 <p>不同backbone的影响<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-233918@2x.png" alt="enter description here"></p>
 <p><strong>object queries数量的影响</strong>，从实验结果来看数量也不是越多越好，5个是实验中的最好效果。<br><strong>训练和测试帧数的影响</strong>，最好的是5帧的参数，但理论上应该帧数增多，效果还会提升，可能是受限于计算资源的影响<br><strong>预测头的影响</strong>，类别，边框回归，分割三个任务都预测，效果是最好的<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ReferFormer/WX20221001-234022@2x.png" alt="enter description here"></p>
+<blockquote class="blockquote-center"><p><strong><font size="5">欢迎关注我的公众号!</font></strong></p>
+</blockquote>
+<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="enter description here"></p>
 
       
     </div>
@@ -622,7 +623,7 @@
   <p><span>本文标题:</span>《ReferTransformer》论文笔记</a></p>
   <p><span>文章作者:</span>冲弱</a></p>
   <p><span>发布时间:</span>2022年10月01日 - 18:01:02</p>
-  <p><span>最后更新:</span>2022年10月01日 - 18:01:07</p>
+  <p><span>最后更新:</span>2022年11月25日 - 10:12:54</p>
   <p><span>原始链接:</span><a href="/post/149f20a.html" title="《ReferTransformer》论文笔记">https://oysz2016.github.io/post/149f20a.html</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://oysz2016.github.io/post/149f20a.html"  aria-label="复制成功！"></i></span>
   </p>
@@ -1098,7 +1099,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关工作"><span class="nav-number">1.</span> <span class="nav-text">相关工作:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bottom-up"><span class="nav-number">1.1.</span> <span class="nav-text">Bottom-up</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-down"><span class="nav-number">1.2.</span> <span class="nav-text">Top-down</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本文方法"><span class="nav-number">2.</span> <span class="nav-text">本文方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#backbone"><span class="nav-number">2.1.</span> <span class="nav-text">backbone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#language-as-queries"><span class="nav-number">2.2.</span> <span class="nav-text">language as queries:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cross-model-Feature-Pyramid-Network"><span class="nav-number">2.3.</span> <span class="nav-text">cross-model Feature Pyramid Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instance-Sequence-Matching-and-Loss"><span class="nav-number">2.4.</span> <span class="nav-text">Instance Sequence Matching and Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inference"><span class="nav-number">2.5.</span> <span class="nav-text">Inference</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关工作"><span class="nav-number">1.</span> <span class="nav-text">相关工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bottom-up"><span class="nav-number">1.1.</span> <span class="nav-text">Bottom-up</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-down"><span class="nav-number">1.2.</span> <span class="nav-text">Top-down</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本文方法"><span class="nav-number">2.</span> <span class="nav-text">本文方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#backbone"><span class="nav-number">2.1.</span> <span class="nav-text">backbone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#language-as-queries"><span class="nav-number">2.2.</span> <span class="nav-text">language as queries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cross-model-Feature-Pyramid-Network"><span class="nav-number">2.3.</span> <span class="nav-text">cross-model Feature Pyramid Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instance-Sequence-Matching-and-Loss"><span class="nav-number">2.4.</span> <span class="nav-text">Instance Sequence Matching and Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inference"><span class="nav-number">2.5.</span> <span class="nav-text">Inference</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a></li></ol></div>
             
 
           </div>
@@ -1144,7 +1145,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共63.0k字</span>
+  <span class="post-count">博客全站共63.1k字</span>
 </div>
 <div class="weixin-box">
   <div class="weixin-menu">
@@ -1153,7 +1154,31 @@ show_date_time();
     </div>
   </div>
 </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -1435,6 +1460,21 @@ show_date_time();
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
   

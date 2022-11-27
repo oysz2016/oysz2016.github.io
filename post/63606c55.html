@@ -145,7 +145,7 @@
 <meta property="og:description" content="论文链接: https://arxiv.org/pdf/1312.6114.pdf 论文代码: https://github.com/devnag/pytorch-generative-adversarial-networks 背景知识Auto-encoderauto-encoder是一种无监督的算法，自编码器是一个输入和学习目标相同的神经网络，其结构分为编码器和解码器两部分。其思想是输入x经过">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VAE/WX20221010-210654@2x.png">
-<meta property="og:updated_time" content="2022-11-09T13:13:13.828Z">
+<meta property="og:updated_time" content="2022-11-25T02:14:15.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《VAE》论文笔记">
 <meta name="twitter:description" content="论文链接: https://arxiv.org/pdf/1312.6114.pdf 论文代码: https://github.com/devnag/pytorch-generative-adversarial-networks 背景知识Auto-encoderauto-encoder是一种无监督的算法，自编码器是一个输入和学习目标相同的神经网络，其结构分为编码器和解码器两部分。其思想是输入x经过">
@@ -280,16 +280,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-photos">
-          <a href="/photos/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-photo"></i> <br />
-            
-            相册
           </a>
         </li>
       
@@ -448,6 +438,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
             <div class="post-wordcount">
@@ -460,7 +455,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  582 字
+                  591 字
                 </span>
               
 
@@ -499,7 +494,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VAE/WX20221010-210654@2x.png" rel="gallery_claq1m96l000iu4v7762p2rjc"
+                 href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VAE/WX20221010-210654@2x.png" rel="gallery_claz4gewv000gcgv74px5d6t0"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VAE/WX20221010-210654@2x.png" itemprop="contentUrl"/>
               </a>
@@ -519,6 +514,9 @@
 <h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><p>VAE的思想是对于一个真实样本$x_k$, 假设存在后验分布$P(Z|x_k)$和$x_k$是一一对应的，$P(Z|x_k)$是一个正态分布图分布，能知道该正态分布的均值和方差，就能将其还原回X，在VAE中$P(Z|x_k)$的均值和方差是通过模型计算得到。<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VAE/WX20221010-203445@2x.png" alt=""><br>为了使模型具有生成能力，VAE希望$p(Z_x)$趋向于正态分布<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VAE/WX20221010-204114@2x.png" alt=""></p>
 <p>在VAE中实际上也有两个encoder，分别用来计算均值和方差，在encoder计算的损失中会加入KL Loss，实际上是给encoder部分增加正则项，希望encoder的均值为0.VAE的损失函数会倾向于在训练初期，会降低噪声(KL loss增加)，使得拟合更容易，而在decoder训练的不错时，会增加噪声(KL loss减少)，使得拟合更困难</p>
 <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>实际上VAE中也有对抗的过程，因为decoder的部分希望没有噪声，而KL loss希望有高斯噪声，两者在训练的时候实际上是对立的。VAE和GAN两种方式实际上各有优缺点，GAN在训练时不稳定，而VAE生成的图像相对GAN会模糊些</p>
+<blockquote class="blockquote-center"><p><strong><font size="5">欢迎关注我的公众号!</font></strong></p>
+</blockquote>
+<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="enter description here"></p>
 
       
     </div>
@@ -592,7 +590,7 @@
   <p><span>本文标题:</span>《VAE》论文笔记</a></p>
   <p><span>文章作者:</span>冲弱</a></p>
   <p><span>发布时间:</span>2022年11月09日 - 21:08:51</p>
-  <p><span>最后更新:</span>2022年11月09日 - 21:13:13</p>
+  <p><span>最后更新:</span>2022年11月25日 - 10:14:15</p>
   <p><span>原始链接:</span><a href="/post/63606c55.html" title="《VAE》论文笔记">https://oysz2016.github.io/post/63606c55.html</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://oysz2016.github.io/post/63606c55.html"  aria-label="复制成功！"></i></span>
   </p>
@@ -1114,7 +1112,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共63.0k字</span>
+  <span class="post-count">博客全站共63.1k字</span>
 </div>
 <div class="weixin-box">
   <div class="weixin-menu">
@@ -1123,7 +1121,31 @@ show_date_time();
     </div>
   </div>
 </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -1405,6 +1427,21 @@ show_date_time();
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
   

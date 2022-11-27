@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://oysz2016.github.io/post/d1dddfb8.html</loc>
-    <lastmod>2022-11-21T00:21:19.799Z</lastmod>
+    <lastmod>2022-11-25T02:14:23.196Z</lastmod>
     <data>
         <display>
         <title>《VQ-VAE》论文笔记</title>
@@ -27,7 +27,7 @@
     
   <url>
     <loc>https://oysz2016.github.io/post/63606c55.html</loc>
-    <lastmod>2022-11-09T13:13:13.828Z</lastmod>
+    <lastmod>2022-11-25T02:14:15.523Z</lastmod>
     <data>
         <display>
         <title>《VAE》论文笔记</title>
@@ -49,7 +49,7 @@
     
   <url>
     <loc>https://oysz2016.github.io/post/f45dd794.html</loc>
-    <lastmod>2022-10-29T01:46:03.471Z</lastmod>
+    <lastmod>2022-11-25T02:14:07.395Z</lastmod>
     <data>
         <display>
         <title>《NER&RE联合抽取》论文笔记</title>
@@ -75,7 +75,7 @@
     
   <url>
     <loc>https://oysz2016.github.io/post/8592ee55.html</loc>
-    <lastmod>2022-10-24T01:14:11.517Z</lastmod>
+    <lastmod>2022-11-25T02:13:50.705Z</lastmod>
     <data>
         <display>
         <title>长尾优化汇总</title>
@@ -95,7 +95,7 @@
     
   <url>
     <loc>https://oysz2016.github.io/post/b4822109.html</loc>
-    <lastmod>2022-10-15T10:01:57.863Z</lastmod>
+    <lastmod>2022-11-25T02:13:41.656Z</lastmod>
     <data>
         <display>
         <title>《Unbiased Scene Graph Generation from Biased Training》论文笔记</title>
@@ -115,7 +115,7 @@
     
   <url>
     <loc>https://oysz2016.github.io/post/f84aad11.html</loc>
-    <lastmod>2022-10-08T10:00:14.494Z</lastmod>
+    <lastmod>2022-11-25T02:13:16.529Z</lastmod>
     <data>
         <display>
         <title>《GAN》论文笔记</title>
@@ -137,7 +137,7 @@
     
   <url>
     <loc>https://oysz2016.github.io/post/149f20a.html</loc>
-    <lastmod>2022-10-01T10:01:07.363Z</lastmod>
+    <lastmod>2022-11-25T02:12:54.058Z</lastmod>
     <data>
         <display>
         <title>《ReferTransformer》论文笔记</title>
@@ -146,6 +146,28 @@
         <tag>视频理解</tag>
          
         <tag>多模态</tag>
+         
+         
+           
+             
+              <breadCrumb title="论文笔记" url="https://oysz2016.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://oysz2016.github.io/post/4395ef5a.html</loc>
+    <lastmod>2022-11-25T02:10:17.617Z</lastmod>
+    <data>
+        <display>
+        <title>(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记</title>
+        <pubTime>2019-01-12T05:40:24.263Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>目标检测</tag>
          
          
            
@@ -587,28 +609,6 @@
         <tag>目标检测</tag>
          
         <tag>文本检测</tag>
-         
-         
-           
-             
-              <breadCrumb title="论文笔记" url="https://oysz2016.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://oysz2016.github.io/post/4395ef5a.html</loc>
-    <lastmod>2019-03-17T05:48:10.514Z</lastmod>
-    <data>
-        <display>
-        <title>(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记</title>
-        <pubTime>2019-01-12T05:40:24.263Z</pubTime>
-        
-        <tag>深度学习</tag>
-         
-        <tag>目标检测</tag>
          
          
            
