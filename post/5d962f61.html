@@ -1,513 +1,338 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
 
+  <link rel="apple-touch-icon" sizes="180x180" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wukong.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/32_32_wukong.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/16_16_wukong.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
+<link rel="stylesheet" href="/css/main.css">
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-  
-  
-    
-    
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-  <script>
-  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
-  daovoice('init', {
-      app_id: "116d2e76"
-    });
-  daovoice('update');
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wukong.jpg?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/32_32_wukong.jpg?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/16_16_wukong.jpg?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="深度学习,CVPR,FER," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="冲弱's Blog" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="keywords" content="深度学习,CVPR,FER">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Deep Facial Expression Recognition:A Survey》论文笔记">
 <meta property="og:url" content="https://oysz2016.github.io/post/5d962f61.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527822068735.jpg">
-<meta property="og:updated_time" content="2019-03-17T05:48:03.867Z">
+<meta property="article:published_time" content="2018-06-01T09:22:25.558Z">
+<meta property="article:modified_time" content="2019-03-17T05:48:03.867Z">
+<meta property="article:author" content="冲弱">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="CVPR">
+<meta property="article:tag" content="FER">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《Deep Facial Expression Recognition:A Survey》论文笔记">
 <meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527822068735.jpg">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://oysz2016.github.io/post/5d962f61.html">
 
 
 
-  <link rel="canonical" href="https://oysz2016.github.io/post/5d962f61.html"/>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/5d962f61.html","path":"post/5d962f61.html","title":"《Deep Facial Expression Recognition:A Survey》论文笔记"}</script>
 
-
-
-
-
-  <title>《Deep Facial Expression Recognition:A Survey》论文笔记 | 冲弱's Blog</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>《Deep Facial Expression Recognition:A Survey》论文笔记 | 冲弱's Blog</title>
   
 
 
 
 
+<link rel="dns-prefetch" href="waline-five-pi.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="冲弱's Blog" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
 
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-
-
-<script src="/js/src/photoswipe.js?v=5.1.4"></script>
-<script src="/js/src/photoswipe-ui-default.js?v=5.1.4"></script>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">冲弱's Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <p class="site-subtitle">人生在勤，不索何获</p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">冲弱's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生在勤，不索何获</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-comment">
-          <a href="/comment/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comment"></i> <br />
-            
-            留言
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="st-search-show-outputs">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-</form>
-
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install', '_fC1jT9UoSk9vQ72-ezz','2.0.0');
-</script>
-
-
-
-    </div>
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-comment"><a href="/comment/" rel="section"><i class="fa fa-comment fa-fw"></i>评论</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
 </nav>
 
 
 
- </div>
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E4%BA%BA%E8%84%B8%E8%A1%A8%E6%83%85%E8%AF%86%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">深度人脸表情识别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%BA%E8%84%B8%E5%AF%B9%E9%BD%90"><span class="nav-number">2.1.1.</span> <span class="nav-text">人脸对齐</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA"><span class="nav-number">2.1.2.</span> <span class="nav-text">数据增强</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%BA%E8%84%B8%E5%BD%92%E4%B8%80%E5%8C%96"><span class="nav-number">2.1.3.</span> <span class="nav-text">人脸归一化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E7%89%B9%E5%BE%81%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.2.</span> <span class="nav-text">深度特征学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%BA%E8%84%B8%E8%A1%A8%E6%83%85%E5%88%86%E7%B1%BB"><span class="nav-number">2.3.</span> <span class="nav-text">人脸表情分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E9%83%A8%E8%A1%A8%E6%83%85%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">面部表情数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FER%E7%9B%AE%E5%89%8D%E5%8F%91%E5%B1%95%E6%B0%B4%E5%B9%B3"><span class="nav-number">4.</span> <span class="nav-text">FER目前发展水平</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%9B%BE%E5%83%8FFER%E8%BF%9B%E5%B1%95"><span class="nav-number">4.1.</span> <span class="nav-text">静态图像FER进展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E5%92%8C%E5%BE%AE%E8%B0%83"><span class="nav-number">4.1.1.</span> <span class="nav-text">预训练和微调</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E6%A0%B7%E5%8C%96%E7%BD%91%E7%BB%9C%E8%BE%93%E5%85%A5"><span class="nav-number">4.1.2.</span> <span class="nav-text">多样化网络输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E5%9D%97%E4%B8%8E%E5%B1%82%E6%94%B9%E8%BF%9B"><span class="nav-number">4.1.3.</span> <span class="nav-text">辅助块与层改进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%9B%86%E6%88%90"><span class="nav-number">4.1.4.</span> <span class="nav-text">网络集成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E4%BB%BB%E5%8A%A1%E7%BD%91%E7%BB%9C"><span class="nav-number">4.1.5.</span> <span class="nav-text">多任务网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%BA%A7%E8%81%94"><span class="nav-number">4.1.6.</span> <span class="nav-text">网络级联</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%9B%BE%E5%83%8F%E5%BA%8F%E5%88%97FER%E8%BF%9B%E5%B1%95"><span class="nav-number">4.2.</span> <span class="nav-text">动态图像序列FER进展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A7%E8%81%9A%E5%90%88"><span class="nav-number">4.2.1.</span> <span class="nav-text">帧聚合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%BA%E5%BA%A6%E8%A1%A8%E8%BE%BE%E7%BD%91%E7%BB%9C"><span class="nav-number">4.2.2.</span> <span class="nav-text">强度表达网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E6%97%B6%E7%A9%BAFER%E7%BD%91%E7%BB%9C"><span class="nav-number">4.2.3.</span> <span class="nav-text">深度时空FER网络</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="冲弱"
+      src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+  <p class="site-author-name" itemprop="name">冲弱</p>
+  <div class="site-description" itemprop="description">输出即获得，分享即反哺</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ouyang-sz@foxmail.com" title="E-Mail → mailto:ouyang-sz@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/user/5ae26032f265da0b9f3ffeb2" title="掘金 → https:&#x2F;&#x2F;juejin.im&#x2F;user&#x2F;5ae26032f265da0b9f3ffeb2" rel="noopener" target="_blank"><i class="fa fa-spinner fa-fw"></i>掘金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/ou-yang-shi-zhuang/activities" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ou-yang-shi-zhuang&#x2F;activities" rel="noopener" target="_blank"><i class="fab fa-zhihu fa-fw"></i>知乎</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
+
     
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
-  <div id="posts" class="posts-expand">
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
     
+    <div class="post-gallery-image">
+      <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527822068735.jpg" itemprop="contentUrl">
+    </div>
+    </div>
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/5d962f61.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冲弱">
-      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+      <meta itemprop="name" content="冲弱">
+      <meta itemprop="description" content="输出即获得，分享即反哺">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="冲弱's Blog">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《Deep Facial Expression Recognition:A Survey》论文笔记
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">《Deep Facial Expression Recognition:A Survey》论文笔记</h1>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-01T17:22:25+08:00">
-                2018-06-01
-              </time>
-            
+      <time title="创建时间：2018-06-01 17:22:25" itemprop="dateCreated datePublished" datetime="2018-06-01T17:22:25+08:00">2018-06-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2019-03-17 13:48:03" itemprop="dateModified" datetime="2019-03-17T13:48:03+08:00">2019-03-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+        </span>
+    </span>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/论文笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">论文笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/post/5d962f61.html" class="leancloud_visitors" data-flag-title="《Deep Facial Expression Recognition:A Survey》论文笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4,551 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"> 17 分钟
-                  
-                </span>
-              
-            </div>
-          
-
-          
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/5d962f61.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/5d962f61.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-      
-      
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527822068735.jpg" rel="gallery_claz4gex7000scgv78kkn8l6d"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527822068735.jpg" itemprop="contentUrl"/>
-              </a>
-            
-          
+        <p class="description"></p>
 
-          
-          </div>
-        </div>
-      
-
-      
-        <script src="\assets\js\APlayer.min.js"> </script><p class="description"></p>
-
-<a id="more"></a>
-<p>&emsp;&emsp;论文链接：<a href="https://arxiv.org/abs/1804.08348" target="_blank" rel="noopener">https://arxiv.org/abs/1804.08348</a><br>&emsp;&emsp;这篇文章<sup><a href="#fn_1" id="reffn_1">1</a></sup>是北邮的邓伟洪教授关于<strong>深度人脸表情识别(Deep Facial Expression Recognition,DFER)</strong> (<strong>情感识别</strong>)的一篇综述性文章，该文章被<strong>计算机视觉顶会CVPR</strong>收录。对于像我这样对情感识别感兴趣，但又没做过具体应用的小白来说研读这篇文章再合适不过了。</p>
+<span id="more"></span>
+<p>&emsp;&emsp;论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1804.08348">https://arxiv.org/abs/1804.08348</a><br>&emsp;&emsp;这篇文章<sup><a href="#fn_1" id="reffn_1">1</a></sup>是北邮的邓伟洪教授关于<strong>深度人脸表情识别(Deep Facial Expression Recognition,DFER)</strong> (<strong>情感识别</strong>)的一篇综述性文章，该文章被<strong>计算机视觉顶会CVPR</strong>收录。对于像我这样对情感识别感兴趣，但又没做过具体应用的小白来说研读这篇文章再合适不过了。</p>
 <hr>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>&emsp;&emsp;表情可以说是一门世界语，不分国界、种族以及性别，可以说所有人都有着通用的表情。FEP在机器人、医疗、驾驶员驾驶疲劳检测和人机交互系统中都有广泛应用，最早在20世纪，Ekman和Friesen通过跨文化研究，定义了6种<strong>基础表情</strong>：生气、害怕、厌恶、开心、悲伤和吃惊，随后又加入了“蔑视” 这一表情。开创性的工作和直观的定义，使该模型在自动人脸表情识别(automatic facial expression analysis, AFEA)中依然很流行。<br>&emsp;&emsp;根据特征表示，FER系统可以划分为图片FER和视频FER两类。图片FER只提取当前图片的特征，而视频需要考虑相邻帧之间的关系。实际上所有计算机视觉的任务的处理对象都可以划分为图片和视频两类。<br>&emsp;&emsp;FER传统的方式使用手工提取的特征和浅层学习，这种方式的弊端就不多赘述了。得益于深度学习的发展和更具有挑战性的数据集FER2013的出现，越来越多的研究者将深度学习技术运用到FER中。</p>
 <h2 id="深度人脸表情识别"><a href="#深度人脸表情识别" class="headerlink" title="深度人脸表情识别"></a>深度人脸表情识别</h2><p>&emsp;&emsp;这一节讨论了深度学习在人脸表情识别应用上的三个步骤。分别是预处理、特征提取和特征分类，简述了每一步的具体做法，并引用了相关论文。</p>
@@ -520,7 +345,7 @@
 <li>姿态归一化：这是一个棘手的问题，目前的方法都不太理想。有2D的landmark对齐,3Dlandmark对齐，有通过图像和相机参数估计，也有通过深度传感器测量然后计算出来。比较新的模型都是基于GAN的，有FF-GAN、TP-GAN和DR-GAN。</li>
 </ul>
 <h3 id="深度特征学习"><a href="#深度特征学习" class="headerlink" title="深度特征学习"></a>深度特征学习</h3><p>&emsp;&emsp;这一部分主要讲的是使用深度学习模型提取特征，包括卷积神经网络(Convolutional neural network，CNN)、深度置信网络（Deep belief network ，DBN）、深度自动编码器(Deep autoencoder，DAN)和递归神经网络(Recurrent neural network，RNN)。深度人脸表情识别的流程如下，下图可以看出，深度网络模型部分有四种常用的模型。作者只是简单的介绍了几种网络模型，在这里我也不过多的赘述。CNN模型在我前几篇博文<a href="https://oysz2016.github.io/post/4ec18e58.html">卷积神经网络的结构与相关算法</a>和<a href="https://oysz2016.github.io/post/d86a012b.html">卷积神经网络模型解读汇总——LeNet5，AlexNet、ZFNet、VGG16、GoogLeNet和ResNet</a>有详细介绍。其余的网络模型以后有时间会逐一整理。</p>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527855909779.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527855909779.jpg" alt="enter description here"></p>
 <h3 id="人脸表情分类"><a href="#人脸表情分类" class="headerlink" title="人脸表情分类"></a>人脸表情分类</h3><p>&emsp;&emsp;完成了特征提取后，最后一步对其进行分类。在传统FER系统中，特征提取和特征分类是独立的。而深度学习的FER是端到端的模型，可以在网络的末端添加损失层调节反向传播的误差，预测概率可以由网络直接输出。也可以将两者结合，即用深度学习提取特征，再用SVM等分类器分类。</p>
 <h2 id="面部表情数据库"><a href="#面部表情数据库" class="headerlink" title="面部表情数据库"></a>面部表情数据库</h2><p>&emsp;&emsp;该部分总结了FER可用的公开数据集。</p>
 <ul>
@@ -540,55 +365,55 @@
 <li><strong>RAF-DB</strong>：包含从网上收集的29672张面部图像，包含7中基本表情和11种复合表情。</li>
 <li><strong>AffectNet</strong>：包含从网上收集的100多万张面部图像，其中45万张图片手工标注为7种表情。</li>
 </ul>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527912456772.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527912456772.jpg" alt="enter description here"></p>
 <h2 id="FER目前发展水平"><a href="#FER目前发展水平" class="headerlink" title="FER目前发展水平"></a>FER目前发展水平</h2><p>&emsp;&emsp;总结了基于静态图像和动态图像序列(视频)的FER进展。</p>
 <h3 id="静态图像FER进展"><a href="#静态图像FER进展" class="headerlink" title="静态图像FER进展"></a>静态图像FER进展</h3><p>&emsp;&emsp;对于每一个数据集，下表显示了目前最优异的方法，在该数据集上取得的效果。</p>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527930265914.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527930265914.jpg" alt="enter description here"></p>
 <h4 id="预训练和微调"><a href="#预训练和微调" class="headerlink" title="预训练和微调"></a>预训练和微调</h4><p>&emsp;&emsp;在相对较小的数据集上直接训练深度网络很容易导致过拟合。为了缓解这个问题，许多研究会在大数据集上先预训练网络，或者对已经训练好的网络进行微调。</p>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527930845031.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527930845031.jpg" alt="enter description here"></p>
 <p>&emsp;&emsp;如上图所示，先在ImageNet数据集上训练，然后再在具体的人脸表情数据集上微调。微调有较好的效果，人脸表情识别有各种微调方式，比如分级、固定某些曾，不同网络层用不同数据集微调，具体可以看看原文中所引用的论文。<br>&emsp;&emsp;此外，文献<sup><a href="#fn_6" id="reffn_6">6</a></sup>指出FR和FER数据集存在巨大差异，人脸似乎别模型弱化了人脸表情的差异，提出了FaceNet2ExpNet网络消除这种影响。该模型分为两个阶段，首先用人脸识别模型提取特征，然后用表情识别网络消除人脸识别模型带来的情绪差异弱化。如下图所示。</p>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527932192340.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1527932192340.jpg" alt="enter description here"></p>
 <h4 id="多样化网络输入"><a href="#多样化网络输入" class="headerlink" title="多样化网络输入"></a>多样化网络输入</h4><p>&emsp;&emsp;传统的做法是使用原始的RGB图像作为网络的输入，然而原始数据缺乏重要的信息，如纹理信息，以及图像缩放、旋转、遮挡和光照等方面的不变性。因此可以借助一些手工设计的特征。如SIFT、LBP、MBP、AGEhe NCDV等。PCA可以裁剪出五官进行特征学习而不是整个脸部等。</p>
 <h4 id="辅助块与层改进"><a href="#辅助块与层改进" class="headerlink" title="辅助块与层改进"></a>辅助块与层改进</h4><p>&emsp;&emsp;基于经典的CNN架构，有些研究设计了良好的辅助模块或者改进了网络层，这部分文中有列举几个例子，感兴趣可以找出相关论文翻看。<br>&emsp;&emsp;值得注意的是，Softmax在表情识别领域的表现不太理想。这是由于<strong>表情的类间区分度较低</strong>。作者整理了几种针对表情分类层的改进。</p>
 <ul>
 <li>受到center loss的启发，对特征与相应的类距离加了惩罚项，这分为两种<ul>
-<li>一种是增加类间距离的island loss<sup><a href="#fn_7" id="reffn_7">7</a></sup>，如下图所示<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528008215481.jpg" alt="enter description here"></li>
+<li>一种是增加类间距离的island loss<sup><a href="#fn_7" id="reffn_7">7</a></sup>，如下图所示<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528008215481.jpg" alt="enter description here"></li>
 <li>另一种是减下类内距离的LP<sup><a href="#fn_8" id="reffn_8">8</a></sup> loss,使同一类的局部相邻特征结合在一起。</li>
 </ul>
 </li>
-<li>基于triplet-loss，关于triplet-loss的想法可以参考原文和<a href="https://blog.csdn.net/tangwei2014/article/details/46788025" target="_blank" rel="noopener">这篇博文</a>。<ul>
+<li>基于triplet-loss，关于triplet-loss的想法可以参考原文和<a target="_blank" rel="noopener" href="https://blog.csdn.net/tangwei2014/article/details/46788025">这篇博文</a>。<ul>
 <li>exponential triplet-based loss(增加困难样本的权重)</li>
-<li>(N+M)-tupes cluster loss(降低anchor的选择难度，以及阈值化triplet不等式),如下图所示。<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528008239408.jpg" alt="enter description here"><h4 id="网络集成"><a href="#网络集成" class="headerlink" title="网络集成"></a>网络集成</h4>&emsp;&emsp;之前的研究表明，多个网络的集合可以比单个网络表现的更好。在网络集成时，要考虑两点：</li>
+<li>(N+M)-tupes cluster loss(降低anchor的选择难度，以及阈值化triplet不等式),如下图所示。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528008239408.jpg" alt="enter description here"><h4 id="网络集成"><a href="#网络集成" class="headerlink" title="网络集成"></a>网络集成</h4>&emsp;&emsp;之前的研究表明，多个网络的集合可以比单个网络表现的更好。在网络集成时，要考虑两点：</li>
 </ul>
 </li>
 <li>网络模型要有充分的多样性，以确保网络之间具有互补性</li>
 <li>要有可靠的集成算法</li>
 </ul>
 <p>&emsp;&emsp;关于第一点，网络的多样性产生有很多方法，不同的训练数据、不同的预处理方式、不同的网络模型、不同的参数都能产生不同的网络。<br>&emsp;&emsp;关于第二点集成算法。这其中也主要有两点，一个是特征集成，另一个是输出的决策集成。特征集成最常见的做法是将不同网络模型的特征直接链接，还有如下图的方式</p>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528008895990.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528008895990.jpg" alt="enter description here"></p>
 <p>&emsp;&emsp;关于决策集成采用投票的机制，不同网络有不同的权重。关于决策集成的几种策略如下表所示。</p>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528009037931.jpg" alt="enter description here"></p>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528008969737.jpg" alt="enter description here"></p>
-<h4 id="多任务网络"><a href="#多任务网络" class="headerlink" title="多任务网络"></a>多任务网络</h4><p>目前许多网络都是单一任务的输出，但在现实中，往往需要考虑其他多种因素的作用。多任务模型能从其他任务中学习到额外的信息有助于提高网络的泛化能力。关于多任务模型的好处，可以参考<a href="https://blog.csdn.net/laolu1573/article/details/78205180#3" target="_blank" rel="noopener">这篇博文</a>。如下如所示，在MSCNN<sup><a href="#fn_9" id="reffn_9">9</a></sup>模型中将脸部验证与表情识别两个任务集成在一个网络中。</p>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528009483598.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528009037931.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528008969737.jpg" alt="enter description here"></p>
+<h4 id="多任务网络"><a href="#多任务网络" class="headerlink" title="多任务网络"></a>多任务网络</h4><p>目前许多网络都是单一任务的输出，但在现实中，往往需要考虑其他多种因素的作用。多任务模型能从其他任务中学习到额外的信息有助于提高网络的泛化能力。关于多任务模型的好处，可以参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/laolu1573/article/details/78205180#3">这篇博文</a>。如下如所示，在MSCNN<sup><a href="#fn_9" id="reffn_9">9</a></sup>模型中将脸部验证与表情识别两个任务集成在一个网络中。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528009483598.jpg" alt="enter description here"></p>
 <h4 id="网络级联"><a href="#网络级联" class="headerlink" title="网络级联"></a>网络级联</h4><p>&emsp;&emsp;在级联网络中，将不同模块处理不同的任务组合在一起设计一个更深层的网络，前一个模块的输出被后一个模块使用。如下图所示，在AUDN网络中，该网络由三部分组成。</p>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528009785945.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528009785945.jpg" alt="enter description here"></p>
 <h3 id="动态图像序列FER进展"><a href="#动态图像序列FER进展" class="headerlink" title="动态图像序列FER进展"></a>动态图像序列FER进展</h3><p>&emsp;&emsp;基于动态的表情识别相比静态图片能更全面，这里指的动态图像序列，即在视频中。</p>
 <h4 id="帧聚合"><a href="#帧聚合" class="headerlink" title="帧聚合"></a>帧聚合</h4><p>&emsp;&emsp;考虑到表情在不同时刻有不同的变化，但又不可能单独的统计每帧的结果作为输出，因此需要对一段帧序列给出一个识别结果，这就需要用到帧聚合。即用一个特征向量表示这一段时间序列。与集成算法类似，帧聚合有有两类，分别是决策级帧聚合和特征级帧聚合。这两部分感兴趣的可以参看论文。</p>
 <h4 id="强度表达网络"><a href="#强度表达网络" class="headerlink" title="强度表达网络"></a>强度表达网络</h4><p>&emsp;&emsp;在视频中表情会有微妙的变化，而强度是指在视频中，所有帧表现某个表情的程度。一般在中间位置最能表达某个表情，即为强度峰值。大多数方法，都关注峰值附近而忽略了开始和结束时的低谷帧。这部分，主要介绍几个深度网络，输入是具有一定强度信息的样本序列，输出是某一个类表情中不同强度帧之间的相关性结果。如PPDN（peak-piloted），用以内在表情序列里帧之间相关性识别，还有基于PPDN的级联PPDN网络DCPN，具有更深更强的识别能力。虽然，这些网络，都考虑了一段序列里的表情变换，甚至为了计算表情的变化趋势，设计了不同的损失函数，但是，真心觉得，这种代价，对于工程来说，其实是没有意义的。有兴趣的，可以看看论文里对应的方法，这里不再赘述了。</p>
 <h4 id="深度时空FER网络"><a href="#深度时空FER网络" class="headerlink" title="深度时空FER网络"></a>深度时空FER网络</h4><p>&emsp;&emsp;前面介绍的帧聚合和强度表达网络都属于传统的结构化流程，而在视频中将一些列帧作为单独的图像序列输入，输出某一类表情的分类结果。而RNN网络能利用”序列信息”，所以视频FER模型用RNN网络，还有C#D:</p>
 <ul>
 <li>RNN: 从理论上讲，它可以利用任意长序列的信息,RNN呢能对时间序列上的变化建模。</li>
-<li>C3D: 在通常图像上的2D空间卷积的基础上，沿着时间轴加了一个时间维度，就形成了3D时空卷积。例如3DCNN-DAP<sup><a href="#fn_10" id="reffn_10">10</a></sup>，网络模型如下图所示。<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528019915713.jpg" alt="enter description here"></li>
+<li>C3D: 在通常图像上的2D空间卷积的基础上，沿着时间轴加了一个时间维度，就形成了3D时空卷积。例如3DCNN-DAP<sup><a href="#fn_10" id="reffn_10">10</a></sup>，网络模型如下图所示。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528019915713.jpg" alt="enter description here"></li>
 </ul>
 <p>&emsp;&emsp;还有种“暴力”做法，不考虑时间维度，将帧序列拼接成大向量，再进行CNN分类，如DTAN<sup><a href="#fn_11" id="reffn_11">11</a></sup>。</p>
 <ul>
-<li>面部landmark运动轨迹：通过研究五官的变化轨迹，进而分析表情的变化，如深度几何空间网络(deep temporal geometry network，DTGN)。该方法联合每帧landmark的x,y坐标值，归一化处理后，将landmark作为一个运动轨迹维度，或者或者计算landmark特征点的成对L2距离特征，以及基于PHRNN用于获取帧内的空间变化信息。还有根据五官将landmark点分成4块，输入到BRNNs，定位局部特征，如下图：<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528020429700.jpg" alt="enter description here"></li>
+<li>面部landmark运动轨迹：通过研究五官的变化轨迹，进而分析表情的变化，如深度几何空间网络(deep temporal geometry network，DTGN)。该方法联合每帧landmark的x,y坐标值，归一化处理后，将landmark作为一个运动轨迹维度，或者或者计算landmark特征点的成对L2距离特征，以及基于PHRNN用于获取帧内的空间变化信息。还有根据五官将landmark点分成4块，输入到BRNNs，定位局部特征，如下图：<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528020429700.jpg" alt="enter description here"></li>
 <li>级联网络：跟之前静态图像的级联网络思路一样，主要是CNN提取特征，级联RNN做序列特征分类。如LRCN，级联CNN与LSTM，类似的，还有级联DAE作为特征提取，LSTM进行分类，还有ResNet-LSTM,即在低级CNN层，直接用LSTM连接序列之间的低级CNN特征，3DIR用LSTM作为一个单元构建了一个3D Inception-ResNet特征层，其他还有很多类似的级联网络，包括，用CRFs代替了LSTM等等。</li>
-<li>网络集成：如两路CNN网络模型用于行为识别，一路用多帧数据的稠密光流训练获取时间信息，一路用于单帧图像特征学习，最后融合两路CNN的输出。还有多通道训练，如一通道用于自然脸和表情脸之间的光流信息训练，一路用于脸部表情特征训练，然后用三种融合策略，平均融合，基于SVM融合，基于DNN融合。也有基于PHRNN时间网络和MSCNN空间网络相结合来提取局部整体关系，几何变化以及静动态信息。除了融合，也有联合训练的，如DTAN和DTGN联合fineturn训练。<br><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528020602436.jpg" alt="enter description here"></li>
+<li>网络集成：如两路CNN网络模型用于行为识别，一路用多帧数据的稠密光流训练获取时间信息，一路用于单帧图像特征学习，最后融合两路CNN的输出。还有多通道训练，如一通道用于自然脸和表情脸之间的光流信息训练，一路用于脸部表情特征训练，然后用三种融合策略，平均融合，基于SVM融合，基于DNN融合。也有基于PHRNN时间网络和MSCNN空间网络相结合来提取局部整体关系，几何变化以及静动态信息。除了融合，也有联合训练的，如DTAN和DTGN联合fineturn训练。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528020602436.jpg" alt="enter description here"></li>
 </ul>
 <p>&emsp;&emsp;目前各个数据集上，动态序列的表情识别的最佳效果如下表所示：</p>
-<p><img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528020691450.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1528020691450.jpg" alt="enter description here"></p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><blockquote id="fn_1">
 <sup>1</sup>. Li S, Deng W. Deep Facial Expression Recognition: A Survey[J]. 2018.<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
 </blockquote>
@@ -602,7 +427,7 @@
 <sup>4</sup>. Goodfellow I J, Pouget-Abadie J, Mirza M, et al. Generative adversarial nets[C]// International Conference on Neural Information Processing Systems. MIT Press, 2014:2672-2680.<a href="#reffn_4" title="Jump back to footnote [4] in the text."> &#8617;</a>
 </blockquote>
 <blockquote id="fn_5">
-<sup>5</sup>. <a href="http://luks.fe.uni-lj.si/sl/osebje/vitomir/face tools/INFace/" target="_blank" rel="noopener">http://luks.fe.uni-lj.si/sl/osebje/vitomir/face tools/INFace/</a><a href="#reffn_5" title="Jump back to footnote [5] in the text."> &#8617;</a>
+<sup>5</sup>. <a target="_blank" rel="noopener" href="http://luks.fe.uni-lj.si/sl/osebje/vitomir/face tools/INFace/">http://luks.fe.uni-lj.si/sl/osebje/vitomir/face tools/INFace/</a><a href="#reffn_5" title="Jump back to footnote [5] in the text."> &#8617;</a>
 </blockquote>
 <blockquote id="fn_6">
 <sup>6</sup>. Ding H, Zhou S K, Chellappa R. FaceNet2ExpNet: Regularizing a Deep Face Recognition Net for Expression Recognition[J]. 2016:118-126.<a href="#reffn_6" title="Jump back to footnote [6] in the text."> &#8617;</a>
@@ -622,991 +447,330 @@
 <blockquote id="fn_11">
 <sup>11</sup>. Jung H, Lee S, Yim J, et al. Joint Fine-Tuning in Deep Neural Networks for Facial Expression Recognition[C]// IEEE International Conference on Computer Vision. IEEE, 2016:2983-2991. <a href="#reffn_11" title="Jump back to footnote [11] in the text."> &#8617;</a>
 </blockquote>
-<blockquote class="blockquote-center"><p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
+<blockquote class="blockquote-center">
+<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
+
 </blockquote>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
 
-      
     </div>
+
     
     
     
+
     <div>
-        
-          <div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-smile-o"></i>感谢您的阅读-------------</div>
-    
-</div>
-        
-      </div>
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wechatpay.jpg" alt="冲弱 微信支付"/>
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/alipay.jpg" alt="冲弱 支付宝"/>
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
       
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
-          
-            <a href="/tags/CVPR/" rel="tag"><i class="fa fa-tag"></i> CVPR</a>
-          
-            <a href="/tags/FER/" rel="tag"><i class="fa fa-tag"></i> FER</a>
-          
-        </div>
         <div>
-        
-          
-<div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-  
-  <!-- JS库 sweetalert 可修改路径 -->
-  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
-  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-
-  <p><span>本文标题:</span>《Deep Facial Expression Recognition:A Survey》论文笔记</a></p>
-  <p><span>文章作者:</span>冲弱</a></p>
-  <p><span>发布时间:</span>2018年06月01日 - 17:22:25</p>
-  <p><span>最后更新:</span>2019年03月17日 - 13:48:03</p>
-  <p><span>原始链接:</span><a href="/post/5d962f61.html" title="《Deep Facial Expression Recognition:A Survey》论文笔记">https://oysz2016.github.io/post/5d962f61.html</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://oysz2016.github.io/post/5d962f61.html"  aria-label="复制成功！"></i></span>
-  </p>
-  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
 </div>
-<script> 
-    var clipboard = new Clipboard('.fa-clipboard');
-    clipboard.on('success', $(function(){
-      $(".fa-clipboard").click(function(){
-        swal({   
-          title: "",   
-          text: '复制成功',   
-          html: false,
-          timer: 500,   
-          showConfirmButton: false
-        });
-      });
-    }));  
-</script>
 
+      
+    </div>
 
-        
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wechatpay.jpg" alt="冲弱 微信">
+        <span>微信</span>
       </div>
-      
+      <div>
+        <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/alipay.jpg" alt="冲弱 支付宝">
+        <span>支付宝</span>
+      </div>
 
-      
-      
-        <div class="post-widgets">
-        
+  </div>
+</div>
+
           
-          <div class="wp_rating">
-          <div style="color: rgba(0, 0, 0, 0.75); font-size:13px; letter-spacing:3px">(&gt;给我的文章打个分吧&lt;)</div>
-            <div id="wpac-rating"></div>
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>冲弱
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://oysz2016.github.io/post/5d962f61.html" title="《Deep Facial Expression Recognition:A Survey》论文笔记">https://oysz2016.github.io/post/5d962f61.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.zhihu.com/people/ou-yang-shi-zhuang/posts">
+          <span class="icon">
+            <i class="fab fa-zhihu"></i>
+          </span>
+
+          <span class="label">ZhiHu</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://juejin.cn/user/4353721775688920">
+          <span class="icon">
+            <i class="fa fa-spinner"></i>
+          </span>
+
+          <span class="label">JueJin</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"> <i class="fa fa-tag"></i> 深度学习</a>
+              <a href="/tags/CVPR/" rel="tag"> <i class="fa fa-tag"></i> CVPR</a>
+              <a href="/tags/FER/" rel="tag"> <i class="fa fa-tag"></i> FER</a>
           </div>
-        
 
         
+  <div class="post-widgets">
+    <div class="wpac-rating-container">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
 
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/post/8611e6fb.html" rel="next" title="数学公式语法——Mathjax教程">
-                <i class="fa fa-chevron-left"></i> 数学公式语法——Mathjax教程
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/8611e6fb.html" rel="prev" title="数学公式语法——Mathjax教程">
+                  <i class="fa fa-chevron-left"></i> 数学公式语法——Mathjax教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/ad14e7f5.html" rel="next" title="极简人类史">
+                  极简人类史 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/ad14e7f5.html" rel="prev" title="极简人类史">
-                极简人类史 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-
-    <div class="post-spread">
-      
-        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<div class="addthis_inline_share_toolbox">
-  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5adaebc9009ff58b" async = "async" ></script>
 </div>
 
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTg2Ni8xMjQwMg=="></div>
-    </div>
-
-  
 
 
 
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
-    
-      <div id="sidebar-dimmer"></div>
-    
-    <div class="sidebar-inner">
 
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-waline">waline</a></li>
+            <li class="tab"><a href="#comment-livere">livere</a></li>
         </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-            <a href="/" class="site-author-image" rel="start" style="border:none">
-              <img class="site-author-image" itemprop="image"
-                src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png"
-                alt="冲弱" />
-            </a>
-            
-              <p class="site-author-name" itemprop="name">冲弱</p>
-              <p class="site-description motion-element" itemprop="description">输出即获得，分享即反哺</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">30</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-              
-      <!-- 自定义High一下的功能 -->
-      <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(
-    /*
-     * Copyright (C) 2016 Never_yu (Neveryu.github.io) <React.dong.yu@gmail.com>
-     * Sina Weibo (http://weibo.com/Neveryu)
-     *
-     * Licensed under the Apache License, Version 2.0 (the "License");
-     * you may not use this file except in compliance with the License.
-     * You may obtain a copy of the License at
-     *
-     *      http://www.apache.org/licenses/LICENSE-2.0
-     *
-     * Unless required by applicable law or agreed to in writing, software
-     * distributed under the License is distributed on an "AS IS" BASIS,
-     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     * See the License for the specific language governing permissions and
-     * limitations under the License.
-     */
-    function go() {
-
-
-    var songs = ["http://p7jiixmp8.bkt.clouddn.com/%E5%B0%8F%E9%AD%82%20-%20%E7%A6%BB%E4%BA%BA%E6%84%81%EF%BC%88Cover%20%E6%9B%B2%E8%82%96%E5%86%B0%EF%BC%89%20%28clip%29.mp3","http://p7jiixmp8.bkt.clouddn.com/%E5%9B%9E%E5%BF%86%E9%82%A3%E4%B9%88%E4%BC%A4_190649.mp3","http://p7jiixmp8.bkt.clouddn.com/%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90strong%28clip%29.mp3","http://p7jiixmp8.bkt.clouddn.com/%E8%A5%BF%E7%93%9CJUN%20-%20%E7%8B%82%E9%87%8E%E6%83%B3%E4%B9%A12%20%28clip%29.mp3"
-    ];
-
-    
-    function c() {
-        var e = document.createElement("link");
-        e.setAttribute("type", "text/css");
-        e.setAttribute("rel", "stylesheet");
-        e.setAttribute("href", f);
-        e.setAttribute("class", l);
-        document.body.appendChild(e)
-    }
- 
-    function h() {
-        var e = document.getElementsByClassName(l);
-        for (var t = 0; t < e.length; t++) {
-            document.body.removeChild(e[t])
-        }
-    }
- 
-    function p() {
-        var e = document.createElement("div");
-        e.setAttribute("class", a);
-        document.body.appendChild(e);
-        setTimeout(function() {
-            document.body.removeChild(e)
-        }, 100)
-    }
- 
-    function d(e) {
-        return {
-            height : e.offsetHeight,
-            width : e.offsetWidth
-        }
-    }
- 
-    function v(i) {
-        var s = d(i);
-        return s.height > e && s.height < n && s.width > t && s.width < r
-    }
- 
-    function m(e) {
-        var t = e;
-        var n = 0;
-        while (!!t) {
-            n += t.offsetTop;
-            t = t.offsetParent
-        }
-        return n
-    }
- 
-    function g() {
-        var e = document.documentElement;
-        if (!!window.innerWidth) {
-            return window.innerHeight
-        } else if (e && !isNaN(e.clientHeight)) {
-            return e.clientHeight
-        }
-        return 0
-    }
- 
-    function y() {
-        if (window.pageYOffset) {
-            return window.pageYOffset
-        }
-        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
-    }
- 
-    function E(e) {
-        var t = m(e);
-        return t >= w && t <= b + w
-    }
-
-    function S() {
-        var e = document.getElementById("audio_element_id");
-        if(e != null){
-            var index = parseInt(e.getAttribute("curSongIndex"));
-            if(index > songs.length - 2) {
-                index = 0;
-            } else {
-                index++;
-            }
-            e.setAttribute("curSongIndex", index);
-            N();
-        }
-
-        e.src = i;
-        e.play()
-    }
- 
-    function x(e) {
-        e.className += " " + s + " " + o
-    }
- 
-    function T(e) {
-        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
-    }
- 
-    function N() {
-        var e = document.getElementsByClassName(s);
-        var t = new RegExp("\\b" + s + "\\b");
-        for (var n = 0; n < e.length; ) {
-            e[n].className = e[n].className.replace(t, "")
-        }
-    }
-
-    function initAudioEle() {
-        var e = document.getElementById("audio_element_id");
-        if(e === null){
-            e = document.createElement("audio");
-            e.setAttribute("class", l);
-            e.setAttribute("curSongIndex", 0);
-            e.id = "audio_element_id";
-            e.loop = false;
-            e.bgcolor = 0;
-            e.addEventListener("canplay", function() {
-            setTimeout(function() {
-                x(k)
-            }, 500);
-            setTimeout(function() {
-                N();
-                p();
-                for (var e = 0; e < O.length; e++) {
-                    T(O[e])
-                }
-            }, 15500)
-        }, true);
-        e.addEventListener("ended", function() {
-            N();
-            h();
-            go();
-        }, true);
-        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
-        document.body.appendChild(e);
-        }
-    }
-    
-    initAudioEle();
-    var e = 30;
-    var t = 30;
-    var n = 350;
-    var r = 350;
-
-    var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
-    var i = songs[curSongIndex];
-    
-    var s = "mw-harlem_shake_me";
-    var o = "im_first";
-    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
-    var a = "mw-strobe_light";
-
-    /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
-    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
-    
-    var l = "mw_added_css";
-    var b = g();
-    var w = y();
-    var C = document.getElementsByTagName("*");
-    var k = null;
-    for (var L = 0; L < C.length; L++) {
-        var A = C[L];
-        if (v(A)) {
-            if (E(A)) {
-                k = A;
-                break
-            }
-        }
-    }
-    if (A === null) {
-        console.warn("Could not find a node of the right size. Please try a different page.");
-        return
-    }
-    c();
-    S();
-    var O = [];
-    for (var L = 0; L < C.length; L++) {
-        var A = C[L];
-        if (v(A)) {
-            O.push(A)
-        }
-    }
-    })()'><i class="fa fa-music"></i> ShakeMusic!</a>
-
+        <div class="tab-content">
+            <div class="tab-pane waline" id="comment-waline">
+              <div class="comments" id="waline"></div>
             </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/oysz2016" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:ouyang-sz@foxmail.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://juejin.im/user/5ae26032f265da0b9f3ffeb2" target="_blank" title="掘金">
-                      
-                        <i class="fa fa-fw fa-spinner"></i>掘金</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.jianshu.com/u/d6119d98a96a" target="_blank" title="简书">
-                      
-                        <i class="fa fa-fw fa-book"></i>简书</a>
-                  </span>
-                
+            <div class="tab-pane livere" id="comment-livere">
+              <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8zNTg2Ni8xMjQwMg==
+Waline Config File"></div>
             </div>
-          
-
-          
-          
-
-          
-          
-
-          <div id="days"></div>
-</script>
-<script language="javascript">
-function show_date_time(){
-window.setTimeout("show_date_time()", 1000);
-BirthDay=new Date("04/22/2018 15:00:00");
-today=new Date();
-timeold=(today.getTime()-BirthDay.getTime());
-sectimeold=timeold/1000
-secondsold=Math.floor(sectimeold);
-msPerDay=24*60*60*1000
-e_daysold=timeold/msPerDay
-daysold=Math.floor(e_daysold);
-e_hrsold=(e_daysold-daysold)*24;
-hrsold=setzero(Math.floor(e_hrsold));
-e_minsold=(e_hrsold-hrsold)*60;
-minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
-seconds=setzero(Math.floor((e_minsold-minsold)*60));
-document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
-}
-function setzero(i){
-if (i<10)
-{i="0" + i};
-return i;
-}
-show_date_time();
-</script>
         </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度人脸表情识别"><span class="nav-number">2.</span> <span class="nav-text">深度人脸表情识别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预处理"><span class="nav-number">2.1.</span> <span class="nav-text">预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#人脸对齐"><span class="nav-number">2.1.1.</span> <span class="nav-text">人脸对齐</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据增强"><span class="nav-number">2.1.2.</span> <span class="nav-text">数据增强</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#人脸归一化"><span class="nav-number">2.1.3.</span> <span class="nav-text">人脸归一化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度特征学习"><span class="nav-number">2.2.</span> <span class="nav-text">深度特征学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人脸表情分类"><span class="nav-number">2.3.</span> <span class="nav-text">人脸表情分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面部表情数据库"><span class="nav-number">3.</span> <span class="nav-text">面部表情数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FER目前发展水平"><span class="nav-number">4.</span> <span class="nav-text">FER目前发展水平</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态图像FER进展"><span class="nav-number">4.1.</span> <span class="nav-text">静态图像FER进展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预训练和微调"><span class="nav-number">4.1.1.</span> <span class="nav-text">预训练和微调</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多样化网络输入"><span class="nav-number">4.1.2.</span> <span class="nav-text">多样化网络输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#辅助块与层改进"><span class="nav-number">4.1.3.</span> <span class="nav-text">辅助块与层改进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络集成"><span class="nav-number">4.1.4.</span> <span class="nav-text">网络集成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多任务网络"><span class="nav-number">4.1.5.</span> <span class="nav-text">多任务网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络级联"><span class="nav-number">4.1.6.</span> <span class="nav-text">网络级联</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态图像序列FER进展"><span class="nav-number">4.2.</span> <span class="nav-text">动态图像序列FER进展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#帧聚合"><span class="nav-number">4.2.1.</span> <span class="nav-text">帧聚合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#强度表达网络"><span class="nav-number">4.2.2.</span> <span class="nav-text">强度表达网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深度时空FER网络"><span class="nav-number">4.2.3.</span> <span class="nav-text">深度时空FER网络</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
       </div>
-    </main>
-    
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
-  <span class="with-love" id="heart">
-    <i class="fa fa-heart"></i>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">冲弱</span>
-
-  
 </div>
-
-
-<div class="powered-by">
-  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-    本站访客数:<span id="busuanzi_value_site_uv"></span>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">98k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:29</span>
   </span>
 </div>
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-
-
-<div class="theme-info">
-  <div class="powered-by"></div>
-  <span class="post-count">博客全站共63.1k字</span>
-</div>
-<div class="weixin-box">
-  <div class="weixin-menu">
-    <div class="weixin-hover">
-      <div class="weixin-description">微信扫一扫，订阅本博客</div>
-    </div>
-  </div>
-</div>
-
-
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
     </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
     </span>
-  
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5adaebc9009ff58b" async="async"></script>
+  </div>
+  <div id="site-runtime">
+  <span class="post-meta-item-icon">
+    <i class="fa fa-clock-o"></i>
+  </span>
+  <span id="runtime"></span>
 </div>
 
+<script language="javascript">
+  function isPC() {
+    var userAgentInfo = navigator.userAgent;
+    var agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    for (var i = 0; i < agents.length; i++) {
+      if (userAgentInfo.indexOf(agents[i]) > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
 
+  function siteTime(openOnPC, start) {
+    window.setTimeout("siteTime(openOnPC, start)", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+      start = new Date("2019-11-23 09:00:00 +0800");
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var date = now.getDate();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    var diff = now - start;
 
+    var diffYears = Math.floor(diff / years);
+    var diffDays = Math.floor((diff / days) - diffYears * 365);
+    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
 
+    if (openOnPC) {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + " years " + diffDays + " days " + diffHours + " hours " + diffMinutes + " mins " + diffSeconds + " secs";
+    } else {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + "y " + diffDays + "d " + diffHours + "h " + diffMinutes + "m " + diffSeconds + "s";
+    }
+  }
 
+  var showOnMobile = false;
+  var openOnPC = isPC();
+  var start = new Date();
+  siteTime(openOnPC, start);
 
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
-    
-
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+  if (!openOnPC && !showOnMobile) {
+    document.getElementById('site-runtime').style.display = 'none';
   }
 </script>
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+  <script src="https://embed.widgetpack.com/widget.js" async></script>
+  <script class="next-config" data-name="rating" type="application/json">{"enable":true,"id":11277,"color":"f79533"}</script>
+  <script src="/js/third-party/rating.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
 
+  <script src="/js/third-party/fancybox.js"></script>
 
+  <script src="/js/third-party/pace.js"></script>
 
-
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 
   
 
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-<script src="/js/src/photoswipe.js?v=5.1.4"></script>
-<script src="/js/src/photoswipe-ui-default.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("7yvqM96LoALQrcwK8vCi5wPx-gzGzoHsz", "shWOzxYkisgnXyjW2U3Ldj9V");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/5d962f61.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
 </script>
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 
-
-  
-  
-  <script type="text/javascript">
-  wpac_init = window.wpac_init || [];
-  wpac_init.push({widget: 'Rating', id: 11277,
-    el: 'wpac-rating',
-    color: 'f79533'
-  });
-  (function() {
-    if ('WIDGETPACK_LOADED' in window) return;
-    WIDGETPACK_LOADED = true;
-    var mc = document.createElement('script');
-    mc.type = 'text/javascript';
-    mc.async = true;
-    mc.src = '//embed.widgetpack.com/widget.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-  })();
-  </script>
-
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>;
 <script>
-$("body").backstretch("http://p7jiixmp8.bkt.clouddn.com/WallpaperStudio10-81831.jpg");
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
 </script>
+<script src="/js/third-party/comments/livere.js"></script>
+
 </body>
 </html>
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wukong.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/32_32_wukong.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/16_16_wukong.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="扩散模型汇总——从DDPM到DALLE2">
+<meta property="og:url" content="https://oysz2016.github.io/post/d10097db.html">
+<meta property="og:site_name" content="冲弱&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/1.png">
+<meta property="article:published_time" content="2022-12-17T01:25:30.740Z">
+<meta property="article:modified_time" content="2022-12-25T09:20:29.682Z">
+<meta property="article:author" content="冲弱">
+<meta property="article:tag" content="扩散模型">
+<meta property="article:tag" content="生成模型">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/1.png">
+
+
+<link rel="canonical" href="https://oysz2016.github.io/post/d10097db.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/d10097db.html","path":"post/d10097db.html","title":"扩散模型汇总——从DDPM到DALLE2"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>扩散模型汇总——从DDPM到DALLE2 | 冲弱's Blog</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="waline-five-pi.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="冲弱's Blog" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">冲弱's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生在勤，不索何获</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-comment"><a href="/comment/" rel="section"><i class="fa fa-comment fa-fw"></i>评论</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">背景知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E5%90%91%E8%BF%87%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">前向过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">反向过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DDPM"><span class="nav-number">2.</span> <span class="nav-text">DDPM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#improved-DDPM"><span class="nav-number">3.</span> <span class="nav-text">improved DDPM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Diffusion-models-beat-GAN-on-image-Synthesis"><span class="nav-number">4.</span> <span class="nav-text">Diffusion models beat GAN on image Synthesis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="nav-number">4.1.</span> <span class="nav-text">网络结构消融实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Classifier-Guidance"><span class="nav-number">4.2.</span> <span class="nav-text">Classifier Guidance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classifier-Free-Diffusion-Guidance"><span class="nav-number">5.</span> <span class="nav-text">Classifier-Free Diffusion Guidance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GLIDE"><span class="nav-number">6.</span> <span class="nav-text">GLIDE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DALLE2"><span class="nav-number">7.</span> <span class="nav-text">DALLE2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Decoder"><span class="nav-number">7.1.</span> <span class="nav-text">Decoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prior"><span class="nav-number">7.2.</span> <span class="nav-text">Prior</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%94%E8%80%85%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">笔者总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="冲弱"
+      src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+  <p class="site-author-name" itemprop="name">冲弱</p>
+  <div class="site-description" itemprop="description">输出即获得，分享即反哺</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ouyang-sz@foxmail.com" title="E-Mail → mailto:ouyang-sz@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/user/5ae26032f265da0b9f3ffeb2" title="掘金 → https:&#x2F;&#x2F;juejin.im&#x2F;user&#x2F;5ae26032f265da0b9f3ffeb2" rel="noopener" target="_blank"><i class="fa fa-spinner fa-fw"></i>掘金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/ou-yang-shi-zhuang/activities" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ou-yang-shi-zhuang&#x2F;activities" rel="noopener" target="_blank"><i class="fab fa-zhihu fa-fw"></i>知乎</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+    
+    <div class="post-gallery-image">
+      <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/1.png" itemprop="contentUrl">
+    </div>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/d10097db.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+      <meta itemprop="name" content="冲弱">
+      <meta itemprop="description" content="输出即获得，分享即反哺">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冲弱's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          扩散模型汇总——从DDPM到DALLE2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-12-17 09:25:30" itemprop="dateCreated datePublished" datetime="2022-12-17T09:25:30+08:00">2022-12-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-12-25 17:20:29" itemprop="dateModified" datetime="2022-12-25T17:20:29+08:00">2022-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/d10097db.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/d10097db.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><p class="description"></p><br><span id="more"></span></p>
+<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>扩散模型最早是在2015年在<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1503.03585">Deep unsupervised learning using nonequilibrium thermodynamics</a>中提出，<strong>其目的是消除对训练图像连续应用的高斯噪声</strong>，可以将其视为一系列<strong>去噪自编码器</strong>。它使用了一种被称为“潜在扩散模型”（latent diffusion model; LDM）的变体。训练自动编码器将图像转换为低维潜在空间。随后在2020年提出的DDPM将扩散模型的思想用于图像生成。</p>
+<p><strong>生成模型</strong>: 给定来自感兴趣分布的观察样本x，生成模型的目标是学习对其真实数据分布$p(x)$进行建模<br><strong>隐变量(latent Variable)</strong>: 对于许多模态，我们可以将我们观察到的数据视为由相关的看不见潜在变量生成的，我们可以用随机变量 z 表示。为什么能用看不见的潜在变量表示，感性的理解可以参考柏拉图洞穴的寓言。在这个寓言中，一群人一生都被锁在一个山洞里，只能看到投射在他们面前的墙上的二维阴影，这是由看不见的三维物体在火前经过而产生的。对于这样的人来说，他们所观察到的一切，实际上都是由他们永远看不到的更高维度的抽象概念决定的。</p>
+<p>生成模型发展到如今有下图中几种流派，从下面的算法结构图可以看出Diffusion model相比其他方法<strong>有比较大的不同:</strong></p>
+<ul>
+<li><strong>Diffusion model的算法过程中的latent Variable维度都是相同的</strong></li>
+<li><strong>存在一个前向和反向的过程</strong></li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/1.png" alt=""></p>
+<p>从以上的不同出发，可以推测出Diffusion model包含两个过程：分别是<strong>前向过程</strong>和<strong>反向过程</strong><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/2.png" alt=""></p>
+<h3 id="前向过程"><a href="#前向过程" class="headerlink" title="前向过程"></a>前向过程</h3><p>前向过程在论文中也称为<strong>扩散过程(diffusion process)</strong>，<strong>是向数据随机添加噪声，直至原始图像整个变成随机噪声的过程</strong>，这个过程记为$x_o~q(x_o)$<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/3.png" alt=""></p>
+<h3 id="反向过程"><a href="#反向过程" class="headerlink" title="反向过程"></a>反向过程</h3><p>反向过程是<strong>前向过程的反转</strong>，反向过程的<strong>目的是将随机噪声的分布，逐渐去噪生成真实的样本。</strong>反向过程实际上也是生成数据的过程。将该过程的表达式为:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/4.png" alt=""></p>
+<h2 id="DDPM"><a href="#DDPM" class="headerlink" title="DDPM"></a>DDPM</h2><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2006.11239">https://arxiv.org/abs/2006.11239</a><br><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/hojonathanho/diffusion">https://github.com/hojonathanho/diffusion</a></p>
+<p>在DPM中原始的扩散模型，在反向过程中是用$x_{t-1}$ 预测 $x_{t}$，而<strong>DDPM预测的是从t时刻到t-1时刻添加的噪声</strong>，只要减去添加的噪声，同样也能得到$x_{t}$时刻的特征。</p>
+<p>由于在从噪声恢复到目标图像的过程中，特征维度是一致的，在DDPM中采用的是U-Net的结构，在T步的反向过程中，U-Net模型是参数共享的，为了能告知U-Net模型现在是反向传播的第几步，在每一步反向传播时会增加一个<strong>time embedding</strong>，其实现和transformer中的position embedding相似</p>
+<p>在反向过程中预测的噪声都是符合正态分布的，也就是只用拟合噪声的均值和方差就可以预测出噪声，在DDPM中将方差固定为常数，只预测均值</p>
+<p>DDPM的原理到这里基本就介绍完了。关于论文中扩散模型正向和反向过程都是符合高斯分布的，可以做比较详尽的推理和证明，对正向和反向推理过程感兴趣的同学可以看看论文或者其他blog中的推导</p>
+<h2 id="improved-DDPM"><a href="#improved-DDPM" class="headerlink" title="improved DDPM"></a>improved DDPM</h2><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2102.09672">https://arxiv.org/abs/2102.09672</a><br><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/openai/improved-diffusion">https://github.com/openai/improved-diffusion</a><br>从论文的名字可以看出主要是对DDPM做的改进，<strong>主要介绍下和DDPM的差异</strong></p>
+<ul>
+<li>将DDPM中用常数指代的方差，用模型学习了</li>
+<li>将添加噪声的schedule改了，从线性的改成了余弦的<br>作者发现DDPM中线性的噪声schedule在高分辨率的图像生成中表现较好，但对于分辨率比较低的，例如64<em>64和32</em>32的图像任务中表现的不那么好。特别是在扩散过程的后期，最后的几步噪声过大，对样本质量的贡献不大。从Figure 3可以看出，cosine schedule的方法在每一步添加的噪声后相比之前图片都有一些差异，而linear schedule方法，在后期几步差异已经不大了。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/5.png" alt=""><br>我也用coco的数据集试了下，确实cosine比linear要合理些。<br>下图展示的是前向过程，迭代不同次数的结果</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/7.png" alt=""></p>
+<p>下面以mnist数据集为例，展示反向过程，迭代不同次数的结果</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/7_2.png" alt=""></p>
+<h2 id="Diffusion-models-beat-GAN-on-image-Synthesis"><a href="#Diffusion-models-beat-GAN-on-image-Synthesis" class="headerlink" title="Diffusion models beat GAN on image Synthesis"></a>Diffusion models beat GAN on image Synthesis</h2><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2105.05233">https://arxiv.org/abs/2105.05233</a><br><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/openai/guided-diffusion">https://github.com/openai/guided-diffusion</a></p>
+<p><strong>和之前方法的差异</strong></p>
+<ul>
+<li><strong>从GAN的实验中得到启发，对扩散模型进行了大量的消融实验，找到了更好的架构更深更宽的模型</strong></li>
+<li><strong>用了classifier guider diffusion</strong></li>
+</ul>
+<h3 id="网络结构消融实验"><a href="#网络结构消融实验" class="headerlink" title="网络结构消融实验"></a>网络结构消融实验</h3><p>文中使用的基础模型是U-Net加一个单头全局注意力模块，以FID为评价指标，在ImageNet128<em>128上进行消融实验。<br>作者从模型的<strong>宽度(channels)</strong>、<strong>深度(depth)</strong>、<strong>注意力头的数量(heads)</strong>、<strong>注意力的分辨率(attention resolutions)</strong>、<em>*使用BigGAN的上/下采样激活(BigGAN-up/downsample)</em></em>、调整残差连接的权重(rescale-resblock)等方面进行了消融实验</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/9.png" alt=""></p>
+<p>从上表中可以看到，加宽和加深网络都能带来明显的提升，增加注意力头的数量、使用多分辨率组合的注意力模块比只使用单头单一分辨率更有助于提升模型表现，BigGAN的上下采样也能提升模型表现。<strong>唯独修改残差连接的权重没有带来提升。</strong></p>
+<p>虽然增加深度能带来模型性能的提升，但也会增加训练时间，并且需要更长时间才能拟合到一个一般结构模型能达到的效果。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/10.png" alt=""></p>
+<p>另外通过Table 1的实验，作者使用了Channels为128，2个残差块，高分辨率的attention和使用BigGan中的上下采样激活。进一步探究注意力头的数量和每个注意力头通道数间的关系<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/11.png" alt=""></p>
+<p>通过上表的结果进一步证明，<strong>注意力头的数量能提升性能，但每个注意力头的通道数并不是越多越好</strong></p>
+<h3 id="Classifier-Guidance"><a href="#Classifier-Guidance" class="headerlink" title="Classifier Guidance"></a>Classifier Guidance</h3><p>作者受目前GAN方法里通常会使用的类别信息辅助图像生成的原理启发，开发了一个<strong>将类别信息引入扩散模型中的方法Classifier Guidance Diffusion</strong>，这个方法通俗的说是会训练一个图片分类器，在扩散模型的生成过程中的中间的latend code会<strong>通过分类器计算得到一个梯度，该梯度会指导扩散模型的迭代过程</strong>。其实这一操作也比较make sense，有一个分类器的存在能更好的告诉U-Net的模型在反向过程生成新图片的时候，当前图片有多像需要生成的物体。<strong>有点类似GAN中存在一个判别器的意思</strong>。</p>
+<p>在论文中提到使用Classifier Guidance的技术<strong>能更好的生成逼真的图像</strong>，同时能加速图像生成的速度。论文中也提到，通过使用Classifier Guidance的track会牺牲掉一部分的多样性，换取图片的真实性</p>
+<h2 id="Classifier-Free-Diffusion-Guidance"><a href="#Classifier-Free-Diffusion-Guidance" class="headerlink" title="Classifier-Free Diffusion Guidance"></a>Classifier-Free Diffusion Guidance</h2><ul>
+<li>论文链接: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2207.12598">https://arxiv.org/abs/2207.12598</a></li>
+</ul>
+<p>这篇论文的主要贡献是优化了Openai在《Diffusion models beat GAN on image Synthesis》中提出的Classifier Guidance，<strong>在Classifier Guidance中提出用另外一个模型做引导，需要用预训练的模型或者额外训练一个模型。不仅成本比较高而且训练的过程是不可控的。</strong></p>
+<p>而这篇论文的方法研究的是没有分类器，也可以用生成模型自己做引导，所以起名叫“Classifier-Free Diffusion Guidance”。具体来说在该方法中联合训练了conditional和unconditional的扩散模型，并且结合了两个模型的score estimates，以实现样本质量和多样性之间的均衡。下图的Algorithms1和Algorithms2详细描述了Classifier-Free的做法。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/12.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/13.png" alt=""></p>
+<p>最终模型的输出为下面的公式:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/14.png" alt=""><br>最终的输出为有条件生成的输出减去无条件生成的输出，看到这里个人感觉和之前介绍的两篇关于因果分析的论文<a href="https://oysz2016.github.io/post/b4822109.html">《Unbiased Scene Graph Generation from Biased Training》</a>和<a href="https://oysz2016.github.io/post/3a13345e.html">《Long-Tailed Classification by Keeping the Good and Removing the Bad Momentum Causal Effect》</a>思路十分相似，<strong>可以将无条件生成的输出看作是偏差，用正常训练的网络减去有偏差的网络能得到想要的输出</strong>。回到这篇论文的思路，有条件生成的可以看作是用了和图片匹配的文本对c，而无条件生成将其中的文本对c置为了空集。其中w是超参数，用来条件有条件和无条件生成两者的比例，实验部分有该参数对性能的详细对比，以及和其他方法的对比</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/15.png" alt=""></p>
+<p><strong>从下面的结果图可以看出Classifier-Free Guidance相比不用non-guided的方法多样性会有些损失，但图像的真实性和色彩饱和度是要更好的</strong></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/16.png" alt=""></p>
+<p>值得一提的是，虽然Classifier-Free Guidance的方法没有引入新的模型，但方法本身仍然是”<strong>昂贵的</strong>“，因为训练的时候需要生成两个输出。在扩散模型本身就很慢的情况下，会进一步增加耗时</p>
+<h2 id="GLIDE"><a href="#GLIDE" class="headerlink" title="GLIDE"></a>GLIDE</h2><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2112.10741">https://arxiv.org/abs/2112.10741</a><br><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/openai/glide-text2im">https://github.com/openai/glide-text2im</a><br>在前面扩散模型的一系列进展之后，尤其是当guidance技术之后证明扩散模型也能生成高质量的图像后。Openai开始探索文本条件下的图像生成，并在这篇论文里对比了两种不同的guidance策略，分别是通过<strong>CLIP引导</strong>和<strong>classifier-free的引导</strong>。验证了classifier-free的方式生成的图片更真实，与提示的文本有更好的相关性。并且使用classifier-free的引导的GLIDE模型在35亿参数的情况下优于120亿参数的DALL-E模型</p>
+<p>该方法沿袭了Openai一贯的做法，什么模块效果好就用什么，然后进一步增加模型的参数量和数据量。具体而言:</p>
+<ul>
+<li>使用了更大的模型，其中模型的结构和《Classifier-Free Diffusion Guidance》方法中的模型结构一样，不过增大了通道数，参数量达到了35亿</li>
+<li>更多的数据，和Dalle相同的图像-文本对</li>
+<li>更充分的训练，2048的batch size，迭代了250万次</li>
+</ul>
+<p><strong>GLIDE最大的贡献是开始用文本作为条件引导图像的生成</strong>，下图是其训练过程，和之前工作差异主要有以下几点：</p>
+<ul>
+<li><strong>分词后将文本送入transformer（bert），生成文本的embedding</strong></li>
+<li><strong>文本embedding中最后一个token的特征作为扩散模型中classifier-free guidance中的条件c</strong></li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/17.gif" alt=""></p>
+<p>GLIDE的效果确实十分惊艳，图片非常真实而且有很多细节。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/18.png" alt=""></p>
+<h2 id="DALLE2"><a href="#DALLE2" class="headerlink" title="DALLE2"></a>DALLE2</h2><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://cdn.openai.com/papers/dall-e-2.pdf">https://cdn.openai.com/papers/dall-e-2.pdf</a><br><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/lucidrains/DALLE2-pytorch">https://github.com/lucidrains/DALLE2-pytorch</a><br>如果说前面所提到的方法将扩散模型优化到比同期gan模型指标还要好，让研究人员看到了扩散模型在生成领域的前景，那么Dalle2则将扩散模型引入了公众视野。</p>
+<p>在GLIDE取得成功之后，Openai又进一步在GLIDE上加了一些track，成为了Dalle2。dalle2的结构如下图所示：</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/19.png" alt=""></p>
+<p>上面的图中将有一条分割线，分割线的上半部分代表CLIP模型，下半部分代表DALLE2。<br>为了更好的理解DALLE2，回顾一下CLIP模型，CLIP模型是有一个图像-文本对，文本通过一个text encoder得到文本特征，图像通过image encoder得到图像特征。他们两者就是一对正样本，而该文本跟其他的图像就构成负样本。<br>在Dalle2中CLIP模型没有经过进一步的训练，主要用处是用来根据文本生成文本特征，然后prior根据文本特征生成对应的图像特征，<strong>这一步很有意思，在论文中作者认为显式将图像特征建模出来，再用图像特征生成图像，会比直接通过文本特征生成图像效果要好。</strong></p>
+<p>方法:<br>dalle2使用的数据和CLIP，Dalle，GLIDE一样，都是图像文本对(x，y)。x代表图像，y代表图像对应的文本，$z_i$代表CLIP模型输出的图像特征，$z_t$代表CLIP模型输出的文本特征。则Dalle2的网络结构由两部分组成:</p>
+<ul>
+<li>prior: 根据文本y生成图像特征$z_i$</li>
+<li>decoder: 使用prior生成的$z_i$(对应的文本y，y可有可无)，生成图像x</li>
+</ul>
+<script type="math/tex; mode=display">P(x|y)=P(x，z_i|y)=P(x|z_i，y)P(z_i|y)</script><p>作者用公式证明了可以通过两阶段方式生成图像的原因。$P(X|Y)$代表要用文本生成图像，可以等价于$P(x，z_i|y)$，因为可以认为x和图像特征$z_i$是一一对应的，可以根据链式法则等价于$P(z_i|y)$。</p>
+<h3 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h3><p>decoder部分的模型结构和GLIDE基本一致，使用了CLIP模型作为guidance，也使用了classifier-free guidance，并且classifier-free中的guidance有两种，一种是CLIP模型，另外一种是文本。<br>使用了级联式的生成，即生成的图片先从64<em>64到256</em>256，再到1024*1024</p>
+<h3 id="Prior"><a href="#Prior" class="headerlink" title="Prior"></a>Prior</h3><p>prior模型的任务是从文本特征生成图像特征，这里有两种常用的方法</p>
+<ul>
+<li>Auto-regressive</li>
+<li>扩散模型</li>
+</ul>
+<p>但是自回归的模型训练效率比较低，所以DALLE2的方法中使用的是扩散模型。在prior模型里也是用到了classifier-free guidance。在模型实现上使用的是transformer的decoder，模型的输入非常多，包含文本、CLIP的text embedding、扩散模型中常见的time step的embedding，还有加过噪声之后CLIP的image embedding；输出则预测没有噪声的CLIP的image embedding。和之前扩散模型不一样的地方在于没有使用DDPM中预测噪声的方式，而是直接还原每一步的图像</p>
+<p>最后再贴一贴惊艳的效果<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E2%80%94%E2%80%94%E4%BB%8EDDPM%E5%88%B0DALLE2/20.png" alt=""></p>
+<h2 id="笔者总结"><a href="#笔者总结" class="headerlink" title="笔者总结"></a>笔者总结</h2><p>上面总结了各种各样的扩散模型，总体来说扩散模型的可解释性比GAN要好很多，也有很多数学公式可以证明。发展到如今，扩散模型慢慢的接替了GAN在生成领域头把交椅的地位。并且随着Dalle2的提出确实带来了无穷的想象力。在人工智能没有普及的年代，就有讨论随着人工智能的发展有哪些职业会被取代，但是基本上大家都觉得创造性的工作，是无法被取代的，因为创造性的工作没有固定的模式，大多数需要灵感。但目前来看扩散模型已经具有了一定的创造性，相信对大部分的认知都是有一定的冲击，也说明扩散模型确实是一个很有趣的研究方向。</p>
+<blockquote class="blockquote-center">
+<p><strong><font size="5">欢迎关注我的公众号!</font></strong></p>
+
+</blockquote>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="enter description here"></p>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wechatpay.jpg" alt="冲弱 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/alipay.jpg" alt="冲弱 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>冲弱
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://oysz2016.github.io/post/d10097db.html" title="扩散模型汇总——从DDPM到DALLE2">https://oysz2016.github.io/post/d10097db.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.zhihu.com/people/ou-yang-shi-zhuang/posts">
+          <span class="icon">
+            <i class="fab fa-zhihu"></i>
+          </span>
+
+          <span class="label">ZhiHu</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://juejin.cn/user/4353721775688920">
+          <span class="icon">
+            <i class="fa fa-spinner"></i>
+          </span>
+
+          <span class="label">JueJin</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B/" rel="tag"> <i class="fa fa-tag"></i> 扩散模型</a>
+              <a href="/tags/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B/" rel="tag"> <i class="fa fa-tag"></i> 生成模型</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wpac-rating-container">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/2c662fdb.html" rel="prev" title="EDU。">
+                  <i class="fa fa-chevron-left"></i> EDU。
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-waline">waline</a></li>
+            <li class="tab"><a href="#comment-livere">livere</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane waline" id="comment-waline">
+              <div class="comments" id="waline"></div>
+            </div>
+            <div class="tab-pane livere" id="comment-livere">
+              <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8zNTg2Ni8xMjQwMg==
+Waline Config File"></div>
+            </div>
+        </div>
+      </div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冲弱</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">98k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:29</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5adaebc9009ff58b" async="async"></script>
+  </div>
+  <div id="site-runtime">
+  <span class="post-meta-item-icon">
+    <i class="fa fa-clock-o"></i>
+  </span>
+  <span id="runtime"></span>
+</div>
+
+<script language="javascript">
+  function isPC() {
+    var userAgentInfo = navigator.userAgent;
+    var agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    for (var i = 0; i < agents.length; i++) {
+      if (userAgentInfo.indexOf(agents[i]) > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function siteTime(openOnPC, start) {
+    window.setTimeout("siteTime(openOnPC, start)", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+      start = new Date("2019-11-23 09:00:00 +0800");
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var date = now.getDate();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    var diff = now - start;
+
+    var diffYears = Math.floor(diff / years);
+    var diffDays = Math.floor((diff / days) - diffYears * 365);
+    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+
+    if (openOnPC) {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + " years " + diffDays + " days " + diffHours + " hours " + diffMinutes + " mins " + diffSeconds + " secs";
+    } else {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + "y " + diffDays + "d " + diffHours + "h " + diffMinutes + "m " + diffSeconds + "s";
+    }
+  }
+
+  var showOnMobile = false;
+  var openOnPC = isPC();
+  var start = new Date();
+  siteTime(openOnPC, start);
+
+  if (!openOnPC && !showOnMobile) {
+    document.getElementById('site-runtime').style.display = 'none';
+  }
+</script>
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+  <script src="https://embed.widgetpack.com/widget.js" async></script>
+  <script class="next-config" data-name="rating" type="application/json">{"enable":true,"id":11277,"color":"f79533"}</script>
+  <script src="/js/third-party/rating.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/d10097db.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<script src="/js/third-party/comments/livere.js"></script>
+
+</body>
+</html>

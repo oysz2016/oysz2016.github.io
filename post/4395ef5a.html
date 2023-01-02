@@ -1,511 +1,335 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
 
+  <link rel="apple-touch-icon" sizes="180x180" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wukong.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/32_32_wukong.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/16_16_wukong.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
+<link rel="stylesheet" href="/css/main.css">
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-  
-  
-    
-    
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-  <script>
-  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
-  daovoice('init', {
-      app_id: "116d2e76"
-    });
-  daovoice('update');
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wukong.jpg?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/32_32_wukong.jpg?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/16_16_wukong.jpg?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="深度学习,目标检测," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="冲弱's Blog" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="keywords" content="深度学习,目标检测">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
 <meta property="og:title" content="(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记">
 <meta property="og:url" content="https://oysz2016.github.io/post/4395ef5a.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464564.jpg">
-<meta property="og:updated_time" content="2022-11-25T02:10:17.617Z">
+<meta property="article:published_time" content="2019-01-12T05:40:24.263Z">
+<meta property="article:modified_time" content="2019-03-17T05:48:10.514Z">
+<meta property="article:author" content="冲弱">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="目标检测">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记">
 <meta name="twitter:image" content="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464564.jpg">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://oysz2016.github.io/post/4395ef5a.html">
 
 
 
-  <link rel="canonical" href="https://oysz2016.github.io/post/4395ef5a.html"/>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/4395ef5a.html","path":"post/4395ef5a.html","title":"(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记"}</script>
 
-
-
-
-
-  <title>(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记 | 冲弱's Blog</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记 | 冲弱's Blog</title>
   
 
 
 
 
+<link rel="dns-prefetch" href="waline-five-pi.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="冲弱's Blog" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
 
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-
-
-<script src="/js/src/photoswipe.js?v=5.1.4"></script>
-<script src="/js/src/photoswipe-ui-default.js?v=5.1.4"></script>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">冲弱's Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <p class="site-subtitle">人生在勤，不索何获</p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">冲弱's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">人生在勤，不索何获</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-comment">
-          <a href="/comment/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comment"></i> <br />
-            
-            留言
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="st-search-show-outputs">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-</form>
-
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install', '_fC1jT9UoSk9vQ72-ezz','2.0.0');
-</script>
-
-
-
-    </div>
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-comment"><a href="/comment/" rel="section"><i class="fa fa-comment fa-fw"></i>评论</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
 </nav>
 
 
 
- </div>
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%AA%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">绪论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6%E7%9B%AE%E6%A0%87%E5%AE%9A%E4%BD%8D"><span class="nav-number">2.</span> <span class="nav-text">深入研究目标定位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%88%AB%E4%B8%8D%E5%8C%B9%E9%85%8D%E5%92%8C%E5%AE%9A%E4%BD%8D%E7%B2%BE%E5%BA%A6"><span class="nav-number">2.1.</span> <span class="nav-text">类别不匹配和定位精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BBox%E5%9B%9E%E5%BD%92%E7%9A%84%E9%9D%9E%E5%8D%95%E8%B0%83%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">BBox回归的非单调性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IOU-Net"><span class="nav-number">3.</span> <span class="nav-text">IOU-Net</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IOU-Net%E6%9E%B6%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">IOU-Net架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8IOU%E5%BA%A6%E9%87%8F%E7%9A%84NMS"><span class="nav-number">3.2.</span> <span class="nav-text">使用IOU度量的NMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E8%BE%B9%E7%95%8C%E6%A1%86%E7%B2%BE%E4%BF%AE%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="nav-number">3.3.</span> <span class="nav-text">将边界框精修作为一个优化过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#precise-ROI-Pooling"><span class="nav-number">3.3.1.</span> <span class="nav-text">precise ROI Pooling</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">4.</span> <span class="nav-text">实验</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="冲弱"
+      src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+  <p class="site-author-name" itemprop="name">冲弱</p>
+  <div class="site-description" itemprop="description">输出即获得，分享即反哺</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ouyang-sz@foxmail.com" title="E-Mail → mailto:ouyang-sz@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/user/5ae26032f265da0b9f3ffeb2" title="掘金 → https:&#x2F;&#x2F;juejin.im&#x2F;user&#x2F;5ae26032f265da0b9f3ffeb2" rel="noopener" target="_blank"><i class="fa fa-spinner fa-fw"></i>掘金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/ou-yang-shi-zhuang/activities" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ou-yang-shi-zhuang&#x2F;activities" rel="noopener" target="_blank"><i class="fab fa-zhihu fa-fw"></i>知乎</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
+
     
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
-  <div id="posts" class="posts-expand">
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
     
+    <div class="post-gallery-image">
+      <img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464564.jpg" itemprop="contentUrl">
+    </div>
+    </div>
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/4395ef5a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冲弱">
-      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+      <meta itemprop="name" content="冲弱">
+      <meta itemprop="description" content="输出即获得，分享即反哺">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="冲弱's Blog">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          (IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记</h1>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-12T13:40:24+08:00">
-                2019-01-12
-              </time>
-            
+      <time title="创建时间：2019-01-12 13:40:24" itemprop="dateCreated datePublished" datetime="2019-01-12T13:40:24+08:00">2019-01-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2019-03-17 13:48:10" itemprop="dateModified" datetime="2019-03-17T13:48:10+08:00">2019-03-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+        </span>
+    </span>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/论文笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">论文笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/post/4395ef5a.html" class="leancloud_visitors" data-flag-title="(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,585 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长"> 9 分钟
-                  
-                </span>
-              
-            </div>
-          
-
-          
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/4395ef5a.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/4395ef5a.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-      
-      
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464564.jpg" rel="gallery_claz4gexb000xcgv740mj5163"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464564.jpg" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
-
-      
-        <script src="\assets\js\APlayer.min.js"> </script><p></p><p class="description"></p><br><a id="more"></a><p></p>
-<p>论文链接：<a href="https://arxiv.org/abs/1711.07767" target="_blank" rel="noopener">https://arxiv.org/abs/1711.07767</a><br>论文代码：<a href="https://github.com/ruinmessi/RFBNet" target="_blank" rel="noopener">https://github.com/ruinmessi/RFBNet</a></p>
+        <p><p class="description"></p><br><span id="more"></span></p>
+<p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1711.07767">https://arxiv.org/abs/1711.07767</a><br>论文代码：<a target="_blank" rel="noopener" href="https://github.com/ruinmessi/RFBNet">https://github.com/ruinmessi/RFBNet</a></p>
 <p>&emsp;&emsp;目标检测框架中目前主要依靠边界框回归和非极大值抑制来定位对象，并且非极大值抑制算法去除重复框的依据是候选框的分类置信度，在这个过程中缺少了一个边框筛选的重要参考——<strong>定位置信度</strong>。因此这篇文章提出<strong>IOU-Net</strong>，IOU-Net具有以下优点：</p>
 <ul>
 <li>通过在网络中加入定位置信度，在NMS算法中用定位置信度代替分类置信度作为去重复框的参考</li>
@@ -516,7 +340,7 @@
 <li>分类置信度被用作对检测框排序的度量标准，并且在NMS算法中忽略了定位的精度</li>
 <li>缺少定位置信度，使得广泛使用BBox回归缺少可解释性，这点在《cascade r-cnn》中也有提到多次使用BBox回归可能导致检测框的局部退化。</li>
 </ol>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464876.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464876.jpg" alt="enter description here"></p>
 <p>&emsp;&emsp;上图中，黄色框表示gt，绿色和红色都是是模型预测得到的检测框。如图(a)所示，绿色检测框与红色检测框相比更适合作为最终的预测结果，绿色框与gt的IOU(交并比)更高，定位置信度也更高，但分类置信度却低于红色的检测框，在以往NMS算法中以分类作为检测框排序标准，会保留红色的框，而滤去绿色的，这显然是不够合理的。图(b)比较的是基于优化的边界框修正比基于回归的边界框修正有更好的效果(多次应用基于回归的边界框修正，会导致检测框退化)<br>基于上图中目前目标检测框架的不足，作者IOU-Net所做的两点改进：</p>
 <ol>
 <li>通过在目标检测框架中引入定位置信度。在NMS算法中，预测检测框与gt之间IOU的顺序，代替原来的以分类置信度排序</li>
@@ -525,1029 +349,369 @@
 <p>&emsp;&emsp;IOU-Net中的IOU指的就是<strong>网络预测到的检测框与gt之间的IOU</strong></p>
 <h2 id="深入研究目标定位"><a href="#深入研究目标定位" class="headerlink" title="深入研究目标定位"></a>深入研究目标定位</h2><p>&emsp;&emsp;作者在绪论中提到了所作的两点改进，绪论中定性的用图表表明了缺少定位置信度带来的缺点，接下来分别做了几个实验定量的验证所提出方法的有效性。以下实验所采用的训练集是MS-COCO trainval35k,测试集用minival，检测框架用FPN网络。</p>
 <h3 id="类别不匹配和定位精度"><a href="#类别不匹配和定位精度" class="headerlink" title="类别不匹配和定位精度"></a>类别不匹配和定位精度</h3><p>&emsp;&emsp;作者先简单介绍了NMS算法的原理，及关于这方面的研究进展。随后指出NMS算法中，以分类置信度作为检测框的度量标准不太合理。</p>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464564.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;如上图所示，(a)横轴是预测的检测框与gt之间的IOU,纵轴是分类置信度。(b)横轴同样是预测的检测框与gt之间的IOU,纵轴是定位置信度。若以检测框与gt之间的IOU大于0.5作为是否检测到的阈值，作者计算了两张图横纵轴的Pearson correlation(皮尔森相关系数<a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient" target="_blank" rel="noopener">[wiki百科]</a>)，结论是(a)的相关的相关系数为0.217，而(b)的相关性为0.617。<br>&emsp;&emsp;作者也总结了分类置信度与定位是否准确关系不大的原因：<strong>目标检测框架中分类和定位的相关性不强的原因在于正样本和负样本的选取方式，例如获取正样本只用其与gt之间的IOU大于指定阈值即可</strong>。关于正样本的生成方式，之前我也想过为什么这样生成，如此的生成方式一定程度上会带来定位不准确的问题。但是相比较于完全使用标注的gt这种方式具有以下的优点：</p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464564.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;如上图所示，(a)横轴是预测的检测框与gt之间的IOU,纵轴是分类置信度。(b)横轴同样是预测的检测框与gt之间的IOU,纵轴是定位置信度。若以检测框与gt之间的IOU大于0.5作为是否检测到的阈值，作者计算了两张图横纵轴的Pearson correlation(皮尔森相关系数<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">[wiki百科]</a>)，结论是(a)的相关的相关系数为0.217，而(b)的相关性为0.617。<br>&emsp;&emsp;作者也总结了分类置信度与定位是否准确关系不大的原因：<strong>目标检测框架中分类和定位的相关性不强的原因在于正样本和负样本的选取方式，例如获取正样本只用其与gt之间的IOU大于指定阈值即可</strong>。关于正样本的生成方式，之前我也想过为什么这样生成，如此的生成方式一定程度上会带来定位不准确的问题。但是相比较于完全使用标注的gt这种方式具有以下的优点：</p>
 <ul>
 <li><strong><em>可以生成多个比例的候选框，覆盖样本的不同尺度，正样本会更好的回归</em></strong></li>
 <li><strong><em>样本均衡一直是目标检测算法的一个难题，这种方式一定程度上可以生成更多的正样本</em></strong></li>
 </ul>
 <p>&emsp;&emsp;很明显正样本的选取方式带来的好处远大于其缺点，作者也表明，定位不准主要是缺少定位置信度的原因</p>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464535.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464535.jpg" alt="enter description here"></p>
 <p>&emsp;&emsp;传统NMS算法中由于用分类置信度作为MNS算法中检测框的度量标准，会导致与gt有更大IOU的检测框被抑制。如上图所示，蓝色代表传统的NMS算法；黄色表示以定位置信度作为度量标注的NMS算法；绿色表示不用NMS时，理论能生成的最多检测框数量。可以看到，在传统的NMS算法中由于缺少定位置信度，保留的检测框中与gt的IOU在0.9以上的会被抑制。</p>
 <h3 id="BBox回归的非单调性"><a href="#BBox回归的非单调性" class="headerlink" title="BBox回归的非单调性"></a>BBox回归的非单调性</h3><p>&emsp;&emsp;faster rcnn中使用了两次边界框回归，以达到位置精修的目的。但位置精修的次数是不是越多越好，《cascade r-cnn》中也提到了这样的疑惑，作者做了个实验。</p>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464267.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464267.jpg" alt="enter description here"></p>
 <p>&emsp;&emsp;上图中，横轴代表边界框回归结构的迭代次数，纵轴代表检测精度。从上图可以看到，无论是FPN网络还是Cascade R-CNN网络，在多次使用边界框回归之后，都会出现退化现象。作者解释出现这种情况的是<strong>由于缺少定位置信度，对模型不能进行细粒度(fine-grained)的控制，例如对不同的检测框采用不同的迭代次数</strong>。</p>
 <h2 id="IOU-Net"><a href="#IOU-Net" class="headerlink" title="IOU-Net"></a>IOU-Net</h2><p>&emsp;&emsp;为了定量分析IOU-Net的有效性，接下来作者给出了IOU-Net的框架和NMS算法中怎样用IOU进行预测以及基于回归的边界框精修算法。</p>
-<h3 id="IOU-Net架构"><a href="#IOU-Net架构" class="headerlink" title="IOU-Net架构"></a>IOU-Net架构</h3><p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464269.jpg" alt="enter description here"></p>
+<h3 id="IOU-Net架构"><a href="#IOU-Net架构" class="headerlink" title="IOU-Net架构"></a>IOU-Net架构</h3><p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464269.jpg" alt="enter description here"></p>
 <p>&emsp;&emsp;如上图所示，IOU-Net框架中提特征的网络部分与FPN网络一致，并估计每个边界框的定位精度(IOU)，通过数据扩充生成用于训练IOU-Net的边框和标签，而不是接受来自RPN的建议(说实话这里有点奇怪，RPN网络作用之一是用来位置精修的，不用之前RPN网络中的建议，这个没太理解作者的意思)。细节实施上，作者表明在生成正样本时，从候选集中移除与gt的IOU小于0.5的样本，然后对所有样本统一采样训练，据作者所说这样可以获得更好的性能和鲁棒性</p>
 <h3 id="使用IOU度量的NMS"><a href="#使用IOU度量的NMS" class="headerlink" title="使用IOU度量的NMS"></a>使用IOU度量的NMS</h3><p>&emsp;&emsp;这里作者主要介绍了在NMS去除重复框时，如何使用IOU作为度量标准。伪代码如下所示：</p>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464539.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464539.jpg" alt="enter description here"></p>
 <p>&emsp;&emsp;特点是采用了基于聚类的规则来更新分类置信度。具体实施过程是当boxi将boxj移除了，会更新boxi的分类置信度为max(si,sj)</p>
 <h3 id="将边界框精修作为一个优化过程"><a href="#将边界框精修作为一个优化过程" class="headerlink" title="将边界框精修作为一个优化过程"></a>将边界框精修作为一个优化过程</h3><p>&emsp;&emsp;边界框精修的数学公式定义如下：</p>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463491.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463491.jpg" alt="enter description here"></p>
 <p>&emsp;&emsp;其中 $box_{det}$是检测到的边界框，$box_{gt}$是实际的边界框.<code>trainsform</code>是用参数<code>c</code>对边界框变换的转换函数。$crit$是两个边界框的度量标准(这个标准在faster rcnn中是<code>smooth-L1</code>)</p>
 <p>&emsp;&emsp;基于回归的算法用前馈神经网络直接估计最优解c* 。 然而，迭代边界框回归方法易受输入分布变化的影响，并可能导致非单调的回归退化，如图4所示。为了解决这些问题，作者提出一种基于优化的边界框精修方法。 利用IoU-Net作为鲁棒定位精度（IoU）估计器的方法。 此外，IoU估计器可以用作早期停止条件，以通过自适应步骤实现迭代精修。</p>
 <p>&emsp;&emsp;IoU-Net直接估算IoU。 虽然所提出的精确RoI池化层能够计算关于边界框坐标的IoU的梯度，我们可以直接使用梯度上升方法找到方程1的最优解。在算法2中，将IoU的估计视为优化目标，我们迭代地使用计算的梯度更新边界框坐标和最大化检测到的边界框与其匹配的真值之间的IoU。 此外，预测的IoU是每个边界框上的定位置信度的可解释指示符，并且有助于解释所做的转换。</p>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463918.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463918.jpg" alt="enter description here"></p>
 <p>&emsp;&emsp;关于算法2中的初始坐标，初始化采用了一次边界框回归。</p>
 <h4 id="precise-ROI-Pooling"><a href="#precise-ROI-Pooling" class="headerlink" title="precise ROI Pooling"></a>precise ROI Pooling</h4><p>&emsp;&emsp;为了细粒度的修正边界框，作者引入了一种新的ROI Pooling方法，以代替之前的ROI Pooling和ROI Align。<strong>关于ROI Pooling到PrROI Pooling我会专门写一篇博文比较其区别，这里就先简单介绍下。</strong></p>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463702.jpg" alt="enter description here"><br>&emsp;&emsp;如上图，绿色的点代表特征图(feature map)的值，虚线代表目标在映射在特征图中实际的位置。<br>RoI Pooling：ROI Pooling的弊病，在于其在特征图中的边界框只能取整数，因此会从虚线取整到实线，映射回原图时，会带来误差。<br>ROI Align:为了避免ROI pooling中取整带来的误差。ROI Align中会保持浮点数边界不变，将特征图中的值用双线性插值，由绿色的点映射到图中的4个红点。然后再做池化<br>PrRoI Pooling: 如果付出浮点数边界内固定的点来做池化，这样对于目标实际的映射大小不具有适应性。PrRoI Pooling则使用二阶积分来做池化 </p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463702.jpg" alt="enter description here"><br>&emsp;&emsp;如上图，绿色的点代表特征图(feature map)的值，虚线代表目标在映射在特征图中实际的位置。<br>RoI Pooling：ROI Pooling的弊病，在于其在特征图中的边界框只能取整数，因此会从虚线取整到实线，映射回原图时，会带来误差。<br>ROI Align:为了避免ROI pooling中取整带来的误差。ROI Align中会保持浮点数边界不变，将特征图中的值用双线性插值，由绿色的点映射到图中的4个红点。然后再做池化<br>PrRoI Pooling: 如果付出浮点数边界内固定的点来做池化，这样对于目标实际的映射大小不具有适应性。PrRoI Pooling则使用二阶积分来做池化 </p>
 <h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>&emsp;&emsp;针对作者提到的几个方法，分别做了几组实验。</p>
 <ul>
 <li>下面的表1总结了在不同检测框架中，使用不同NMS算法性能上的变化。可以看到IOU指导的NMS算法，在高IOU指标上性能会优于其他算法</li>
 </ul>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463704.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463704.jpg" alt="enter description here"></p>
 <ul>
 <li>基于优化的边界框精修</li>
 </ul>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463705.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463705.jpg" alt="enter description here"></p>
 <ul>
 <li>耗时实验：耗时还在可以接受的范围</li>
 </ul>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463508.jpg" alt="enter description here"></p>
-<blockquote class="blockquote-center"><p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463508.jpg" alt="enter description here"></p>
+<blockquote class="blockquote-center">
+<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
+
 </blockquote>
-<p><img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
 
-      
     </div>
+
     
     
     
+
     <div>
-        
-          <div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-smile-o"></i>感谢您的阅读-------------</div>
-    
-</div>
-        
-      </div>
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wechatpay.jpg" alt="冲弱 微信支付"/>
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/alipay.jpg" alt="冲弱 支付宝"/>
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
       
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
-          
-            <a href="/tags/目标检测/" rel="tag"><i class="fa fa-tag"></i> 目标检测</a>
-          
-        </div>
         <div>
-        
-          
-<div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-  
-  <!-- JS库 sweetalert 可修改路径 -->
-  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
-  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-
-  <p><span>本文标题:</span>(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记</a></p>
-  <p><span>文章作者:</span>冲弱</a></p>
-  <p><span>发布时间:</span>2019年01月12日 - 13:40:24</p>
-  <p><span>最后更新:</span>2022年11月25日 - 10:10:17</p>
-  <p><span>原始链接:</span><a href="/post/4395ef5a.html" title="(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记">https://oysz2016.github.io/post/4395ef5a.html</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://oysz2016.github.io/post/4395ef5a.html"  aria-label="复制成功！"></i></span>
-  </p>
-  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
 </div>
-<script> 
-    var clipboard = new Clipboard('.fa-clipboard');
-    clipboard.on('success', $(function(){
-      $(".fa-clipboard").click(function(){
-        swal({   
-          title: "",   
-          text: '复制成功',   
-          html: false,
-          timer: 500,   
-          showConfirmButton: false
-        });
-      });
-    }));  
-</script>
 
+      
+    </div>
 
-        
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wechatpay.jpg" alt="冲弱 微信">
+        <span>微信</span>
       </div>
-      
+      <div>
+        <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/alipay.jpg" alt="冲弱 支付宝">
+        <span>支付宝</span>
+      </div>
 
-      
-      
-        <div class="post-widgets">
-        
+  </div>
+</div>
+
           
-          <div class="wp_rating">
-          <div style="color: rgba(0, 0, 0, 0.75); font-size:13px; letter-spacing:3px">(&gt;给我的文章打个分吧&lt;)</div>
-            <div id="wpac-rating"></div>
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>冲弱
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://oysz2016.github.io/post/4395ef5a.html" title="(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记">https://oysz2016.github.io/post/4395ef5a.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.zhihu.com/people/ou-yang-shi-zhuang/posts">
+          <span class="icon">
+            <i class="fab fa-zhihu"></i>
+          </span>
+
+          <span class="label">ZhiHu</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://juejin.cn/user/4353721775688920">
+          <span class="icon">
+            <i class="fa fa-spinner"></i>
+          </span>
+
+          <span class="label">JueJin</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"> <i class="fa fa-tag"></i> 深度学习</a>
+              <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag"> <i class="fa fa-tag"></i> 目标检测</a>
           </div>
-        
 
         
+  <div class="post-widgets">
+    <div class="wpac-rating-container">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
 
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/post/f38a4f4.html" rel="next" title="《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记">
-                <i class="fa fa-chevron-left"></i> 《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/f38a4f4.html" rel="prev" title="《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记">
+                  <i class="fa fa-chevron-left"></i> 《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/7fda15c2.html" rel="next" title="简单线性回归">
+                  简单线性回归 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/7fda15c2.html" rel="prev" title="简单线性回归">
-                简单线性回归 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-
-    <div class="post-spread">
-      
-        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<div class="addthis_inline_share_toolbox">
-  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5adaebc9009ff58b" async = "async" ></script>
 </div>
 
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTg2Ni8xMjQwMg=="></div>
-    </div>
-
-  
 
 
 
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
-    
-      <div id="sidebar-dimmer"></div>
-    
-    <div class="sidebar-inner">
 
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-waline">waline</a></li>
+            <li class="tab"><a href="#comment-livere">livere</a></li>
         </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-            <a href="/" class="site-author-image" rel="start" style="border:none">
-              <img class="site-author-image" itemprop="image"
-                src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png"
-                alt="冲弱" />
-            </a>
-            
-              <p class="site-author-name" itemprop="name">冲弱</p>
-              <p class="site-description motion-element" itemprop="description">输出即获得，分享即反哺</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">30</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-              
-      <!-- 自定义High一下的功能 -->
-      <a title="把这个链接拖到你的工具栏中,任何网页都可以High" href='javascript:(
-    /*
-     * Copyright (C) 2016 Never_yu (Neveryu.github.io) <React.dong.yu@gmail.com>
-     * Sina Weibo (http://weibo.com/Neveryu)
-     *
-     * Licensed under the Apache License, Version 2.0 (the "License");
-     * you may not use this file except in compliance with the License.
-     * You may obtain a copy of the License at
-     *
-     *      http://www.apache.org/licenses/LICENSE-2.0
-     *
-     * Unless required by applicable law or agreed to in writing, software
-     * distributed under the License is distributed on an "AS IS" BASIS,
-     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     * See the License for the specific language governing permissions and
-     * limitations under the License.
-     */
-    function go() {
-
-
-    var songs = ["http://p7jiixmp8.bkt.clouddn.com/%E5%B0%8F%E9%AD%82%20-%20%E7%A6%BB%E4%BA%BA%E6%84%81%EF%BC%88Cover%20%E6%9B%B2%E8%82%96%E5%86%B0%EF%BC%89%20%28clip%29.mp3","http://p7jiixmp8.bkt.clouddn.com/%E5%9B%9E%E5%BF%86%E9%82%A3%E4%B9%88%E4%BC%A4_190649.mp3","http://p7jiixmp8.bkt.clouddn.com/%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90strong%28clip%29.mp3","http://p7jiixmp8.bkt.clouddn.com/%E8%A5%BF%E7%93%9CJUN%20-%20%E7%8B%82%E9%87%8E%E6%83%B3%E4%B9%A12%20%28clip%29.mp3"
-    ];
-
-    
-    function c() {
-        var e = document.createElement("link");
-        e.setAttribute("type", "text/css");
-        e.setAttribute("rel", "stylesheet");
-        e.setAttribute("href", f);
-        e.setAttribute("class", l);
-        document.body.appendChild(e)
-    }
- 
-    function h() {
-        var e = document.getElementsByClassName(l);
-        for (var t = 0; t < e.length; t++) {
-            document.body.removeChild(e[t])
-        }
-    }
- 
-    function p() {
-        var e = document.createElement("div");
-        e.setAttribute("class", a);
-        document.body.appendChild(e);
-        setTimeout(function() {
-            document.body.removeChild(e)
-        }, 100)
-    }
- 
-    function d(e) {
-        return {
-            height : e.offsetHeight,
-            width : e.offsetWidth
-        }
-    }
- 
-    function v(i) {
-        var s = d(i);
-        return s.height > e && s.height < n && s.width > t && s.width < r
-    }
- 
-    function m(e) {
-        var t = e;
-        var n = 0;
-        while (!!t) {
-            n += t.offsetTop;
-            t = t.offsetParent
-        }
-        return n
-    }
- 
-    function g() {
-        var e = document.documentElement;
-        if (!!window.innerWidth) {
-            return window.innerHeight
-        } else if (e && !isNaN(e.clientHeight)) {
-            return e.clientHeight
-        }
-        return 0
-    }
- 
-    function y() {
-        if (window.pageYOffset) {
-            return window.pageYOffset
-        }
-        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
-    }
- 
-    function E(e) {
-        var t = m(e);
-        return t >= w && t <= b + w
-    }
-
-    function S() {
-        var e = document.getElementById("audio_element_id");
-        if(e != null){
-            var index = parseInt(e.getAttribute("curSongIndex"));
-            if(index > songs.length - 2) {
-                index = 0;
-            } else {
-                index++;
-            }
-            e.setAttribute("curSongIndex", index);
-            N();
-        }
-
-        e.src = i;
-        e.play()
-    }
- 
-    function x(e) {
-        e.className += " " + s + " " + o
-    }
- 
-    function T(e) {
-        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
-    }
- 
-    function N() {
-        var e = document.getElementsByClassName(s);
-        var t = new RegExp("\\b" + s + "\\b");
-        for (var n = 0; n < e.length; ) {
-            e[n].className = e[n].className.replace(t, "")
-        }
-    }
-
-    function initAudioEle() {
-        var e = document.getElementById("audio_element_id");
-        if(e === null){
-            e = document.createElement("audio");
-            e.setAttribute("class", l);
-            e.setAttribute("curSongIndex", 0);
-            e.id = "audio_element_id";
-            e.loop = false;
-            e.bgcolor = 0;
-            e.addEventListener("canplay", function() {
-            setTimeout(function() {
-                x(k)
-            }, 500);
-            setTimeout(function() {
-                N();
-                p();
-                for (var e = 0; e < O.length; e++) {
-                    T(O[e])
-                }
-            }, 15500)
-        }, true);
-        e.addEventListener("ended", function() {
-            N();
-            h();
-            go();
-        }, true);
-        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
-        document.body.appendChild(e);
-        }
-    }
-    
-    initAudioEle();
-    var e = 30;
-    var t = 30;
-    var n = 350;
-    var r = 350;
-
-    var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
-    var i = songs[curSongIndex];
-    
-    var s = "mw-harlem_shake_me";
-    var o = "im_first";
-    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
-    var a = "mw-strobe_light";
-
-    /* harlem-shake-style.css，替换成你的位置，也可以直接使用：//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css */
-    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
-    
-    var l = "mw_added_css";
-    var b = g();
-    var w = y();
-    var C = document.getElementsByTagName("*");
-    var k = null;
-    for (var L = 0; L < C.length; L++) {
-        var A = C[L];
-        if (v(A)) {
-            if (E(A)) {
-                k = A;
-                break
-            }
-        }
-    }
-    if (A === null) {
-        console.warn("Could not find a node of the right size. Please try a different page.");
-        return
-    }
-    c();
-    S();
-    var O = [];
-    for (var L = 0; L < C.length; L++) {
-        var A = C[L];
-        if (v(A)) {
-            O.push(A)
-        }
-    }
-    })()'><i class="fa fa-music"></i> ShakeMusic!</a>
-
+        <div class="tab-content">
+            <div class="tab-pane waline" id="comment-waline">
+              <div class="comments" id="waline"></div>
             </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/oysz2016" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:ouyang-sz@foxmail.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://juejin.im/user/5ae26032f265da0b9f3ffeb2" target="_blank" title="掘金">
-                      
-                        <i class="fa fa-fw fa-spinner"></i>掘金</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.jianshu.com/u/d6119d98a96a" target="_blank" title="简书">
-                      
-                        <i class="fa fa-fw fa-book"></i>简书</a>
-                  </span>
-                
+            <div class="tab-pane livere" id="comment-livere">
+              <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8zNTg2Ni8xMjQwMg==
+Waline Config File"></div>
             </div>
-          
-
-          
-          
-
-          
-          
-
-          <div id="days"></div>
-</script>
-<script language="javascript">
-function show_date_time(){
-window.setTimeout("show_date_time()", 1000);
-BirthDay=new Date("04/22/2018 15:00:00");
-today=new Date();
-timeold=(today.getTime()-BirthDay.getTime());
-sectimeold=timeold/1000
-secondsold=Math.floor(sectimeold);
-msPerDay=24*60*60*1000
-e_daysold=timeold/msPerDay
-daysold=Math.floor(e_daysold);
-e_hrsold=(e_daysold-daysold)*24;
-hrsold=setzero(Math.floor(e_hrsold));
-e_minsold=(e_hrsold-hrsold)*60;
-minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
-seconds=setzero(Math.floor((e_minsold-minsold)*60));
-document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
-}
-function setzero(i){
-if (i<10)
-{i="0" + i};
-return i;
-}
-show_date_time();
-</script>
         </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#绪论"><span class="nav-number">1.</span> <span class="nav-text">绪论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深入研究目标定位"><span class="nav-number">2.</span> <span class="nav-text">深入研究目标定位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类别不匹配和定位精度"><span class="nav-number">2.1.</span> <span class="nav-text">类别不匹配和定位精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BBox回归的非单调性"><span class="nav-number">2.2.</span> <span class="nav-text">BBox回归的非单调性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IOU-Net"><span class="nav-number">3.</span> <span class="nav-text">IOU-Net</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IOU-Net架构"><span class="nav-number">3.1.</span> <span class="nav-text">IOU-Net架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用IOU度量的NMS"><span class="nav-number">3.2.</span> <span class="nav-text">使用IOU度量的NMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将边界框精修作为一个优化过程"><span class="nav-number">3.3.</span> <span class="nav-text">将边界框精修作为一个优化过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#precise-ROI-Pooling"><span class="nav-number">3.3.1.</span> <span class="nav-text">precise ROI Pooling</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">4.</span> <span class="nav-text">实验</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
       </div>
-    </main>
-    
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
-  <span class="with-love" id="heart">
-    <i class="fa fa-heart"></i>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">冲弱</span>
-
-  
 </div>
-
-
-<div class="powered-by">
-  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-    本站访客数:<span id="busuanzi_value_site_uv"></span>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">98k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:29</span>
   </span>
 </div>
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-
-
-<div class="theme-info">
-  <div class="powered-by"></div>
-  <span class="post-count">博客全站共63.1k字</span>
-</div>
-<div class="weixin-box">
-  <div class="weixin-menu">
-    <div class="weixin-hover">
-      <div class="weixin-description">微信扫一扫，订阅本博客</div>
-    </div>
-  </div>
-</div>
-
-
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
     </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
     </span>
-  
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5adaebc9009ff58b" async="async"></script>
+  </div>
+  <div id="site-runtime">
+  <span class="post-meta-item-icon">
+    <i class="fa fa-clock-o"></i>
+  </span>
+  <span id="runtime"></span>
 </div>
 
+<script language="javascript">
+  function isPC() {
+    var userAgentInfo = navigator.userAgent;
+    var agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    for (var i = 0; i < agents.length; i++) {
+      if (userAgentInfo.indexOf(agents[i]) > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
 
+  function siteTime(openOnPC, start) {
+    window.setTimeout("siteTime(openOnPC, start)", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+      start = new Date("2019-11-23 09:00:00 +0800");
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var date = now.getDate();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    var diff = now - start;
 
+    var diffYears = Math.floor(diff / years);
+    var diffDays = Math.floor((diff / days) - diffYears * 365);
+    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
 
+    if (openOnPC) {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + " years " + diffDays + " days " + diffHours + " hours " + diffMinutes + " mins " + diffSeconds + " secs";
+    } else {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + "y " + diffDays + "d " + diffHours + "h " + diffMinutes + "m " + diffSeconds + "s";
+    }
+  }
 
+  var showOnMobile = false;
+  var openOnPC = isPC();
+  var start = new Date();
+  siteTime(openOnPC, start);
 
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
-    
-
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+  if (!openOnPC && !showOnMobile) {
+    document.getElementById('site-runtime').style.display = 'none';
   }
 </script>
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+  <script src="https://embed.widgetpack.com/widget.js" async></script>
+  <script class="next-config" data-name="rating" type="application/json">{"enable":true,"id":11277,"color":"f79533"}</script>
+  <script src="/js/third-party/rating.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
 
+  <script src="/js/third-party/fancybox.js"></script>
 
+  <script src="/js/third-party/pace.js"></script>
 
-
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 
   
 
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-<script src="/js/src/photoswipe.js?v=5.1.4"></script>
-<script src="/js/src/photoswipe-ui-default.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("7yvqM96LoALQrcwK8vCi5wPx-gzGzoHsz", "shWOzxYkisgnXyjW2U3Ldj9V");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/4395ef5a.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
 </script>
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 
-
-  
-  
-  <script type="text/javascript">
-  wpac_init = window.wpac_init || [];
-  wpac_init.push({widget: 'Rating', id: 11277,
-    el: 'wpac-rating',
-    color: 'f79533'
-  });
-  (function() {
-    if ('WIDGETPACK_LOADED' in window) return;
-    WIDGETPACK_LOADED = true;
-    var mc = document.createElement('script');
-    mc.type = 'text/javascript';
-    mc.async = true;
-    mc.src = '//embed.widgetpack.com/widget.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-  })();
-  </script>
-
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>;
 <script>
-$("body").backstretch("http://p7jiixmp8.bkt.clouddn.com/WallpaperStudio10-81831.jpg");
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
 </script>
+<script src="/js/third-party/comments/livere.js"></script>
+
 </body>
 </html>
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>
