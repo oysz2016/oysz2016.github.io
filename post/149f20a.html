@@ -78,7 +78,7 @@
       <p class="site-title">冲弱's Blog</p>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">人生在勤，不索何获</p>
+      <p class="site-subtitle" itemprop="description">多阅读 多积累</p>
   </div>
 
   <div class="site-nav-right">
@@ -498,21 +498,7 @@
 
 
 
-      <div class="tabs tabs-comment">
-        <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-waline">waline</a></li>
-            <li class="tab"><a href="#comment-livere">livere</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane waline" id="comment-waline">
-              <div class="comments" id="waline"></div>
-            </div>
-            <div class="tab-pane livere" id="comment-livere">
-              <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC8zNTg2Ni8xMjQwMg==
-Waline Config File"></div>
-            </div>
-        </div>
-      </div>
+    <div class="comments" id="waline"></div>
 </div>
   </main>
 
@@ -531,13 +517,13 @@ Waline Config File"></div>
 <div class="wordcount">
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-chart-line"></i>
+      <i class="fa fa-chart-line"></i>站点总字数:
     </span>
     <span title="站点总字数">98k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
+      <i class="fa fa-coffee"></i>站点阅读时长:
     </span>
     <span title="站点阅读时长">1:29</span>
   </span>
@@ -589,7 +575,7 @@ Waline Config File"></div>
     var hours = minutes * 60;
     var days = hours * 24;
     var years = days * 365;
-      start = new Date("2019-11-23 09:00:00 +0800");
+      start = new Date("2018-04-23 09:00:00 +0800");
     var now = new Date();
     var year = now.getFullYear();
     var month = now.getMonth() + 1;
@@ -612,7 +598,7 @@ Waline Config File"></div>
     }
   }
 
-  var showOnMobile = false;
+  var showOnMobile = true;
   var openOnPC = isPC();
   var start = new Date();
   siteTime(openOnPC, start);
@@ -691,7 +677,6 @@ const darkmode = new Darkmode(options);
 window.darkmode = darkmode;
 darkmode.showWidget();
 </script>
-<script src="/js/third-party/comments/livere.js"></script>
 
 </body>
 </html>
