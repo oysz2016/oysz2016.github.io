@@ -23,28 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="《GIoU》论文笔记">
-<meta property="og:url" content="https://oysz2016.github.io/post/4065a784.html">
+<meta property="og:title" content="半监督学习——分类">
+<meta property="og:url" content="https://oysz2016.github.io/post/18365ad2.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552799016558.jpg">
-<meta property="article:published_time" content="2019-03-17T04:25:09.918Z">
-<meta property="article:modified_time" content="2019-03-17T05:52:44.516Z">
+<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/29.png">
+<meta property="article:published_time" content="2023-02-04T10:56:45.104Z">
+<meta property="article:modified_time" content="2023-02-04T12:11:32.505Z">
 <meta property="article:author" content="冲弱">
-<meta property="article:tag" content="深度学习">
-<meta property="article:tag" content="目标检测">
+<meta property="article:tag" content="半监督">
+<meta property="article:tag" content="分类">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552799016558.jpg">
+<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/29.png">
 
 
-<link rel="canonical" href="https://oysz2016.github.io/post/4065a784.html">
+<link rel="canonical" href="https://oysz2016.github.io/post/18365ad2.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/4065a784.html","path":"post/4065a784.html","title":"《GIoU》论文笔记"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/18365ad2.html","path":"post/18365ad2.html","title":"半监督学习——分类"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>《GIoU》论文笔记 | 冲弱's Blog</title>
+<title>半监督学习——分类 | 冲弱's Blog</title>
   
 
 
@@ -153,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">背景知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%CF%80-model"><span class="nav-number">2.</span> <span class="nav-text">π model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Temporal-ensembling"><span class="nav-number">3.</span> <span class="nav-text">Temporal ensembling</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mean-teacher"><span class="nav-number">4.</span> <span class="nav-text">Mean teacher</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MixMatch"><span class="nav-number">5.</span> <span class="nav-text">MixMatch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ReMixMatch"><span class="nav-number">6.</span> <span class="nav-text">ReMixMatch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FixMatch"><span class="nav-number">7.</span> <span class="nav-text">FixMatch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Noisy-Student"><span class="nav-number">8.</span> <span class="nav-text">Noisy Student</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -234,12 +234,12 @@
   <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
     
     <div class="post-gallery-image">
-      <img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552799016558.jpg" itemprop="contentUrl">
+      <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/29.png" itemprop="contentUrl">
     </div>
     </div>
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/4065a784.html">
+    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/18365ad2.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
@@ -252,7 +252,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          《GIoU》论文笔记
+          半监督学习——分类
         </h1>
 
         <div class="post-meta-container">
@@ -264,7 +264,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2019-03-17 12:25:09 / 修改时间：13:52:44" itemprop="dateCreated datePublished" datetime="2019-03-17T12:25:09+08:00">2019-03-17</time>
+      <time title="创建时间：2023-02-04 18:56:45 / 修改时间：20:11:32" itemprop="dateCreated datePublished" datetime="2023-02-04T18:56:45+08:00">2023-02-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -272,7 +272,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
         </span>
     </span>
 
@@ -292,8 +292,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/post/4065a784.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/4065a784.html" itemprop="commentCount"></span>
+    <a title="waline" href="/post/18365ad2.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/18365ad2.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -304,14 +304,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
+      <span>4.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
@@ -323,39 +323,119 @@
     
     <div class="post-body" itemprop="articleBody">
         <p><p class="description"></p><br><span id="more"></span></p>
-<p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1902.09630">https://arxiv.org/abs/1902.09630</a><br>代码链接：<a target="_blank" rel="noopener" href="https://github.com/generalized-iou">https://github.com/generalized-iou</a></p>
-<p>&emsp;&emsp;这篇论文出自CVPR2019，算是目前已被录用且公布的位数不多的目标检测相关论文了。这篇论文提出了一种优化边界框的新方式——GIoU(generalized IoU，广义IoU)。<em>目前关于IOU的新用法真是层出不穷，从<a href="https://oysz2016.github.io/post/d76cc2d4.html">Cascade R-CNN</a>到<a href="https://oysz2016.github.io/post/4395ef5a.html">IOU Net</a>再到如今的GIoU，GIoU的方法是这些论文中相对简单的，相信很多朋友了解了这篇文章的远离后，内心的OS都是“总觉得损失函数可以优化，这么简单我怎么没想到呢？”，哈哈，反正我是这样想的了。下面来看看这篇文章所提出的方法吧。</em></p>
-<h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>&emsp;&emsp;目前目标检测中主流的边界框优化采用的都是BBox的回归损失(MSE loss, L1-smooth loss等)，这些方式计算损失值得方式都是检测框得“代理属性”，而忽略了检测框本身最显著的性质——IoU。如下图所示，在L1及L2范数取到相同的值时，实际上检测效果却是差异巨大的，直接表现就是预测和真实检测框的IoU值变化较大，这说明L1和L2范数不能很好的反映检测效果。</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801043208.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;除了能反映预测检测框与真实检测框的检测效果外，IoU还具有<strong>尺度不变性</strong>。可是既然IOU这么好，为什么之前不直接用IoU呢，这是由于IoU有两个缺点，导致其不太适合做损失函数：</p>
+<p>半监督学习是机器学习中很常用的一种算法，之前有了解些大概，但没系统性的看过该领域的文章。趁着有空总结了下该领域的文章，由于文章比较多，整理完会分成两部分:</p>
 <ul>
-<li>但检测框与gt之间没有重合时，IoU为0。而在优化损失函数时，梯度为0，意味着无法优化</li>
-<li>在检测框与gt之间IoU相同时，检测的效果也具有较大差异，如下图所示：<br><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801042668.jpg" alt="enter description here"></li>
+<li><strong>半监督学习——分类</strong></li>
+<li><strong>半监督学习——检测</strong><br>这篇文章是分类，对半监督学习感兴趣的朋友可以期待下。</li>
 </ul>
-<p>&emsp;&emsp;基于IoU的优良特性和其作为损失函数时的致命缺点，作者提出了一个新的概念——GIoU</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>&emsp;&emsp;GIoU的定义如下图所示，</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801042664.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;根据定义，GIoU具有如下性质：</p>
+<h1 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h1><p><strong>监督算法:</strong> 监督算法的训练数据是有标签的，目的是让模型能正确预测数据的标签</p>
+<p><strong>无监督算法:</strong> 训练数据没有标签，根据数据自身的特性设计模型进行分类</p>
+<p><strong>半监督算法:</strong> 半监督算法是介于无监督和监督算法之间的一种算法类型。其特点是有少量有标签的数据，以及大量的无标签数据，可以得到只用有标签数据训练更好的结果</p>
+<h1 id="π-model"><a href="#π-model" class="headerlink" title="π model"></a>π model</h1><p>π model网络结构如下图所示。因为是半监督学习，既有有标签数据，也有无标签数据，π model将网络分为了两部分:</p>
 <ul>
-<li>GIoU具有作为一个度量标准的优良性质。包括非负性，同一性，对称性，以及三角不等式的性质</li>
-<li>与IoU相似，具有尺度不变性</li>
-<li>GIoU的值总是小于IoU的值</li>
-<li>对于两个矩形框A和B，0≤IoU(A，B)≤1，而-1≤GIoU≤1</li>
-<li>在A，B没有良好对齐时，会导致C的面积增大，从而使GIoU的值变小，而两个矩形框不重合时，依然可以计算GIoU，一定程度上解决了IoU不适合作为损失函数的原因</li>
+<li>第一部分为图中使用交叉熵损失。该部分为有label的数据$x_i$，$z_i$为模型预测结果，用于和$y_i$比对，使用corss entropy</li>
+<li>第二部分使用MSE损失。该部分为无label的数据$x_i$，$x_i$会经过数据增广和模型中的drop out，这两部分都是为了引入一定的数据差异。同一个输入经过两次增广和dropout之后得到特征$z_i$和$\widetilde{z_i}$，使用MSE loss，目的是使增广前后的特征尽可能的相似。<br>两个损失会经过weighted sum配置合适的权重，得到最终的loss</li>
 </ul>
-<p>&emsp;&emsp;GIoU作为损失函数时计算方式如下的算法2</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801043209.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;从算法中可以看到和GIoU的计算方式和IoU的步骤基本保持一致，在得到IoU的值后在根据上面的算法1计算GIoU的值。<strong>这里还不太清楚方向传播时，梯度是怎么计算的。等我看看源码再来更新吧</strong></p>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>&emsp;&emsp;作者分别在几种主流的目标检测算法上做了实验，分别是YoLo、Faster R-CNN和Mask R-CNN。这里贴上在Pascal Voc数据集上的实验结果，如下</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801042667.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552799016561.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;实验结果中在YoLo v3上可以看到GIoU相比IoU的损失函数有较大幅度的提升，而在faster r-cnn中GIoU和IoU作为损失函数的区别不大，这里作者给出的解释是faster rcnn的anchor更密集，导致不易出现与gt不重叠的检测框。<em>其实个人认为，anchor多的情形与gt不重叠的检测框才多，更根本的原因应该是RPN网络进行了一次粗检后，滤去了大部分跟gt没有重合的检测框。导致GIoU相比IoU的损失函数提升不明显吧</em></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;&emsp;GIoU的方法很简单，巧妙的是优化的点。通过广义IoU作为损失函数替代bbox回归还是很有趣的。不过疑惑的是实验结果中的检测AP值都非常低，原生的faster rcnn在pascal voc上的检测效果都不会这么差。从实验对比上GIoU的损失函数相比原始的损失函数在准确率不到40%的效果上来说确实有较大幅度的提升。然而要是换到准确率较高的baseline上呢？这一点还需要实验验证。<br>&emsp;&emsp;另外总感觉这篇论文有点点到即止，没有更多的实验验证bbox作为损失函数存在缺陷的原因。</p>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
+<p>下面是π model的伪代码</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/2.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/3.png" alt=""></p>
+<h1 id="Temporal-ensembling"><a href="#Temporal-ensembling" class="headerlink" title="Temporal ensembling"></a>Temporal ensembling</h1><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1610.02242">https://arxiv.org/abs/1610.02242</a><br><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/ferretj/temporal-ensembling">https://github.com/ferretj/temporal-ensembling</a><br>Temporal ensembling的方法和π model非常相似，核心思想都是想利用好有监督的数据和无监督的数据，改进的原因是在π model中使用了两次模型增广和推理，耗时比较长，在Temporal ensembling中使用了<strong>Temporal</strong>的模型，具体而言是使用了之前epoch得到的特征结果去做对比，模型结构如下图:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/4.png" alt=""></p>
+<p>$\widetilde{z_i}$为之前epoch模型保存的特征，$z_i$为当前模型的推理结果，并且会保存给下一个epoch使用</p>
+<p>伪代码如下:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/5.png" alt=""><br>注意, 在更新特征z时，不光用到了当前的特征，也会考虑到之前所有的特征，具体可以看伪代码最后几行</p>
+<p>在大量半监督数据上做了消融实验，验证了Temporal ensembling的有效性</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/6.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/7.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/8.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/9.png" alt=""></p>
+<h1 id="Mean-teacher"><a href="#Mean-teacher" class="headerlink" title="Mean teacher"></a>Mean teacher</h1><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1703.01780">https://arxiv.org/abs/1703.01780</a><br><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/CuriousAI/mean-teacher">https://github.com/CuriousAI/mean-teacher</a></p>
+<p>mean teacher的思想和Temporal ensembling也非常相似。改进的原因是在Temporal ensembling中每个epoch才会更新一次对比的特征，在大型的数据集上训练时，用于对比的特征更新的非常慢，时间成本也很高，因此在mean teacher中使用更新模型的方式取代原来更新特征的方式。思想如下图所示</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/10.png" alt=""></p>
+<p>student model即当前模型，teacher model为更新的模型，会参考当前模型和之前模型的权重，得到一个新的模型。更新的方式用公式</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/11.png" alt=""></p>
+<p>目的也是使student mode和teacher model预测出的特征一致</p>
+<p>mean teache和之前的工作π model以及Temporal ensembling进行了对比</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/12.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/13.png" alt=""></p>
+<h1 id="MixMatch"><a href="#MixMatch" class="headerlink" title="MixMatch"></a>MixMatch</h1><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1905.02249">https://arxiv.org/abs/1905.02249</a><br><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/YU1ut/MixMatch-pytorch">https://github.com/YU1ut/MixMatch-pytorch</a></p>
+<p>mixmatch是最小化熵的方法，和前面介绍的三篇一致性正则化法有些差异。最小化熵方法的思想基于机器学习中的一个共识。即分类器的边界边际分布的高密度区域(说人话就是不能从类中心去划分边界)。因此强迫分类器对未标记数据做出低熵预测。实现方法是在损失函数中增加一项，最小化$p_{model}(y|x)$对应的熵。</p>
+<p>mixmatch的思想在下图中伪代码展示的很清楚</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/14.png" alt=""></p>
+<p>一个batch中有B份有标签的数据X和B份无标签的数据U</p>
+<ul>
+<li>将有标签的数据增广一次</li>
+<li>将无标签的数据增广K次</li>
+<li>对无标签的数据增广后的结果模型推理后分类，对K个结果取平均，得到模型预测的标签</li>
+<li>使用temperature sharpening算法，对上一步得到的标签后处理。sharpening算法公式如下:</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/15.png" alt=""></p>
+<ul>
+<li>增强后带标签的数据组成一个batch，即$\widetilde{X}$</li>
+<li>增强后无标签的数据，和预测出的标签组成K个batch，即$\widetilde{U}$</li>
+<li>将$\widetilde{X}$和$\widetilde{U}$混合，得到新的数据集W</li>
+<li>应用mixup将增广后有标签的数据$\widetilde{X}$和新的数据W混合得到$X^{‘}$</li>
+<li>应用mixup将增广后无标签的数据$\widetilde{U}$和新的数据W混合得到$U^{‘}$</li>
+</ul>
+<p>得到两个新的数据集后就可以按mixup混合的思路进行训练</p>
+<p>sharpening的大致流程如下图所示</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/16.png" alt=""></p>
+<p>接下来是实验结果部分:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/17.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/18.png" alt=""></p>
+<h1 id="ReMixMatch"><a href="#ReMixMatch" class="headerlink" title="ReMixMatch"></a>ReMixMatch</h1><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1911.09785">https://arxiv.org/abs/1911.09785</a><br><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/google-research/remixmatch">https://github.com/google-research/remixmatch</a><br>从名字上可以看出ReMixMatch是MixMatch的改进版本。MixMatch中比较重要的思想是猜测无标签数据的标签，使用最小化熵的方法做训练。<br>ReMixMatch的改进主要包含两部分: Distribution Alignment和Augmentation Anchor。伪代码如下:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/19.png" alt=""></p>
+<ul>
+<li><strong>Distribution Alignment</strong>。考虑到猜测无标签数据的label有可能存在噪声，因此考虑到使用有标签数据的标签分布，对无标签的猜测进行对齐。对应代码中的第7行。如下图所示，$q_b$对应Label guess。$\widetilde{p}(y)$是一个运行平均版本的无标签猜测，$p(y)$是有标签数据的标签分布。对齐之后的标签猜测如下公式<script type="math/tex; mode=display">q_b=Normalize(q_b*\frac{p(y)}{\widetilde{p}(y)})</script></li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/20.png" alt=""></p>
+<ul>
+<li><strong>Augmentation Anchor</strong>。考虑到简单数据增广得到的预测结果会比复杂增广得到的预测结果要更加可信。因此对于一张图片，首先会进行弱增广，再进行多次强增广。弱增广和强增广共同使用一个标签进行mixup和模型训练</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/21.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/22.png" alt=""></p>
+<p>接下来是实验结果部分:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/23.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/24.png" alt=""></p>
+<h1 id="FixMatch"><a href="#FixMatch" class="headerlink" title="FixMatch"></a>FixMatch</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2001.07685">https://arxiv.org/abs/2001.07685</a><br><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/google-research/fixmatch">https://github.com/google-research/fixmatch</a></p>
+<p>在FixMatch中没有采用MixMatch系列中有标签数据和无标签数据猜测标签后互相mixup作为训练样本的方法，本身思想和mean teacher及之前方法更相似。<strong>FixMatch中的Fix主要强调的是混合两种数据增广方式，分别是弱增广和强增广</strong><br>弱数据增广的方式:</p>
+<ul>
+<li>平移</li>
+<li>反转</li>
+<li>平移&amp;反转<br>强数据增广:</li>
+<li>cutout</li>
+<li>random augment</li>
+<li>control theory augment<br>其中若数据增广和强数据增广的前两种方式都比较常见，这里详细说下control theory augment数据增广方法:</li>
+<li>该数据增广方法中有18个候选集，例如旋转，色彩变换等</li>
+<li>初始化transform的权重$W=[w_1,w_2,…,w_18]$</li>
+<li>随机选择其中两个增广方法i和j，增广的权重分别为$w_i/(w_i+w_j)$, $w_j/(w_i+w_j)$</li>
+<li>将两个增广图像混合，更新transform的权重$W$, 第一个公式可以看作MAE损失，第二个公式是用动量的方式更新transform的权重。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/30.png" alt=""></li>
+</ul>
+<p>因此可以将control theory augment看作是可以学习的rand augment, 能学习出好的增广方式，使得分类更准确。为什么不用auto augment呢？因为auto augment需要标签作为学习的条件，而半监督中大部分数据都没有标签</p>
+<p>对于无标签的数据，会先经过弱数据增广获取伪标签，只有某一类的置信度大于一定的阈值才会执行为标签的生成（下图中红色部分），生成的伪标签用于监督强增广的输出值。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/25.png" alt=""></p>
+<p>接下来是实验结果部分:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/26.png" alt=""></p>
+<h1 id="Noisy-Student"><a href="#Noisy-Student" class="headerlink" title="Noisy Student"></a>Noisy Student</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1911.04252">https://arxiv.org/abs/1911.04252</a><br><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/google-research/noisystudent">https://github.com/google-research/noisystudent</a></p>
+<p>Noisy Student和之前的一致性正则化法也非常相似。区别在于强调了在student模型中加入噪声。在这篇文章中有teacher model和student model的概念。teacher是使用有标签数据训练的模型，student是使用teacher模型预测了无标签数据的标签后，用无标签数据训练的模型。</p>
+<p>而Noisy Student强调的是在student模型中加入噪声，teacher模型和student模型可以用不同的模型训练，也可以使用相同的模型。要思考加入噪声的原因，可以假设teacher和student相同结构联合训练的场景，则student模型不加入噪声，则预测结果和通过teacher模型生成的伪标签会完全一致，student模型就失去了更新的动力。所以加入噪声是很有必要的。</p>
+<p>Noisy Student的思想如下图所示:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/27.png" alt=""></p>
+<p>关于student模型使用数据增广和dropout的消融实验如下：</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/28.png" alt=""></p>
+<p>该文章列举了一些消融实验得到的经验，基本都很符合直觉:</p>
+<ul>
+<li>使用性能好的teacher模型能得到更好的结果</li>
+<li>大量的无标签数据是必要的</li>
+<li>在某些场景下，soft伪标签比hard伪标签效果要好</li>
+<li>大的学生模型很重要</li>
+<li>数据均衡对小模型很重要</li>
+<li>有标签数据和无标签数据联合训练效果更好</li>
+<li>无标签数据:有标签数据的比值越大，该方法越有效</li>
+<li>从头开始训练student有时比用teacher初始化student效果要好</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过阅读上面的7篇文章，半监督学习大概可以分成3种训练方式，分别是<strong>一致性正则(Consistency Regularization Model)</strong>, <strong>伪标签模型(Proxy Label Model)</strong>, <strong>一致性正则&amp;伪标签模型</strong></p>
+<ul>
+<li><strong>一致性正则:</strong> 图片增广前后，模型的预测结果应该相同。在该种方法中一般会加入数据增广和dropout，引入随机性，损失函数会使用MSE Loss。例如π model，Temporal ensembling，Mean teacher都是该类型的方法</li>
+<li><strong>伪标签模型:</strong> 先在有标签的数据上做训练，然后预测无标签数据的伪标签；模型的训练包括有标签的训练和伪标签的训练。例如MixMatch、ReMixmatch都是该类型的方法</li>
+</ul>
 
     </div>
 
@@ -402,7 +482,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://oysz2016.github.io/post/4065a784.html" title="《GIoU》论文笔记">https://oysz2016.github.io/post/4065a784.html</a>
+      <a href="https://oysz2016.github.io/post/18365ad2.html" title="半监督学习——分类">https://oysz2016.github.io/post/18365ad2.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -448,8 +528,8 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"> <i class="fa fa-tag"></i> 深度学习</a>
-              <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag"> <i class="fa fa-tag"></i> 目标检测</a>
+              <a href="/tags/%E5%8D%8A%E7%9B%91%E7%9D%A3/" rel="tag"> <i class="fa fa-tag"></i> 半监督</a>
+              <a href="/tags/%E5%88%86%E7%B1%BB/" rel="tag"> <i class="fa fa-tag"></i> 分类</a>
           </div>
 
         
@@ -461,14 +541,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/post/f222e8ff.html" rel="prev" title="《Mask TextSpotter》论文笔记">
-                  <i class="fa fa-chevron-left"></i> 《Mask TextSpotter》论文笔记
+                <a href="/post/5f5a1d32.html" rel="prev" title="决策树汇总——ID3、C4.5、CART">
+                  <i class="fa fa-chevron-left"></i> 决策树汇总——ID3、C4.5、CART
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/post/79b7b6f1.html" rel="next" title="《Faster R-CNN》详解">
-                  《Faster R-CNN》详解 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -628,7 +705,7 @@
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/4065a784.html"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/18365ad2.html"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
