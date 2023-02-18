@@ -23,28 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="《GIoU》论文笔记">
-<meta property="og:url" content="https://oysz2016.github.io/post/4065a784.html">
+<meta property="og:title" content="半监督学习汇总——检测">
+<meta property="og:url" content="https://oysz2016.github.io/post/bcf25936.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552799016558.jpg">
-<meta property="article:published_time" content="2019-03-17T04:25:09.918Z">
-<meta property="article:modified_time" content="2019-03-17T05:52:44.516Z">
+<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/1.png">
+<meta property="article:published_time" content="2023-02-18T02:30:32.663Z">
+<meta property="article:modified_time" content="2023-02-18T02:51:05.783Z">
 <meta property="article:author" content="冲弱">
-<meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="目标检测">
+<meta property="article:tag" content="半监督">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552799016558.jpg">
+<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/1.png">
 
 
-<link rel="canonical" href="https://oysz2016.github.io/post/4065a784.html">
+<link rel="canonical" href="https://oysz2016.github.io/post/bcf25936.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/4065a784.html","path":"post/4065a784.html","title":"《GIoU》论文笔记"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/bcf25936.html","path":"post/bcf25936.html","title":"半监督学习汇总——检测"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>《GIoU》论文笔记 | 冲弱's Blog</title>
+<title>半监督学习汇总——检测 | 冲弱's Blog</title>
   
 
 
@@ -153,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STAC"><span class="nav-number">1.</span> <span class="nav-text">STAC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#soft-teacher"><span class="nav-number">2.</span> <span class="nav-text">soft teacher</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dense-teacher"><span class="nav-number">3.</span> <span class="nav-text">Dense teacher</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -234,12 +234,12 @@
   <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
     
     <div class="post-gallery-image">
-      <img src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552799016558.jpg" itemprop="contentUrl">
+      <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/1.png" itemprop="contentUrl">
     </div>
     </div>
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/4065a784.html">
+    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/bcf25936.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
@@ -252,7 +252,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          《GIoU》论文笔记
+          半监督学习汇总——检测
         </h1>
 
         <div class="post-meta-container">
@@ -264,7 +264,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2019-03-17 12:25:09 / 修改时间：13:52:44" itemprop="dateCreated datePublished" datetime="2019-03-17T12:25:09+08:00">2019-03-17</time>
+      <time title="创建时间：2023-02-18 10:30:32 / 修改时间：10:51:05" itemprop="dateCreated datePublished" datetime="2023-02-18T10:30:32+08:00">2023-02-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -272,7 +272,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
         </span>
     </span>
 
@@ -292,8 +292,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/post/4065a784.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/4065a784.html" itemprop="commentCount"></span>
+    <a title="waline" href="/post/bcf25936.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/bcf25936.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -304,7 +304,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
+      <span>2.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -322,40 +322,48 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><p class="description"></p><br><span id="more"></span></p>
-<p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1902.09630">https://arxiv.org/abs/1902.09630</a><br>代码链接：<a target="_blank" rel="noopener" href="https://github.com/generalized-iou">https://github.com/generalized-iou</a></p>
-<p>&emsp;&emsp;这篇论文出自CVPR2019，算是目前已被录用且公布的位数不多的目标检测相关论文了。这篇论文提出了一种优化边界框的新方式——GIoU(generalized IoU，广义IoU)。<em>目前关于IOU的新用法真是层出不穷，从<a href="https://oysz2016.github.io/post/d76cc2d4.html">Cascade R-CNN</a>到<a href="https://oysz2016.github.io/post/4395ef5a.html">IOU Net</a>再到如今的GIoU，GIoU的方法是这些论文中相对简单的，相信很多朋友了解了这篇文章的远离后，内心的OS都是“总觉得损失函数可以优化，这么简单我怎么没想到呢？”，哈哈，反正我是这样想的了。下面来看看这篇文章所提出的方法吧。</em></p>
-<h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>&emsp;&emsp;目前目标检测中主流的边界框优化采用的都是BBox的回归损失(MSE loss, L1-smooth loss等)，这些方式计算损失值得方式都是检测框得“代理属性”，而忽略了检测框本身最显著的性质——IoU。如下图所示，在L1及L2范数取到相同的值时，实际上检测效果却是差异巨大的，直接表现就是预测和真实检测框的IoU值变化较大，这说明L1和L2范数不能很好的反映检测效果。</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801043208.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;除了能反映预测检测框与真实检测框的检测效果外，IoU还具有<strong>尺度不变性</strong>。可是既然IOU这么好，为什么之前不直接用IoU呢，这是由于IoU有两个缺点，导致其不太适合做损失函数：</p>
+        <p><p class="description"></p><br><span id="more"></span><br>上一篇文章中介绍了<a href="https://oysz2016.github.io/post/18365ad2.html#more">半监督学习——分类</a>的一些文章，今天来看一下半监督学习应用在检测领域的一些思路。</p>
+<h1 id="STAC"><a href="#STAC" class="headerlink" title="STAC"></a>STAC</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.04757">https://arxiv.org/abs/2005.04757</a><br><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/google-research/ssl_detection/">https://github.com/google-research/ssl_detection/</a></p>
+<p>之前的半监督学习(Semi-supervised learning, SSL)基本应用在分类领域，而STAC是在目标检测领域应用半监督学习的论文, 该细分领域为半监督目标检测(Semi-supervised Object Detection, SS-OD)。<strong>其思想和分类中使用的一致性学习比较相似，也分为teacher网络和student网络</strong>，思想如下图所示</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/1.png" alt=""></p>
+<p>流程如下:</p>
 <ul>
-<li>但检测框与gt之间没有重合时，IoU为0。而在优化损失函数时，梯度为0，意味着无法优化</li>
-<li>在检测框与gt之间IoU相同时，检测的效果也具有较大差异，如下图所示：<br><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801042668.jpg" alt="enter description here"></li>
+<li>用有标签数据训练一个teacher模型</li>
+<li>用训练好的teacher模型在无标签的数据上生成伪标签(包含bbox，label)</li>
+<li>对无标签图片应用强数据增广，在几何变换的增广时，bbox也要做相应的增广</li>
+<li>训练时计算无标签的损失和有监督的损失</li>
 </ul>
-<p>&emsp;&emsp;基于IoU的优良特性和其作为损失函数时的致命缺点，作者提出了一个新的概念——GIoU</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>&emsp;&emsp;GIoU的定义如下图所示，</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801042664.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;根据定义，GIoU具有如下性质：</p>
+<p>下图是应用的一些增广的可视化<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/2.png" alt=""></p>
+<p>下图对比了有监督的模型，增加RandAugment和使用STAC性能的变化<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/3.png" alt=""></p>
+<h1 id="soft-teacher"><a href="#soft-teacher" class="headerlink" title="soft teacher"></a>soft teacher</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09018">https://arxiv.org/abs/2106.09018</a><br><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/microsoft/SoftTeacher">https://github.com/microsoft/SoftTeacher</a></p>
+<p>soft teacher可以看作是对STAC的改进，STAC的方法简单有效，但是teacher模型和student模型是分阶段训练的。由于student模型会依赖于teacher模型在无标签数据上生成的伪标签，若teacher模型生成了错误且置信度高的伪标签，会造成误差的传递，这也是分阶段训练方式的通病。因此，soft teacher认为端到端训练能取得更好的效果。</p>
+<p>soft teacher的网络结构如下图所示:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/4.png" alt=""></p>
+<p>teacher模型和student模型采用完全相同的结构，其流程为:</p>
 <ul>
-<li>GIoU具有作为一个度量标准的优良性质。包括非负性，同一性，对称性，以及三角不等式的性质</li>
-<li>与IoU相似，具有尺度不变性</li>
-<li>GIoU的值总是小于IoU的值</li>
-<li>对于两个矩形框A和B，0≤IoU(A，B)≤1，而-1≤GIoU≤1</li>
-<li>在A，B没有良好对齐时，会导致C的面积增大，从而使GIoU的值变小，而两个矩形框不重合时，依然可以计算GIoU，一定程度上解决了IoU不适合作为损失函数的原因</li>
+<li>对于无标签数据，弱数据增广后使用teacher模型，nms后得到检测结果</li>
+<li>soft teacher改进的原因主要是考虑到错误的伪标签对student网络学习非常不利，因此使用了”soft”, 具体而言是使用了可靠性度量作为伪标签的权重，而不是所有的伪标签同等重要。可靠性度量采用的是检测的分数</li>
+<li>对于分类和边框回归两个任务，分别使用了两种度量方式保证生成的伪标签的可靠性<ul>
+<li>对于分类分支，使用分类置信度作为判断标准，设置较高的阈值能提升分类标签的可靠性</li>
+<li>对于检测分支, 采用的是box jittering的方式，具体而言，会在候选框周围生成一定偏移量的新bbox，并将新bbox通过teacher模型修正bbox的结果。将该过程重复n次，计算n次修正之后bbox的方差，公式如下。方差越小代表bbox的可信度越高，figuer3(c)的图可以反映方差和bbox预测效果的关系。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/5.png" alt=""></li>
 </ul>
-<p>&emsp;&emsp;GIoU作为损失函数时计算方式如下的算法2</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801043209.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;从算法中可以看到和GIoU的计算方式和IoU的步骤基本保持一致，在得到IoU的值后在根据上面的算法1计算GIoU的值。<strong>这里还不太清楚方向传播时，梯度是怎么计算的。等我看看源码再来更新吧</strong></p>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>&emsp;&emsp;作者分别在几种主流的目标检测算法上做了实验，分别是YoLo、Faster R-CNN和Mask R-CNN。这里贴上在Pascal Voc数据集上的实验结果，如下</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801042667.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552799016561.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;实验结果中在YoLo v3上可以看到GIoU相比IoU的损失函数有较大幅度的提升，而在faster r-cnn中GIoU和IoU作为损失函数的区别不大，这里作者给出的解释是faster rcnn的anchor更密集，导致不易出现与gt不重叠的检测框。<em>其实个人认为，anchor多的情形与gt不重叠的检测框才多，更根本的原因应该是RPN网络进行了一次粗检后，滤去了大部分跟gt没有重合的检测框。导致GIoU相比IoU的损失函数提升不明显吧</em></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;&emsp;GIoU的方法很简单，巧妙的是优化的点。通过广义IoU作为损失函数替代bbox回归还是很有趣的。不过疑惑的是实验结果中的检测AP值都非常低，原生的faster rcnn在pascal voc上的检测效果都不会这么差。从实验对比上GIoU的损失函数相比原始的损失函数在准确率不到40%的效果上来说确实有较大幅度的提升。然而要是换到准确率较高的baseline上呢？这一点还需要实验验证。<br>&emsp;&emsp;另外总感觉这篇论文有点点到即止，没有更多的实验验证bbox作为损失函数存在缺陷的原因。</p>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
+</li>
+</ul>
+<p>如下图(b)所示, 候选框的定位精度和分类置信度没有很强的相关性，这点在很多检测论文中都有提及并且有优化，例如IOU Net, yolox中的Decoupled head<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/6.png" alt=""></p>
+<p>从实验结果可以看出，相比STAC有较大提升<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/7.png" alt=""></p>
+<h1 id="Dense-teacher"><a href="#Dense-teacher" class="headerlink" title="Dense teacher"></a>Dense teacher</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09018">https://arxiv.org/abs/2106.09018</a><br><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/microsoft/SoftTeacher">https://github.com/microsoft/SoftTeacher</a><br>之前基于伪标签分类具有以下问题:</p>
+<ul>
+<li>Thresholding: 阈值用来区分teacher模型在无标签数据上生成的分类和bbox结果应该如何取舍。作为预定义的数值，阈值非常难选取。设置的较大，会导致召回难以提升；设置的较小，精度会难以提升。</li>
+<li>NMS: NMS的问题和threshold相似，都是预定义的值。设置的较大，会过滤掉一些稍微密集的正样本，较小会有些假正例被保留下来</li>
+<li>Label Assign: </li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/8.png" alt=""></p>
+<p>说了之前伪标签这么多的缺点，接下来看看dense teacher是怎么做的。<br>在dense teacher中提出了密集伪标签(dense pseudo-label, DPL),区别于之前伪标签和有标注数据形式一致。伪标签类似FCOS的中间产物，具体而言将feature map通过cls head输出logits, 再通过sigmoid生成dense label。生成的sigmoid数值是连续的，因此需要使用Quality Focal Loss(Generalized Focal Loss)作为损失函数监督student模型训练。<strong>需要注意的是dense label并不是feautre输出的是每个点的分类和回归结果，类似FCOS的训练方式</strong>。dense label如下图中绿色区域</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/9.png" alt=""></p>
+<p>DPL中有丰富的信息，但由于没有阈值的过滤，也保留了很多低分的信息。直观上看，这些低分信息对模型帮助很小，这部分区域可以看作难区分的负样本，文中也证明了保留该信息作为监督信号会损害student模型的学习。因此根据teacher模型的特征丰富度得分(Feature Richness Score, FRS),划分learning region和suppressing region。具体的，通过FRS选取top k%的像素作为学习区域，其他区域被抑制为0.</p>
+<p>该方法相比之前方法也有一定提升，但由于伪标签的生成和FCOS相似，不太适用于rcnn等两阶段基于anchor的方法</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/10.png" alt=""></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>由于目标检测包含了分类和定位两个任务，因此目标检测场景下的半监督学习和分类场景还是非常相似的。整体思路是使用伪标签/一致性的方法对无标签数据监督。STAC将分类中半监督的方法借鉴过来，在检测领域的半监督取得了很好的效果；而soft teacher进一步思考伪标签的合理性，避免teacher模型误差的传播，区别于分类模型，在额外的定位任务上思考如何评估定位的准确性；Dense teacher则思考半监督学习和检测任务中的阈值对模型整体效果的影响，整体思路也借鉴了anchor free的FCOS模型的思想，进一步提升了半监督带来的收益。</p>
 
     </div>
 
@@ -402,7 +410,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://oysz2016.github.io/post/4065a784.html" title="《GIoU》论文笔记">https://oysz2016.github.io/post/4065a784.html</a>
+      <a href="https://oysz2016.github.io/post/bcf25936.html" title="半监督学习汇总——检测">https://oysz2016.github.io/post/bcf25936.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -448,8 +456,8 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"> <i class="fa fa-tag"></i> 深度学习</a>
               <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag"> <i class="fa fa-tag"></i> 目标检测</a>
+              <a href="/tags/%E5%8D%8A%E7%9B%91%E7%9D%A3/" rel="tag"> <i class="fa fa-tag"></i> 半监督</a>
           </div>
 
         
@@ -461,14 +469,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/post/f222e8ff.html" rel="prev" title="《Mask TextSpotter》论文笔记">
-                  <i class="fa fa-chevron-left"></i> 《Mask TextSpotter》论文笔记
+                <a href="/post/18365ad2.html" rel="prev" title="半监督学习汇总——分类">
+                  <i class="fa fa-chevron-left"></i> 半监督学习汇总——分类
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/post/79b7b6f1.html" rel="next" title="《Faster R-CNN》详解">
-                  《Faster R-CNN》详解 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -648,7 +653,7 @@ const darkmode = new Darkmode(options);
 window.darkmode = darkmode;
 darkmode.showWidget();
 </script>
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/4065a784.html"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/bcf25936.html"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {

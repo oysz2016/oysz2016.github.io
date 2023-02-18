@@ -23,13 +23,13 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="半监督学习——分类">
+<meta property="og:title" content="半监督学习汇总——分类">
 <meta property="og:url" content="https://oysz2016.github.io/post/18365ad2.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/29.png">
 <meta property="article:published_time" content="2023-02-04T10:56:45.104Z">
-<meta property="article:modified_time" content="2023-02-04T12:11:32.505Z">
+<meta property="article:modified_time" content="2023-02-04T14:00:53.309Z">
 <meta property="article:author" content="冲弱">
 <meta property="article:tag" content="半监督">
 <meta property="article:tag" content="分类">
@@ -41,10 +41,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/18365ad2.html","path":"post/18365ad2.html","title":"半监督学习——分类"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/18365ad2.html","path":"post/18365ad2.html","title":"半监督学习汇总——分类"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>半监督学习——分类 | 冲弱's Blog</title>
+<title>半监督学习汇总——分类 | 冲弱's Blog</title>
   
 
 
@@ -54,8 +54,8 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-<link rel="alternate" href="/atom.xml" title="冲弱's Blog" type="application/atom+xml">
-<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style><link rel="alternate" href="/atom.xml" title="冲弱's Blog" type="application/atom+xml">
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -168,7 +168,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -252,7 +252,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          半监督学习——分类
+          半监督学习汇总——分类
         </h1>
 
         <div class="post-meta-container">
@@ -264,7 +264,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-02-04 18:56:45 / 修改时间：20:11:32" itemprop="dateCreated datePublished" datetime="2023-02-04T18:56:45+08:00">2023-02-04</time>
+      <time title="创建时间：2023-02-04 18:56:45 / 修改时间：22:00:53" itemprop="dateCreated datePublished" datetime="2023-02-04T18:56:45+08:00">2023-02-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -339,7 +339,8 @@
 <p>下面是π model的伪代码</p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/2.png" alt=""></p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/3.png" alt=""></p>
-<h1 id="Temporal-ensembling"><a href="#Temporal-ensembling" class="headerlink" title="Temporal ensembling"></a>Temporal ensembling</h1><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1610.02242">https://arxiv.org/abs/1610.02242</a><br><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/ferretj/temporal-ensembling">https://github.com/ferretj/temporal-ensembling</a><br>Temporal ensembling的方法和π model非常相似，核心思想都是想利用好有监督的数据和无监督的数据，改进的原因是在π model中使用了两次模型增广和推理，耗时比较长，在Temporal ensembling中使用了<strong>Temporal</strong>的模型，具体而言是使用了之前epoch得到的特征结果去做对比，模型结构如下图:</p>
+<h1 id="Temporal-ensembling"><a href="#Temporal-ensembling" class="headerlink" title="Temporal ensembling"></a>Temporal ensembling</h1><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1610.02242">https://arxiv.org/abs/1610.02242</a></p>
+<p><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/ferretj/temporal-ensembling">https://github.com/ferretj/temporal-ensembling</a><br>Temporal ensembling的方法和π model非常相似，核心思想都是想利用好有监督的数据和无监督的数据，改进的原因是在π model中使用了两次模型增广和推理，耗时比较长，在Temporal ensembling中使用了<strong>Temporal</strong>的模型，具体而言是使用了之前epoch得到的特征结果去做对比，模型结构如下图:</p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/4.png" alt=""></p>
 <p>$\widetilde{z_i}$为之前epoch模型保存的特征，$z_i$为当前模型的推理结果，并且会保存给下一个epoch使用</p>
 <p>伪代码如下:</p>
@@ -349,7 +350,8 @@
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/7.png" alt=""></p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/8.png" alt=""></p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/9.png" alt=""></p>
-<h1 id="Mean-teacher"><a href="#Mean-teacher" class="headerlink" title="Mean teacher"></a>Mean teacher</h1><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1703.01780">https://arxiv.org/abs/1703.01780</a><br><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/CuriousAI/mean-teacher">https://github.com/CuriousAI/mean-teacher</a></p>
+<h1 id="Mean-teacher"><a href="#Mean-teacher" class="headerlink" title="Mean teacher"></a>Mean teacher</h1><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1703.01780">https://arxiv.org/abs/1703.01780</a></p>
+<p><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/CuriousAI/mean-teacher">https://github.com/CuriousAI/mean-teacher</a></p>
 <p>mean teacher的思想和Temporal ensembling也非常相似。改进的原因是在Temporal ensembling中每个epoch才会更新一次对比的特征，在大型的数据集上训练时，用于对比的特征更新的非常慢，时间成本也很高，因此在mean teacher中使用更新模型的方式取代原来更新特征的方式。思想如下图所示</p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/10.png" alt=""></p>
 <p>student model即当前模型，teacher model为更新的模型，会参考当前模型和之前模型的权重，得到一个新的模型。更新的方式用公式</p>
@@ -358,7 +360,8 @@
 <p>mean teache和之前的工作π model以及Temporal ensembling进行了对比</p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/12.png" alt=""></p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/13.png" alt=""></p>
-<h1 id="MixMatch"><a href="#MixMatch" class="headerlink" title="MixMatch"></a>MixMatch</h1><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1905.02249">https://arxiv.org/abs/1905.02249</a><br><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/YU1ut/MixMatch-pytorch">https://github.com/YU1ut/MixMatch-pytorch</a></p>
+<h1 id="MixMatch"><a href="#MixMatch" class="headerlink" title="MixMatch"></a>MixMatch</h1><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1905.02249">https://arxiv.org/abs/1905.02249</a></p>
+<p><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/YU1ut/MixMatch-pytorch">https://github.com/YU1ut/MixMatch-pytorch</a></p>
 <p>mixmatch是最小化熵的方法，和前面介绍的三篇一致性正则化法有些差异。最小化熵方法的思想基于机器学习中的一个共识。即分类器的边界边际分布的高密度区域(说人话就是不能从类中心去划分边界)。因此强迫分类器对未标记数据做出低熵预测。实现方法是在损失函数中增加一项，最小化$p_{model}(y|x)$对应的熵。</p>
 <p>mixmatch的思想在下图中伪代码展示的很清楚</p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/14.png" alt=""></p>
@@ -383,7 +386,9 @@
 <p>接下来是实验结果部分:</p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/17.png" alt=""></p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/18.png" alt=""></p>
-<h1 id="ReMixMatch"><a href="#ReMixMatch" class="headerlink" title="ReMixMatch"></a>ReMixMatch</h1><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1911.09785">https://arxiv.org/abs/1911.09785</a><br><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/google-research/remixmatch">https://github.com/google-research/remixmatch</a><br>从名字上可以看出ReMixMatch是MixMatch的改进版本。MixMatch中比较重要的思想是猜测无标签数据的标签，使用最小化熵的方法做训练。<br>ReMixMatch的改进主要包含两部分: Distribution Alignment和Augmentation Anchor。伪代码如下:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/19.png" alt=""></p>
+<h1 id="ReMixMatch"><a href="#ReMixMatch" class="headerlink" title="ReMixMatch"></a>ReMixMatch</h1><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1911.09785">https://arxiv.org/abs/1911.09785</a></p>
+<p><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/google-research/remixmatch">https://github.com/google-research/remixmatch</a></p>
+<p>从名字上可以看出ReMixMatch是MixMatch的改进版本。MixMatch中比较重要的思想是猜测无标签数据的标签，使用最小化熵的方法做训练。<br>ReMixMatch的改进主要包含两部分: Distribution Alignment和Augmentation Anchor。伪代码如下:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/19.png" alt=""></p>
 <ul>
 <li><strong>Distribution Alignment</strong>。考虑到猜测无标签数据的label有可能存在噪声，因此考虑到使用有标签数据的标签分布，对无标签的猜测进行对齐。对应代码中的第7行。如下图所示，$q_b$对应Label guess。$\widetilde{p}(y)$是一个运行平均版本的无标签猜测，$p(y)$是有标签数据的标签分布。对齐之后的标签猜测如下公式<script type="math/tex; mode=display">q_b=Normalize(q_b*\frac{p(y)}{\widetilde{p}(y)})</script></li>
 </ul>
@@ -395,7 +400,8 @@
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/22.png" alt=""></p>
 <p>接下来是实验结果部分:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/23.png" alt=""></p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/24.png" alt=""></p>
-<h1 id="FixMatch"><a href="#FixMatch" class="headerlink" title="FixMatch"></a>FixMatch</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2001.07685">https://arxiv.org/abs/2001.07685</a><br><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/google-research/fixmatch">https://github.com/google-research/fixmatch</a></p>
+<h1 id="FixMatch"><a href="#FixMatch" class="headerlink" title="FixMatch"></a>FixMatch</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2001.07685">https://arxiv.org/abs/2001.07685</a></p>
+<p><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/google-research/fixmatch">https://github.com/google-research/fixmatch</a></p>
 <p>在FixMatch中没有采用MixMatch系列中有标签数据和无标签数据猜测标签后互相mixup作为训练样本的方法，本身思想和mean teacher及之前方法更相似。<strong>FixMatch中的Fix主要强调的是混合两种数据增广方式，分别是弱增广和强增广</strong><br>弱数据增广的方式:</p>
 <ul>
 <li>平移</li>
@@ -413,7 +419,8 @@
 <p>对于无标签的数据，会先经过弱数据增广获取伪标签，只有某一类的置信度大于一定的阈值才会执行为标签的生成（下图中红色部分），生成的伪标签用于监督强增广的输出值。</p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/25.png" alt=""></p>
 <p>接下来是实验结果部分:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E5%88%86%E7%B1%BB/26.png" alt=""></p>
-<h1 id="Noisy-Student"><a href="#Noisy-Student" class="headerlink" title="Noisy Student"></a>Noisy Student</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1911.04252">https://arxiv.org/abs/1911.04252</a><br><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/google-research/noisystudent">https://github.com/google-research/noisystudent</a></p>
+<h1 id="Noisy-Student"><a href="#Noisy-Student" class="headerlink" title="Noisy Student"></a>Noisy Student</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1911.04252">https://arxiv.org/abs/1911.04252</a></p>
+<p><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/google-research/noisystudent">https://github.com/google-research/noisystudent</a></p>
 <p>Noisy Student和之前的一致性正则化法也非常相似。区别在于强调了在student模型中加入噪声。在这篇文章中有teacher model和student model的概念。teacher是使用有标签数据训练的模型，student是使用teacher模型预测了无标签数据的标签后，用无标签数据训练的模型。</p>
 <p>而Noisy Student强调的是在student模型中加入噪声，teacher模型和student模型可以用不同的模型训练，也可以使用相同的模型。要思考加入噪声的原因，可以假设teacher和student相同结构联合训练的场景，则student模型不加入噪声，则预测结果和通过teacher模型生成的伪标签会完全一致，student模型就失去了更新的动力。所以加入噪声是很有必要的。</p>
 <p>Noisy Student的思想如下图所示:</p>
@@ -482,7 +489,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://oysz2016.github.io/post/18365ad2.html" title="半监督学习——分类">https://oysz2016.github.io/post/18365ad2.html</a>
+      <a href="https://oysz2016.github.io/post/18365ad2.html" title="半监督学习汇总——分类">https://oysz2016.github.io/post/18365ad2.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -546,6 +553,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/post/bcf25936.html" rel="next" title="半监督学习汇总——检测">
+                  半监督学习汇总——检测 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -578,13 +588,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>站点总字数:
     </span>
-    <span title="站点总字数">109k</span>
+    <span title="站点总字数">112k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>站点阅读时长:
     </span>
-    <span title="站点阅读时长">1:39</span>
+    <span title="站点阅读时长">1:42</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -705,17 +715,6 @@
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/18365ad2.html"}</script>
-<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
-<script>
-document.addEventListener('page:loaded', () => {
-  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
-    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
-  ).then(() => 
-    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
-  );
-});
-</script>
 <script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 
 <script>
@@ -735,6 +734,17 @@ var options = {
 const darkmode = new Darkmode(options);
 window.darkmode = darkmode;
 darkmode.showWidget();
+</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/18365ad2.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
 </script>
 
 </body>
