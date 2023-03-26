@@ -2824,7 +2824,7 @@ a_3x+b_3y+c_3z=d_3\\
   <entry>
     <title>AI绘画——webui</title>
     <url>/post/c9403f5d.html</url>
-    <content><![CDATA[<p>最近半年text to image的应用非常火热，区别于之前视觉里的分类和检测等任务，虽然机器能识别图里的东西是什么很有趣，但是这些任务一个3岁左右的小孩基本也能在很短的时间给出正确的答案。<strong>而text to image所做的任务要更加复杂一些，这些任务基本都需要受过专业训练的人员花费较长时间才能完成。</strong> <strong>而且webui等工具的开源，让更多非专业人士能切实到文本生成图片的震撼。</strong></p>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span><br>最近半年text to image的应用非常火热，区别于之前视觉里的分类和检测等任务，虽然机器能识别图里的东西是什么很有趣，但是这些任务一个3岁左右的小孩基本也能在很短的时间给出正确的答案。<strong>而text to image所做的任务要更加复杂一些，这些任务基本都需要受过专业训练的人员花费较长时间才能完成。</strong> <strong>而且webui等工具的开源，让更多非专业人士能切实到文本生成图片的震撼。</strong></p>
 <p>春节前后就开始体验webui了，这段时间事情有点多，搁置了更新，这次先更新下webui生成图片的效果。下次更新stable diffusion的技术细节!</p>
 <p>本文使用webui生成图片，网上有挺多安装教程了，这里不赘述了。</p>
 <h1 id="模型下载"><a href="#模型下载" class="headerlink" title="模型下载"></a>模型下载</h1><p>首先可以去<a href="https://civitai.com/">https://civitai.com/</a>下载需要的模型。可惜的是前几天已经禁止国内IP访问了，好在有些可以部分替代的网站，例如<a href="https://www.4b3.com/ai-drawing-model">https://www.4b3.com/ai-drawing-model</a></p>
