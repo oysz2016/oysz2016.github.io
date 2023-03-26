@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/1.png">
 <meta property="article:published_time" content="2023-02-18T02:30:32.663Z">
-<meta property="article:modified_time" content="2023-02-18T02:51:05.783Z">
+<meta property="article:modified_time" content="2023-02-18T03:17:47.797Z">
 <meta property="article:author" content="冲弱">
 <meta property="article:tag" content="目标检测">
 <meta property="article:tag" content="半监督">
@@ -54,8 +54,8 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style><link rel="alternate" href="/atom.xml" title="冲弱's Blog" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="冲弱's Blog" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -168,7 +168,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,7 +179,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -264,7 +264,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-02-18 10:30:32 / 修改时间：10:51:05" itemprop="dateCreated datePublished" datetime="2023-02-18T10:30:32+08:00">2023-02-18</time>
+      <time title="创建时间：2023-02-18 10:30:32 / 修改时间：11:17:47" itemprop="dateCreated datePublished" datetime="2023-02-18T10:30:32+08:00">2023-02-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -323,7 +323,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <p><p class="description"></p><br><span id="more"></span><br>上一篇文章中介绍了<a href="https://oysz2016.github.io/post/18365ad2.html#more">半监督学习——分类</a>的一些文章，今天来看一下半监督学习应用在检测领域的一些思路。</p>
-<h1 id="STAC"><a href="#STAC" class="headerlink" title="STAC"></a>STAC</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.04757">https://arxiv.org/abs/2005.04757</a><br><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/google-research/ssl_detection/">https://github.com/google-research/ssl_detection/</a></p>
+<h1 id="STAC"><a href="#STAC" class="headerlink" title="STAC"></a>STAC</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.04757">https://arxiv.org/abs/2005.04757</a></p>
+<p><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/google-research/ssl_detection/">https://github.com/google-research/ssl_detection/</a></p>
 <p>之前的半监督学习(Semi-supervised learning, SSL)基本应用在分类领域，而STAC是在目标检测领域应用半监督学习的论文, 该细分领域为半监督目标检测(Semi-supervised Object Detection, SS-OD)。<strong>其思想和分类中使用的一致性学习比较相似，也分为teacher网络和student网络</strong>，思想如下图所示</p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/1.png" alt=""></p>
 <p>流程如下:</p>
@@ -335,7 +336,8 @@
 </ul>
 <p>下图是应用的一些增广的可视化<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/2.png" alt=""></p>
 <p>下图对比了有监督的模型，增加RandAugment和使用STAC性能的变化<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/3.png" alt=""></p>
-<h1 id="soft-teacher"><a href="#soft-teacher" class="headerlink" title="soft teacher"></a>soft teacher</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09018">https://arxiv.org/abs/2106.09018</a><br><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/microsoft/SoftTeacher">https://github.com/microsoft/SoftTeacher</a></p>
+<h1 id="soft-teacher"><a href="#soft-teacher" class="headerlink" title="soft teacher"></a>soft teacher</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09018">https://arxiv.org/abs/2106.09018</a></p>
+<p><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/microsoft/SoftTeacher">https://github.com/microsoft/SoftTeacher</a></p>
 <p>soft teacher可以看作是对STAC的改进，STAC的方法简单有效，但是teacher模型和student模型是分阶段训练的。由于student模型会依赖于teacher模型在无标签数据上生成的伪标签，若teacher模型生成了错误且置信度高的伪标签，会造成误差的传递，这也是分阶段训练方式的通病。因此，soft teacher认为端到端训练能取得更好的效果。</p>
 <p>soft teacher的网络结构如下图所示:</p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/4.png" alt=""></p>
@@ -351,7 +353,8 @@
 </ul>
 <p>如下图(b)所示, 候选框的定位精度和分类置信度没有很强的相关性，这点在很多检测论文中都有提及并且有优化，例如IOU Net, yolox中的Decoupled head<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/6.png" alt=""></p>
 <p>从实验结果可以看出，相比STAC有较大提升<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%A3%80%E6%B5%8B/7.png" alt=""></p>
-<h1 id="Dense-teacher"><a href="#Dense-teacher" class="headerlink" title="Dense teacher"></a>Dense teacher</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09018">https://arxiv.org/abs/2106.09018</a><br><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/microsoft/SoftTeacher">https://github.com/microsoft/SoftTeacher</a><br>之前基于伪标签分类具有以下问题:</p>
+<h1 id="Dense-teacher"><a href="#Dense-teacher" class="headerlink" title="Dense teacher"></a>Dense teacher</h1><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09018">https://arxiv.org/abs/2106.09018</a></p>
+<p><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/microsoft/SoftTeacher">https://github.com/microsoft/SoftTeacher</a><br>之前基于伪标签分类具有以下问题:</p>
 <ul>
 <li>Thresholding: 阈值用来区分teacher模型在无标签数据上生成的分类和bbox结果应该如何取舍。作为预定义的数值，阈值非常难选取。设置的较大，会导致召回难以提升；设置的较小，精度会难以提升。</li>
 <li>NMS: NMS的问题和threshold相似，都是预定义的值。设置的较大，会过滤掉一些稍微密集的正样本，较小会有些假正例被保留下来</li>
@@ -474,6 +477,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/post/c9403f5d.html" rel="next" title="AI绘画——webui">
+                  AI绘画——webui <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -506,13 +512,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>站点总字数:
     </span>
-    <span title="站点总字数">112k</span>
+    <span title="站点总字数">116k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>站点阅读时长:
     </span>
-    <span title="站点阅读时长">1:42</span>
+    <span title="站点阅读时长">1:45</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -633,6 +639,17 @@
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/bcf25936.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
 <script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 
 <script>
@@ -652,17 +669,6 @@ var options = {
 const darkmode = new Darkmode(options);
 window.darkmode = darkmode;
 darkmode.showWidget();
-</script>
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/bcf25936.html"}</script>
-<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
-<script>
-document.addEventListener('page:loaded', () => {
-  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
-    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
-  ).then(() => 
-    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
-  );
-});
 </script>
 
 </body>
