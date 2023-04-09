@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AI绘画——webui</title>
+    <url>/post/c9403f5d.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span><br>最近半年text to image的应用非常火热，区别于之前视觉里的分类和检测等任务，虽然机器能识别图里的东西是什么很有趣，但是这些任务一个3岁左右的小孩基本也能在很短的时间给出正确的答案。<strong>而text to image所做的任务要更加复杂一些，这些任务基本都需要受过专业训练的人员花费较长时间才能完成。</strong> <strong>而且webui等工具的开源，让更多非专业人士能切实到文本生成图片的震撼。</strong></p>
+<p>春节前后就开始体验webui了，这段时间事情有点多，搁置了更新，这次先更新下webui生成图片的效果。下次更新stable diffusion的技术细节!</p>
+<p>本文使用webui生成图片，网上有挺多安装教程了，这里不赘述了。</p>
+<h1 id="模型下载"><a href="#模型下载" class="headerlink" title="模型下载"></a>模型下载</h1><p>首先可以去<a href="https://civitai.com/">https://civitai.com/</a>下载需要的模型。可惜的是前几天已经禁止国内IP访问了，好在有些可以部分替代的网站，例如<a href="https://www.4b3.com/ai-drawing-model">https://www.4b3.com/ai-drawing-model</a></p>
+<h1 id="text2image"><a href="#text2image" class="headerlink" title="text2image"></a>text2image</h1><p>生成的时候可以用多组关键词和多个模型生成图片，模型可以设置权重搭配比例，生成混搭的风格。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/1.png" alt=""></p>
+<blockquote>
+<p>模型: C站上moxing的模型</p>
+<p>prompt: ((4k,masterpiece,best quality)), shuimobysim, traditional chinese ink painting, lotus, hanfu, maxiskit, dress conservatively<br>1 girl, solo, white hair, long hair, fox ears, white, bikini, fish, many fish near girl, look at viewer, tease<br>Negative prompt: (watermark),sketch, duplicate, ugly, huge eyes, text, logo, monochrome, worst face, (bad and mutated hands:1.3), (worst quality:2.0), (low quality:2.0), (blurry:2.0), horror, geometry, (bad hands), (missing fingers), multiple limbs, bad anatomy, (interlocked fingers:1.2), Ugly Fingers, (extra digit and hands and fingers and legs and arms:1.4), crown braid, ((2girl)), (deformed fingers:1.2), (long fingers:1.2),(bad-artist-anime),extra fingers,fewer fingers,hands up,bad hands, bad feet,shoes, stone, ((bad toe))<br>Steps: 30, Sampler: DPM++ SDE Karras, CFG scale: 3, Seed: 2171486205, Size: 384x896, Model hash: 56be194f47, Model: cetusMix_cetusVersion2Fp16, Denoising strength: 0.5, Clip skip: 2, ENSD: 31337, Hires upscale: 2, Hires upscaler: Nearest, AddNet Enabled: True, AddNet Module 1: LoRA, AddNet Model 1: Moxin_Shukezouma11(494301de3d6e), AddNet Weight A 1: 0.7, AddNet Weight B 1: 0.7, AddNet Module 2: LoRA, AddNet Model 2: Moxin_10(17cd20c7b6ea), AddNet Weight A 2: 0.3, AddNet Weight B 2: 0.3, AddNet Module 3: LoRA, AddNet Model 3: chilloutmixss_xss10(9d82c7787e79), AddNet Weight A 3: 0.5, AddNet Weight B 3: 0.5, AddNet Module 4: LoRA, AddNet Model 4: firekeeperLoraFrom_fierkeeper16(acd58eb24484), AddNet Weight A 4: 0.8, AddNet Weight B 4: 0.8</p>
+</blockquote>
+<p>下面的图使用了两个lora模型，一个是之前比较火热的KoreanDoll，用来生成脸部和身体，另一个是英雄联盟里一些角色的模型，用来生成风格。两种模型混搭后可以出现类似cosplay的效果。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/2.png" alt=""></p>
+<blockquote>
+<p>模型: C站上samira的模型</p>
+<p>prompt: (8k, RAW photo:1.2),best quality, ultra high res, sky, field, grass, samira (league of legends), league of legends, 1girl, jewelry, tattoo, eyepatch, earrings, green eyes, braid, long hair, dark skin, gloves, armor, navel, bracelet, lips, hair over shoulder, smile, looking at viewer, arm tattoo, mole, mole above mouth <lora:samira_v1:1> <lora:KoreanDollLikeness:0.3><br>Negative prompt: sword, holding, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, censored, letterbox, blurry<br>Steps: 20, Sampler: DPM++ SDE Karras, CFG scale: 7, Seed: 1059483644, Size: 512x512, Model hash: fc2511737a, Model: chilloutmix_NiPrunedFp32Fix, Denoising strength: 0.7, Clip skip: 2, ENSD: 31337, Hires resize: 768x1024, Hires upscaler: Latent</p>
+</blockquote>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/3.png" alt=""></p>
+<blockquote>
+<p>模型: C站上Jinx的模型</p>
+<p>prompt: JinxLol,mature female,1girl, solo,looking at viewer, navel, gloves, fingerless gloves, character name, midriff, bare shoulders, looking at viewer, gun, crop top, belt,outdoors,<lora:JinxLolEp8dim8:1>, <lora:Jinx:1> <lora:KoreanDollLikeness:0.3><br>Negative prompt: (low quality, worst quality:1.3), (lowres), blurry,text,watermark,signature,artist name,letterboxed, female pubic hair,realism<br>Steps: 20, Sampler: DPM++ 2M Karras, CFG scale: 7, Seed: 2754482513, Size: 512x768, Model hash: fc2511737a, Model: chilloutmix_NiPrunedFp32Fix, Denoising strength: 0.5, Clip skip: 2, Hires upscale: 2, Hires upscaler: Latent</p>
+</blockquote>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/4.png" alt=""></p>
+<blockquote>
+<p>模型: C站上Ahri的模型</p>
+<p>prompt:(8k, RAW photo:1.2),best quality, ultra high res, ahri, ahri_(league_of_legends), 1girl, absurdres, animal_ears, black_hair, breasts, detached_sleeves, distr, highres, facial_mark, fox_ears, fox_tail, hand_up, league_of_legends, long_hair, long_sleeves, magic, multiple_tails, orange_eyes, parted_lips, solo, standing, tail, full body <lora:Ahri:0.6> <lora:KoreanDollLikeness:0.3><br>Negative prompt: (painting by bad-artist-anime:0.9), (painting by bad-artist:0.9), watermark, text, error, blurry, jpeg artifacts, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, artist name, (worst quality, low quality:1.4), bad anatomy</p>
+</blockquote>
+<h1 id="controlNet"><a href="#controlNet" class="headerlink" title="controlNet"></a>controlNet</h1><p>controlNet也是用来引导图片生成的，好处是在文本生成图片的基础上，加上另一张图做引导，可以让生成的图在一些底层特征上看起来相似。可以采用的特征分为以下几种:</p>
+<ul>
+<li>canny: 边缘检测</li>
+<li>depth: 深度检测</li>
+<li>hed:边缘检测</li>
+<li>mlsd: 线段检测</li>
+<li>normal_map: 建模识别</li>
+<li>openpose: 姿势骨骼提取</li>
+<li>openpose_hand:姿势骨骼+手部</li>
+<li>scribble: 提取黑白稿</li>
+<li>fake_scribble: 涂鸦风格提取</li>
+<li>segmentation: 分割</li>
+</ul>
+<p>给大家推荐一个整理了各种画家风格的网站，可以供diffusion model生成类似风格的图像：<a href="https://lib.kalos.art/topic?model=1&amp;topic=0">https://lib.kalos.art/topic?model=1&amp;topic=0</a></p>
+<p>引导图(昨天去商场夹的公仔):<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/5.png" alt=""></p>
+<p>生成图<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/6.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/7.png" alt=""></p>
+<blockquote>
+<p>prompt: ((4k,masterpiece,best quality)), cat, animal painting by Jasmine Becket-Griffith, detailed，multicoloured</p>
+</blockquote>
+<p>再来张中国风</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/8.png" alt=""></p>
+<blockquote>
+<p>prompt: cat, animal painting by  Bada Shanren, beautiful details, shuimobysim, traditional chinese ink painting</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>diffusion model</tag>
+        <tag>text to image</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>EDU。</title>
     <url>/post/2c662fdb.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -20,6 +83,79 @@
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Faster R-CNN代码的caffe封装</title>
+    <url>/post/fc7cd866.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<p>目前部署服务的主流语言还是C++，因此项目上线前，在需要部署调试的时候需要对Faster R-CNN工程化为<code>C++</code>代码。这篇博文总结的部分主要将python版本的demo.py代码及其相关的部分改写成<code>C++</code>版本。</p>
+<h2 id="封装1"><a href="#封装1" class="headerlink" title="封装1"></a>封装1</h2><p>封装听起来很复杂，其实就是隐藏代码的实现细节，只暴露出对应的接口。Faster R-CNN具有很广泛的流行度了，相关的资料在可以说在目标检测模型里是最多的。<br>为了方便理解，首先给出<code>C++</code>工程demo的目录结构。</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">└── lib</span><br><span class="line">│   │── faster_rcnn<span class="selector-class">.cpp</span></span><br><span class="line">│   │── faster_rcnn<span class="selector-class">.hpp</span></span><br><span class="line">│   │── CMakeLists<span class="selector-class">.txt</span></span><br><span class="line">│—— CMakeLists<span class="selector-class">.txt</span></span><br><span class="line">│—— <span class="selector-tag">main</span>.cpp</span><br></pre></td></tr></table></figure>
+<p>其中faster_rcnn.cpp与faster_rcnn.hpp是对应的demo接口，main.cpp可以直接调用。<br>faster_rcnn.cpp文件如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> FASTER_RCNN_HPP</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FASTER_RCNN_HPP</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span>  <span class="comment">// for snprintf</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;boost/python.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;caffe/caffe.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;gpu_nms.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/core/core.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/highgui/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/imgproc/imgproc.hpp&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> caffe;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> max(a, b) (((a)&gt;(b)) ? (a) :(b))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> min(a, b) (((a)&lt;(b)) ? (a) :(b))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//background and car</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> class_num=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * ===  Class  ======================================================================</span></span><br><span class="line"><span class="comment"> *         Name:  Detector</span></span><br><span class="line"><span class="comment"> *  Description:  FasterRCNN CXX Detector</span></span><br><span class="line"><span class="comment"> * =====================================================================================</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Detector</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Detector</span>(<span class="type">const</span> string&amp; model_file, <span class="type">const</span> string&amp; weights_file);</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Detect</span><span class="params">(<span class="type">const</span> string&amp; im_name)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">bbox_transform_inv</span><span class="params">(<span class="type">const</span> <span class="type">int</span> num, <span class="type">const</span> <span class="type">float</span>* box_deltas, <span class="type">const</span> <span class="type">float</span>* pred_cls, <span class="type">float</span>* boxes, <span class="type">float</span>* pred, <span class="type">int</span> img_height, <span class="type">int</span> img_width)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">vis_detections</span><span class="params">(cv::Mat image, <span class="type">int</span>* keep, <span class="type">int</span> num_out, <span class="type">float</span>* sorted_pred_cls, <span class="type">float</span> CONF_THRESH)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">boxes_sort</span><span class="params">(<span class="type">int</span> num, <span class="type">const</span> <span class="type">float</span>* pred, <span class="type">float</span>* sorted_pred)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    shared_ptr&lt;Net&lt;<span class="type">float</span>&gt; &gt; net_;</span><br><span class="line">    <span class="built_in">Detector</span>()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Using for box sort</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Info</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">    <span class="type">const</span> <span class="type">float</span>* head;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">compare</span><span class="params">(<span class="type">const</span> Info&amp; Info1, <span class="type">const</span> Info&amp; Info2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Info1.score &gt; Info2.score;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>其对应的faster_rcnn.hpp文件为</p>
+<figure class="highlight hpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> FASTER_RCNN_HPP</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FASTER_RCNN_HPP</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span>  <span class="comment">// for snprintf</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;boost/python.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;caffe/caffe.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;gpu_nms.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/core/core.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/highgui/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/imgproc/imgproc.hpp&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> caffe;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> max(a, b) (((a)&gt;(b)) ? (a) :(b))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> min(a, b) (((a)&lt;(b)) ? (a) :(b))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//background and car</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> class_num=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * ===  Class  ======================================================================</span></span><br><span class="line"><span class="comment"> *         Name:  Detector</span></span><br><span class="line"><span class="comment"> *  Description:  FasterRCNN CXX Detector</span></span><br><span class="line"><span class="comment"> * =====================================================================================</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Detector</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Detector</span>(<span class="type">const</span> string&amp; model_file, <span class="type">const</span> string&amp; weights_file);</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Detect</span><span class="params">(<span class="type">const</span> string&amp; im_name)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">bbox_transform_inv</span><span class="params">(<span class="type">const</span> <span class="type">int</span> num, <span class="type">const</span> <span class="type">float</span>* box_deltas, <span class="type">const</span> <span class="type">float</span>* pred_cls, <span class="type">float</span>* boxes, <span class="type">float</span>* pred, <span class="type">int</span> img_height, <span class="type">int</span> img_width)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">vis_detections</span><span class="params">(cv::Mat image, <span class="type">int</span>* keep, <span class="type">int</span> num_out, <span class="type">float</span>* sorted_pred_cls, <span class="type">float</span> CONF_THRESH)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">boxes_sort</span><span class="params">(<span class="type">int</span> num, <span class="type">const</span> <span class="type">float</span>* pred, <span class="type">float</span>* sorted_pred)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    shared_ptr&lt;Net&lt;<span class="type">float</span>&gt; &gt; net_;</span><br><span class="line">    <span class="built_in">Detector</span>()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Using for box sort</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Info</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">    <span class="type">const</span> <span class="type">float</span>* head;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">compare</span><span class="params">(<span class="type">const</span> Info&amp; Info1, <span class="type">const</span> Info&amp; Info2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Info1.score &gt; Info2.score;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>初次在linux上运行C++代码时，真是各种蒙圈，看着Makefile文件也搞不明白其中关键字代表的意义，使用cmake后，感觉容易了很多。如下是lib文件夹底下，即<code>faster_rcnn.cpp</code>对应的<code>CMakeLists.txt</code>文件。</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span> (VERSION <span class="number">2.8</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> (SRC_LIST faster_rcnn.cpp)</span><br><span class="line"><span class="keyword">include_directories</span> ( <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/../../caffe-fast-rcnn/include&quot;</span></span><br><span class="line">    <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/../../lib/nms&quot;</span> </span><br><span class="line">    /usr/local/<span class="keyword">include</span> </span><br><span class="line">    /usr/<span class="keyword">include</span>/python2.<span class="number">7</span></span><br><span class="line">    /usr/local/cuda/<span class="keyword">include</span> )</span><br><span class="line"><span class="keyword">add_library</span>(faster_rcnn SHARED <span class="variable">$&#123;SRC_LIST&#125;</span>)</span><br></pre></td></tr></table></figure>
+<p>然后依次执行<code>cmake.</code>和<code>make</code>就完成编译了。接下来是调用<code>faster_rcnn.cpp</code>接口的<code>main.cpp</code>文件。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;faster_rcnn.hpp&quot;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string model_file = <span class="string">&quot;/home/ouyang/Program/py-faster-rcnn/models/pascal_voc/VGG16/faster_rcnn_alt_opt/faster_rcnn_test.pt&quot;</span>;</span><br><span class="line">    string weights_file = <span class="string">&quot;/home/ouyang/Program/py-faster-rcnn/output/faster_rcnn_end2end/voc_2007_trainval/vgg16_faster_rcnn_iter_170000.caffemodel&quot;</span>;</span><br><span class="line">    <span class="type">int</span> GPUID=<span class="number">2</span>;</span><br><span class="line">    Caffe::<span class="built_in">SetDevice</span>(GPUID);</span><br><span class="line">    Caffe::<span class="built_in">set_mode</span>(Caffe::CPU);</span><br><span class="line">    Detector det = <span class="built_in">Detector</span>(model_file, weights_file);</span><br><span class="line">    det.<span class="built_in">Detect</span>(<span class="string">&quot;/home/ouyang/Program/py-faster-rcnn/data/demo/90.jpg&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>里面的pt文件和model文件的路径替换成对应的就好。然后是main.cpp对应的CMakeLists.txt文件。</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#This part is used for compile faster_rcnn_demo.cpp</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span> (VERSION <span class="number">2.8</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span> (main_demo)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(main main.cpp)</span><br><span class="line"></span><br><span class="line"><span class="keyword">include_directories</span> ( <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/../caffe-fast-rcnn/include&quot;</span></span><br><span class="line">    <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/../lib/nms&quot;</span> </span><br><span class="line">    <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/lib&quot;</span> </span><br><span class="line">    /usr/local/<span class="keyword">include</span> </span><br><span class="line">    /usr/<span class="keyword">include</span>/python2.<span class="number">7</span></span><br><span class="line">    /usr/local/cuda/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>(main /home/ouyang/Program/py-faster-rcnn/Cplusplus2/lib/libfaster_rcnn.so</span><br><span class="line">    /home/ouyang/Program/py-faster-rcnn/caffe-fast-rcnn/build/lib/libcaffe.so</span><br><span class="line">    /home/ouyang/Program/py-faster-rcnn/lib/nms/libgpu_nms.so </span><br><span class="line">    /usr/local/lib/libopencv_highgui.so </span><br><span class="line">    /usr/local/lib/libopencv_core.so  </span><br><span class="line">    /usr/local/lib/libopencv_imgproc.so </span><br><span class="line">    /usr/local/lib/libopencv_imgcodecs.so</span><br><span class="line">    /usr/lib/x86_64-linux-gnu/libglog.so</span><br><span class="line">    /usr/lib/x86_64-linux-gnu/libboost_system.so</span><br><span class="line">    /usr/lib/x86_64-linux-gnu/libboost_python.so</span><br><span class="line">    /usr/lib/x86_64-linux-gnu/libglog.so</span><br><span class="line">    /usr/lib/x86_64-linux-gnu/libpython2.<span class="number">7</span>.so</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<p>相同的执行<code>cmake.</code>和<code>make</code>完成该部分的编译。</p>
+<h2 id="封装2"><a href="#封装2" class="headerlink" title="封装2"></a>封装2</h2><p>上面<code>C++</code>封装的Faster R-CNN结构简单，代码量也少，部署起来很方便。但在项目中也有着致命的弱点，检测速度大概比python版的Faster R-CNN慢了一个数量级。因此很有必要寻求另外的封装方式，这里参考<a href="https://github.com/D-X-Y/caffe-faster-rcnn">D-X-Y</a>纯<code>C++</code>版的Faster R-CNN代码，该代码将所有代码都改写为了C++版本，不像上一部分的代码中调用了很多python的库。<br>D-X-Y所封装的代码中对应原python版本中demo.py的接口在<code>G:\gitProgram\caffe-faster-rcnn\src\api\FRCNN\frcnn_api.cpp</code>和<code>G:\gitProgram\caffe-faster-rcnn\include\api\FRCNN\frcnn_api.hpp</code>。这里我将所需要的文件整合到一起，目录结构为：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">└── lib</span><br><span class="line">│   │── frcnn_api<span class="selector-class">.cpp</span></span><br><span class="line">│   │── frcnn_api<span class="selector-class">.hpp</span></span><br><span class="line">│   │── CMakeLists<span class="selector-class">.txt</span></span><br><span class="line">│—— CMakeLists<span class="selector-class">.txt</span></span><br><span class="line">│—— <span class="selector-tag">main</span><span class="selector-class">.cpp</span></span><br><span class="line">└── include</span><br><span class="line">│   │── api</span><br><span class="line">│   │    api<span class="selector-class">.hpp</span></span><br><span class="line">│   │   └── FRCNN</span><br><span class="line">│   │   │   │── frcnn_api<span class="selector-class">.hpp</span></span><br><span class="line">│   │   │   │── rpn_api<span class="selector-class">.hpp</span></span><br><span class="line">│   │── caffe</span><br><span class="line">│   │   │──proto</span><br><span class="line">│—— libcaffe<span class="selector-class">.so</span>.<span class="number">1.0</span>.<span class="number">0</span></span><br><span class="line">│—— libcaffe<span class="selector-class">.so</span></span><br><span class="line">│—— test.prototxt</span><br></pre></td></tr></table></figure><br>上述代码结构中的<code>include</code>来自D-X-Y代码中的<code>include</code>,<code>/include/caffe/proto</code>来自D-X-Y代码中编译后产生，对应的路径为<code>./caffe-faster-rcnn/.build_release/src/caffe/proto</code>。<br><strong>第二种方式就不贴对应的代码了，在这里我也将两种方式对应的代码放在github上，供大家参考</strong><a href="https://github.com/oysz2016/cpp_faster-rcnn">代码</a></p>
+<blockquote class="blockquote-center">
+<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
+
+</blockquote>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
+]]></content>
+      <categories>
+        <category>深度学习笔记</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>代码部署</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《Faster R-CNN》详解</title>
+    <url>/post/79b7b6f1.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
+<p>最近实在是太忙了，很久没更新博客。想起前几周花了一些功夫给组内的小伙伴们做了个分享，为了做分享时自己能讲清楚，找了不少我认为描述的比较好的图片。Faster R-CNN可以说是目标检测领域的开山之作了，即使现今的顶会论文中，目标检测方面 的论文也有不少是对Faster R-CNN做的改进。这么经典的文章，细节又多如牛毛，真是常读常新。所以搬运到博客上应该也是有一些价值的。</p>
+</blockquote>
+<h2 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h2><p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196152.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195967.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196153.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195729.jpg" alt="enter description here"></p>
+<blockquote>
+<p>写作的过程是将网状的思考用树状的语法结构转换成线性的文字，阅读则是其逆向过程。读文章时并不用逐字逐句的按文章的书写顺序去读。可以按照合适的方式去更好的还原作者的思考过程。及时的停止读一篇文章，能及时止损，每个人精力和注意力都是宝贵的，不应该把时间花在读了对自己没价值的文章上。</p>
+</blockquote>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196154.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196156.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196019.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196293.jpg" alt="enter description here"></p>
+<blockquote>
+<p>检测任务目前的弊病之一就在于其网络的特征提取层直接从分类网络迁移学习来，并不是很贴合检测任务。</p>
+</blockquote>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196020.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196294.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196021.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196024.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196026.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196314.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195920.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196289.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196118.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195946.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196290.jpg" alt="enter description here"></p>
+]]></content>
+      <categories>
+        <category>输入分类</category>
+      </categories>
+      <tags>
+        <tag>输入标签</tag>
       </tags>
   </entry>
   <entry>
@@ -68,46 +204,6 @@
       <tags>
         <tag>深度学习</tag>
         <tag>生成网络</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《Faster R-CNN》详解</title>
-    <url>/post/79b7b6f1.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
-<p>最近实在是太忙了，很久没更新博客。想起前几周花了一些功夫给组内的小伙伴们做了个分享，为了做分享时自己能讲清楚，找了不少我认为描述的比较好的图片。Faster R-CNN可以说是目标检测领域的开山之作了，即使现今的顶会论文中，目标检测方面 的论文也有不少是对Faster R-CNN做的改进。这么经典的文章，细节又多如牛毛，真是常读常新。所以搬运到博客上应该也是有一些价值的。</p>
-</blockquote>
-<h2 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h2><p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196152.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195967.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196153.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195729.jpg" alt="enter description here"></p>
-<blockquote>
-<p>写作的过程是将网状的思考用树状的语法结构转换成线性的文字，阅读则是其逆向过程。读文章时并不用逐字逐句的按文章的书写顺序去读。可以按照合适的方式去更好的还原作者的思考过程。及时的停止读一篇文章，能及时止损，每个人精力和注意力都是宝贵的，不应该把时间花在读了对自己没价值的文章上。</p>
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196154.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196156.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196019.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196293.jpg" alt="enter description here"></p>
-<blockquote>
-<p>检测任务目前的弊病之一就在于其网络的特征提取层直接从分类网络迁移学习来，并不是很贴合检测任务。</p>
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196020.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196294.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196021.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196024.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196026.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196314.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195920.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196289.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196118.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195946.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196290.jpg" alt="enter description here"></p>
-]]></content>
-      <categories>
-        <category>输入分类</category>
-      </categories>
-      <tags>
-        <tag>输入标签</tag>
       </tags>
   </entry>
   <entry>
@@ -305,6 +401,31 @@
       </tags>
   </entry>
   <entry>
+    <title>《VAE》论文笔记</title>
+    <url>/post/63606c55.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<p>论文链接: <a href="https://arxiv.org/pdf/1312.6114.pdf">https://arxiv.org/pdf/1312.6114.pdf</a></p>
+<p>论文代码: <a href="https://github.com/devnag/pytorch-generative-adversarial-networks">https://github.com/devnag/pytorch-generative-adversarial-networks</a></p>
+<h1 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h1><h2 id="Auto-encoder"><a href="#Auto-encoder" class="headerlink" title="Auto-encoder"></a>Auto-encoder</h2><p>auto-encoder是一种无监督的算法，自编码器是一个输入和学习目标相同的神经网络，其结构分为编码器和解码器两部分。其思想是输入x经过encoder生成hidden layer特征z，再将z经过decoder重新预测生成$x^{‘}$<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VAE/v2-ec10f5dbd7197120cb87eaee5dc04e9a_b.png" alt=""></p>
+<h2 id="生成模型"><a href="#生成模型" class="headerlink" title="生成模型"></a>生成模型</h2><p>VAE和GAN一样都属于生成模型，即从训练数据建模真实数据的分布，再反过来用学到的模型生成新的数据。这一类模型是假设有一个数据集$X=\{x^{(i)}\}_{i=1}^N$, 理想情况下是用$x_i$拟合函数p(x), 通过p(x)能得到$X$之外的数据，但这是理想情况，GAN和VAE采用了不同的方式达到生成模型的效果，之前GAN的论文笔记中有梳理过，GAN是一个对抗网络，通过判别器来判断生成器产生数据的效果。而VAE的方式在下面会详细介绍</p>
+<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><p>VAE的思想是对于一个真实样本$x_k$, 假设存在后验分布$P(Z|x_k)$和$x_k$是一一对应的，$P(Z|x_k)$是一个正态分布图分布，能知道该正态分布的均值和方差，就能将其还原回X，在VAE中$P(Z|x_k)$的均值和方差是通过模型计算得到。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VAE/WX20221010-203445@2x.png" alt=""><br>为了使模型具有生成能力，VAE希望$p(Z_x)$趋向于正态分布<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VAE/WX20221010-204114@2x.png" alt=""></p>
+<p>在VAE中实际上也有两个encoder，分别用来计算均值和方差，在encoder计算的损失中会加入KL Loss，实际上是给encoder部分增加正则项，希望encoder的均值为0.VAE的损失函数会倾向于在训练初期，会降低噪声(KL loss增加)，使得拟合更容易，而在decoder训练的不错时，会增加噪声(KL loss减少)，使得拟合更困难</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>实际上VAE中也有对抗的过程，因为decoder的部分希望没有噪声，而KL loss希望有高斯噪声，两者在训练的时候实际上是对立的。VAE和GAN两种方式实际上各有优缺点，GAN在训练时不稳定，而VAE生成的图像相对GAN会模糊些</p>
+<blockquote class="blockquote-center">
+<p><strong><font size="5">欢迎关注我的公众号!</font></strong></p>
+
+</blockquote>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt=""></p>
+]]></content>
+      <categories>
+        <category>论文笔记</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>生成网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《VQ-VAE》论文笔记</title>
     <url>/post/d1dddfb8.html</url>
     <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
@@ -355,64 +476,6 @@
       </tags>
   </entry>
   <entry>
-    <title>《VAE》论文笔记</title>
-    <url>/post/63606c55.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
-<p>论文链接: <a href="https://arxiv.org/pdf/1312.6114.pdf">https://arxiv.org/pdf/1312.6114.pdf</a></p>
-<p>论文代码: <a href="https://github.com/devnag/pytorch-generative-adversarial-networks">https://github.com/devnag/pytorch-generative-adversarial-networks</a></p>
-<h1 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h1><h2 id="Auto-encoder"><a href="#Auto-encoder" class="headerlink" title="Auto-encoder"></a>Auto-encoder</h2><p>auto-encoder是一种无监督的算法，自编码器是一个输入和学习目标相同的神经网络，其结构分为编码器和解码器两部分。其思想是输入x经过encoder生成hidden layer特征z，再将z经过decoder重新预测生成$x^{‘}$<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VAE/v2-ec10f5dbd7197120cb87eaee5dc04e9a_b.png" alt=""></p>
-<h2 id="生成模型"><a href="#生成模型" class="headerlink" title="生成模型"></a>生成模型</h2><p>VAE和GAN一样都属于生成模型，即从训练数据建模真实数据的分布，再反过来用学到的模型生成新的数据。这一类模型是假设有一个数据集$X=\{x^{(i)}\}_{i=1}^N$, 理想情况下是用$x_i$拟合函数p(x), 通过p(x)能得到$X$之外的数据，但这是理想情况，GAN和VAE采用了不同的方式达到生成模型的效果，之前GAN的论文笔记中有梳理过，GAN是一个对抗网络，通过判别器来判断生成器产生数据的效果。而VAE的方式在下面会详细介绍</p>
-<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><p>VAE的思想是对于一个真实样本$x_k$, 假设存在后验分布$P(Z|x_k)$和$x_k$是一一对应的，$P(Z|x_k)$是一个正态分布图分布，能知道该正态分布的均值和方差，就能将其还原回X，在VAE中$P(Z|x_k)$的均值和方差是通过模型计算得到。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VAE/WX20221010-203445@2x.png" alt=""><br>为了使模型具有生成能力，VAE希望$p(Z_x)$趋向于正态分布<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VAE/WX20221010-204114@2x.png" alt=""></p>
-<p>在VAE中实际上也有两个encoder，分别用来计算均值和方差，在encoder计算的损失中会加入KL Loss，实际上是给encoder部分增加正则项，希望encoder的均值为0.VAE的损失函数会倾向于在训练初期，会降低噪声(KL loss增加)，使得拟合更容易，而在decoder训练的不错时，会增加噪声(KL loss减少)，使得拟合更困难</p>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>实际上VAE中也有对抗的过程，因为decoder的部分希望没有噪声，而KL loss希望有高斯噪声，两者在训练的时候实际上是对立的。VAE和GAN两种方式实际上各有优缺点，GAN在训练时不稳定，而VAE生成的图像相对GAN会模糊些</p>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号!</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt=""></p>
-]]></content>
-      <categories>
-        <category>论文笔记</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>生成网络</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Faster R-CNN代码的caffe封装</title>
-    <url>/post/fc7cd866.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
-<p>目前部署服务的主流语言还是C++，因此项目上线前，在需要部署调试的时候需要对Faster R-CNN工程化为<code>C++</code>代码。这篇博文总结的部分主要将python版本的demo.py代码及其相关的部分改写成<code>C++</code>版本。</p>
-<h2 id="封装1"><a href="#封装1" class="headerlink" title="封装1"></a>封装1</h2><p>封装听起来很复杂，其实就是隐藏代码的实现细节，只暴露出对应的接口。Faster R-CNN具有很广泛的流行度了，相关的资料在可以说在目标检测模型里是最多的。<br>为了方便理解，首先给出<code>C++</code>工程demo的目录结构。</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">└── lib</span><br><span class="line">│   │── faster_rcnn<span class="selector-class">.cpp</span></span><br><span class="line">│   │── faster_rcnn<span class="selector-class">.hpp</span></span><br><span class="line">│   │── CMakeLists<span class="selector-class">.txt</span></span><br><span class="line">│—— CMakeLists<span class="selector-class">.txt</span></span><br><span class="line">│—— <span class="selector-tag">main</span>.cpp</span><br></pre></td></tr></table></figure>
-<p>其中faster_rcnn.cpp与faster_rcnn.hpp是对应的demo接口，main.cpp可以直接调用。<br>faster_rcnn.cpp文件如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> FASTER_RCNN_HPP</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FASTER_RCNN_HPP</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span>  <span class="comment">// for snprintf</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;boost/python.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;caffe/caffe.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;gpu_nms.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/core/core.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/highgui/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/imgproc/imgproc.hpp&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> caffe;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> max(a, b) (((a)&gt;(b)) ? (a) :(b))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> min(a, b) (((a)&lt;(b)) ? (a) :(b))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//background and car</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> class_num=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * ===  Class  ======================================================================</span></span><br><span class="line"><span class="comment"> *         Name:  Detector</span></span><br><span class="line"><span class="comment"> *  Description:  FasterRCNN CXX Detector</span></span><br><span class="line"><span class="comment"> * =====================================================================================</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Detector</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Detector</span>(<span class="type">const</span> string&amp; model_file, <span class="type">const</span> string&amp; weights_file);</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Detect</span><span class="params">(<span class="type">const</span> string&amp; im_name)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">bbox_transform_inv</span><span class="params">(<span class="type">const</span> <span class="type">int</span> num, <span class="type">const</span> <span class="type">float</span>* box_deltas, <span class="type">const</span> <span class="type">float</span>* pred_cls, <span class="type">float</span>* boxes, <span class="type">float</span>* pred, <span class="type">int</span> img_height, <span class="type">int</span> img_width)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">vis_detections</span><span class="params">(cv::Mat image, <span class="type">int</span>* keep, <span class="type">int</span> num_out, <span class="type">float</span>* sorted_pred_cls, <span class="type">float</span> CONF_THRESH)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">boxes_sort</span><span class="params">(<span class="type">int</span> num, <span class="type">const</span> <span class="type">float</span>* pred, <span class="type">float</span>* sorted_pred)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    shared_ptr&lt;Net&lt;<span class="type">float</span>&gt; &gt; net_;</span><br><span class="line">    <span class="built_in">Detector</span>()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Using for box sort</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Info</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">    <span class="type">const</span> <span class="type">float</span>* head;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">compare</span><span class="params">(<span class="type">const</span> Info&amp; Info1, <span class="type">const</span> Info&amp; Info2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Info1.score &gt; Info2.score;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>其对应的faster_rcnn.hpp文件为</p>
-<figure class="highlight hpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> FASTER_RCNN_HPP</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FASTER_RCNN_HPP</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span>  <span class="comment">// for snprintf</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;boost/python.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;caffe/caffe.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;gpu_nms.hpp&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/core/core.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/highgui/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/imgproc/imgproc.hpp&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> caffe;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> max(a, b) (((a)&gt;(b)) ? (a) :(b))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> min(a, b) (((a)&lt;(b)) ? (a) :(b))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//background and car</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> class_num=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * ===  Class  ======================================================================</span></span><br><span class="line"><span class="comment"> *         Name:  Detector</span></span><br><span class="line"><span class="comment"> *  Description:  FasterRCNN CXX Detector</span></span><br><span class="line"><span class="comment"> * =====================================================================================</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Detector</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Detector</span>(<span class="type">const</span> string&amp; model_file, <span class="type">const</span> string&amp; weights_file);</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Detect</span><span class="params">(<span class="type">const</span> string&amp; im_name)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">bbox_transform_inv</span><span class="params">(<span class="type">const</span> <span class="type">int</span> num, <span class="type">const</span> <span class="type">float</span>* box_deltas, <span class="type">const</span> <span class="type">float</span>* pred_cls, <span class="type">float</span>* boxes, <span class="type">float</span>* pred, <span class="type">int</span> img_height, <span class="type">int</span> img_width)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">vis_detections</span><span class="params">(cv::Mat image, <span class="type">int</span>* keep, <span class="type">int</span> num_out, <span class="type">float</span>* sorted_pred_cls, <span class="type">float</span> CONF_THRESH)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">boxes_sort</span><span class="params">(<span class="type">int</span> num, <span class="type">const</span> <span class="type">float</span>* pred, <span class="type">float</span>* sorted_pred)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    shared_ptr&lt;Net&lt;<span class="type">float</span>&gt; &gt; net_;</span><br><span class="line">    <span class="built_in">Detector</span>()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Using for box sort</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Info</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">    <span class="type">const</span> <span class="type">float</span>* head;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">compare</span><span class="params">(<span class="type">const</span> Info&amp; Info1, <span class="type">const</span> Info&amp; Info2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Info1.score &gt; Info2.score;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>初次在linux上运行C++代码时，真是各种蒙圈，看着Makefile文件也搞不明白其中关键字代表的意义，使用cmake后，感觉容易了很多。如下是lib文件夹底下，即<code>faster_rcnn.cpp</code>对应的<code>CMakeLists.txt</code>文件。</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span> (VERSION <span class="number">2.8</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> (SRC_LIST faster_rcnn.cpp)</span><br><span class="line"><span class="keyword">include_directories</span> ( <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/../../caffe-fast-rcnn/include&quot;</span></span><br><span class="line">    <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/../../lib/nms&quot;</span> </span><br><span class="line">    /usr/local/<span class="keyword">include</span> </span><br><span class="line">    /usr/<span class="keyword">include</span>/python2.<span class="number">7</span></span><br><span class="line">    /usr/local/cuda/<span class="keyword">include</span> )</span><br><span class="line"><span class="keyword">add_library</span>(faster_rcnn SHARED <span class="variable">$&#123;SRC_LIST&#125;</span>)</span><br></pre></td></tr></table></figure>
-<p>然后依次执行<code>cmake.</code>和<code>make</code>就完成编译了。接下来是调用<code>faster_rcnn.cpp</code>接口的<code>main.cpp</code>文件。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;faster_rcnn.hpp&quot;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string model_file = <span class="string">&quot;/home/ouyang/Program/py-faster-rcnn/models/pascal_voc/VGG16/faster_rcnn_alt_opt/faster_rcnn_test.pt&quot;</span>;</span><br><span class="line">    string weights_file = <span class="string">&quot;/home/ouyang/Program/py-faster-rcnn/output/faster_rcnn_end2end/voc_2007_trainval/vgg16_faster_rcnn_iter_170000.caffemodel&quot;</span>;</span><br><span class="line">    <span class="type">int</span> GPUID=<span class="number">2</span>;</span><br><span class="line">    Caffe::<span class="built_in">SetDevice</span>(GPUID);</span><br><span class="line">    Caffe::<span class="built_in">set_mode</span>(Caffe::CPU);</span><br><span class="line">    Detector det = <span class="built_in">Detector</span>(model_file, weights_file);</span><br><span class="line">    det.<span class="built_in">Detect</span>(<span class="string">&quot;/home/ouyang/Program/py-faster-rcnn/data/demo/90.jpg&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>里面的pt文件和model文件的路径替换成对应的就好。然后是main.cpp对应的CMakeLists.txt文件。</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#This part is used for compile faster_rcnn_demo.cpp</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span> (VERSION <span class="number">2.8</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span> (main_demo)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(main main.cpp)</span><br><span class="line"></span><br><span class="line"><span class="keyword">include_directories</span> ( <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/../caffe-fast-rcnn/include&quot;</span></span><br><span class="line">    <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/../lib/nms&quot;</span> </span><br><span class="line">    <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/lib&quot;</span> </span><br><span class="line">    /usr/local/<span class="keyword">include</span> </span><br><span class="line">    /usr/<span class="keyword">include</span>/python2.<span class="number">7</span></span><br><span class="line">    /usr/local/cuda/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>(main /home/ouyang/Program/py-faster-rcnn/Cplusplus2/lib/libfaster_rcnn.so</span><br><span class="line">    /home/ouyang/Program/py-faster-rcnn/caffe-fast-rcnn/build/lib/libcaffe.so</span><br><span class="line">    /home/ouyang/Program/py-faster-rcnn/lib/nms/libgpu_nms.so </span><br><span class="line">    /usr/local/lib/libopencv_highgui.so </span><br><span class="line">    /usr/local/lib/libopencv_core.so  </span><br><span class="line">    /usr/local/lib/libopencv_imgproc.so </span><br><span class="line">    /usr/local/lib/libopencv_imgcodecs.so</span><br><span class="line">    /usr/lib/x86_64-linux-gnu/libglog.so</span><br><span class="line">    /usr/lib/x86_64-linux-gnu/libboost_system.so</span><br><span class="line">    /usr/lib/x86_64-linux-gnu/libboost_python.so</span><br><span class="line">    /usr/lib/x86_64-linux-gnu/libglog.so</span><br><span class="line">    /usr/lib/x86_64-linux-gnu/libpython2.<span class="number">7</span>.so</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
-<p>相同的执行<code>cmake.</code>和<code>make</code>完成该部分的编译。</p>
-<h2 id="封装2"><a href="#封装2" class="headerlink" title="封装2"></a>封装2</h2><p>上面<code>C++</code>封装的Faster R-CNN结构简单，代码量也少，部署起来很方便。但在项目中也有着致命的弱点，检测速度大概比python版的Faster R-CNN慢了一个数量级。因此很有必要寻求另外的封装方式，这里参考<a href="https://github.com/D-X-Y/caffe-faster-rcnn">D-X-Y</a>纯<code>C++</code>版的Faster R-CNN代码，该代码将所有代码都改写为了C++版本，不像上一部分的代码中调用了很多python的库。<br>D-X-Y所封装的代码中对应原python版本中demo.py的接口在<code>G:\gitProgram\caffe-faster-rcnn\src\api\FRCNN\frcnn_api.cpp</code>和<code>G:\gitProgram\caffe-faster-rcnn\include\api\FRCNN\frcnn_api.hpp</code>。这里我将所需要的文件整合到一起，目录结构为：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">└── lib</span><br><span class="line">│   │── frcnn_api<span class="selector-class">.cpp</span></span><br><span class="line">│   │── frcnn_api<span class="selector-class">.hpp</span></span><br><span class="line">│   │── CMakeLists<span class="selector-class">.txt</span></span><br><span class="line">│—— CMakeLists<span class="selector-class">.txt</span></span><br><span class="line">│—— <span class="selector-tag">main</span><span class="selector-class">.cpp</span></span><br><span class="line">└── include</span><br><span class="line">│   │── api</span><br><span class="line">│   │    api<span class="selector-class">.hpp</span></span><br><span class="line">│   │   └── FRCNN</span><br><span class="line">│   │   │   │── frcnn_api<span class="selector-class">.hpp</span></span><br><span class="line">│   │   │   │── rpn_api<span class="selector-class">.hpp</span></span><br><span class="line">│   │── caffe</span><br><span class="line">│   │   │──proto</span><br><span class="line">│—— libcaffe<span class="selector-class">.so</span>.<span class="number">1.0</span>.<span class="number">0</span></span><br><span class="line">│—— libcaffe<span class="selector-class">.so</span></span><br><span class="line">│—— test.prototxt</span><br></pre></td></tr></table></figure><br>上述代码结构中的<code>include</code>来自D-X-Y代码中的<code>include</code>,<code>/include/caffe/proto</code>来自D-X-Y代码中编译后产生，对应的路径为<code>./caffe-faster-rcnn/.build_release/src/caffe/proto</code>。<br><strong>第二种方式就不贴对应的代码了，在这里我也将两种方式对应的代码放在github上，供大家参考</strong><a href="https://github.com/oysz2016/cpp_faster-rcnn">代码</a></p>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
-]]></content>
-      <categories>
-        <category>深度学习笔记</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>代码部署</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《Cascade R-CNN:Delving into High Quality Object Detection》论文笔记</title>
     <url>/post/d76cc2d4.html</url>
     <content><![CDATA[<p>&emsp;&emsp;今年的图像领域的顶会CVPR收录了不少目标检测的论文，学习这些论文又可以让我忙活一阵了。<br>&emsp;&emsp;<a href="https://arxiv.org/pdf/1712.00726.pdf">Cascade R-CNN: Delving into High Quality Object Detection</a>这篇文章关注的是IOU的最优选择，很小的trick，不过在效果上有不错的提升。<span id="more"></span></p>
@@ -444,6 +507,52 @@
         <tag>CVPR</tag>
         <tag>目标检测</tag>
         <tag>图像处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《GIoU》论文笔记</title>
+    <url>/post/4065a784.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<p>论文链接：<a href="https://arxiv.org/abs/1902.09630">https://arxiv.org/abs/1902.09630</a><br>代码链接：<a href="https://github.com/generalized-iou">https://github.com/generalized-iou</a></p>
+<p>&emsp;&emsp;这篇论文出自CVPR2019，算是目前已被录用且公布的位数不多的目标检测相关论文了。这篇论文提出了一种优化边界框的新方式——GIoU(generalized IoU，广义IoU)。<em>目前关于IOU的新用法真是层出不穷，从<a href="https://oysz2016.github.io/post/d76cc2d4.html">Cascade R-CNN</a>到<a href="https://oysz2016.github.io/post/4395ef5a.html">IOU Net</a>再到如今的GIoU，GIoU的方法是这些论文中相对简单的，相信很多朋友了解了这篇文章的远离后，内心的OS都是“总觉得损失函数可以优化，这么简单我怎么没想到呢？”，哈哈，反正我是这样想的了。下面来看看这篇文章所提出的方法吧。</em></p>
+<h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>&emsp;&emsp;目前目标检测中主流的边界框优化采用的都是BBox的回归损失(MSE loss, L1-smooth loss等)，这些方式计算损失值得方式都是检测框得“代理属性”，而忽略了检测框本身最显著的性质——IoU。如下图所示，在L1及L2范数取到相同的值时，实际上检测效果却是差异巨大的，直接表现就是预测和真实检测框的IoU值变化较大，这说明L1和L2范数不能很好的反映检测效果。</p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801043208.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;除了能反映预测检测框与真实检测框的检测效果外，IoU还具有<strong>尺度不变性</strong>。可是既然IOU这么好，为什么之前不直接用IoU呢，这是由于IoU有两个缺点，导致其不太适合做损失函数：</p>
+<ul>
+<li>但检测框与gt之间没有重合时，IoU为0。而在优化损失函数时，梯度为0，意味着无法优化</li>
+<li>在检测框与gt之间IoU相同时，检测的效果也具有较大差异，如下图所示：<br><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801042668.jpg" alt="enter description here"></li>
+</ul>
+<p>&emsp;&emsp;基于IoU的优良特性和其作为损失函数时的致命缺点，作者提出了一个新的概念——GIoU</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>&emsp;&emsp;GIoU的定义如下图所示，</p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801042664.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;根据定义，GIoU具有如下性质：</p>
+<ul>
+<li>GIoU具有作为一个度量标准的优良性质。包括非负性，同一性，对称性，以及三角不等式的性质</li>
+<li>与IoU相似，具有尺度不变性</li>
+<li>GIoU的值总是小于IoU的值</li>
+<li>对于两个矩形框A和B，0≤IoU(A，B)≤1，而-1≤GIoU≤1</li>
+<li>在A，B没有良好对齐时，会导致C的面积增大，从而使GIoU的值变小，而两个矩形框不重合时，依然可以计算GIoU，一定程度上解决了IoU不适合作为损失函数的原因</li>
+</ul>
+<p>&emsp;&emsp;GIoU作为损失函数时计算方式如下的算法2</p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801043209.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;从算法中可以看到和GIoU的计算方式和IoU的步骤基本保持一致，在得到IoU的值后在根据上面的算法1计算GIoU的值。<strong>这里还不太清楚方向传播时，梯度是怎么计算的。等我看看源码再来更新吧</strong></p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>&emsp;&emsp;作者分别在几种主流的目标检测算法上做了实验，分别是YoLo、Faster R-CNN和Mask R-CNN。这里贴上在Pascal Voc数据集上的实验结果，如下</p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801042667.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552799016561.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;实验结果中在YoLo v3上可以看到GIoU相比IoU的损失函数有较大幅度的提升，而在faster r-cnn中GIoU和IoU作为损失函数的区别不大，这里作者给出的解释是faster rcnn的anchor更密集，导致不易出现与gt不重叠的检测框。<em>其实个人认为，anchor多的情形与gt不重叠的检测框才多，更根本的原因应该是RPN网络进行了一次粗检后，滤去了大部分跟gt没有重合的检测框。导致GIoU相比IoU的损失函数提升不明显吧</em></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;&emsp;GIoU的方法很简单，巧妙的是优化的点。通过广义IoU作为损失函数替代bbox回归还是很有趣的。不过疑惑的是实验结果中的检测AP值都非常低，原生的faster rcnn在pascal voc上的检测效果都不会这么差。从实验对比上GIoU的损失函数相比原始的损失函数在准确率不到40%的效果上来说确实有较大幅度的提升。然而要是换到准确率较高的baseline上呢？这一点还需要实验验证。<br>&emsp;&emsp;另外总感觉这篇论文有点点到即止，没有更多的实验验证bbox作为损失函数存在缺陷的原因。</p>
+<blockquote class="blockquote-center">
+<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
+
+</blockquote>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
+]]></content>
+      <categories>
+        <category>论文笔记</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>目标检测</tag>
       </tags>
   </entry>
   <entry>
@@ -510,52 +619,6 @@
 <li>耗时实验：耗时还在可以接受的范围</li>
 </ul>
 <p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463508.jpg" alt="enter description here"></p>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
-]]></content>
-      <categories>
-        <category>论文笔记</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>目标检测</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《GIoU》论文笔记</title>
-    <url>/post/4065a784.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
-<p>论文链接：<a href="https://arxiv.org/abs/1902.09630">https://arxiv.org/abs/1902.09630</a><br>代码链接：<a href="https://github.com/generalized-iou">https://github.com/generalized-iou</a></p>
-<p>&emsp;&emsp;这篇论文出自CVPR2019，算是目前已被录用且公布的位数不多的目标检测相关论文了。这篇论文提出了一种优化边界框的新方式——GIoU(generalized IoU，广义IoU)。<em>目前关于IOU的新用法真是层出不穷，从<a href="https://oysz2016.github.io/post/d76cc2d4.html">Cascade R-CNN</a>到<a href="https://oysz2016.github.io/post/4395ef5a.html">IOU Net</a>再到如今的GIoU，GIoU的方法是这些论文中相对简单的，相信很多朋友了解了这篇文章的远离后，内心的OS都是“总觉得损失函数可以优化，这么简单我怎么没想到呢？”，哈哈，反正我是这样想的了。下面来看看这篇文章所提出的方法吧。</em></p>
-<h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>&emsp;&emsp;目前目标检测中主流的边界框优化采用的都是BBox的回归损失(MSE loss, L1-smooth loss等)，这些方式计算损失值得方式都是检测框得“代理属性”，而忽略了检测框本身最显著的性质——IoU。如下图所示，在L1及L2范数取到相同的值时，实际上检测效果却是差异巨大的，直接表现就是预测和真实检测框的IoU值变化较大，这说明L1和L2范数不能很好的反映检测效果。</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801043208.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;除了能反映预测检测框与真实检测框的检测效果外，IoU还具有<strong>尺度不变性</strong>。可是既然IOU这么好，为什么之前不直接用IoU呢，这是由于IoU有两个缺点，导致其不太适合做损失函数：</p>
-<ul>
-<li>但检测框与gt之间没有重合时，IoU为0。而在优化损失函数时，梯度为0，意味着无法优化</li>
-<li>在检测框与gt之间IoU相同时，检测的效果也具有较大差异，如下图所示：<br><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801042668.jpg" alt="enter description here"></li>
-</ul>
-<p>&emsp;&emsp;基于IoU的优良特性和其作为损失函数时的致命缺点，作者提出了一个新的概念——GIoU</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>&emsp;&emsp;GIoU的定义如下图所示，</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801042664.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;根据定义，GIoU具有如下性质：</p>
-<ul>
-<li>GIoU具有作为一个度量标准的优良性质。包括非负性，同一性，对称性，以及三角不等式的性质</li>
-<li>与IoU相似，具有尺度不变性</li>
-<li>GIoU的值总是小于IoU的值</li>
-<li>对于两个矩形框A和B，0≤IoU(A，B)≤1，而-1≤GIoU≤1</li>
-<li>在A，B没有良好对齐时，会导致C的面积增大，从而使GIoU的值变小，而两个矩形框不重合时，依然可以计算GIoU，一定程度上解决了IoU不适合作为损失函数的原因</li>
-</ul>
-<p>&emsp;&emsp;GIoU作为损失函数时计算方式如下的算法2</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801043209.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;从算法中可以看到和GIoU的计算方式和IoU的步骤基本保持一致，在得到IoU的值后在根据上面的算法1计算GIoU的值。<strong>这里还不太清楚方向传播时，梯度是怎么计算的。等我看看源码再来更新吧</strong></p>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>&emsp;&emsp;作者分别在几种主流的目标检测算法上做了实验，分别是YoLo、Faster R-CNN和Mask R-CNN。这里贴上在Pascal Voc数据集上的实验结果，如下</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801042667.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552799016561.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;实验结果中在YoLo v3上可以看到GIoU相比IoU的损失函数有较大幅度的提升，而在faster r-cnn中GIoU和IoU作为损失函数的区别不大，这里作者给出的解释是faster rcnn的anchor更密集，导致不易出现与gt不重叠的检测框。<em>其实个人认为，anchor多的情形与gt不重叠的检测框才多，更根本的原因应该是RPN网络进行了一次粗检后，滤去了大部分跟gt没有重合的检测框。导致GIoU相比IoU的损失函数提升不明显吧</em></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;&emsp;GIoU的方法很简单，巧妙的是优化的点。通过广义IoU作为损失函数替代bbox回归还是很有趣的。不过疑惑的是实验结果中的检测AP值都非常低，原生的faster rcnn在pascal voc上的检测效果都不会这么差。从实验对比上GIoU的损失函数相比原始的损失函数在准确率不到40%的效果上来说确实有较大幅度的提升。然而要是换到准确率较高的baseline上呢？这一点还需要实验验证。<br>&emsp;&emsp;另外总感觉这篇论文有点点到即止，没有更多的实验验证bbox作为损失函数存在缺陷的原因。</p>
 <blockquote class="blockquote-center">
 <p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
 
@@ -665,6 +728,58 @@
         <tag>深度学习</tag>
         <tag>目标检测</tag>
         <tag>文本检测</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记</title>
+    <url>/post/f38a4f4.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<p>论文链接：<a href="https://arxiv.org/abs/1711.07767">https://arxiv.org/abs/1711.07767</a><br>论文代码：<a href="https://github.com/ruinmessi/RFBNet">https://github.com/ruinmessi/RFBNet</a></p>
+<p>&emsp;&emsp;这篇文章是CV领域顶会ECCV2018中关于目标检测的文章,文中以SSD模型为基础提出了RFB结构,强调兼顾速度与性能。说来也巧,因为项目需要,在看这篇论文之前正好看过提出dilated convolution的那篇文章，但是dilated convolution的结构获得更大感受野的方式确实对细粒度的分割会比较好，适用图像分割领域。当我还在想能怎么用在目标检测上时，就看到了RFB网络。虽然作者说是为了兼顾速度与性能将其应用到one stage的SSD上，但我也在two stage的faster rcnn上，复现出了较好的效果。这是一篇我个人很喜欢的文章，实验充分，模拟视觉细胞的结构让我觉得即简单又巧妙。因此简单总结下这篇文章。</p>
+<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>&emsp;&emsp;作者指出目前图像领域深度学习的发展越来越倾向于用更深的网络以达到更好的效果，然而像ResNet等很深的网络往往具有较大的计算量，导致速度受限。相比之下作者提出的RFB结构具有以下优点：</p>
+<ol>
+<li>模拟了人类视觉系统RFs的大小和离心率设置，增强轻量级CNN网络的特征提取能力</li>
+<li>简单的替换了SSD的最后一级卷积层，在较少的计算增加的情况下，提升了模型的性能</li>
+<li>除了SSD之外，也扩展到了MobileNet中取得了较好的结果，展示了结构的泛化性</li>
+</ol>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>&emsp;&emsp;这部分就不总结了，主要介绍了one stage和two stage的目标检测模型和目前论文中在感受野上做的研究。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="视觉皮层"><a href="#视觉皮层" class="headerlink" title="视觉皮层"></a>视觉皮层</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546754014816.jpg" alt="enter description here"><br>&emsp;&emsp;如上图所示是人类感受野(pRF)的示意图,可以看到有以下规律:</p>
+<ul>
+<li>距离中心越远的pRF越大，即pRF大小与偏心含有正相关的关系</li>
+<li>不同图谱的pRF大小规模不同</li>
+</ul>
+<h3 id="感受野块"><a href="#感受野块" class="headerlink" title="感受野块"></a>感受野块</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546754512995.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546759194131.jpg" alt="enter description here"><br>&emsp;&emsp;作者提出的RFB结构的原理如上图所示，该结构的特点有：</p>
+<ul>
+<li>多分支卷积层：根据之前人类感受野(pRF)的示意图，为了仿照不同图谱的pRF大小规模不同，作者提出用不同大小的卷积核以实现多大小的pRF，这一方法应该优于共享固定大小的RFs。这一结构参考了Inception的结构。</li>
+<li>膨胀卷积和池化层：<strong>膨胀卷积的基本意图在于生成分辨率更高的特征图</strong>，在相同计算量的情况下获得更大的感受野。而膨胀卷积核的大小和扩张与pRFs在视觉皮层的大小和偏心具有相似的功能关系。然后再将不同膨胀卷积处理过的层融合起来，以达到视觉皮层中感受野的效果。rFB的结构如下图所示：</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755296592.jpg" alt="enter description here"></p>
+<h3 id="RFB检测框架"><a href="#RFB检测框架" class="headerlink" title="RFB检测框架"></a>RFB检测框架</h3><p>&emsp;&emsp;作者提出的RFB的结构是在SSD的基础上改的，做的修改及替换如下图所示：</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755756172.jpg" alt="enter description here"></p>
+<ul>
+<li>轻量级的结构：这里主要说的是SSD的有点，这里不赘述</li>
+<li>多尺度结构中的RFB：在原始的SSD中，有着层叠的卷积层，形成一系列空间分辨率连续下降、感受野不断增大的feature map。在作者的实现中，保持了相同的SSD级联结构，<strong>但具有较大感受也的卷积层被RFB结构替代</strong>。作者还指出最后基层卷积层的特征图太小，适合用5X5大小的卷积核。<strong>这部分论文里Fig.4的a图中用的确实是5x5的卷积核，但是给出的代码中却用两个3x3的卷积核替代了，这部分我有点疑惑。</strong></li>
+</ul>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>&emsp;&emsp;这一部分就是各种各样的实验图表了，也不赘述。从以下图表可以看到实验结果确实很惊艳，用了RFB结构的网络mAP会有不小的提升。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546756443789.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546756466104.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546756478399.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546757250177.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;作者还给出了一张目前目标检测算法的准确率和耗时的图片，对比的多是one stage的模型，可以作为参考</p>
+<p><img data-src="https://user-gold-cdn.xitu.io/2019/1/6/1682321abe0c6f46?w=717&amp;h=489&amp;f=png&amp;s=96823" alt=""></p>
+<blockquote class="blockquote-center">
+<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
+
+</blockquote>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
+]]></content>
+      <categories>
+        <category>论文笔记</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>目标检测</tag>
       </tags>
   </entry>
   <entry>
@@ -832,6 +947,132 @@
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>决策树汇总——ID3、C4.5、CART</title>
+    <url>/post/5f5a1d32.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span><br>决策树是机器学习中的经典算法之一，十大机器学习算法中就包含决策树算法(Decision Tree). 顾名思义，决策树是基于树结构进行决策的，根据算法不同会使用多叉树或者二叉树。其实人类在日常生活中，遇到问题时也会使用决策树进行判断。例如西瓜书里有列举挑选西瓜的例子。</p>
+<p>一颗决策树一般包含一个根结点，若干个内部节点和若干叶节点，根结点是判断的开始，内部节点是一些子判断流程，而叶节点对应于决策的结果。决策树作为机器学习算法的一种，其目的是产生一颗泛化能力强的树，能处理训练集中没有见到的情形，并能正确决策。</p>
+<h2 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h2><h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><p>信息熵是度量样本集合纯度最常用的一种指标，令D中第k类样本的比例为$p_k$, 则D的信息熵为<br>$Ent(D)=-\sum_{k=1}^{|y|} p_klog_2{p_k}$</p>
+<p>信息增益=信息熵-条件熵<br>$Gain(D,a)=Ent(D)-\sum_{v=1}^{V} \frac{D^v}{D}Ent(D^v)$</p>
+<p>以西瓜书中的列子<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%86%B3%E7%AD%96%E6%A0%91%E6%B1%87%E6%80%BB/2.png" alt=""></p>
+<p>17个样本中正例有8个，负例有9个，则根结点的信息熵为:<br>$Ent(D)=-\sum_{k=1}^{2} p_klog_2{p_k}=-(\frac{8}{17}log_2 \frac{8}{17}+\frac{9}{17}log_2 \frac{9}{17})=0.998$</p>
+<p>然后计算相应属性的条件熵，以色泽属性为例，可以分为 $D^1$(色泽=青绿)有6个样本，正反各3个，$D^2$(色泽=乌黑)有6个样本，正4，饭2，$D^3$(色泽=浅白)，有5个样本，正1反4.则3个分支节点的信息熵为：<br>$Ent(D^1)=-(\frac{3}{6}log_2 \frac{3}{6}+\frac{3}{6}log_2 \frac{3}{6})=1$<br>$Ent(D^2)=-(\frac{4}{6}log_2 \frac{4}{6}+\frac{2}{6}log_2 \frac{2}{6})=0.918$<br>$Ent(D^2)=-(\frac{1}{5}log_2 \frac{1}{5}+\frac{4}{5}log_2 \frac{4}{5})=0.722$</p>
+<p>则色泽的信息增益为:</p>
+<p>$Gain(D,a)=Ent(D)-\sum_{v=1}^{V} \frac{D^v}{D}Ent(D^v)=0.998-(\frac{6}{17}<em>1+\frac{6}{17}</em>0.918+\frac{5}{17}*0.722)=0.109$</p>
+<p>也可以得到其他属性的信息增益，在根节点的位置信息增益最大的属性为纹理Gain=0.381.<br>确定第一个分支后，后面的内部节点和叶节点叶通过类似方式递归判断，则生成的决策树为:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%86%B3%E7%AD%96%E6%A0%91%E6%B1%87%E6%80%BB/3.png" alt=""></p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>ID3没有剪纸的策略，容易过拟合</li>
+<li>没有考虑缺失值</li>
+<li>只能处理离散分布的特征</li>
+</ul>
+<h2 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h2><p>C4.5在ID3的基础上做了一些改进:</p>
+<ul>
+<li>引入后剪枝缓解过拟合</li>
+<li>可以处理属性中有连续值的情形，具体做法是对于某属性在区间$[a^i, a^{i+1})$，若取任意值产生的划分结果相同，则取该区间的中位点作为划分点</li>
+<li>对于缺失值，C4.5的做法是用没有缺失的样本子集计算信息增益</li>
+</ul>
+<h3 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h3><p>剪枝的目的是防止决策树过拟合，在构建决策树时，为了能正确分类训练样本。决策树的结点划分过程会不断重复，可能导致分的过细，在训练集拟合的很好，但测试集的效果变得很差。所以需要剪枝帮助模型获得泛化性。<br>剪枝有<strong>预剪枝</strong>和<strong>后剪枝</strong>两种，引用下西瓜书里关于两种剪枝方式的差异</p>
+<blockquote>
+<p><strong>预剪枝</strong>是指在决策树生成过程中，对每个结点在划分前先进行估计，若当前结点的划分不能带来决策树泛化性能提升，则停止划分并将当前结点标记为叶结点;<strong>后剪枝</strong>则是先从训练集生成一棵完整的决策树，然后自底向上地对非叶结点进行考察，若将该结点对应的子树替换为叶结点能带来决策树泛化性能提升，则将该子树替换为叶结点.</p>
+</blockquote>
+<p>判断上述两种剪枝方式是否能带来性能提升的方式是采用验证集，验证剪枝前后的效果。</p>
+<p>预剪枝和后剪枝的例子见下面两图:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%86%B3%E7%AD%96%E6%A0%91%E6%B1%87%E6%80%BB/4.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%86%B3%E7%AD%96%E6%A0%91%E6%B1%87%E6%80%BB/5.png" alt=""></p>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>C4.5使用的是多叉树，二叉树效率更高</li>
+<li>只能用于分类</li>
+<li>使用的熵模型有大量耗时的对数运算，连续值还有排序运算</li>
+<li>在构造树的过程中，对数值属性值需要按照其大小排序，从中选择一个分割点。当训练集打到内存无法容纳时，会无法运行</li>
+</ul>
+<h2 id="CART"><a href="#CART" class="headerlink" title="CART"></a>CART</h2><h3 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h3><p>CART使用基尼指数作为划分属性的度量<br>$Gini(D)=\sum_{k=1}^{|y|}\sum_{k^{‘} \neq k} p_k p_{k^{‘}}=1- \sum_{k=1}^{|y|}p_k^2$</p>
+<p>$Gini(D)$反映了从数据集D中随机抽取两个样本，其类别标记不一致的概率。因此$Gini(D)$越小，则数据集D的纯度越高</p>
+<p>将其写成和信息增益等价的形式，则基尼指数为</p>
+<p>$ Gini_index(D,a)=\sum_{v=1}^{V} \frac{D^v}{D} Gini(D^v) $</p>
+<p>在是否要划分决策树的判断时，CART会选择使得划分后基尼指数最小的属性作为最优划分属性。</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>决策树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二维图像分割之分式分割</title>
+    <url>/post/7f9c7afb.html</url>
+    <content><![CDATA[<p class="description"></p>
+
+<span id="more"></span>
+<p>&emsp;&emsp;从上周开始研究各种数学式子的切割，包括分式，竖式和脱式。本着由易到难的原则，开始做分式切割的调研。除了做PPT，写文档外，也将部分调研的结果整理成博文。</p>
+<h2 id="图像数学公式定位的关键问题"><a href="#图像数学公式定位的关键问题" class="headerlink" title="图像数学公式定位的关键问题"></a>图像数学公式定位的关键问题</h2><p>&emsp;&emsp;一般地，公式定位流程如下：</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215085.png" alt="数学公式定位流程"></p>
+<ul>
+<li>预处理：包括灰度化、二值化、去除噪声和倾斜矫正等步骤</li>
+<li>统计版面参数：包括字符的位置、字符的尺寸和相邻字符间的间隔等</li>
+<li>版面分析：标注出字符域、图像域、表格域和图形域等</li>
+<li>行提取：对字符域以行为单位进行划分</li>
+<li>定位孤立数学公式：从提取的行中区分孤立数学公式行</li>
+<li>定位内嵌公式：从非孤立数学公式行中区分出含数学公式的文本行</li>
+</ul>
+<h2 id="公式定位基本算法"><a href="#公式定位基本算法" class="headerlink" title="公式定位基本算法"></a>公式定位基本算法</h2><ol>
+<li>预处理：对图像灰度化、二值化、倾斜校正、去噪等处理，使其更有利于数学公式定位</li>
+<li><p>数学公式字符块提取<br> 1.行提取</p>
+<ul>
+<li>进行联通区域搜索，得到图片中所有连通区域</li>
+<li>合并具有相交或包含关系的连通区域</li>
+<li>根据连通区域宽高度统计直方图得到版面的字符宽、高度阈值<code>threshold_w</code>和<code>threshold_h</code>，据此去除图片中的无关信息，得到公式的候选区域</li>
+<li>根据候选字符的连通区域的位置关系，合并候选字符连通区域，提取本文行及相应参数：行间距<code>Line_d</code>，行内相邻连通区域水平间隔平均值<code>threshold_d</code></li>
+</ul>
+<p>2.行内字符块提取:行内字符块提取是根据<code>threshold_d</code>将文本中的字符连通区域合并成字符块<br>3.后处理：数学公式字符块合并。对于分式，若将分数线与分子分母分别切割，可以根据其上下相邻行为单字符或行内字符均处于具有二维运算结构的运算符作用范围内，且两者之间的垂直距离小于行距<code>Line_d</code>的特点将其合并。</p>
+</li>
+</ol>
+<p>&emsp;&emsp;图像倾斜的影响：当倾斜角增加时，数学公式定位准确率急剧下降。这是由于在数学公式定位算法采用连通区域空间位置关系特征提取文本行，很容易受到倾斜影响，进而影响公式定位准确性，因此<strong>首先需要对拍照图片进行测斜和校正处理</strong>，以确保公式定位算法的鲁棒性。</p>
+<h2 id="公式定位错误的校正方法"><a href="#公式定位错误的校正方法" class="headerlink" title="公式定位错误的校正方法"></a>公式定位错误的校正方法</h2><ul>
+<li>考虑根据图片中印刷体字符的大小，近似判断拍照的远近，从而确定各个阈值的大小</li>
+<li>影响最大的参数有行内相邻连通区域的水平间隔<code>Character_dist</code>,可以考虑将行内连通区域按从左到右排列，然后计算版面中相邻连通区域的间隔，取数量最多的连通区域间隔座位阈值<code>Character_dist</code>。对与行间距阈值<code>Line_d</code>也可以用类似方法</li>
+</ul>
+<h2 id="分式分割的难点"><a href="#分式分割的难点" class="headerlink" title="分式分割的难点"></a>分式分割的难点</h2><h3 id="印刷体"><a href="#印刷体" class="headerlink" title="印刷体"></a>印刷体</h3><p>&emsp;&emsp;对于印刷体分式，如下图，如同印刷体文本的字符分割算法一样。采取水平投影的方式即可找到分割线。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1532749752156.jpg" alt="enter description here"></p>
+<h3 id="手写体"><a href="#手写体" class="headerlink" title="手写体"></a>手写体</h3><p>&emsp;&emsp;分式分割的难点主要集中再手写体分式上。手写体的格式没有印刷体那么规范，分子与分母经常会出现粘合，带分式中也会出现整数与分数线、分数粘合在一起的情况，因此无法直接通过投影拆分分式。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215086.png" alt="enter description here"></p>
+<h2 id="分式分割的处理思路"><a href="#分式分割的处理思路" class="headerlink" title="分式分割的处理思路"></a>分式分割的处理思路</h2><p>&emsp;&emsp;分式分割的关键点是找到分数线，分数线能作为带分数中整数与分数分割的参考，且能作为分数部分的分割线。因此分数线具有重要的参考价值。</p>
+<p>&emsp;&emsp;考虑到手写体中分数线扭曲，各部分粘合的情况调研了许多直线检测的算法。有时间会做系统的整理。在这里线整理几种常用的直线检测算法。</p>
+<h3 id="霍夫变换"><a href="#霍夫变换" class="headerlink" title="霍夫变换"></a>霍夫变换</h3><p>&emsp;&emsp;Hough是最经典也是应用最广泛的直线检测算法，hough使用极坐标的方式表示直线。极坐标下，直线的表达式可定义为：$\left(-\frac{cos\theta}{sin\theta}\right)x+\left(\frac{r}{sin\theta}\right)$，化简可得到$r=xcos\theta+ysin\theta$。对于每一点$(x_0,y_0)$，可以将通过该点的直线定义为$r_\theta=x_0cos\theta+y_0sin\theta$。</p>
+<p>&emsp;&emsp;通过以上的推导，意味着每一对极坐标的参数$(r_\theta, \theta)$代表着一条通过$(x_0,y_0)$的直线。对于每个定点$(x_0,y_0)$，画出通过该点的所有直线并以极坐标表示，会得到一条正弦曲线。因此越多的点具有所描绘的正弦曲线相交，意为着这些点能组成平面内的一条直线。<br>&emsp;&emsp;如下图所示，点$x_1=9$,$y_1=4$，点$x_1=12$，$y_1=$以及$x_1=8$,$y_1=6$所描绘的通过它们的所有直线的正弦曲线。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215087.png" alt="enter description here"><br>hough的做法是追踪图像中每个点对应曲线间的交点，如果这些交点的数量超过了一点的阈值，即认为交点的参数$(r_\theta, \theta)$在原图像中为一条直线。</p>
+<p>&emsp;&emsp;Hough变换的基本思想是利用图像的全局特征将特定形状的边缘连接起来，Hough通过点线的对偶性，将原图像中的点映射到用于累加的参数空间，将在原图像中寻找特定曲线的检测转化为寻找参数空间中的峰值问题。Hough的优点和缺点都来源于全局特征，因为全局特征，Hough提取的曲线受噪声和边界的影响较小，具有较好的鲁棒性，但也会带来效率低的缺点</p>
+<h3 id="LSD算法"><a href="#LSD算法" class="headerlink" title="LSD算法"></a>LSD算法</h3><p>&emsp;&emsp;LSD发表于2012年，算是较新的直线检测算法。与Hough利用全局特征不同，LSD是一种局部提取直线的算法，在线性时间(liner-time)内能得到亚像素级准确度的直线。<br>&emsp;&emsp;LSD算法的流程如下图，LSD算法的核心思想是合并像素生成直线，合并的规则是根据每个像素点的梯度值建立状态列表，并将所有点设置为NOT USED。然后去除列表中梯度最大的点作为直线的第一个点，并将对应的状态设置为USED。再基于区域生长算法，得到line support region。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215203.png" alt="enter description here"></p>
+<p>&emsp;&emsp;上面说了Hough由于全局的属性带来的优缺点，下面也说说LSD这种算法因为局部提取直线带来的缺点。<br>LSD号称是一种无需设置任何参数的算法，但在实际使用中，需要设置采样率，并且区域生长算法中，需要设置梯度角度变化的容忍（tolerance ）值。</p>
+<ul>
+<li>由于LSD算法的每个点都有状态值“NOT USED”和“USED”。因此每个点都智能属于一条直线，遇到相交直线时会出现至少一条直线被分割成多条直线的情况。</li>
+<li>LSD算法在找寻line support region时，用了区域生长算法的思想。会由于线段间的遮挡和局部模糊导致一条直线被割裂成多条。</li>
+</ul>
+<p>&emsp;&emsp;由于是做手写分式分割中的分数线检测，直线往往弯曲而且易被其他线“切断”。因此做实验时，尝试将采样率与区域生长的容忍值调大了不少，让我困惑的是，在我将采样率和容忍值调大后，LSD算法的耗时呈大幅增长，失去了LSD算法的效率优势，这里暂时还不知道是我自己写算法的问题，还是LSD在增大局部搜索范围后效率会显著下降的原因。日后有了确切的结论会来更新，也欢迎大家指正。</p>
+<p>&emsp;&emsp;下面贴几张LSD算法在分数检测的效果图，不同颜色的线段代表检测出的不同直线。可以看到对于扭曲小且没相交直线的情况下，LSD有较好的效果，而一旦干扰多了，一条直线会被分割成多条直线。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215201.png" alt="enter description here"></p>
+<p>&emsp;&emsp;关于直线的论文有很多，还有使用图像分割或提取边缘算法得到图像边缘后，使用动态聚类算法聚合线段，再用直线拟合同一聚类中图像。</p>
+<h2 id="实验与结论"><a href="#实验与结论" class="headerlink" title="实验与结论"></a>实验与结论</h2><p>&emsp;&emsp;不得不说，手写分式可能出现各种各样的情况。例如无法有效判断检测到的那条直线为分数线，对于带分式中整数与分子分母贴合紧密的情况，也暂时没有有效的解决思路。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215088.png" alt="enter description here"></p>
+<p>&emsp;&emsp;最近看了很多图像处理的论文以及思路，很多棘手的任务，论文作者都巧妙的用图像处理的算法解决了。相信关于分式分割的处理，也会有相应的解决办法。事情总是要一步一个脚印的处理。先贴一个图，下图是这周做的真分式和假分式的切割算法，在525张手写分式图片中，正确分割了512张，也算是达到了预期的效果。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215385.png" alt="enter description here"></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] 毛星云. OpenCV3编程入门[M]. 电子工业出版社, 2015.</p>
+<p>[2] Gioi R G V, Jakubowicz J, Morel J M, et al. LSD: A line segment detector[J]. Image Processing on Line, 2012, 2(4):35-55.</p>
+<blockquote class="blockquote-center">
+<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
+
+</blockquote>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
+]]></content>
+      <categories>
+        <category>图像处理</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1030,81 +1271,6 @@
       </tags>
   </entry>
   <entry>
-    <title>二维图像分割之分式分割</title>
-    <url>/post/7f9c7afb.html</url>
-    <content><![CDATA[<p class="description"></p>
-
-<span id="more"></span>
-<p>&emsp;&emsp;从上周开始研究各种数学式子的切割，包括分式，竖式和脱式。本着由易到难的原则，开始做分式切割的调研。除了做PPT，写文档外，也将部分调研的结果整理成博文。</p>
-<h2 id="图像数学公式定位的关键问题"><a href="#图像数学公式定位的关键问题" class="headerlink" title="图像数学公式定位的关键问题"></a>图像数学公式定位的关键问题</h2><p>&emsp;&emsp;一般地，公式定位流程如下：</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215085.png" alt="数学公式定位流程"></p>
-<ul>
-<li>预处理：包括灰度化、二值化、去除噪声和倾斜矫正等步骤</li>
-<li>统计版面参数：包括字符的位置、字符的尺寸和相邻字符间的间隔等</li>
-<li>版面分析：标注出字符域、图像域、表格域和图形域等</li>
-<li>行提取：对字符域以行为单位进行划分</li>
-<li>定位孤立数学公式：从提取的行中区分孤立数学公式行</li>
-<li>定位内嵌公式：从非孤立数学公式行中区分出含数学公式的文本行</li>
-</ul>
-<h2 id="公式定位基本算法"><a href="#公式定位基本算法" class="headerlink" title="公式定位基本算法"></a>公式定位基本算法</h2><ol>
-<li>预处理：对图像灰度化、二值化、倾斜校正、去噪等处理，使其更有利于数学公式定位</li>
-<li><p>数学公式字符块提取<br> 1.行提取</p>
-<ul>
-<li>进行联通区域搜索，得到图片中所有连通区域</li>
-<li>合并具有相交或包含关系的连通区域</li>
-<li>根据连通区域宽高度统计直方图得到版面的字符宽、高度阈值<code>threshold_w</code>和<code>threshold_h</code>，据此去除图片中的无关信息，得到公式的候选区域</li>
-<li>根据候选字符的连通区域的位置关系，合并候选字符连通区域，提取本文行及相应参数：行间距<code>Line_d</code>，行内相邻连通区域水平间隔平均值<code>threshold_d</code></li>
-</ul>
-<p>2.行内字符块提取:行内字符块提取是根据<code>threshold_d</code>将文本中的字符连通区域合并成字符块<br>3.后处理：数学公式字符块合并。对于分式，若将分数线与分子分母分别切割，可以根据其上下相邻行为单字符或行内字符均处于具有二维运算结构的运算符作用范围内，且两者之间的垂直距离小于行距<code>Line_d</code>的特点将其合并。</p>
-</li>
-</ol>
-<p>&emsp;&emsp;图像倾斜的影响：当倾斜角增加时，数学公式定位准确率急剧下降。这是由于在数学公式定位算法采用连通区域空间位置关系特征提取文本行，很容易受到倾斜影响，进而影响公式定位准确性，因此<strong>首先需要对拍照图片进行测斜和校正处理</strong>，以确保公式定位算法的鲁棒性。</p>
-<h2 id="公式定位错误的校正方法"><a href="#公式定位错误的校正方法" class="headerlink" title="公式定位错误的校正方法"></a>公式定位错误的校正方法</h2><ul>
-<li>考虑根据图片中印刷体字符的大小，近似判断拍照的远近，从而确定各个阈值的大小</li>
-<li>影响最大的参数有行内相邻连通区域的水平间隔<code>Character_dist</code>,可以考虑将行内连通区域按从左到右排列，然后计算版面中相邻连通区域的间隔，取数量最多的连通区域间隔座位阈值<code>Character_dist</code>。对与行间距阈值<code>Line_d</code>也可以用类似方法</li>
-</ul>
-<h2 id="分式分割的难点"><a href="#分式分割的难点" class="headerlink" title="分式分割的难点"></a>分式分割的难点</h2><h3 id="印刷体"><a href="#印刷体" class="headerlink" title="印刷体"></a>印刷体</h3><p>&emsp;&emsp;对于印刷体分式，如下图，如同印刷体文本的字符分割算法一样。采取水平投影的方式即可找到分割线。</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/1532749752156.jpg" alt="enter description here"></p>
-<h3 id="手写体"><a href="#手写体" class="headerlink" title="手写体"></a>手写体</h3><p>&emsp;&emsp;分式分割的难点主要集中再手写体分式上。手写体的格式没有印刷体那么规范，分子与分母经常会出现粘合，带分式中也会出现整数与分数线、分数粘合在一起的情况，因此无法直接通过投影拆分分式。</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215086.png" alt="enter description here"></p>
-<h2 id="分式分割的处理思路"><a href="#分式分割的处理思路" class="headerlink" title="分式分割的处理思路"></a>分式分割的处理思路</h2><p>&emsp;&emsp;分式分割的关键点是找到分数线，分数线能作为带分数中整数与分数分割的参考，且能作为分数部分的分割线。因此分数线具有重要的参考价值。</p>
-<p>&emsp;&emsp;考虑到手写体中分数线扭曲，各部分粘合的情况调研了许多直线检测的算法。有时间会做系统的整理。在这里线整理几种常用的直线检测算法。</p>
-<h3 id="霍夫变换"><a href="#霍夫变换" class="headerlink" title="霍夫变换"></a>霍夫变换</h3><p>&emsp;&emsp;Hough是最经典也是应用最广泛的直线检测算法，hough使用极坐标的方式表示直线。极坐标下，直线的表达式可定义为：$\left(-\frac{cos\theta}{sin\theta}\right)x+\left(\frac{r}{sin\theta}\right)$，化简可得到$r=xcos\theta+ysin\theta$。对于每一点$(x_0,y_0)$，可以将通过该点的直线定义为$r_\theta=x_0cos\theta+y_0sin\theta$。</p>
-<p>&emsp;&emsp;通过以上的推导，意味着每一对极坐标的参数$(r_\theta, \theta)$代表着一条通过$(x_0,y_0)$的直线。对于每个定点$(x_0,y_0)$，画出通过该点的所有直线并以极坐标表示，会得到一条正弦曲线。因此越多的点具有所描绘的正弦曲线相交，意为着这些点能组成平面内的一条直线。<br>&emsp;&emsp;如下图所示，点$x_1=9$,$y_1=4$，点$x_1=12$，$y_1=$以及$x_1=8$,$y_1=6$所描绘的通过它们的所有直线的正弦曲线。</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215087.png" alt="enter description here"><br>hough的做法是追踪图像中每个点对应曲线间的交点，如果这些交点的数量超过了一点的阈值，即认为交点的参数$(r_\theta, \theta)$在原图像中为一条直线。</p>
-<p>&emsp;&emsp;Hough变换的基本思想是利用图像的全局特征将特定形状的边缘连接起来，Hough通过点线的对偶性，将原图像中的点映射到用于累加的参数空间，将在原图像中寻找特定曲线的检测转化为寻找参数空间中的峰值问题。Hough的优点和缺点都来源于全局特征，因为全局特征，Hough提取的曲线受噪声和边界的影响较小，具有较好的鲁棒性，但也会带来效率低的缺点</p>
-<h3 id="LSD算法"><a href="#LSD算法" class="headerlink" title="LSD算法"></a>LSD算法</h3><p>&emsp;&emsp;LSD发表于2012年，算是较新的直线检测算法。与Hough利用全局特征不同，LSD是一种局部提取直线的算法，在线性时间(liner-time)内能得到亚像素级准确度的直线。<br>&emsp;&emsp;LSD算法的流程如下图，LSD算法的核心思想是合并像素生成直线，合并的规则是根据每个像素点的梯度值建立状态列表，并将所有点设置为NOT USED。然后去除列表中梯度最大的点作为直线的第一个点，并将对应的状态设置为USED。再基于区域生长算法，得到line support region。</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215203.png" alt="enter description here"></p>
-<p>&emsp;&emsp;上面说了Hough由于全局的属性带来的优缺点，下面也说说LSD这种算法因为局部提取直线带来的缺点。<br>LSD号称是一种无需设置任何参数的算法，但在实际使用中，需要设置采样率，并且区域生长算法中，需要设置梯度角度变化的容忍（tolerance ）值。</p>
-<ul>
-<li>由于LSD算法的每个点都有状态值“NOT USED”和“USED”。因此每个点都智能属于一条直线，遇到相交直线时会出现至少一条直线被分割成多条直线的情况。</li>
-<li>LSD算法在找寻line support region时，用了区域生长算法的思想。会由于线段间的遮挡和局部模糊导致一条直线被割裂成多条。</li>
-</ul>
-<p>&emsp;&emsp;由于是做手写分式分割中的分数线检测，直线往往弯曲而且易被其他线“切断”。因此做实验时，尝试将采样率与区域生长的容忍值调大了不少，让我困惑的是，在我将采样率和容忍值调大后，LSD算法的耗时呈大幅增长，失去了LSD算法的效率优势，这里暂时还不知道是我自己写算法的问题，还是LSD在增大局部搜索范围后效率会显著下降的原因。日后有了确切的结论会来更新，也欢迎大家指正。</p>
-<p>&emsp;&emsp;下面贴几张LSD算法在分数检测的效果图，不同颜色的线段代表检测出的不同直线。可以看到对于扭曲小且没相交直线的情况下，LSD有较好的效果，而一旦干扰多了，一条直线会被分割成多条直线。</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215201.png" alt="enter description here"></p>
-<p>&emsp;&emsp;关于直线的论文有很多，还有使用图像分割或提取边缘算法得到图像边缘后，使用动态聚类算法聚合线段，再用直线拟合同一聚类中图像。</p>
-<h2 id="实验与结论"><a href="#实验与结论" class="headerlink" title="实验与结论"></a>实验与结论</h2><p>&emsp;&emsp;不得不说，手写分式可能出现各种各样的情况。例如无法有效判断检测到的那条直线为分数线，对于带分式中整数与分子分母贴合紧密的情况，也暂时没有有效的解决思路。</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215088.png" alt="enter description here"></p>
-<p>&emsp;&emsp;最近看了很多图像处理的论文以及思路，很多棘手的任务，论文作者都巧妙的用图像处理的算法解决了。相信关于分式分割的处理，也会有相应的解决办法。事情总是要一步一个脚印的处理。先贴一个图，下图是这周做的真分式和假分式的切割算法，在525张手写分式图片中，正确分割了512张，也算是达到了预期的效果。</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/小书匠/数学公式识别之分式分割1532748215385.png" alt="enter description here"></p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] 毛星云. OpenCV3编程入门[M]. 电子工业出版社, 2015.</p>
-<p>[2] Gioi R G V, Jakubowicz J, Morel J M, et al. LSD: A line segment detector[J]. Image Processing on Line, 2012, 2(4):35-55.</p>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
-]]></content>
-      <categories>
-        <category>图像处理</category>
-      </categories>
-      <tags>
-        <tag>图像处理</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>卷积神经网络模型解读汇总——LeNet5，AlexNet、ZFNet、VGG16、GoogLeNet和ResNet</title>
     <url>/post/d86a012b.html</url>
     <content><![CDATA[<p>&emsp;&emsp;在我的<a href="https://oysz2016.github.io/">个人博客</a>上一篇<a href="https://oysz2016.github.io/2018/04/25/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BB%93%E6%9E%84%E4%B8%8E%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95/">博文</a>中分析了卷积神经网络的结构与相关算法，知道了这些基本原理之后。这篇博文主要介绍在卷积神经网络的发展历程中一些经典的网络模型。</p>
@@ -1205,58 +1371,6 @@
         <tag>VGG16</tag>
         <tag>GoogLeNet</tag>
         <tag>ResNet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记</title>
-    <url>/post/f38a4f4.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
-<p>论文链接：<a href="https://arxiv.org/abs/1711.07767">https://arxiv.org/abs/1711.07767</a><br>论文代码：<a href="https://github.com/ruinmessi/RFBNet">https://github.com/ruinmessi/RFBNet</a></p>
-<p>&emsp;&emsp;这篇文章是CV领域顶会ECCV2018中关于目标检测的文章,文中以SSD模型为基础提出了RFB结构,强调兼顾速度与性能。说来也巧,因为项目需要,在看这篇论文之前正好看过提出dilated convolution的那篇文章，但是dilated convolution的结构获得更大感受野的方式确实对细粒度的分割会比较好，适用图像分割领域。当我还在想能怎么用在目标检测上时，就看到了RFB网络。虽然作者说是为了兼顾速度与性能将其应用到one stage的SSD上，但我也在two stage的faster rcnn上，复现出了较好的效果。这是一篇我个人很喜欢的文章，实验充分，模拟视觉细胞的结构让我觉得即简单又巧妙。因此简单总结下这篇文章。</p>
-<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>&emsp;&emsp;作者指出目前图像领域深度学习的发展越来越倾向于用更深的网络以达到更好的效果，然而像ResNet等很深的网络往往具有较大的计算量，导致速度受限。相比之下作者提出的RFB结构具有以下优点：</p>
-<ol>
-<li>模拟了人类视觉系统RFs的大小和离心率设置，增强轻量级CNN网络的特征提取能力</li>
-<li>简单的替换了SSD的最后一级卷积层，在较少的计算增加的情况下，提升了模型的性能</li>
-<li>除了SSD之外，也扩展到了MobileNet中取得了较好的结果，展示了结构的泛化性</li>
-</ol>
-<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>&emsp;&emsp;这部分就不总结了，主要介绍了one stage和two stage的目标检测模型和目前论文中在感受野上做的研究。</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="视觉皮层"><a href="#视觉皮层" class="headerlink" title="视觉皮层"></a>视觉皮层</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546754014816.jpg" alt="enter description here"><br>&emsp;&emsp;如上图所示是人类感受野(pRF)的示意图,可以看到有以下规律:</p>
-<ul>
-<li>距离中心越远的pRF越大，即pRF大小与偏心含有正相关的关系</li>
-<li>不同图谱的pRF大小规模不同</li>
-</ul>
-<h3 id="感受野块"><a href="#感受野块" class="headerlink" title="感受野块"></a>感受野块</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546754512995.jpg" alt="enter description here"></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546759194131.jpg" alt="enter description here"><br>&emsp;&emsp;作者提出的RFB结构的原理如上图所示，该结构的特点有：</p>
-<ul>
-<li>多分支卷积层：根据之前人类感受野(pRF)的示意图，为了仿照不同图谱的pRF大小规模不同，作者提出用不同大小的卷积核以实现多大小的pRF，这一方法应该优于共享固定大小的RFs。这一结构参考了Inception的结构。</li>
-<li>膨胀卷积和池化层：<strong>膨胀卷积的基本意图在于生成分辨率更高的特征图</strong>，在相同计算量的情况下获得更大的感受野。而膨胀卷积核的大小和扩张与pRFs在视觉皮层的大小和偏心具有相似的功能关系。然后再将不同膨胀卷积处理过的层融合起来，以达到视觉皮层中感受野的效果。rFB的结构如下图所示：</li>
-</ul>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755296592.jpg" alt="enter description here"></p>
-<h3 id="RFB检测框架"><a href="#RFB检测框架" class="headerlink" title="RFB检测框架"></a>RFB检测框架</h3><p>&emsp;&emsp;作者提出的RFB的结构是在SSD的基础上改的，做的修改及替换如下图所示：</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755756172.jpg" alt="enter description here"></p>
-<ul>
-<li>轻量级的结构：这里主要说的是SSD的有点，这里不赘述</li>
-<li>多尺度结构中的RFB：在原始的SSD中，有着层叠的卷积层，形成一系列空间分辨率连续下降、感受野不断增大的feature map。在作者的实现中，保持了相同的SSD级联结构，<strong>但具有较大感受也的卷积层被RFB结构替代</strong>。作者还指出最后基层卷积层的特征图太小，适合用5X5大小的卷积核。<strong>这部分论文里Fig.4的a图中用的确实是5x5的卷积核，但是给出的代码中却用两个3x3的卷积核替代了，这部分我有点疑惑。</strong></li>
-</ul>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>&emsp;&emsp;这一部分就是各种各样的实验图表了，也不赘述。从以下图表可以看到实验结果确实很惊艳，用了RFB结构的网络mAP会有不小的提升。</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546756443789.jpg" alt="enter description here"></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546756466104.jpg" alt="enter description here"></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546756478399.jpg" alt="enter description here"></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546757250177.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;作者还给出了一张目前目标检测算法的准确率和耗时的图片，对比的多是one stage的模型，可以作为参考</p>
-<p><img data-src="https://user-gold-cdn.xitu.io/2019/1/6/1682321abe0c6f46?w=717&amp;h=489&amp;f=png&amp;s=96823" alt=""></p>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
-]]></content>
-      <categories>
-        <category>论文笔记</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>目标检测</tag>
       </tags>
   </entry>
   <entry>
@@ -1560,57 +1674,6 @@ $ hexo server
       </categories>
       <tags>
         <tag>读书笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>决策树汇总——ID3、C4.5、CART</title>
-    <url>/post/5f5a1d32.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span><br>决策树是机器学习中的经典算法之一，十大机器学习算法中就包含决策树算法(Decision Tree). 顾名思义，决策树是基于树结构进行决策的，根据算法不同会使用多叉树或者二叉树。其实人类在日常生活中，遇到问题时也会使用决策树进行判断。例如西瓜书里有列举挑选西瓜的例子。</p>
-<p>一颗决策树一般包含一个根结点，若干个内部节点和若干叶节点，根结点是判断的开始，内部节点是一些子判断流程，而叶节点对应于决策的结果。决策树作为机器学习算法的一种，其目的是产生一颗泛化能力强的树，能处理训练集中没有见到的情形，并能正确决策。</p>
-<h2 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h2><h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><p>信息熵是度量样本集合纯度最常用的一种指标，令D中第k类样本的比例为$p_k$, 则D的信息熵为<br>$Ent(D)=-\sum_{k=1}^{|y|} p_klog_2{p_k}$</p>
-<p>信息增益=信息熵-条件熵<br>$Gain(D,a)=Ent(D)-\sum_{v=1}^{V} \frac{D^v}{D}Ent(D^v)$</p>
-<p>以西瓜书中的列子<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%86%B3%E7%AD%96%E6%A0%91%E6%B1%87%E6%80%BB/2.png" alt=""></p>
-<p>17个样本中正例有8个，负例有9个，则根结点的信息熵为:<br>$Ent(D)=-\sum_{k=1}^{2} p_klog_2{p_k}=-(\frac{8}{17}log_2 \frac{8}{17}+\frac{9}{17}log_2 \frac{9}{17})=0.998$</p>
-<p>然后计算相应属性的条件熵，以色泽属性为例，可以分为 $D^1$(色泽=青绿)有6个样本，正反各3个，$D^2$(色泽=乌黑)有6个样本，正4，饭2，$D^3$(色泽=浅白)，有5个样本，正1反4.则3个分支节点的信息熵为：<br>$Ent(D^1)=-(\frac{3}{6}log_2 \frac{3}{6}+\frac{3}{6}log_2 \frac{3}{6})=1$<br>$Ent(D^2)=-(\frac{4}{6}log_2 \frac{4}{6}+\frac{2}{6}log_2 \frac{2}{6})=0.918$<br>$Ent(D^2)=-(\frac{1}{5}log_2 \frac{1}{5}+\frac{4}{5}log_2 \frac{4}{5})=0.722$</p>
-<p>则色泽的信息增益为:</p>
-<p>$Gain(D,a)=Ent(D)-\sum_{v=1}^{V} \frac{D^v}{D}Ent(D^v)=0.998-(\frac{6}{17}<em>1+\frac{6}{17}</em>0.918+\frac{5}{17}*0.722)=0.109$</p>
-<p>也可以得到其他属性的信息增益，在根节点的位置信息增益最大的属性为纹理Gain=0.381.<br>确定第一个分支后，后面的内部节点和叶节点叶通过类似方式递归判断，则生成的决策树为:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%86%B3%E7%AD%96%E6%A0%91%E6%B1%87%E6%80%BB/3.png" alt=""></p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>ID3没有剪纸的策略，容易过拟合</li>
-<li>没有考虑缺失值</li>
-<li>只能处理离散分布的特征</li>
-</ul>
-<h2 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h2><p>C4.5在ID3的基础上做了一些改进:</p>
-<ul>
-<li>引入后剪枝缓解过拟合</li>
-<li>可以处理属性中有连续值的情形，具体做法是对于某属性在区间$[a^i, a^{i+1})$，若取任意值产生的划分结果相同，则取该区间的中位点作为划分点</li>
-<li>对于缺失值，C4.5的做法是用没有缺失的样本子集计算信息增益</li>
-</ul>
-<h3 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h3><p>剪枝的目的是防止决策树过拟合，在构建决策树时，为了能正确分类训练样本。决策树的结点划分过程会不断重复，可能导致分的过细，在训练集拟合的很好，但测试集的效果变得很差。所以需要剪枝帮助模型获得泛化性。<br>剪枝有<strong>预剪枝</strong>和<strong>后剪枝</strong>两种，引用下西瓜书里关于两种剪枝方式的差异</p>
-<blockquote>
-<p><strong>预剪枝</strong>是指在决策树生成过程中，对每个结点在划分前先进行估计，若当前结点的划分不能带来决策树泛化性能提升，则停止划分并将当前结点标记为叶结点;<strong>后剪枝</strong>则是先从训练集生成一棵完整的决策树，然后自底向上地对非叶结点进行考察，若将该结点对应的子树替换为叶结点能带来决策树泛化性能提升，则将该子树替换为叶结点.</p>
-</blockquote>
-<p>判断上述两种剪枝方式是否能带来性能提升的方式是采用验证集，验证剪枝前后的效果。</p>
-<p>预剪枝和后剪枝的例子见下面两图:</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%86%B3%E7%AD%96%E6%A0%91%E6%B1%87%E6%80%BB/4.png" alt=""></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%86%B3%E7%AD%96%E6%A0%91%E6%B1%87%E6%80%BB/5.png" alt=""></p>
-<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>C4.5使用的是多叉树，二叉树效率更高</li>
-<li>只能用于分类</li>
-<li>使用的熵模型有大量耗时的对数运算，连续值还有排序运算</li>
-<li>在构造树的过程中，对数值属性值需要按照其大小排序，从中选择一个分割点。当训练集打到内存无法容纳时，会无法运行</li>
-</ul>
-<h2 id="CART"><a href="#CART" class="headerlink" title="CART"></a>CART</h2><h3 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h3><p>CART使用基尼指数作为划分属性的度量<br>$Gini(D)=\sum_{k=1}^{|y|}\sum_{k^{‘} \neq k} p_k p_{k^{‘}}=1- \sum_{k=1}^{|y|}p_k^2$</p>
-<p>$Gini(D)$反映了从数据集D中随机抽取两个样本，其类别标记不一致的概率。因此$Gini(D)$越小，则数据集D的纯度越高</p>
-<p>将其写成和信息增益等价的形式，则基尼指数为</p>
-<p>$ Gini_index(D,a)=\sum_{v=1}^{V} \frac{D^v}{D} Gini(D^v) $</p>
-<p>在是否要划分决策树的判断时，CART会选择使得划分后基尼指数最小的属性作为最优划分属性。</p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>决策树</tag>
       </tags>
   </entry>
   <entry>
@@ -2028,127 +2091,6 @@ a_3x+b_3y+c_3z=d_3\\
       </tags>
   </entry>
   <entry>
-    <title>长尾优化汇总</title>
-    <url>/post/8592ee55.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
-<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h2 id="经典的深度学习数据集"><a href="#经典的深度学习数据集" class="headerlink" title="经典的深度学习数据集"></a>经典的深度学习数据集</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295054598.png" alt="enter description here"><br>Mnist: 数据规模较小，10个类别<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295071148.png" alt="enter description here"><br>ImageNet: 百万数据量，1000个类别<br>两者的共同点：类别是均匀分布的</p>
-<h2 id="真实场景中的深度学习任务"><a href="#真实场景中的深度学习任务" class="headerlink" title="真实场景中的深度学习任务"></a>真实场景中的深度学习任务</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295017948.png" alt="enter description here"></p>
-<ul>
-<li>类别不平衡是常态<h2 id="长尾问题"><a href="#长尾问题" class="headerlink" title="长尾问题"></a>长尾问题</h2><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295083966.png" alt="enter description here"><br>长尾问题常见的表现及原因 ：</li>
-<li>头部类的效果好，尾部类的效果差</li>
-<li>模型是数据驱动的，头部类的数据多，尾部类的数据少</li>
-<li>尾部类数量少的同时可能造成类别中样本差异较大，网络学习不充分<h1 id="Resampling"><a href="#Resampling" class="headerlink" title="Resampling"></a>Resampling</h1><h2 id="BBN-Bilateral-Branch-Network-with-Cumulative-Learning-for-Long-Tailed-Visual-Recognition"><a href="#BBN-Bilateral-Branch-Network-with-Cumulative-Learning-for-Long-Tailed-Visual-Recognition" class="headerlink" title="BBN: Bilateral-Branch Network with Cumulative Learning for Long-Tailed Visual Recognition"></a>BBN: Bilateral-Branch Network with Cumulative Learning for Long-Tailed Visual Recognition</h2></li>
-</ul>
-<p><strong>论文链接：</strong><a href="https://arxiv.org/pdf/1912.02413.pdf">https://arxiv.org/pdf/1912.02413.pdf</a></p>
-<p>two stage finetuning:</p>
-<ul>
-<li>第一阶段在原始不平衡的数据集上训练</li>
-<li>第二阶段以一个很小的学习率使用resampling/reweighting的方法fintune</li>
-</ul>
-<p>根据two stage fintuning方法比只使用resampling/reweighting好的原因做了假设</p>
-<ul>
-<li>reblance的方法有效的原因在于提升了分类器的性能</li>
-<li>会损害网络学习到的特征<br>为了验证上述假设，将网络拆解成了分类器和特征提取器两部分，分别实验:</li>
-<li>在第一阶段使用交叉熵和resampling/reweighting训练整个网络</li>
-<li>将第一阶段特征提取器的参数固定，使用交叉熵和resampling/reweighting训练分类器</li>
-</ul>
-<p>为了验证上述假设，将网络拆解成了分类器和特征提取器两部分，分别实验:</p>
-<ul>
-<li>在第一阶段使用交叉熵和resampling/reweighting训练整个网络</li>
-<li>将第一阶段特征提取器的参数固定，使用交叉熵和resampling/reweighting训练分类器</li>
-</ul>
-<p>设计了一个<a href="https://arxiv.org/pdf/1912.02413.pdf">双分支的网络</a></p>
-<p>主要思想是设计了一个<strong>two stage finetuning</strong>的训练方式</p>
-<ul>
-<li>第一阶段在原始不平衡的数据集上训练</li>
-<li>第二阶段以一个很小的学习率使用resampling/reweighting的方法fintune</li>
-</ul>
-<p>根据two stage fintuning方法比只使用resampling/reweighting好的原因做了假设</p>
-<ul>
-<li>reblance的方法有效的原因在于提升了分类器的性能</li>
-<li>会损害网络学习到的特征</li>
-</ul>
-<p>为了验证上述假设，将网络拆解成了分类器和特征提取器两部分，分别实验:</p>
-<ul>
-<li>在第一阶段使用交叉熵和resampling/reweighting训练整个网络</li>
-<li>将第一阶段特征提取器的参数固定，使用交叉熵和resampling/reweighting训练分类器</li>
-</ul>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295186969.png" alt="enter description here"><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295194164.png" alt="enter description here"><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295201430.png" alt="enter description here"></p>
-<p>总结下BBN思想中的<strong>关键点:</strong></p>
-<ul>
-<li>第一个采样器是一个公平的采样器</li>
-<li>第二个采样器是一个resample的采样器</li>
-<li>两个分支共享权重，减少参数量的同时，让第二个分支受益于第一个分支中更好的特征</li>
-<li>使用一个adaptor的策略，调节两个分支在网络训练中的权重</li>
-</ul>
-<p>下面是添加BBN的结果和其他方法的对比:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295216148.png" alt="enter description here"><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295235292.png" alt="enter description here"></p>
-<h1 id="Cost-sensitive-learning"><a href="#Cost-sensitive-learning" class="headerlink" title="Cost-sensitive learning"></a>Cost-sensitive learning</h1><h2 id="Class-Balanced-Loss-Based-on-Effective-Number-of-Samples"><a href="#Class-Balanced-Loss-Based-on-Effective-Number-of-Samples" class="headerlink" title="Class-Balanced Loss Based on Effective Number of Samples"></a>Class-Balanced Loss Based on Effective Number of Samples</h2><p><strong>论文链接:</strong> <a href="https://arxiv.org/pdf/1901.05555.pdf">https://arxiv.org/pdf/1901.05555.pdf</a><br>之前方法存在的问题：在reweighting等方法中，一般将样本数量的倒数作为该类别的权重，但是样本之间能提供的信息可能存在重合，简单通过样本数量判断权重会存在问题</p>
-<ul>
-<li>提出了一种计算有效样本的方法</li>
-<li>用有效样本数代替原始的样本频率，再用其倒数对损失进行加权</li>
-</ul>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295283511.png" alt="enter description here"></p>
-<p>有效样本的定义:</p>
-<ul>
-<li>样本的有效数据量是样本的期望体积，一个新的采样数据只能存在两种情况</li>
-<li>新样本存在于之前样本中的概率为p</li>
-<li>新样本不存在于之前样本中的概率为1-p</li>
-</ul>
-<p>提出有效样本的计算公式:</p>
-<script type="math/tex; mode=display">E_{n}=\frac{1-\beta^{n}}{1-\beta}</script><p>当n=1时，<script type="math/tex">E_1=\frac{1-\beta^1}{1-\beta}=1</script><br>假设当n=k-1时成立,即<script type="math/tex">E_{k-1}=\frac{1-\beta^{k-1}}{1-\beta}</script>，<br>设样本的体积为K，已经采样的样本体积为<script type="math/tex">E_{k-1}</script>。则<script type="math/tex">p=\frac{E_{k-1}}{K}</script>,经过k次采样后，第k次采样时有以下情况:</p>
-<ul>
-<li>第k次采样和之前样本存在重叠的情况,则样本体积为<script type="math/tex">E_{k-1}</script></li>
-<li>第k次采样是新的有效样本，与之前不存在重叠的情况,则样本体积为<script type="math/tex">E_{k-1}+1</script></li>
-</ul>
-<p>期望体积为:</p>
-<script type="math/tex; mode=display">E_k=pE_{k-1}+(1-p)(E_{k-1}+1)=1+\frac{K-1}{K}E_{k-1}</script><p>其中</p>
-<script type="math/tex; mode=display">\beta=\frac{K-1}{K}$$, 则$$E_k=1+\beta E_{k-1}=1+\beta \frac{1-\beta^{k-1}}{1-\beta}=\frac{1-\beta^{k}}{1-\beta}</script><p>则有效数据量是数据总量n的指数函数，超参数<script type="math/tex">\beta\in[0,1)</script><br>有效数据量<script type="math/tex">E_n</script>具有如下性质:</p>
-<ul>
-<li>当n很大时，有效数据量等于n</li>
-<li>当n为1时，有效数据量为1</li>
-</ul>
-<p>CB-Loss:</p>
-<script type="math/tex; mode=display">CB(p,y)=\frac{1}{E_{n_y}}L(p,y)=\frac{1-\beta}{1-\beta_{n_y}}L(p,y)</script><p>贴一下实验结果：<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295322950.png" alt="enter description here"></p>
-<h1 id="Transfer-Learning"><a href="#Transfer-Learning" class="headerlink" title="Transfer Learning"></a>Transfer Learning</h1><h2 id="Feature-Space-Augmentation-for-Long-Tailed-Data"><a href="#Feature-Space-Augmentation-for-Long-Tailed-Data" class="headerlink" title="Feature Space Augmentation for Long-Tailed Data"></a>Feature Space Augmentation for Long-Tailed Data</h2><p><strong>论文链接：</strong><a href="https://arxiv.org/abs/2008.03673">https://arxiv.org/abs/2008.03673</a></p>
-<p>常见的解决方法，如data manipulation和Balanced loss function design在提升长尾数据集模型性能的同时会损害特征表示能力<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295376341.png" alt="enter description here"></p>
-<p>两个假设:</p>
-<ul>
-<li>头部类中类别无关的特征可以让尾部类特征更加丰富</li>
-<li>高级特征空间具有更“线性”的表示，可以提取类通用和类特定的特征，并重新混合生成新的样本</li>
-</ul>
-<p>方法:<br>CAM(Class Activation Map)</p>
-<script type="math/tex; mode=display">M_c(x,y)=\sum_{k}w_k^cf_k(x,y)</script><p>c: class; x,y: pixel position; k: channel; w: weight; f: feature，将M归一化到[0,1]，设定两个阈值。<script type="math/tex">0<\tau_s,\tau_t<1</script>。则类特定特征和类通用特征分别为:</p>
-<ul>
-<li><script type="math/tex; mode=display">M_c^s=sgn(M_c-\tau_s) \bigodot M_c</script></li>
-<li><script type="math/tex; mode=display">M_c^g=sgn(\tau_g-M_c) \bigodot M_c</script></li>
-</ul>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295358501.png" alt="enter description here"><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295382285.png" alt="enter description here"></p>
-<ul>
-<li>正常训练得到特征提取网络和分类器，使用注意力机制CAM图做特征分解，将特征分为类别无关的特征和类别特定的特征。</li>
-<li>两阶段训练，第一阶段正常训练，负责提取特征和cam，第二阶段是做尾部类的增广训练，分为两步<ul>
-<li>网络输入一张头部类图片和一张尾部类图片，通过分类置信度排序，选择和当前尾部类距离最近的头部类特征，融合头部类中类通用特征和尾部类中类特征特征</li>
-</ul>
-</li>
-</ul>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295403120.png" alt="enter description here"></p>
-<ul>
-<li>使用增强的特征图微调FC分类器层</li>
-</ul>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295415204.png" alt="enter description here"></p>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号!</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="enter description here"></p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>长尾优化</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>极简人类史</title>
     <url>/post/ad14e7f5.html</url>
     <content><![CDATA[<p class="description"></p>
@@ -2301,6 +2243,127 @@ a_3x+b_3y+c_3z=d_3\\
       </categories>
       <tags>
         <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>长尾优化汇总</title>
+    <url>/post/8592ee55.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h2 id="经典的深度学习数据集"><a href="#经典的深度学习数据集" class="headerlink" title="经典的深度学习数据集"></a>经典的深度学习数据集</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295054598.png" alt="enter description here"><br>Mnist: 数据规模较小，10个类别<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295071148.png" alt="enter description here"><br>ImageNet: 百万数据量，1000个类别<br>两者的共同点：类别是均匀分布的</p>
+<h2 id="真实场景中的深度学习任务"><a href="#真实场景中的深度学习任务" class="headerlink" title="真实场景中的深度学习任务"></a>真实场景中的深度学习任务</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295017948.png" alt="enter description here"></p>
+<ul>
+<li>类别不平衡是常态<h2 id="长尾问题"><a href="#长尾问题" class="headerlink" title="长尾问题"></a>长尾问题</h2><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295083966.png" alt="enter description here"><br>长尾问题常见的表现及原因 ：</li>
+<li>头部类的效果好，尾部类的效果差</li>
+<li>模型是数据驱动的，头部类的数据多，尾部类的数据少</li>
+<li>尾部类数量少的同时可能造成类别中样本差异较大，网络学习不充分<h1 id="Resampling"><a href="#Resampling" class="headerlink" title="Resampling"></a>Resampling</h1><h2 id="BBN-Bilateral-Branch-Network-with-Cumulative-Learning-for-Long-Tailed-Visual-Recognition"><a href="#BBN-Bilateral-Branch-Network-with-Cumulative-Learning-for-Long-Tailed-Visual-Recognition" class="headerlink" title="BBN: Bilateral-Branch Network with Cumulative Learning for Long-Tailed Visual Recognition"></a>BBN: Bilateral-Branch Network with Cumulative Learning for Long-Tailed Visual Recognition</h2></li>
+</ul>
+<p><strong>论文链接：</strong><a href="https://arxiv.org/pdf/1912.02413.pdf">https://arxiv.org/pdf/1912.02413.pdf</a></p>
+<p>two stage finetuning:</p>
+<ul>
+<li>第一阶段在原始不平衡的数据集上训练</li>
+<li>第二阶段以一个很小的学习率使用resampling/reweighting的方法fintune</li>
+</ul>
+<p>根据two stage fintuning方法比只使用resampling/reweighting好的原因做了假设</p>
+<ul>
+<li>reblance的方法有效的原因在于提升了分类器的性能</li>
+<li>会损害网络学习到的特征<br>为了验证上述假设，将网络拆解成了分类器和特征提取器两部分，分别实验:</li>
+<li>在第一阶段使用交叉熵和resampling/reweighting训练整个网络</li>
+<li>将第一阶段特征提取器的参数固定，使用交叉熵和resampling/reweighting训练分类器</li>
+</ul>
+<p>为了验证上述假设，将网络拆解成了分类器和特征提取器两部分，分别实验:</p>
+<ul>
+<li>在第一阶段使用交叉熵和resampling/reweighting训练整个网络</li>
+<li>将第一阶段特征提取器的参数固定，使用交叉熵和resampling/reweighting训练分类器</li>
+</ul>
+<p>设计了一个<a href="https://arxiv.org/pdf/1912.02413.pdf">双分支的网络</a></p>
+<p>主要思想是设计了一个<strong>two stage finetuning</strong>的训练方式</p>
+<ul>
+<li>第一阶段在原始不平衡的数据集上训练</li>
+<li>第二阶段以一个很小的学习率使用resampling/reweighting的方法fintune</li>
+</ul>
+<p>根据two stage fintuning方法比只使用resampling/reweighting好的原因做了假设</p>
+<ul>
+<li>reblance的方法有效的原因在于提升了分类器的性能</li>
+<li>会损害网络学习到的特征</li>
+</ul>
+<p>为了验证上述假设，将网络拆解成了分类器和特征提取器两部分，分别实验:</p>
+<ul>
+<li>在第一阶段使用交叉熵和resampling/reweighting训练整个网络</li>
+<li>将第一阶段特征提取器的参数固定，使用交叉熵和resampling/reweighting训练分类器</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295186969.png" alt="enter description here"><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295194164.png" alt="enter description here"><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295201430.png" alt="enter description here"></p>
+<p>总结下BBN思想中的<strong>关键点:</strong></p>
+<ul>
+<li>第一个采样器是一个公平的采样器</li>
+<li>第二个采样器是一个resample的采样器</li>
+<li>两个分支共享权重，减少参数量的同时，让第二个分支受益于第一个分支中更好的特征</li>
+<li>使用一个adaptor的策略，调节两个分支在网络训练中的权重</li>
+</ul>
+<p>下面是添加BBN的结果和其他方法的对比:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295216148.png" alt="enter description here"><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295235292.png" alt="enter description here"></p>
+<h1 id="Cost-sensitive-learning"><a href="#Cost-sensitive-learning" class="headerlink" title="Cost-sensitive learning"></a>Cost-sensitive learning</h1><h2 id="Class-Balanced-Loss-Based-on-Effective-Number-of-Samples"><a href="#Class-Balanced-Loss-Based-on-Effective-Number-of-Samples" class="headerlink" title="Class-Balanced Loss Based on Effective Number of Samples"></a>Class-Balanced Loss Based on Effective Number of Samples</h2><p><strong>论文链接:</strong> <a href="https://arxiv.org/pdf/1901.05555.pdf">https://arxiv.org/pdf/1901.05555.pdf</a><br>之前方法存在的问题：在reweighting等方法中，一般将样本数量的倒数作为该类别的权重，但是样本之间能提供的信息可能存在重合，简单通过样本数量判断权重会存在问题</p>
+<ul>
+<li>提出了一种计算有效样本的方法</li>
+<li>用有效样本数代替原始的样本频率，再用其倒数对损失进行加权</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295283511.png" alt="enter description here"></p>
+<p>有效样本的定义:</p>
+<ul>
+<li>样本的有效数据量是样本的期望体积，一个新的采样数据只能存在两种情况</li>
+<li>新样本存在于之前样本中的概率为p</li>
+<li>新样本不存在于之前样本中的概率为1-p</li>
+</ul>
+<p>提出有效样本的计算公式:</p>
+<script type="math/tex; mode=display">E_{n}=\frac{1-\beta^{n}}{1-\beta}</script><p>当n=1时，<script type="math/tex">E_1=\frac{1-\beta^1}{1-\beta}=1</script><br>假设当n=k-1时成立,即<script type="math/tex">E_{k-1}=\frac{1-\beta^{k-1}}{1-\beta}</script>，<br>设样本的体积为K，已经采样的样本体积为<script type="math/tex">E_{k-1}</script>。则<script type="math/tex">p=\frac{E_{k-1}}{K}</script>,经过k次采样后，第k次采样时有以下情况:</p>
+<ul>
+<li>第k次采样和之前样本存在重叠的情况,则样本体积为<script type="math/tex">E_{k-1}</script></li>
+<li>第k次采样是新的有效样本，与之前不存在重叠的情况,则样本体积为<script type="math/tex">E_{k-1}+1</script></li>
+</ul>
+<p>期望体积为:</p>
+<script type="math/tex; mode=display">E_k=pE_{k-1}+(1-p)(E_{k-1}+1)=1+\frac{K-1}{K}E_{k-1}</script><p>其中</p>
+<script type="math/tex; mode=display">\beta=\frac{K-1}{K}$$, 则$$E_k=1+\beta E_{k-1}=1+\beta \frac{1-\beta^{k-1}}{1-\beta}=\frac{1-\beta^{k}}{1-\beta}</script><p>则有效数据量是数据总量n的指数函数，超参数<script type="math/tex">\beta\in[0,1)</script><br>有效数据量<script type="math/tex">E_n</script>具有如下性质:</p>
+<ul>
+<li>当n很大时，有效数据量等于n</li>
+<li>当n为1时，有效数据量为1</li>
+</ul>
+<p>CB-Loss:</p>
+<script type="math/tex; mode=display">CB(p,y)=\frac{1}{E_{n_y}}L(p,y)=\frac{1-\beta}{1-\beta_{n_y}}L(p,y)</script><p>贴一下实验结果：<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295322950.png" alt="enter description here"></p>
+<h1 id="Transfer-Learning"><a href="#Transfer-Learning" class="headerlink" title="Transfer Learning"></a>Transfer Learning</h1><h2 id="Feature-Space-Augmentation-for-Long-Tailed-Data"><a href="#Feature-Space-Augmentation-for-Long-Tailed-Data" class="headerlink" title="Feature Space Augmentation for Long-Tailed Data"></a>Feature Space Augmentation for Long-Tailed Data</h2><p><strong>论文链接：</strong><a href="https://arxiv.org/abs/2008.03673">https://arxiv.org/abs/2008.03673</a></p>
+<p>常见的解决方法，如data manipulation和Balanced loss function design在提升长尾数据集模型性能的同时会损害特征表示能力<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295376341.png" alt="enter description here"></p>
+<p>两个假设:</p>
+<ul>
+<li>头部类中类别无关的特征可以让尾部类特征更加丰富</li>
+<li>高级特征空间具有更“线性”的表示，可以提取类通用和类特定的特征，并重新混合生成新的样本</li>
+</ul>
+<p>方法:<br>CAM(Class Activation Map)</p>
+<script type="math/tex; mode=display">M_c(x,y)=\sum_{k}w_k^cf_k(x,y)</script><p>c: class; x,y: pixel position; k: channel; w: weight; f: feature，将M归一化到[0,1]，设定两个阈值。<script type="math/tex">0<\tau_s,\tau_t<1</script>。则类特定特征和类通用特征分别为:</p>
+<ul>
+<li><script type="math/tex; mode=display">M_c^s=sgn(M_c-\tau_s) \bigodot M_c</script></li>
+<li><script type="math/tex; mode=display">M_c^g=sgn(\tau_g-M_c) \bigodot M_c</script></li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295358501.png" alt="enter description here"><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295382285.png" alt="enter description here"></p>
+<ul>
+<li>正常训练得到特征提取网络和分类器，使用注意力机制CAM图做特征分解，将特征分为类别无关的特征和类别特定的特征。</li>
+<li>两阶段训练，第一阶段正常训练，负责提取特征和cam，第二阶段是做尾部类的增广训练，分为两步<ul>
+<li>网络输入一张头部类图片和一张尾部类图片，通过分类置信度排序，选择和当前尾部类距离最近的头部类特征，融合头部类中类通用特征和尾部类中类特征特征</li>
+</ul>
+</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295403120.png" alt="enter description here"></p>
+<ul>
+<li>使用增强的特征图微调FC分类器层</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E9%95%BF%E5%B0%BE%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/1664295415204.png" alt="enter description here"></p>
+<blockquote class="blockquote-center">
+<p><strong><font size="5">欢迎关注我的公众号!</font></strong></p>
+
+</blockquote>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="enter description here"></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>长尾优化</tag>
       </tags>
   </entry>
   <entry>
@@ -2822,58 +2885,64 @@ a_3x+b_3y+c_3z=d_3\\
       </tags>
   </entry>
   <entry>
-    <title>AI绘画——webui</title>
-    <url>/post/c9403f5d.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span><br>最近半年text to image的应用非常火热，区别于之前视觉里的分类和检测等任务，虽然机器能识别图里的东西是什么很有趣，但是这些任务一个3岁左右的小孩基本也能在很短的时间给出正确的答案。<strong>而text to image所做的任务要更加复杂一些，这些任务基本都需要受过专业训练的人员花费较长时间才能完成。</strong> <strong>而且webui等工具的开源，让更多非专业人士能切实到文本生成图片的震撼。</strong></p>
-<p>春节前后就开始体验webui了，这段时间事情有点多，搁置了更新，这次先更新下webui生成图片的效果。下次更新stable diffusion的技术细节!</p>
-<p>本文使用webui生成图片，网上有挺多安装教程了，这里不赘述了。</p>
-<h1 id="模型下载"><a href="#模型下载" class="headerlink" title="模型下载"></a>模型下载</h1><p>首先可以去<a href="https://civitai.com/">https://civitai.com/</a>下载需要的模型。可惜的是前几天已经禁止国内IP访问了，好在有些可以部分替代的网站，例如<a href="https://www.4b3.com/ai-drawing-model">https://www.4b3.com/ai-drawing-model</a></p>
-<h1 id="text2image"><a href="#text2image" class="headerlink" title="text2image"></a>text2image</h1><p>生成的时候可以用多组关键词和多个模型生成图片，模型可以设置权重搭配比例，生成混搭的风格。</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/1.png" alt=""></p>
-<blockquote>
-<p>模型: C站上moxing的模型</p>
-<p>prompt: ((4k,masterpiece,best quality)), shuimobysim, traditional chinese ink painting, lotus, hanfu, maxiskit, dress conservatively<br>1 girl, solo, white hair, long hair, fox ears, white, bikini, fish, many fish near girl, look at viewer, tease<br>Negative prompt: (watermark),sketch, duplicate, ugly, huge eyes, text, logo, monochrome, worst face, (bad and mutated hands:1.3), (worst quality:2.0), (low quality:2.0), (blurry:2.0), horror, geometry, (bad hands), (missing fingers), multiple limbs, bad anatomy, (interlocked fingers:1.2), Ugly Fingers, (extra digit and hands and fingers and legs and arms:1.4), crown braid, ((2girl)), (deformed fingers:1.2), (long fingers:1.2),(bad-artist-anime),extra fingers,fewer fingers,hands up,bad hands, bad feet,shoes, stone, ((bad toe))<br>Steps: 30, Sampler: DPM++ SDE Karras, CFG scale: 3, Seed: 2171486205, Size: 384x896, Model hash: 56be194f47, Model: cetusMix_cetusVersion2Fp16, Denoising strength: 0.5, Clip skip: 2, ENSD: 31337, Hires upscale: 2, Hires upscaler: Nearest, AddNet Enabled: True, AddNet Module 1: LoRA, AddNet Model 1: Moxin_Shukezouma11(494301de3d6e), AddNet Weight A 1: 0.7, AddNet Weight B 1: 0.7, AddNet Module 2: LoRA, AddNet Model 2: Moxin_10(17cd20c7b6ea), AddNet Weight A 2: 0.3, AddNet Weight B 2: 0.3, AddNet Module 3: LoRA, AddNet Model 3: chilloutmixss_xss10(9d82c7787e79), AddNet Weight A 3: 0.5, AddNet Weight B 3: 0.5, AddNet Module 4: LoRA, AddNet Model 4: firekeeperLoraFrom_fierkeeper16(acd58eb24484), AddNet Weight A 4: 0.8, AddNet Weight B 4: 0.8</p>
-</blockquote>
-<p>下面的图使用了两个lora模型，一个是之前比较火热的KoreanDoll，用来生成脸部和身体，另一个是英雄联盟里一些角色的模型，用来生成风格。两种模型混搭后可以出现类似cosplay的效果。</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/2.png" alt=""></p>
-<blockquote>
-<p>模型: C站上samira的模型</p>
-<p>prompt: (8k, RAW photo:1.2),best quality, ultra high res, sky, field, grass, samira (league of legends), league of legends, 1girl, jewelry, tattoo, eyepatch, earrings, green eyes, braid, long hair, dark skin, gloves, armor, navel, bracelet, lips, hair over shoulder, smile, looking at viewer, arm tattoo, mole, mole above mouth <lora:samira_v1:1> <lora:KoreanDollLikeness:0.3><br>Negative prompt: sword, holding, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, censored, letterbox, blurry<br>Steps: 20, Sampler: DPM++ SDE Karras, CFG scale: 7, Seed: 1059483644, Size: 512x512, Model hash: fc2511737a, Model: chilloutmix_NiPrunedFp32Fix, Denoising strength: 0.7, Clip skip: 2, ENSD: 31337, Hires resize: 768x1024, Hires upscaler: Latent</p>
-</blockquote>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/3.png" alt=""></p>
-<blockquote>
-<p>模型: C站上Jinx的模型</p>
-<p>prompt: JinxLol,mature female,1girl, solo,looking at viewer, navel, gloves, fingerless gloves, character name, midriff, bare shoulders, looking at viewer, gun, crop top, belt,outdoors,<lora:JinxLolEp8dim8:1>, <lora:Jinx:1> <lora:KoreanDollLikeness:0.3><br>Negative prompt: (low quality, worst quality:1.3), (lowres), blurry,text,watermark,signature,artist name,letterboxed, female pubic hair,realism<br>Steps: 20, Sampler: DPM++ 2M Karras, CFG scale: 7, Seed: 2754482513, Size: 512x768, Model hash: fc2511737a, Model: chilloutmix_NiPrunedFp32Fix, Denoising strength: 0.5, Clip skip: 2, Hires upscale: 2, Hires upscaler: Latent</p>
-</blockquote>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/4.png" alt=""></p>
-<blockquote>
-<p>模型: C站上Ahri的模型</p>
-<p>prompt:(8k, RAW photo:1.2),best quality, ultra high res, ahri, ahri_(league_of_legends), 1girl, absurdres, animal_ears, black_hair, breasts, detached_sleeves, distr, highres, facial_mark, fox_ears, fox_tail, hand_up, league_of_legends, long_hair, long_sleeves, magic, multiple_tails, orange_eyes, parted_lips, solo, standing, tail, full body <lora:Ahri:0.6> <lora:KoreanDollLikeness:0.3><br>Negative prompt: (painting by bad-artist-anime:0.9), (painting by bad-artist:0.9), watermark, text, error, blurry, jpeg artifacts, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, artist name, (worst quality, low quality:1.4), bad anatomy</p>
-</blockquote>
-<h1 id="controlNet"><a href="#controlNet" class="headerlink" title="controlNet"></a>controlNet</h1><p>controlNet也是用来引导图片生成的，好处是在文本生成图片的基础上，加上另一张图做引导，可以让生成的图在一些底层特征上看起来相似。可以采用的特征分为以下几种:</p>
+    <title>stable diffusion——Dreambooth原理与实践</title>
+    <url>/post/7d24ce99.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<p>这个系列会分享下stable diffusion中比较常用的几种训练方式，分别是Dreambooth、textual inversion、LORA和Hypernetworks。在<a href="https://civitai.com/">https://civitai.com/</a>选择模型时也能看到它们的身影。本文该系列的第一篇</p>
 <ul>
-<li>canny: 边缘检测</li>
-<li>depth: 深度检测</li>
-<li>hed:边缘检测</li>
-<li>mlsd: 线段检测</li>
-<li>normal_map: 建模识别</li>
-<li>openpose: 姿势骨骼提取</li>
-<li>openpose_hand:姿势骨骼+手部</li>
-<li>scribble: 提取黑白稿</li>
-<li>fake_scribble: 涂鸦风格提取</li>
-<li>segmentation: 分割</li>
+<li><u>Dreambooth</u></li>
 </ul>
-<p>给大家推荐一个整理了各种画家风格的网站，可以供diffusion model生成类似风格的图像：<a href="https://lib.kalos.art/topic?model=1&amp;topic=0">https://lib.kalos.art/topic?model=1&amp;topic=0</a></p>
-<p>引导图(昨天去商场夹的公仔):<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/5.png" alt=""></p>
-<p>生成图<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/6.png" alt=""></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/7.png" alt=""></p>
+<h2 id="Dreambooth"><a href="#Dreambooth" class="headerlink" title="Dreambooth"></a>Dreambooth</h2><p><strong>论文链接:</strong><a href="https://arxiv.org/abs/2208.12242">https://arxiv.org/abs/2208.12242</a></p>
+<p><strong>代码链接:</strong><a href="https://github.com/XavierXiao/Dreambooth-Stable-Diffusion">https://github.com/XavierXiao/Dreambooth-Stable-Diffusion</a></p>
+<p><a href="https://dreambooth.github.io/">https://dreambooth.github.io/</a><br>dreambooth是2022年谷歌发布的，该方式通过向模型注入自定义的主题来fine-tune diffusion model的技术。为什么叫这个名字，google团队给出了解释:</p>
 <blockquote>
-<p>prompt: ((4k,masterpiece,best quality)), cat, animal painting by Jasmine Becket-Griffith, detailed，multicoloured</p>
+<p>It’s like a photo booth, but once the subject is captured, it can be synthesized wherever your dreams take you.</p>
 </blockquote>
-<p>再来张中国风</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/AI%E7%BB%98%E7%94%BB%E2%80%94%E2%80%94webui/8.png" alt=""></p>
+<p>先来看看效果，仅使用三张图片作为输入，就能在不同的prompt下生成对应的图片。下面的例子用一只狗做示例，生成的图片确实就像狗在不同场景下的照片，Dreambooth模型就像一个照相亭一样。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/1.png" alt=""></p>
+<h2 id="How-does-Dreambooth-work"><a href="#How-does-Dreambooth-work" class="headerlink" title="How does Dreambooth work?"></a>How does Dreambooth work?</h2><p>要训练自己数据最直观的方法，就是把自己的图片加入模型迭代时一起训练。但会带来两个问题，一个是过拟合，另一个是语言漂移(<a href="https://arxiv.org/abs/1909.04499">language drift</a>)。<br>而Dreambooth的优势就在于能避免上述的两个问题</p>
+<ul>
+<li>可以用一个罕见的词来代表图片的含义，保证新加入的图片对应的词在模型中没有太多的意义</li>
+<li>为了保留类别的含义，例如上图中的“狗”，模型会在狗的类别基础上微调，并保留对应词的语义，例如给这只狗取名为”Devora”, 那么生成的”Devora”就会特指这只狗。</li>
+</ul>
+<p>区别于textual inversion方法，Dreambooth使用的是一个罕见的词，而textual inversion使用的是新词。Dreambooth会对整个模型做微调，而textual inversion只会对text embedding部分调整</p>
+<h2 id="训练dreambooth"><a href="#训练dreambooth" class="headerlink" title="训练dreambooth"></a>训练dreambooth</h2><h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a><strong>数据</strong></h3><ul>
+<li>3-10张图片, 最好是不同角度，且背景有变化的图片</li>
+<li>独特的标识符(unique identifier)</li>
+<li>类的名字(class name)<br>先了解下几个prompt:<br>instance prompt: a photo of [unique identifier] [class name]<br>class prompt: a photo of [class name]</li>
+</ul>
+<p>这里我用无敌帅气的“Halley”的照片</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/2.jpeg" alt=""></p>
+<p>那么在这个例子里，instance prompt: a photo of Halley Dog; class prompt: a photo of Dog</p>
+<p>对图片进行裁剪到512*512的，这里推荐一个网站<a href="https://www.birme.net/?target_width=512&amp;target_height=512">https://www.birme.net/?target_width=512&amp;target_height=512</a>可以很方便的做裁剪</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/3.png" alt=""></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a><strong>安装</strong></h3><p>在webui上依次点击”Extensions”-&gt;”Available”-&gt;”Load from”。会搜索出非常多的插件，选择”Dreambooth”并”Install”</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/4.png" alt=""></p>
+<p>安装完成后依次点击”Extensions”-&gt;”Installed”-&gt;”Apply and restart UI”</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/5.png" alt=""></p>
+<p><strong>可能会遇到些坑，例如我在重新启动UI时，页面崩溃了，发现时代码中也有检测extension并安装的逻辑，注释掉相应的代码就行了</strong></p>
+<h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><p>接下来就是Dreambooth的训练页面</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/6.png" alt=""></p>
+<p>首先创建一个空的模型，设定好Name和原始的Checkpoint就行</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/7.png" alt=""></p>
+<p>然后点击”Dreambooth”-&gt;”Train”,有如下几个地方需要设置，大多数填的内容在上面的篇幅都有介绍到。需要注意的是有两种风格可以选，分别是”Person”和”Object/Style”,根据自己的需求选择对应的就ok</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/8.png" alt=""></p>
+<p>然后”Settings”，选择训练时候的一些设置，这里推荐一些参数,”use LORA”需要勾选上，混合精度选上fp16。”Saving”中选上”Generate lora weights when saving during training.”,”Generate”中”Image Generation Scheduler”选择”DDIM”</p>
+<p>模型训练:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/9.png" alt=""></p>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a><strong>效果</strong></h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/10.png" alt=""></p>
 <blockquote>
-<p>prompt: cat, animal painting by  Bada Shanren, beautiful details, shuimobysim, traditional chinese ink painting</p>
+<p>prompt: (4k,masterpiece,best quality), a photo of Halley Dog, black pupils brown whites, Sleeping in a blanket in the snow</p>
+</blockquote>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/11.png" alt=""></p>
+<blockquote>
+<p>prompt:(best quality), a photo of Halley Dog, black pupils brown whites, eat dog biscuits</p>
+</blockquote>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/12.png" alt=""></p>
+<blockquote>
+<p>prompt:(best quality), a photo of Halley Dog, black pupils brown whites, eat dog biscuits</p>
+</blockquote>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Dreambooth%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/13.png" alt=""></p>
+<blockquote>
+<p>prompt:(best quality), a photo of Halley Dog, black pupils brown whites, A chef Halley Dog cooking scallops, wearing a chef hat, in a kitchen, professional</p>
 </blockquote>
 ]]></content>
       <categories>
@@ -2881,7 +2950,6 @@ a_3x+b_3y+c_3z=d_3\\
       </categories>
       <tags>
         <tag>diffusion model</tag>
-        <tag>text to image</tag>
       </tags>
   </entry>
 </search>
