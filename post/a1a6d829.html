@@ -23,13 +23,13 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="stable diffusion——Textual Inversion原理与实践">
+<meta property="og:title" content="stable diffusion(二)——Textual Inversion原理与实践">
 <meta property="og:url" content="https://oysz2016.github.io/post/a1a6d829.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%E2%80%94%E2%80%94Textual%20Inversion%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/3.png">
 <meta property="article:published_time" content="2023-04-15T14:38:20.386Z">
-<meta property="article:modified_time" content="2023-04-16T05:05:31.697Z">
+<meta property="article:modified_time" content="2023-05-06T00:03:40.529Z">
 <meta property="article:author" content="冲弱">
 <meta property="article:tag" content="diffusion model">
 <meta name="twitter:card" content="summary">
@@ -40,10 +40,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/a1a6d829.html","path":"post/a1a6d829.html","title":"stable diffusion——Textual Inversion原理与实践"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/a1a6d829.html","path":"post/a1a6d829.html","title":"stable diffusion(二)——Textual Inversion原理与实践"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>stable diffusion——Textual Inversion原理与实践 | 冲弱's Blog</title>
+<title>stable diffusion(二)——Textual Inversion原理与实践 | 冲弱's Blog</title>
   
 
 
@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -251,7 +251,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          stable diffusion——Textual Inversion原理与实践
+          stable diffusion(二)——Textual Inversion原理与实践
         </h1>
 
         <div class="post-meta-container">
@@ -269,7 +269,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-16 13:05:31" itemprop="dateModified" datetime="2023-04-16T13:05:31+08:00">2023-04-16</time>
+      <time title="修改时间：2023-05-06 08:03:40" itemprop="dateModified" datetime="2023-05-06T08:03:40+08:00">2023-05-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -432,7 +432,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://oysz2016.github.io/post/a1a6d829.html" title="stable diffusion——Textual Inversion原理与实践">https://oysz2016.github.io/post/a1a6d829.html</a>
+      <a href="https://oysz2016.github.io/post/a1a6d829.html" title="stable diffusion(二)——Textual Inversion原理与实践">https://oysz2016.github.io/post/a1a6d829.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -490,8 +490,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/post/7d24ce99.html" rel="prev" title="stable diffusion——Dreambooth原理与实践">
-                  <i class="fa fa-chevron-left"></i> stable diffusion——Dreambooth原理与实践
+                <a href="/post/7d24ce99.html" rel="prev" title="stable diffusion(一)——Dreambooth原理与实践">
+                  <i class="fa fa-chevron-left"></i> stable diffusion(一)——Dreambooth原理与实践
                 </a>
             </div>
             <div class="post-nav-item">
@@ -530,13 +530,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>站点总字数:
     </span>
-    <span title="站点总字数">123k</span>
+    <span title="站点总字数">130k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>站点阅读时长:
     </span>
-    <span title="站点阅读时长">1:52</span>
+    <span title="站点阅读时长">1:58</span>
   </span>
 </div>
 <div class="busuanzi-count">

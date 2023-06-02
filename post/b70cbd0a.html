@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wukong.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/32_32_wukong.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/16_16_wukong.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="stable diffusion(五)——ControlNet原理与实践">
+<meta property="og:url" content="https://oysz2016.github.io/post/b70cbd0a.html">
+<meta property="og:site_name" content="冲弱&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/17.png">
+<meta property="article:published_time" content="2023-06-02T10:27:59.547Z">
+<meta property="article:modified_time" content="2023-06-02T10:52:33.803Z">
+<meta property="article:author" content="冲弱">
+<meta property="article:tag" content="diffusion model">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/17.png">
+
+
+<link rel="canonical" href="https://oysz2016.github.io/post/b70cbd0a.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/b70cbd0a.html","path":"post/b70cbd0a.html","title":"stable diffusion(五)——ControlNet原理与实践"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>stable diffusion(五)——ControlNet原理与实践 | 冲弱's Blog</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="waline-five-pi.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="冲弱's Blog" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">冲弱's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">多阅读 多积累</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-comment"><a href="/comment/" rel="section"><i class="fa fa-comment fa-fw"></i>评论</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">2.</span> <span class="nav-text">Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text">消融实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%97%A0ControlNet%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94"><span class="nav-number">3.1.</span> <span class="nav-text">有无ControlNet结构对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AA%81%E7%84%B6%E6%94%B6%E6%95%9B%E7%8E%B0%E8%B1%A1"><span class="nav-number">3.2.</span> <span class="nav-text">突然收敛现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#canny-edge-based%E6%A8%A1%E5%9E%8B%E5%92%8C%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.3.</span> <span class="nav-text">canny-edge-based模型和训练数据大小的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%92%8C%E5%85%B6%E4%BB%96%E7%94%A8%E5%9B%BE%E5%83%8F%E4%BD%9C%E4%B8%BA%E6%9D%A1%E4%BB%B6%E5%BC%95%E5%AF%BC%E7%94%9F%E6%88%90%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">3.4.</span> <span class="nav-text">和其他用图像作为条件引导生成方式的对比</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#depth"><span class="nav-number">3.4.1.</span> <span class="nav-text">depth</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#segmentation"><span class="nav-number">3.4.2.</span> <span class="nav-text">segmentation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scribbles"><span class="nav-number">3.4.3.</span> <span class="nav-text">Scribbles</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#canney"><span class="nav-number">3.4.4.</span> <span class="nav-text">canney</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%9D%A1%E4%BB%B6%E5%AF%B9%E6%AF%94"><span class="nav-number">3.5.</span> <span class="nav-text">控制条件对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">3.6.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">局限性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="冲弱"
+      src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+  <p class="site-author-name" itemprop="name">冲弱</p>
+  <div class="site-description" itemprop="description">输出即获得，分享即反哺</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ouyang-sz@foxmail.com" title="E-Mail → mailto:ouyang-sz@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/user/5ae26032f265da0b9f3ffeb2" title="掘金 → https:&#x2F;&#x2F;juejin.im&#x2F;user&#x2F;5ae26032f265da0b9f3ffeb2" rel="noopener" target="_blank"><i class="fa fa-spinner fa-fw"></i>掘金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/ou-yang-shi-zhuang/activities" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ou-yang-shi-zhuang&#x2F;activities" rel="noopener" target="_blank"><i class="fab fa-zhihu fa-fw"></i>知乎</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+    
+    <div class="post-gallery-image">
+      <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/17.png" itemprop="contentUrl">
+    </div>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/b70cbd0a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+      <meta itemprop="name" content="冲弱">
+      <meta itemprop="description" content="输出即获得，分享即反哺">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冲弱's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          stable diffusion(五)——ControlNet原理与实践
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-06-02 18:27:59 / 修改时间：18:52:33" itemprop="dateCreated datePublished" datetime="2023-06-02T18:27:59+08:00">2023-06-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/b70cbd0a.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/b70cbd0a.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><p class="description"></p><br><span id="more"></span></p>
+<p>这个系列会分享下stable diffusion中比较常用的几种训练方式，分别是Dreambooth、textual inversion、LORA、Hypernetworks和ControlNet。在<a target="_blank" rel="noopener" href="https://civitai.com/">https://civitai.com/</a>选择模型时也能看到它们的身影。本文该系列的第五篇</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/NE3Gkr64G3XADVdujtzRXw">Dreambooth</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/hJaXd7Eb44CXjl4QwnSZWg">Textual Inversion</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/mtdieY-sqIKCiUK16ItQ3g">LoRA</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/FBQbQ72SPTa17mScITYF5Q">Hypernetworks</a></li>
+<li><u>ControlNet</u></li>
+</ul>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.53yu.com/abs/2302.05543">https://arxiv.53yu.com/abs/2302.05543</a></p>
+<p><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/lllyasviel/ControlNet">https://github.com/lllyasviel/ControlNet</a></p>
+<p>ControlNet可以从提供的参考图中获取布局或者姿势等信息, 并引导diffusion model生成和参考图类似的图片。这种功能对于生成模型来说至关重要, ControlNet开源到stable diffusion中时, 很多自媒体文章的标题都是《XX行业要结束了》, 有点杀死比赛的意思。训练和测试过stable diffusion的朋友应该知道, prompt至关重要, 而调整prompt确实是一件费时费力的事情, 想要控制好一些细节非常不容易。往往都是生成大量图片, 能得到几个满意的。而有了ControlNet则可以精确的控制生成图片的细节(当然, 也依赖于你已经有一张参考图了)</p>
+<p>扩散模型中会需要使用text作为条件引导模型生成, 而ControlNet在引导的时候会增加一个条件实现更加可控的text-to-image生成.</p>
+<p>diffusion model进展非常迅速, 针对diffusion model的一些痛点, 作者提出了几个问题和训练扩散模型时的限制, 并着手用ControlNet解决:</p>
+<ul>
+<li>基于prompt的控制是否能满足我们的需求?</li>
+<li>在图像处理中, 有许多有明确定义的长期任务, 是否可以用大模型来使这些任务达到新的高度?</li>
+<li>应该用什么样的框架处理用户想要的各种各样条件？</li>
+<li>在特定场景, 新提出的框架怎么能继承大模型(diffusion model)的能力.</li>
+</ul>
+<p>三点限制:</p>
+<ul>
+<li>特定场景的数据量少, 在较少的数据量上很容易出现过拟合</li>
+<li>大的计算集群很奢侈, (stable diffusion base模型需要15万个A100显卡小时)</li>
+<li>end2end是必要的, 一些特定场景需要将原始的输入转为更高语义的表达, 手工处理的方式不太可行</li>
+</ul>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>对于上面的4个问题和3点限制, 作者提出了ControlNet, ControlNet具有以下的特点:</p>
+<ul>
+<li>end2end</li>
+<li>control large image diffusion model(例如stable diffusion)</li>
+<li>learn task-specific input conditions</li>
+</ul>
+<p>为了能继承大模型的能力, ControlNet将原来大模型的参数分为两部分, 分别是<strong>可训练</strong>和<strong>冻结</strong>的。对比下添加ControlNet结构前后的网络图很容易明白。</p>
+<p>之前stable diffusion的模型结构如下图所示:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/1.png" alt=""></p>
+<p>图(a)是之前stable diffusion的输出, 图(b)和图(a)的区别在于添加了ControlNet的结构, 具体而言是将<code>neural network block</code>复制了一份, 作为<code>trainable copy</code>,并且<code>neural network block</code>的网络参数会被冻结住。而且<code>trainable copy</code>前后会有<code>zero convolution</code>, <code>zero convolution</code>其实是1*1的卷积。最后会将<code>neural network block</code>和<code>trainable copy</code>的特征相加。</p>
+<p><code>neural network block</code>的作用可以用下面的公式表示<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/2.png" alt=""><br>$x$是一个2D的feature, 其shape为{h,w,c}分别代表height, width, channel.$\theta$代表<code>neural network block</code>的参数, y表示经过<code>neural network block</code>后的特征。</p>
+<p>添加了control后, 网络会从<code>公式1</code>变为下面的<code>公式2</code><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/3.png" alt=""></p>
+<p>$Z$代表<code>zero convolution</code>, $\theta_{z1}$,$\theta_{z2}$,$\theta_{c}$分别代表第一个, 第二个<code>zero convolution</code>的参数和<code>trainable copy</code>的参数。</p>
+<p>在初始化训练的时候, <code>zero convolution</code>的weight和bias会被初始化为0, 因此ControlNet具有以下的特点:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/4.png" alt=""></p>
+<p>实际上是为了让初始化的时候添加了ControlNet的模型和原始的模型效果是一样的, 后续再慢慢finetune</p>
+<p>可以简化成下面的表达式<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/5.png" alt=""></p>
+<p>$y_c$是加上ControlNet的输出, 而$y$是原始的输出, 模型初始化时两者是相等的</p>
+<p>文章中特地解释了<code>zero convolution</code>梯度更新的问题, 在模型开始迭代前, 有W=0, B=0.则</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/6.png" alt=""></p>
+<p>可以看到权重W的梯度是I, 而偏置B的梯度是1.说明<code>zero convolution</code>是可以正常更新的</p>
+<p>ControlNet的详细结构如下图所示:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/7.png" alt=""></p>
+<p>灰色部分是原来stable diffusion的结构, 蓝色部分是从U-Net的encode对应部分copy, 经过<code>zero convolution</code>后和U-Net的decode相加。  </p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/8.png" alt=""></p>
+<p>了解了结构后, 下面是训练的细节。$\epsilon-\epsilon_{\theta}$和原始的stable diffusion是一样的, 是每次生成噪声和实际噪声的差值。区别在于加入了ControlNet新加的控制条件$c_f$。其他的参数都和stable diffusion一样, $z_t$代表噪声图片, $t$代表迭代次数,$c_t$代表text prompt。</p>
+<p>在实际训练的时候, 会随机让50%的text prompt变为空, 促使模型更多的关注$c_f$,让模型学习用$c_f$控制图像生成。</p>
+<p> 虽然ControlNet新加了些模型结构, 但由于大部分参数都被冻结, 因此训练时实际上只用原来stable diffusion模型的23%显存和34%的训练时间, 可以在单张40GB的A100卡上做训练</p>
+<p><strong>计算资源的限制</strong>: 如果数据量比较少, 可以只连接U-Net中的SD Middle Block, 而连接decoder的<code>zero convolution</code>都不用, 可以减少参数量。可以将ControlNet的训练速度提高1.6倍(在RTX 3070TI的消费级显卡上也可以做训练)。</p>
+<p><strong>有大量的训练资源</strong>: 如果有大量的训练资源(8张A100), 为了获取更好的效果可以将原始U-Net模型中的被冻结参数的decoder部分也参与模型训练。</p>
+<h2 id="消融实验"><a href="#消融实验" class="headerlink" title="消融实验"></a>消融实验</h2><p>这部分没有定量的分析, 更多的是通过一些case表明ControlNet能有效的控制生成的图像, 因为毕竟新加了个条件, 没有现成的数据集用来评测。</p>
+<h3 id="有无ControlNet结构对比"><a href="#有无ControlNet结构对比" class="headerlink" title="有无ControlNet结构对比"></a>有无ControlNet结构对比</h3><p>下面的图最左边是ControlNet使用的canny图；中间是没有controNet, 只通过text prompt控制生成的房子及周边环境；右边是使用了ControlNet的图, 可以看到不实用ControlNet, 房子的结构可能会发生一些改变, 而加上了ControlNet后, 房子的结构始终固定, 改变只有房子的外观和周边的环境。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/9.png" alt=""></p>
+<h3 id="突然收敛现象"><a href="#突然收敛现象" class="headerlink" title="突然收敛现象"></a>突然收敛现象</h3><p>作者发现ControlNet在训练的时候会出现突然收敛, 这种收敛一般发生在5000-10000步, 而且收敛之后如果继续迭代模型的变化并不大。例如下面的图, 提供了苹果的canny图和text prompt: apple, 但模型最开始学习到的是苹果电脑相关的, 到6100步图片中仍然没有学习到生成提供的canny图类似的图片, 但仅仅过了33步后到6133步模型突然就学会了！而且该现象和batch size关系不大, 也就是说如果增大batch size 模型差不多也会在6133步收敛, 好处是大batch size收敛出的模型效果更好。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/10.png" alt=""></p>
+<h3 id="canny-edge-based模型和训练数据大小的关系"><a href="#canny-edge-based模型和训练数据大小的关系" class="headerlink" title="canny-edge-based模型和训练数据大小的关系"></a>canny-edge-based模型和训练数据大小的关系</h3><p>在50k数据之前增加数据效果会有明显的提升, 但50k之后狮子生成的已经很好了, 差异在于增大数据后背景会更加好点。有点像突然收敛之后继续迭代的情况。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/11.png" alt=""></p>
+<h3 id="和其他用图像作为条件引导生成方式的对比"><a href="#和其他用图像作为条件引导生成方式的对比" class="headerlink" title="和其他用图像作为条件引导生成方式的对比"></a>和其他用图像作为条件引导生成方式的对比</h3><h4 id="depth"><a href="#depth" class="headerlink" title="depth"></a>depth</h4><p>在stable diffusion V2.0中有个很重要的更新——Depth-to-Image Diffusion, 可以推断输入图像的深度信息, 然后利用文本和深度信息生成新图像。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/12.png" alt=""></p>
+<p>这种方式和depth-base ControlNet很像, 对比如下图所示：<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/13.png" alt=""></p>
+<p>从生成效果上两者看起来都非常好(硬要比的话, ControlNet效果稍好些)。从训练成本上, stable diffusion V2.0需要大量A100的训练集群在1200万的训练数据训练2000GPU-hours, 而Depth-based ControlNet在stable diffusion V1.5的基础上预训练, 使用单张RTX 3090TI在20万数据上训练1周。这么对比确实ControlNet太香了</p>
+<h4 id="segmentation"><a href="#segmentation" class="headerlink" title="segmentation"></a>segmentation</h4><p>下面的图对比的是PITI(Pretraining-Image-to-Image)和segmentation-base ControlNet</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/14.png" alt=""></p>
+<h4 id="Scribbles"><a href="#Scribbles" class="headerlink" title="Scribbles"></a>Scribbles</h4><p>下面的图对比的是Sketch-guided diffusion和scribbles-base ControlNet</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/15.png" alt=""></p>
+<h4 id="canney"><a href="#canney" class="headerlink" title="canney"></a>canney</h4><p>下面的图对比的是Taming Transformer和canney-base ControlNet<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/16.png" alt=""></p>
+<h3 id="控制条件对比"><a href="#控制条件对比" class="headerlink" title="控制条件对比"></a>控制条件对比</h3><p>不同控制条件下生成效果的对比, 作者给了一个房间布局的图, 然后分别用cannry, depth, HED, Nromal, Line和Scribbles的方式做对比。其实这几个模型都有更适合的应用场景, 关以房间布局的例子而言, Line和HED是更合适的, 这个从Line和HED的图像特征就能看出。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/17.png" alt=""></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>更多的应用,下面的图展示的是把原图的一部分mask掉, 然后随便画几笔草图, 生成的图就是没mask掉的部分结合草图的完成效果。(太牛了)</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/18.png" alt=""></p>
+<p>当图像细节比较简单时, ControlNet可以实现精确的控制<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/19.png" alt=""></p>
+<p>如果需要兼顾和提示图片类似与多样性两种需求, 可以在生成图片中灵活的设置ControlNet参与图片生成的步数。例如下面的图, 和原始图相似, 但也保证了多样性</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/20.png" alt=""></p>
+<h2 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h2><p>ControlNet可能会曲解canney和depth等图像特征的含义, 例如下面的图是一个水杯的canney图, ControlNet生成的是一个农田, 加上<code>a glass of water</code>后, 生成的图片稍微好点, 但仍然和实际的有差异。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/21.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>ControlNet的原理到这里就介绍完了, 做的改进很简洁, 只需要较小的数据集就可以用作训练(50k, 相比diffusion model亿级别的确实小不少)。用的计算资源较少, 并且做一些参数调整hou 甚至可以在消费级的显卡上做训练。总共有10个不同图像特征的模型, 可以适应多种生成需求。ControlNet在stable diffusion中已经开源了, 并且在webui上很容易添加和尝试,这部分有非常多的blog和视频有讲解, 就不再赘述了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wechatpay.jpg" alt="冲弱 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/alipay.jpg" alt="冲弱 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>冲弱
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://oysz2016.github.io/post/b70cbd0a.html" title="stable diffusion(五)——ControlNet原理与实践">https://oysz2016.github.io/post/b70cbd0a.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.zhihu.com/people/ou-yang-shi-zhuang/posts">
+          <span class="icon">
+            <i class="fab fa-zhihu"></i>
+          </span>
+
+          <span class="label">ZhiHu</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://juejin.cn/user/4353721775688920">
+          <span class="icon">
+            <i class="fa fa-spinner"></i>
+          </span>
+
+          <span class="label">JueJin</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/diffusion-model/" rel="tag"> <i class="fa fa-tag"></i> diffusion model</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wpac-rating-container">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/f079523.html" rel="prev" title="stable diffusion(四)——Hypernetworks原理与实践">
+                  <i class="fa fa-chevron-left"></i> stable diffusion(四)——Hypernetworks原理与实践
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冲弱</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>站点总字数:
+    </span>
+    <span title="站点总字数">130k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>站点阅读时长:
+    </span>
+    <span title="站点阅读时长">1:58</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5adaebc9009ff58b" async="async"></script>
+  </div>
+  <div id="site-runtime">
+  <span class="post-meta-item-icon">
+    <i class="fa fa-clock-o"></i>
+  </span>
+  <span id="runtime"></span>
+</div>
+
+<script language="javascript">
+  function isPC() {
+    var userAgentInfo = navigator.userAgent;
+    var agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    for (var i = 0; i < agents.length; i++) {
+      if (userAgentInfo.indexOf(agents[i]) > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function siteTime(openOnPC, start) {
+    window.setTimeout("siteTime(openOnPC, start)", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+      start = new Date("2018-04-23 09:00:00 +0800");
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var date = now.getDate();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    var diff = now - start;
+
+    var diffYears = Math.floor(diff / years);
+    var diffDays = Math.floor((diff / days) - diffYears * 365);
+    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+
+    if (openOnPC) {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + " years " + diffDays + " days " + diffHours + " hours " + diffMinutes + " mins " + diffSeconds + " secs";
+    } else {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + "y " + diffDays + "d " + diffHours + "h " + diffMinutes + "m " + diffSeconds + "s";
+    }
+  }
+
+  var showOnMobile = true;
+  var openOnPC = isPC();
+  var start = new Date();
+  siteTime(openOnPC, start);
+
+  if (!openOnPC && !showOnMobile) {
+    document.getElementById('site-runtime').style.display = 'none';
+  }
+</script>
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+  <script src="https://embed.widgetpack.com/widget.js" async></script>
+  <script class="next-config" data-name="rating" type="application/json">{"enable":true,"id":11277,"color":"f79533"}</script>
+  <script src="/js/third-party/rating.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/b70cbd0a.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>
