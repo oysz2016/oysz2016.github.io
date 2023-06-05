@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/17.png">
 <meta property="article:published_time" content="2023-06-02T10:27:59.547Z">
-<meta property="article:modified_time" content="2023-06-02T10:52:33.803Z">
+<meta property="article:modified_time" content="2023-06-04T00:27:42.636Z">
 <meta property="article:author" content="冲弱">
 <meta property="article:tag" content="diffusion model">
 <meta name="twitter:card" content="summary">
@@ -261,9 +261,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-06-02 18:27:59 / 修改时间：18:52:33" itemprop="dateCreated datePublished" datetime="2023-06-02T18:27:59+08:00">2023-06-02</time>
+      <time title="创建时间：2023-06-02 18:27:59" itemprop="dateCreated datePublished" datetime="2023-06-02T18:27:59+08:00">2023-06-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-06-04 08:27:42" itemprop="dateModified" datetime="2023-06-04T08:27:42+08:00">2023-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -350,7 +356,7 @@
 <h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>对于上面的4个问题和3点限制, 作者提出了ControlNet, ControlNet具有以下的特点:</p>
 <ul>
 <li>end2end</li>
-<li>control large image diffusion model(例如stable diffusion)</li>
+<li>control large im  age diffusion model(例如stable diffusion)</li>
 <li>learn task-specific input conditions</li>
 </ul>
 <p>为了能继承大模型的能力, ControlNet将原来大模型的参数分为两部分, 分别是<strong>可训练</strong>和<strong>冻结</strong>的。对比下添加ControlNet结构前后的网络图很容易明白。</p>
@@ -401,7 +407,7 @@
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/20.png" alt=""></p>
 <h2 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h2><p>ControlNet可能会曲解canney和depth等图像特征的含义, 例如下面的图是一个水杯的canney图, ControlNet生成的是一个农田, 加上<code>a glass of water</code>后, 生成的图片稍微好点, 但仍然和实际的有差异。</p>
 <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/stable%20diffusion%28%E4%BA%94%29%E2%80%94%E2%80%94ControlNet%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/21.png" alt=""></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>ControlNet的原理到这里就介绍完了, 做的改进很简洁, 只需要较小的数据集就可以用作训练(50k, 相比diffusion model亿级别的确实小不少)。用的计算资源较少, 并且做一些参数调整hou 甚至可以在消费级的显卡上做训练。总共有10个不同图像特征的模型, 可以适应多种生成需求。ControlNet在stable diffusion中已经开源了, 并且在webui上很容易添加和尝试,这部分有非常多的blog和视频有讲解, 就不再赘述了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>ControlNet的原理到这里就介绍完了, 做的改进很简洁, 只需要较小的数据集就可以用作训练(50k, 相比diffusion model亿级别的确实小不少)。用的计算资源较少, 并且做一些参数调整后甚至可以在消费级的显卡上做训练。总共有10个不同图像特征的模型, 可以适应多种生成需求。ControlNet在stable diffusion中已经开源了, 并且在webui上很容易添加和尝试,这部分有非常多的blog和视频有讲解, 就不再赘述了。</p>
 
     </div>
 
