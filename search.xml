@@ -119,46 +119,6 @@
       </tags>
   </entry>
   <entry>
-    <title>《Faster R-CNN》详解</title>
-    <url>/post/79b7b6f1.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
-<p>最近实在是太忙了，很久没更新博客。想起前几周花了一些功夫给组内的小伙伴们做了个分享，为了做分享时自己能讲清楚，找了不少我认为描述的比较好的图片。Faster R-CNN可以说是目标检测领域的开山之作了，即使现今的顶会论文中，目标检测方面 的论文也有不少是对Faster R-CNN做的改进。这么经典的文章，细节又多如牛毛，真是常读常新。所以搬运到博客上应该也是有一些价值的。</p>
-</blockquote>
-<h2 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h2><p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196152.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195967.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196153.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195729.jpg" alt="enter description here"></p>
-<blockquote>
-<p>写作的过程是将网状的思考用树状的语法结构转换成线性的文字，阅读则是其逆向过程。读文章时并不用逐字逐句的按文章的书写顺序去读。可以按照合适的方式去更好的还原作者的思考过程。及时的停止读一篇文章，能及时止损，每个人精力和注意力都是宝贵的，不应该把时间花在读了对自己没价值的文章上。</p>
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196154.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196156.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196019.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196293.jpg" alt="enter description here"></p>
-<blockquote>
-<p>检测任务目前的弊病之一就在于其网络的特征提取层直接从分类网络迁移学习来，并不是很贴合检测任务。</p>
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196020.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196294.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196021.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196024.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196026.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196314.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195920.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196289.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196118.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195946.jpg" alt="enter description here"></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196290.jpg" alt="enter description here"></p>
-]]></content>
-      <categories>
-        <category>输入分类</category>
-      </categories>
-      <tags>
-        <tag>输入标签</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《GAN》论文笔记</title>
     <url>/post/f84aad11.html</url>
     <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
@@ -204,6 +164,46 @@
       <tags>
         <tag>深度学习</tag>
         <tag>生成网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《Faster R-CNN》详解</title>
+    <url>/post/79b7b6f1.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
+<p>最近实在是太忙了，很久没更新博客。想起前几周花了一些功夫给组内的小伙伴们做了个分享，为了做分享时自己能讲清楚，找了不少我认为描述的比较好的图片。Faster R-CNN可以说是目标检测领域的开山之作了，即使现今的顶会论文中，目标检测方面 的论文也有不少是对Faster R-CNN做的改进。这么经典的文章，细节又多如牛毛，真是常读常新。所以搬运到博客上应该也是有一些价值的。</p>
+</blockquote>
+<h2 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h2><p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196152.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195967.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196153.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195729.jpg" alt="enter description here"></p>
+<blockquote>
+<p>写作的过程是将网状的思考用树状的语法结构转换成线性的文字，阅读则是其逆向过程。读文章时并不用逐字逐句的按文章的书写顺序去读。可以按照合适的方式去更好的还原作者的思考过程。及时的停止读一篇文章，能及时止损，每个人精力和注意力都是宝贵的，不应该把时间花在读了对自己没价值的文章上。</p>
+</blockquote>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196154.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196156.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196019.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196293.jpg" alt="enter description here"></p>
+<blockquote>
+<p>检测任务目前的弊病之一就在于其网络的特征提取层直接从分类网络迁移学习来，并不是很贴合检测任务。</p>
+</blockquote>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196020.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196294.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196021.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196024.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196026.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196314.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195920.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196289.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196118.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978195946.jpg" alt="enter description here"></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1559978196290.jpg" alt="enter description here"></p>
+]]></content>
+      <categories>
+        <category>输入分类</category>
+      </categories>
+      <tags>
+        <tag>输入标签</tag>
       </tags>
   </entry>
   <entry>
@@ -872,136 +872,6 @@
       </tags>
   </entry>
   <entry>
-    <title>(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记</title>
-    <url>/post/4395ef5a.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
-<p>论文链接：<a href="https://arxiv.org/abs/1711.07767">https://arxiv.org/abs/1711.07767</a><br>论文代码：<a href="https://github.com/ruinmessi/RFBNet">https://github.com/ruinmessi/RFBNet</a></p>
-<p>&emsp;&emsp;目标检测框架中目前主要依靠边界框回归和非极大值抑制来定位对象，并且非极大值抑制算法去除重复框的依据是候选框的分类置信度，在这个过程中缺少了一个边框筛选的重要参考——<strong>定位置信度</strong>。因此这篇文章提出<strong>IOU-Net</strong>，IOU-Net具有以下优点：</p>
-<ul>
-<li>通过在网络中加入定位置信度，在NMS算法中用定位置信度代替分类置信度作为去重复框的参考</li>
-<li>提出了一种<strong>基于优化的边界框修正</strong>算法</li>
-</ul>
-<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>&emsp;&emsp;作者先根据实验定性的分析了仅用分类置信度评估检测框是否准确不太合适，缺少分类置信度回带来两个<strong>缺点</strong>：</p>
-<ol>
-<li>分类置信度被用作对检测框排序的度量标准，并且在NMS算法中忽略了定位的精度</li>
-<li>缺少定位置信度，使得广泛使用BBox回归缺少可解释性，这点在《cascade r-cnn》中也有提到多次使用BBox回归可能导致检测框的局部退化。</li>
-</ol>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464876.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;上图中，黄色框表示gt，绿色和红色都是是模型预测得到的检测框。如图(a)所示，绿色检测框与红色检测框相比更适合作为最终的预测结果，绿色框与gt的IOU(交并比)更高，定位置信度也更高，但分类置信度却低于红色的检测框，在以往NMS算法中以分类作为检测框排序标准，会保留红色的框，而滤去绿色的，这显然是不够合理的。图(b)比较的是基于优化的边界框修正比基于回归的边界框修正有更好的效果(多次应用基于回归的边界框修正，会导致检测框退化)<br>基于上图中目前目标检测框架的不足，作者IOU-Net所做的两点改进：</p>
-<ol>
-<li>通过在目标检测框架中引入定位置信度。在NMS算法中，预测检测框与gt之间IOU的顺序，代替原来的以分类置信度排序</li>
-<li>提出了一种基于优化的边界框修正算法</li>
-</ol>
-<p>&emsp;&emsp;IOU-Net中的IOU指的就是<strong>网络预测到的检测框与gt之间的IOU</strong></p>
-<h2 id="深入研究目标定位"><a href="#深入研究目标定位" class="headerlink" title="深入研究目标定位"></a>深入研究目标定位</h2><p>&emsp;&emsp;作者在绪论中提到了所作的两点改进，绪论中定性的用图表表明了缺少定位置信度带来的缺点，接下来分别做了几个实验定量的验证所提出方法的有效性。以下实验所采用的训练集是MS-COCO trainval35k,测试集用minival，检测框架用FPN网络。</p>
-<h3 id="类别不匹配和定位精度"><a href="#类别不匹配和定位精度" class="headerlink" title="类别不匹配和定位精度"></a>类别不匹配和定位精度</h3><p>&emsp;&emsp;作者先简单介绍了NMS算法的原理，及关于这方面的研究进展。随后指出NMS算法中，以分类置信度作为检测框的度量标准不太合理。</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464564.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;如上图所示，(a)横轴是预测的检测框与gt之间的IOU,纵轴是分类置信度。(b)横轴同样是预测的检测框与gt之间的IOU,纵轴是定位置信度。若以检测框与gt之间的IOU大于0.5作为是否检测到的阈值，作者计算了两张图横纵轴的Pearson correlation(皮尔森相关系数<a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">[wiki百科]</a>)，结论是(a)的相关的相关系数为0.217，而(b)的相关性为0.617。<br>&emsp;&emsp;作者也总结了分类置信度与定位是否准确关系不大的原因：<strong>目标检测框架中分类和定位的相关性不强的原因在于正样本和负样本的选取方式，例如获取正样本只用其与gt之间的IOU大于指定阈值即可</strong>。关于正样本的生成方式，之前我也想过为什么这样生成，如此的生成方式一定程度上会带来定位不准确的问题。但是相比较于完全使用标注的gt这种方式具有以下的优点：</p>
-<ul>
-<li><strong><em>可以生成多个比例的候选框，覆盖样本的不同尺度，正样本会更好的回归</em></strong></li>
-<li><strong><em>样本均衡一直是目标检测算法的一个难题，这种方式一定程度上可以生成更多的正样本</em></strong></li>
-</ul>
-<p>&emsp;&emsp;很明显正样本的选取方式带来的好处远大于其缺点，作者也表明，定位不准主要是缺少定位置信度的原因</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464535.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;传统NMS算法中由于用分类置信度作为MNS算法中检测框的度量标准，会导致与gt有更大IOU的检测框被抑制。如上图所示，蓝色代表传统的NMS算法；黄色表示以定位置信度作为度量标注的NMS算法；绿色表示不用NMS时，理论能生成的最多检测框数量。可以看到，在传统的NMS算法中由于缺少定位置信度，保留的检测框中与gt的IOU在0.9以上的会被抑制。</p>
-<h3 id="BBox回归的非单调性"><a href="#BBox回归的非单调性" class="headerlink" title="BBox回归的非单调性"></a>BBox回归的非单调性</h3><p>&emsp;&emsp;faster rcnn中使用了两次边界框回归，以达到位置精修的目的。但位置精修的次数是不是越多越好，《cascade r-cnn》中也提到了这样的疑惑，作者做了个实验。</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464267.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;上图中，横轴代表边界框回归结构的迭代次数，纵轴代表检测精度。从上图可以看到，无论是FPN网络还是Cascade R-CNN网络，在多次使用边界框回归之后，都会出现退化现象。作者解释出现这种情况的是<strong>由于缺少定位置信度，对模型不能进行细粒度(fine-grained)的控制，例如对不同的检测框采用不同的迭代次数</strong>。</p>
-<h2 id="IOU-Net"><a href="#IOU-Net" class="headerlink" title="IOU-Net"></a>IOU-Net</h2><p>&emsp;&emsp;为了定量分析IOU-Net的有效性，接下来作者给出了IOU-Net的框架和NMS算法中怎样用IOU进行预测以及基于回归的边界框精修算法。</p>
-<h3 id="IOU-Net架构"><a href="#IOU-Net架构" class="headerlink" title="IOU-Net架构"></a>IOU-Net架构</h3><p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464269.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;如上图所示，IOU-Net框架中提特征的网络部分与FPN网络一致，并估计每个边界框的定位精度(IOU)，通过数据扩充生成用于训练IOU-Net的边框和标签，而不是接受来自RPN的建议(说实话这里有点奇怪，RPN网络作用之一是用来位置精修的，不用之前RPN网络中的建议，这个没太理解作者的意思)。细节实施上，作者表明在生成正样本时，从候选集中移除与gt的IOU小于0.5的样本，然后对所有样本统一采样训练，据作者所说这样可以获得更好的性能和鲁棒性</p>
-<h3 id="使用IOU度量的NMS"><a href="#使用IOU度量的NMS" class="headerlink" title="使用IOU度量的NMS"></a>使用IOU度量的NMS</h3><p>&emsp;&emsp;这里作者主要介绍了在NMS去除重复框时，如何使用IOU作为度量标准。伪代码如下所示：</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464539.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;特点是采用了基于聚类的规则来更新分类置信度。具体实施过程是当boxi将boxj移除了，会更新boxi的分类置信度为max(si,sj)</p>
-<h3 id="将边界框精修作为一个优化过程"><a href="#将边界框精修作为一个优化过程" class="headerlink" title="将边界框精修作为一个优化过程"></a>将边界框精修作为一个优化过程</h3><p>&emsp;&emsp;边界框精修的数学公式定义如下：</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463491.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;其中 $box_{det}$是检测到的边界框，$box_{gt}$是实际的边界框.<code>trainsform</code>是用参数<code>c</code>对边界框变换的转换函数。$crit$是两个边界框的度量标准(这个标准在faster rcnn中是<code>smooth-L1</code>)</p>
-<p>&emsp;&emsp;基于回归的算法用前馈神经网络直接估计最优解c* 。 然而，迭代边界框回归方法易受输入分布变化的影响，并可能导致非单调的回归退化，如图4所示。为了解决这些问题，作者提出一种基于优化的边界框精修方法。 利用IoU-Net作为鲁棒定位精度（IoU）估计器的方法。 此外，IoU估计器可以用作早期停止条件，以通过自适应步骤实现迭代精修。</p>
-<p>&emsp;&emsp;IoU-Net直接估算IoU。 虽然所提出的精确RoI池化层能够计算关于边界框坐标的IoU的梯度，我们可以直接使用梯度上升方法找到方程1的最优解。在算法2中，将IoU的估计视为优化目标，我们迭代地使用计算的梯度更新边界框坐标和最大化检测到的边界框与其匹配的真值之间的IoU。 此外，预测的IoU是每个边界框上的定位置信度的可解释指示符，并且有助于解释所做的转换。</p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463918.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;关于算法2中的初始坐标，初始化采用了一次边界框回归。</p>
-<h4 id="precise-ROI-Pooling"><a href="#precise-ROI-Pooling" class="headerlink" title="precise ROI Pooling"></a>precise ROI Pooling</h4><p>&emsp;&emsp;为了细粒度的修正边界框，作者引入了一种新的ROI Pooling方法，以代替之前的ROI Pooling和ROI Align。<strong>关于ROI Pooling到PrROI Pooling我会专门写一篇博文比较其区别，这里就先简单介绍下。</strong></p>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463702.jpg" alt="enter description here"><br>&emsp;&emsp;如上图，绿色的点代表特征图(feature map)的值，虚线代表目标在映射在特征图中实际的位置。<br>RoI Pooling：ROI Pooling的弊病，在于其在特征图中的边界框只能取整数，因此会从虚线取整到实线，映射回原图时，会带来误差。<br>ROI Align:为了避免ROI pooling中取整带来的误差。ROI Align中会保持浮点数边界不变，将特征图中的值用双线性插值，由绿色的点映射到图中的4个红点。然后再做池化<br>PrRoI Pooling: 如果付出浮点数边界内固定的点来做池化，这样对于目标实际的映射大小不具有适应性。PrRoI Pooling则使用二阶积分来做池化 </p>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>&emsp;&emsp;针对作者提到的几个方法，分别做了几组实验。</p>
-<ul>
-<li>下面的表1总结了在不同检测框架中，使用不同NMS算法性能上的变化。可以看到IOU指导的NMS算法，在高IOU指标上性能会优于其他算法</li>
-</ul>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463704.jpg" alt="enter description here"></p>
-<ul>
-<li>基于优化的边界框精修</li>
-</ul>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463705.jpg" alt="enter description here"></p>
-<ul>
-<li>耗时实验：耗时还在可以接受的范围</li>
-</ul>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463508.jpg" alt="enter description here"></p>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
-]]></content>
-      <categories>
-        <category>论文笔记</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>目标检测</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记</title>
-    <url>/post/f38a4f4.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
-<p>论文链接：<a href="https://arxiv.org/abs/1711.07767">https://arxiv.org/abs/1711.07767</a><br>论文代码：<a href="https://github.com/ruinmessi/RFBNet">https://github.com/ruinmessi/RFBNet</a></p>
-<p>&emsp;&emsp;这篇文章是CV领域顶会ECCV2018中关于目标检测的文章,文中以SSD模型为基础提出了RFB结构,强调兼顾速度与性能。说来也巧,因为项目需要,在看这篇论文之前正好看过提出dilated convolution的那篇文章，但是dilated convolution的结构获得更大感受野的方式确实对细粒度的分割会比较好，适用图像分割领域。当我还在想能怎么用在目标检测上时，就看到了RFB网络。虽然作者说是为了兼顾速度与性能将其应用到one stage的SSD上，但我也在two stage的faster rcnn上，复现出了较好的效果。这是一篇我个人很喜欢的文章，实验充分，模拟视觉细胞的结构让我觉得即简单又巧妙。因此简单总结下这篇文章。</p>
-<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>&emsp;&emsp;作者指出目前图像领域深度学习的发展越来越倾向于用更深的网络以达到更好的效果，然而像ResNet等很深的网络往往具有较大的计算量，导致速度受限。相比之下作者提出的RFB结构具有以下优点：</p>
-<ol>
-<li>模拟了人类视觉系统RFs的大小和离心率设置，增强轻量级CNN网络的特征提取能力</li>
-<li>简单的替换了SSD的最后一级卷积层，在较少的计算增加的情况下，提升了模型的性能</li>
-<li>除了SSD之外，也扩展到了MobileNet中取得了较好的结果，展示了结构的泛化性</li>
-</ol>
-<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>&emsp;&emsp;这部分就不总结了，主要介绍了one stage和two stage的目标检测模型和目前论文中在感受野上做的研究。</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="视觉皮层"><a href="#视觉皮层" class="headerlink" title="视觉皮层"></a>视觉皮层</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546754014816.jpg" alt="enter description here"><br>&emsp;&emsp;如上图所示是人类感受野(pRF)的示意图,可以看到有以下规律:</p>
-<ul>
-<li>距离中心越远的pRF越大，即pRF大小与偏心含有正相关的关系</li>
-<li>不同图谱的pRF大小规模不同</li>
-</ul>
-<h3 id="感受野块"><a href="#感受野块" class="headerlink" title="感受野块"></a>感受野块</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546754512995.jpg" alt="enter description here"></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546759194131.jpg" alt="enter description here"><br>&emsp;&emsp;作者提出的RFB结构的原理如上图所示，该结构的特点有：</p>
-<ul>
-<li>多分支卷积层：根据之前人类感受野(pRF)的示意图，为了仿照不同图谱的pRF大小规模不同，作者提出用不同大小的卷积核以实现多大小的pRF，这一方法应该优于共享固定大小的RFs。这一结构参考了Inception的结构。</li>
-<li>膨胀卷积和池化层：<strong>膨胀卷积的基本意图在于生成分辨率更高的特征图</strong>，在相同计算量的情况下获得更大的感受野。而膨胀卷积核的大小和扩张与pRFs在视觉皮层的大小和偏心具有相似的功能关系。然后再将不同膨胀卷积处理过的层融合起来，以达到视觉皮层中感受野的效果。rFB的结构如下图所示：</li>
-</ul>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755296592.jpg" alt="enter description here"></p>
-<h3 id="RFB检测框架"><a href="#RFB检测框架" class="headerlink" title="RFB检测框架"></a>RFB检测框架</h3><p>&emsp;&emsp;作者提出的RFB的结构是在SSD的基础上改的，做的修改及替换如下图所示：</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755756172.jpg" alt="enter description here"></p>
-<ul>
-<li>轻量级的结构：这里主要说的是SSD的有点，这里不赘述</li>
-<li>多尺度结构中的RFB：在原始的SSD中，有着层叠的卷积层，形成一系列空间分辨率连续下降、感受野不断增大的feature map。在作者的实现中，保持了相同的SSD级联结构，<strong>但具有较大感受也的卷积层被RFB结构替代</strong>。作者还指出最后基层卷积层的特征图太小，适合用5X5大小的卷积核。<strong>这部分论文里Fig.4的a图中用的确实是5x5的卷积核，但是给出的代码中却用两个3x3的卷积核替代了，这部分我有点疑惑。</strong></li>
-</ul>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>&emsp;&emsp;这一部分就是各种各样的实验图表了，也不赘述。从以下图表可以看到实验结果确实很惊艳，用了RFB结构的网络mAP会有不小的提升。</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546756443789.jpg" alt="enter description here"></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546756466104.jpg" alt="enter description here"></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546756478399.jpg" alt="enter description here"></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546757250177.jpg" alt="enter description here"></p>
-<p>&emsp;&emsp;作者还给出了一张目前目标检测算法的准确率和耗时的图片，对比的多是one stage的模型，可以作为参考</p>
-<p><img data-src="https://user-gold-cdn.xitu.io/2019/1/6/1682321abe0c6f46?w=717&amp;h=489&amp;f=png&amp;s=96823" alt=""></p>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
-]]></content>
-      <categories>
-        <category>论文笔记</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>目标检测</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《Mask TextSpotter》论文笔记</title>
     <url>/post/f222e8ff.html</url>
     <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
@@ -1096,6 +966,136 @@
         <tag>深度学习</tag>
         <tag>目标检测</tag>
         <tag>文本检测</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《Receptive Field Block Net for Accurate and Fast Object Detection》论文笔记</title>
+    <url>/post/f38a4f4.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<p>论文链接：<a href="https://arxiv.org/abs/1711.07767">https://arxiv.org/abs/1711.07767</a><br>论文代码：<a href="https://github.com/ruinmessi/RFBNet">https://github.com/ruinmessi/RFBNet</a></p>
+<p>&emsp;&emsp;这篇文章是CV领域顶会ECCV2018中关于目标检测的文章,文中以SSD模型为基础提出了RFB结构,强调兼顾速度与性能。说来也巧,因为项目需要,在看这篇论文之前正好看过提出dilated convolution的那篇文章，但是dilated convolution的结构获得更大感受野的方式确实对细粒度的分割会比较好，适用图像分割领域。当我还在想能怎么用在目标检测上时，就看到了RFB网络。虽然作者说是为了兼顾速度与性能将其应用到one stage的SSD上，但我也在two stage的faster rcnn上，复现出了较好的效果。这是一篇我个人很喜欢的文章，实验充分，模拟视觉细胞的结构让我觉得即简单又巧妙。因此简单总结下这篇文章。</p>
+<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>&emsp;&emsp;作者指出目前图像领域深度学习的发展越来越倾向于用更深的网络以达到更好的效果，然而像ResNet等很深的网络往往具有较大的计算量，导致速度受限。相比之下作者提出的RFB结构具有以下优点：</p>
+<ol>
+<li>模拟了人类视觉系统RFs的大小和离心率设置，增强轻量级CNN网络的特征提取能力</li>
+<li>简单的替换了SSD的最后一级卷积层，在较少的计算增加的情况下，提升了模型的性能</li>
+<li>除了SSD之外，也扩展到了MobileNet中取得了较好的结果，展示了结构的泛化性</li>
+</ol>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>&emsp;&emsp;这部分就不总结了，主要介绍了one stage和two stage的目标检测模型和目前论文中在感受野上做的研究。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="视觉皮层"><a href="#视觉皮层" class="headerlink" title="视觉皮层"></a>视觉皮层</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546754014816.jpg" alt="enter description here"><br>&emsp;&emsp;如上图所示是人类感受野(pRF)的示意图,可以看到有以下规律:</p>
+<ul>
+<li>距离中心越远的pRF越大，即pRF大小与偏心含有正相关的关系</li>
+<li>不同图谱的pRF大小规模不同</li>
+</ul>
+<h3 id="感受野块"><a href="#感受野块" class="headerlink" title="感受野块"></a>感受野块</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546754512995.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546759194131.jpg" alt="enter description here"><br>&emsp;&emsp;作者提出的RFB结构的原理如上图所示，该结构的特点有：</p>
+<ul>
+<li>多分支卷积层：根据之前人类感受野(pRF)的示意图，为了仿照不同图谱的pRF大小规模不同，作者提出用不同大小的卷积核以实现多大小的pRF，这一方法应该优于共享固定大小的RFs。这一结构参考了Inception的结构。</li>
+<li>膨胀卷积和池化层：<strong>膨胀卷积的基本意图在于生成分辨率更高的特征图</strong>，在相同计算量的情况下获得更大的感受野。而膨胀卷积核的大小和扩张与pRFs在视觉皮层的大小和偏心具有相似的功能关系。然后再将不同膨胀卷积处理过的层融合起来，以达到视觉皮层中感受野的效果。rFB的结构如下图所示：</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755296592.jpg" alt="enter description here"></p>
+<h3 id="RFB检测框架"><a href="#RFB检测框架" class="headerlink" title="RFB检测框架"></a>RFB检测框架</h3><p>&emsp;&emsp;作者提出的RFB的结构是在SSD的基础上改的，做的修改及替换如下图所示：</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546755756172.jpg" alt="enter description here"></p>
+<ul>
+<li>轻量级的结构：这里主要说的是SSD的有点，这里不赘述</li>
+<li>多尺度结构中的RFB：在原始的SSD中，有着层叠的卷积层，形成一系列空间分辨率连续下降、感受野不断增大的feature map。在作者的实现中，保持了相同的SSD级联结构，<strong>但具有较大感受也的卷积层被RFB结构替代</strong>。作者还指出最后基层卷积层的特征图太小，适合用5X5大小的卷积核。<strong>这部分论文里Fig.4的a图中用的确实是5x5的卷积核，但是给出的代码中却用两个3x3的卷积核替代了，这部分我有点疑惑。</strong></li>
+</ul>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>&emsp;&emsp;这一部分就是各种各样的实验图表了，也不赘述。从以下图表可以看到实验结果确实很惊艳，用了RFB结构的网络mAP会有不小的提升。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546756443789.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546756466104.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546756478399.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/RFB/1546757250177.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;作者还给出了一张目前目标检测算法的准确率和耗时的图片，对比的多是one stage的模型，可以作为参考</p>
+<p><img data-src="https://user-gold-cdn.xitu.io/2019/1/6/1682321abe0c6f46?w=717&amp;h=489&amp;f=png&amp;s=96823" alt=""></p>
+<blockquote class="blockquote-center">
+<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
+
+</blockquote>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
+]]></content>
+      <categories>
+        <category>论文笔记</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>目标检测</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>(IOU-Net)《Acquisition of Localization Confidence for Accurate Object Detection》论文笔记</title>
+    <url>/post/4395ef5a.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<p>论文链接：<a href="https://arxiv.org/abs/1711.07767">https://arxiv.org/abs/1711.07767</a><br>论文代码：<a href="https://github.com/ruinmessi/RFBNet">https://github.com/ruinmessi/RFBNet</a></p>
+<p>&emsp;&emsp;目标检测框架中目前主要依靠边界框回归和非极大值抑制来定位对象，并且非极大值抑制算法去除重复框的依据是候选框的分类置信度，在这个过程中缺少了一个边框筛选的重要参考——<strong>定位置信度</strong>。因此这篇文章提出<strong>IOU-Net</strong>，IOU-Net具有以下优点：</p>
+<ul>
+<li>通过在网络中加入定位置信度，在NMS算法中用定位置信度代替分类置信度作为去重复框的参考</li>
+<li>提出了一种<strong>基于优化的边界框修正</strong>算法</li>
+</ul>
+<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>&emsp;&emsp;作者先根据实验定性的分析了仅用分类置信度评估检测框是否准确不太合适，缺少分类置信度回带来两个<strong>缺点</strong>：</p>
+<ol>
+<li>分类置信度被用作对检测框排序的度量标准，并且在NMS算法中忽略了定位的精度</li>
+<li>缺少定位置信度，使得广泛使用BBox回归缺少可解释性，这点在《cascade r-cnn》中也有提到多次使用BBox回归可能导致检测框的局部退化。</li>
+</ol>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464876.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;上图中，黄色框表示gt，绿色和红色都是是模型预测得到的检测框。如图(a)所示，绿色检测框与红色检测框相比更适合作为最终的预测结果，绿色框与gt的IOU(交并比)更高，定位置信度也更高，但分类置信度却低于红色的检测框，在以往NMS算法中以分类作为检测框排序标准，会保留红色的框，而滤去绿色的，这显然是不够合理的。图(b)比较的是基于优化的边界框修正比基于回归的边界框修正有更好的效果(多次应用基于回归的边界框修正，会导致检测框退化)<br>基于上图中目前目标检测框架的不足，作者IOU-Net所做的两点改进：</p>
+<ol>
+<li>通过在目标检测框架中引入定位置信度。在NMS算法中，预测检测框与gt之间IOU的顺序，代替原来的以分类置信度排序</li>
+<li>提出了一种基于优化的边界框修正算法</li>
+</ol>
+<p>&emsp;&emsp;IOU-Net中的IOU指的就是<strong>网络预测到的检测框与gt之间的IOU</strong></p>
+<h2 id="深入研究目标定位"><a href="#深入研究目标定位" class="headerlink" title="深入研究目标定位"></a>深入研究目标定位</h2><p>&emsp;&emsp;作者在绪论中提到了所作的两点改进，绪论中定性的用图表表明了缺少定位置信度带来的缺点，接下来分别做了几个实验定量的验证所提出方法的有效性。以下实验所采用的训练集是MS-COCO trainval35k,测试集用minival，检测框架用FPN网络。</p>
+<h3 id="类别不匹配和定位精度"><a href="#类别不匹配和定位精度" class="headerlink" title="类别不匹配和定位精度"></a>类别不匹配和定位精度</h3><p>&emsp;&emsp;作者先简单介绍了NMS算法的原理，及关于这方面的研究进展。随后指出NMS算法中，以分类置信度作为检测框的度量标准不太合理。</p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464564.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;如上图所示，(a)横轴是预测的检测框与gt之间的IOU,纵轴是分类置信度。(b)横轴同样是预测的检测框与gt之间的IOU,纵轴是定位置信度。若以检测框与gt之间的IOU大于0.5作为是否检测到的阈值，作者计算了两张图横纵轴的Pearson correlation(皮尔森相关系数<a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">[wiki百科]</a>)，结论是(a)的相关的相关系数为0.217，而(b)的相关性为0.617。<br>&emsp;&emsp;作者也总结了分类置信度与定位是否准确关系不大的原因：<strong>目标检测框架中分类和定位的相关性不强的原因在于正样本和负样本的选取方式，例如获取正样本只用其与gt之间的IOU大于指定阈值即可</strong>。关于正样本的生成方式，之前我也想过为什么这样生成，如此的生成方式一定程度上会带来定位不准确的问题。但是相比较于完全使用标注的gt这种方式具有以下的优点：</p>
+<ul>
+<li><strong><em>可以生成多个比例的候选框，覆盖样本的不同尺度，正样本会更好的回归</em></strong></li>
+<li><strong><em>样本均衡一直是目标检测算法的一个难题，这种方式一定程度上可以生成更多的正样本</em></strong></li>
+</ul>
+<p>&emsp;&emsp;很明显正样本的选取方式带来的好处远大于其缺点，作者也表明，定位不准主要是缺少定位置信度的原因</p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464535.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;传统NMS算法中由于用分类置信度作为MNS算法中检测框的度量标准，会导致与gt有更大IOU的检测框被抑制。如上图所示，蓝色代表传统的NMS算法；黄色表示以定位置信度作为度量标注的NMS算法；绿色表示不用NMS时，理论能生成的最多检测框数量。可以看到，在传统的NMS算法中由于缺少定位置信度，保留的检测框中与gt的IOU在0.9以上的会被抑制。</p>
+<h3 id="BBox回归的非单调性"><a href="#BBox回归的非单调性" class="headerlink" title="BBox回归的非单调性"></a>BBox回归的非单调性</h3><p>&emsp;&emsp;faster rcnn中使用了两次边界框回归，以达到位置精修的目的。但位置精修的次数是不是越多越好，《cascade r-cnn》中也提到了这样的疑惑，作者做了个实验。</p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464267.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;上图中，横轴代表边界框回归结构的迭代次数，纵轴代表检测精度。从上图可以看到，无论是FPN网络还是Cascade R-CNN网络，在多次使用边界框回归之后，都会出现退化现象。作者解释出现这种情况的是<strong>由于缺少定位置信度，对模型不能进行细粒度(fine-grained)的控制，例如对不同的检测框采用不同的迭代次数</strong>。</p>
+<h2 id="IOU-Net"><a href="#IOU-Net" class="headerlink" title="IOU-Net"></a>IOU-Net</h2><p>&emsp;&emsp;为了定量分析IOU-Net的有效性，接下来作者给出了IOU-Net的框架和NMS算法中怎样用IOU进行预测以及基于回归的边界框精修算法。</p>
+<h3 id="IOU-Net架构"><a href="#IOU-Net架构" class="headerlink" title="IOU-Net架构"></a>IOU-Net架构</h3><p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464269.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;如上图所示，IOU-Net框架中提特征的网络部分与FPN网络一致，并估计每个边界框的定位精度(IOU)，通过数据扩充生成用于训练IOU-Net的边框和标签，而不是接受来自RPN的建议(说实话这里有点奇怪，RPN网络作用之一是用来位置精修的，不用之前RPN网络中的建议，这个没太理解作者的意思)。细节实施上，作者表明在生成正样本时，从候选集中移除与gt的IOU小于0.5的样本，然后对所有样本统一采样训练，据作者所说这样可以获得更好的性能和鲁棒性</p>
+<h3 id="使用IOU度量的NMS"><a href="#使用IOU度量的NMS" class="headerlink" title="使用IOU度量的NMS"></a>使用IOU度量的NMS</h3><p>&emsp;&emsp;这里作者主要介绍了在NMS去除重复框时，如何使用IOU作为度量标准。伪代码如下所示：</p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292464539.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;特点是采用了基于聚类的规则来更新分类置信度。具体实施过程是当boxi将boxj移除了，会更新boxi的分类置信度为max(si,sj)</p>
+<h3 id="将边界框精修作为一个优化过程"><a href="#将边界框精修作为一个优化过程" class="headerlink" title="将边界框精修作为一个优化过程"></a>将边界框精修作为一个优化过程</h3><p>&emsp;&emsp;边界框精修的数学公式定义如下：</p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463491.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;其中 $box_{det}$是检测到的边界框，$box_{gt}$是实际的边界框.<code>trainsform</code>是用参数<code>c</code>对边界框变换的转换函数。$crit$是两个边界框的度量标准(这个标准在faster rcnn中是<code>smooth-L1</code>)</p>
+<p>&emsp;&emsp;基于回归的算法用前馈神经网络直接估计最优解c* 。 然而，迭代边界框回归方法易受输入分布变化的影响，并可能导致非单调的回归退化，如图4所示。为了解决这些问题，作者提出一种基于优化的边界框精修方法。 利用IoU-Net作为鲁棒定位精度（IoU）估计器的方法。 此外，IoU估计器可以用作早期停止条件，以通过自适应步骤实现迭代精修。</p>
+<p>&emsp;&emsp;IoU-Net直接估算IoU。 虽然所提出的精确RoI池化层能够计算关于边界框坐标的IoU的梯度，我们可以直接使用梯度上升方法找到方程1的最优解。在算法2中，将IoU的估计视为优化目标，我们迭代地使用计算的梯度更新边界框坐标和最大化检测到的边界框与其匹配的真值之间的IoU。 此外，预测的IoU是每个边界框上的定位置信度的可解释指示符，并且有助于解释所做的转换。</p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463918.jpg" alt="enter description here"></p>
+<p>&emsp;&emsp;关于算法2中的初始坐标，初始化采用了一次边界框回归。</p>
+<h4 id="precise-ROI-Pooling"><a href="#precise-ROI-Pooling" class="headerlink" title="precise ROI Pooling"></a>precise ROI Pooling</h4><p>&emsp;&emsp;为了细粒度的修正边界框，作者引入了一种新的ROI Pooling方法，以代替之前的ROI Pooling和ROI Align。<strong>关于ROI Pooling到PrROI Pooling我会专门写一篇博文比较其区别，这里就先简单介绍下。</strong></p>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463702.jpg" alt="enter description here"><br>&emsp;&emsp;如上图，绿色的点代表特征图(feature map)的值，虚线代表目标在映射在特征图中实际的位置。<br>RoI Pooling：ROI Pooling的弊病，在于其在特征图中的边界框只能取整数，因此会从虚线取整到实线，映射回原图时，会带来误差。<br>ROI Align:为了避免ROI pooling中取整带来的误差。ROI Align中会保持浮点数边界不变，将特征图中的值用双线性插值，由绿色的点映射到图中的4个红点。然后再做池化<br>PrRoI Pooling: 如果付出浮点数边界内固定的点来做池化，这样对于目标实际的映射大小不具有适应性。PrRoI Pooling则使用二阶积分来做池化 </p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>&emsp;&emsp;针对作者提到的几个方法，分别做了几组实验。</p>
+<ul>
+<li>下面的表1总结了在不同检测框架中，使用不同NMS算法性能上的变化。可以看到IOU指导的NMS算法，在高IOU指标上性能会优于其他算法</li>
+</ul>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463704.jpg" alt="enter description here"></p>
+<ul>
+<li>基于优化的边界框精修</li>
+</ul>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463705.jpg" alt="enter description here"></p>
+<ul>
+<li>耗时实验：耗时还在可以接受的范围</li>
+</ul>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/Blog/IOU-Net/1547292463508.jpg" alt="enter description here"></p>
+<blockquote class="blockquote-center">
+<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
+
+</blockquote>
+<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
+]]></content>
+      <categories>
+        <category>论文笔记</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>目标检测</tag>
       </tags>
   </entry>
   <entry>
@@ -1244,28 +1244,6 @@
       </tags>
   </entry>
   <entry>
-    <title>写博客的第100天&amp;北漂的第30天</title>
-    <url>/post/6341d9b.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="d50580c7158a15db14a06dc3f972ec347978e8f1d88a5da7d3f459c450d2f3da">f95347d64da69a575c04959f22b0dbe7a415cdfff9e15cd85c12db37f1f0e2f4b932e1003819d6440b1e019c7d7d854890b192b2ea41fc3e5e2bc0011b825d1468bb17ebb040cfdc1d924f8ca4189491bbd623e88f3b5d6bb8065a477377839d46b299ae8073150cafa034ce1acbb0e3d016cff01b056d2189942fef44e45cac2f1cecdd7572bbd502cf9e71dcb6d0c7c23049717fa95070c3bd395ec269c0720929f70c720addb8c754ca3f325ea52c60b843be2cf2ff328be182c0b104b918fa8f960cb3272b71f648339ab6c4f6785db096c4e18d4696734655eb4bc08b9bcd6ad07425f17527e5d6a502a0fa7704c1f5eb1bc2c568a2eb1003c9b851167800e6dd4592596a597969ebd774f023b06c29a72b6c4cbe6b4734939a882db9470e67a555b9e267e471c76c13efb381de5112051558a86011531753c9b275d269b84cc3e0291711018b71b87e1597ffafcdf18fc358909d808eab00b6282019b07a443e188200fcfccbe67c5f6d497473bf9708eafb9a69136ae6d1066b4ccb4ca94db04e6de8b06c5486ea25c1891fd480fed06cf375d0cb6084ee40d134dcb5749b5a5c13c3fcd1547390ebce7a2ced5133f1df63cd183a56f2b44d2cc19eac70a96742d6f8355ce9bd4f398f6c2055ad717ce9ed13ade72e62d0d8e4b7f40b03311a57f0a571c86c014385153591abd6f0c3b9dde965171a46d54c317e18882b9fe51f4f8a01f6d2388bea953e76ee913e60c9d86a21bcdf1292f2e87c559796699874cb176fd64f9421eb437d601fc2e965d58c14c5069c986e80e52b1a634ad9de9a97d7fc037b632b90819f737609820f923309b90cbb919893e8478333612e86826d12ac9a42565f5f37c0e95643a94d331a56a74043e5f8b94f69e10dd1c66d1676dbef571fca57b02063dee63af9a86bc2c1816f6998f4f1694aa917883fdb24d0fc6425dcf91c828f8c8f9da29d86ddae3e6e09f65ff990424ff92fb5a9711fccec66bb8cc8ad5aac0b70ea1262733bbf28c4fc04de9cd8e5b7320d8c8df3b58bd7a27b3f4853fab21f801644645070bb4884b84c273d7f06f8d6c52bd58ccc1747d7ee7aff57dc1bc6b12147be8a5bac9225c05b28c89db17c91356b3c9d28ac6a76f7b6296fc5557e49624eb75f098095da6861dd9c27979ce88ad6608b739c2ada35139e385de0db50ecdb07b13bfe2c58110cdf2916d2b90429f37823b4ec7b2650b55cee1888775eb7b8208115903c463973751f6bc75beff281881ce6fc4b1c5960f0464982c61827fd00f48330d23b22cc46e9e1fdc4a9434261fb7358570fcf2e596169ff2fe3257d6a4bb92335ab6c00d606b86c7196747d19e3f7abc813d3c63058cdb9650fe2d6ff100d2ad7d074a1a29998f04100ae936e98c1368ee0bd807170f3360fa81b6119fdfe80322027d1a77aecd8d184f4bef1accdf20d28123fda0bb0a6980876a9187a54a396d11ca566e679a5a9640d289c56b631d14d42e4f558ab4063dd5d3ffd806f9e0abd7f033ad7bfb45c50b72f6728ea9b577e90f4076c4286ba8212207f6dc57eedaa0f78bb26e890b22929b0dc5d8d8422843142672dcd1a26d5b72bba7ba5e9b70ce6ebd266eef78da6b8a0d4f1ae7aaeb11b7c4682f4b7b6d5c3822b7818c73fc8cf08c8bde6f21da4785ad4c73da29ad2747ed29b2a7f6fb02c517b0150a451d6bb78595d1acb97b23e754de70c6c82c8f1e29d926f8a051539b2c443d9673f66dfa4896915f4f24d150f858f73d51a593c5478a73af49e7d3624e5638368705e8b5f421f08124487b36197fe252ef807c9c83ad1040b56f875d65bffbf2553ca9779b51d28f673ebf470865b9a131f6bfb012db45aaa5d2cdc7c3c6f1163321a490703e7b7fac8b2c0a00cf37039637d33253189363267e52b2cd31715f34fecf0699b5fe89f886c6b6d1f45d8d168e02a46a95c565bd6fe614bfcea3e8387a45210eb258b350b7ac95164c55d861affef72074d5eda5dfe54292cfd8369ebe4c55203781e7ef853a3e3b954d5592476a158dbba914ce462c214d463c60551a971259b1182fbd4ddace236e61745edea1dc5e5a40ab2d4e2b899176d9a6e20401f45d88032f87ba818a20631b5ee4db6cd039c388cfd2381d862d9dd6c32fe9952eef144aeebc13425aeb819c4ab86fdda7534124a07b4299521ea0f0265bdc171b16ab243dd94b39f74e64100add34f88b415ad1c86f1f0f53611fc4d163aba9b3630958f924691c28f5712fcb2f0e9e1ee6b0cb1481676de96046ea9f827c85fde7d4ab04fd0c208b5bb3bb257eac632fbdddf6f36955a7502a920c0a65583722a9bca329acd1df8a872e5b92dc39d74decd4fbff4338d765ea4c23a237a0671da7240463fc9bc8f000e10fbcfa8f05f293e80271fad5eacaf6653f972e875ec1a2ee344ff3c5fcf538058ee8b3816781a411c34d5afaee97afb758e8c0ad3cd43d44340f2e281c6afa5ddf3cd814b3e2661756e5ddcf4a30e19355edb977d891d9171ce45fdfdca8917691b744233cf5708a9d08133c6b513c02927cc904965fafbcf852bca7b365d69991437926c49b18c03947ff4528a20f3554f3888bdaef28b58a2ab3292d5e7b2d318bad666e4d83fb9b85ef860b844d9c11c25754a38692173bdaee927d047dfca824151642302618401b047bd09b31413060da88f5b79b61b5693e0f5b51fc1aa9a2da50fabc0948d40e68f4fe5c382a3aac00ab4b0773cec5a7d29c9023bb4898e80cb7a3cf34e5242cfd69440be2101dbbd98ce8162cb2e33a1b5e8be28544d1d872571d503fd99ad39b03ec22967890504a7aae8700d806cc73d129344cb812adb83680cd15df6f5477ef0153100c37c439eb54c2d962600f4456f4be9761ad2966821f9fd43e39806a074da9af8c8586dfddf50cf25eaa5461d37cbcbcabff71cb640d389b265bf2c8b3ff2b44787263347d463238fb09bcdb60156803ba7033b15d1b21e2083d74c67509aee7d856379941c384b6aca3162dbd60114ccfd69e087c61eb43193875b1c424641a9589061975f65feebef4cb627500f148d17bac43eb19610ecea1471c028f5e3a17a81027ce815b438a08a6105b181083091fe80754c1e6acfb3ba9e503fe589267efd006ec8f2f5147f38cbef74210f8d6ebce89036919f79c8d763cb14b4fb4fcc28963e47bb8286252bb3443b6ef6902e94b00f9bb4786a7977f213fb5624a427150c89f398f41196cad3e486590ddd8714f9a0c91a548dbb8772975d517910b4f7d433d2eccc5797a9740ae6de08f1d884cb35208e89c1f35a21bafbeec573fb00fa6d6421189186b2bfb0623f274e1d37e0a4916de664c9d304745508a54a3c578300e3cfe3bbec1025b7c97fabf0b672e199ff7edff89972ca32a0e72fdcffac6e4b7533f53e2ab47188656af01928d46678f418f247fc655a6e048fec8d3e5715c6bc6456574e019c0bc0b21778fd679eb796b881a77b1e69e338acb62e730db422b953044d3e67b767655fc703995a90da9920e5f7a89042fc9507b8fea27edd2439a42c9b02fbc5e556e44cc062a511292e7cb307578e587d83a6c3dd5803d5c466a88df903142d4893355826e7ed05bc36a21face0dc79764f6d81b01606e5c20ff4f22dc80906ccf65838b6940eef8bcc11821be537629cdaf516530d30160db6edaeb925851998ca9bab7ab5751c909116a4ca7e0186ad6f74bd12e63eb03ac7d245f02dcd7fdd252766085e0725ccbaafcc257dd29053c5b7fce81b225c04c6e458c61cf51c4192ff1624d6b67fa6bf549873e9a44024b41cebf97a1c3767c9d48b25f3110d62ee68a91c86fe6205e507b82b5bdd6f65112a0cb421ba03bab5ec37255094ec7939487010693f64632f1ba5461c8c2c7f05ad0f234710d7f87931eb6aa6fb7cd18419c4afe793ea94aa1b723e0781a66c07afbe99c466cdb6ec9b3f4aac0baa2169037448c66a9025a62aea5fc62cdb8754027e4ebcbb420f37a9b52f427b8b00ce294decba0c0ac716aee55fe4a78d87b4198066f67359142348ca22c274eae31078e58ede38055f98ba4521b7b9aa632ea5d1a318cab9ea811584edf3e42a75622ffabb0a0ea48baa4f9a2f23c54d73df5d3b7b5d074285da322eb987a12e8934e51cafe306a73074d4c70a03f79cbf708ff37beebbad05a02fc292dcc8f93404eb508229639b9fc56459ee101c5b449bba27b82d11f81d6e74b17f91b21a5a0f8fa4b6f43e7ee0de66e338c23d4ee36766b2141ad8f88c44b805e111d7a9331318786526b16a1065531464b420bf10aaaf92f83ab4a220ccfcd61fa4ba7972ab3e3e9e873d5ce6f1979b4c19c247df6cd8b0735d3c9dd0ff1d1086dd3e6ff34b702aeac2085b078a5b9649a92954370615e309b5023b74eaf3387ae940802634618c4019e9e70ab275ee8868ca5aec3ec99c93cf7717581a482fa7a1f79559a8f4b3842625bfe6e10f55e03f562330d0e8302444e1d176d295f31cd4c4e0d5f4bb9ddee29f23e6bbc560f2d066dbdde7a6fbde64132afb24c6f1baf48d5a38c4687d23d17d3eb8f2802cd22f46901926853ee67e3c2c0b1b803fee7ebfb20f5d28ac59b9cb923a3d801178020bc2a37fd88b2c8b694498625e9d1f84449bdb0aa0f341464914bea2a7c2a7d79b9dace5526a94b9e6a31c977ce3669ea35215c33d672aff30435d1a7eaf2dce24299f4310c3bbe7cb33fcdd78c0260db2ce7b7e9a7dcc72f37c99f50705dce0c044691413b06f78101ae29cb38d71f8a54258bb4fae78c9585957100843fc14422ea85125952e688a51bd363258f32d2f21b41d6c87f3da833fb9116aea15ea007925e64bdfabc8d3d45d585ea0921be0ca035559f74608076bfc0a8239db5cf42678ce7c4bb6d9bc56e7c5649659f7767416303f459cd9df020d7e38c3acf5feaa3ae5b3eb12687d6e95223add3456db8e88cb4f7aab2ac272eefe5975c4400ed8683f17e934928376457b8554d87a2b9e5161b1a9b08279a8e6b4f092218867486dc68ad415681f9752a514afe84b4c108238cd775ea3416b0ed8566e1599a8de9fe2581ba79d9175b76383ea1239f6687a7e120c97b17f0dbeaffe44e2dbda40327f3bc8d6d6a5f6fb9f793518de40a78863961cfb26e0c2c22280e5f13f7dbe6719f4ad33759aa36ae34c262b69abfd538c456d2d8967aaf8a82014474f81b5316934f5105bc2a5ca8ac26e3e6b5b284e287801d10fada9fe560741b019a586f6a09b85297f6d0cd4460c13f7184efe794b2f7ef3ded6c05b6642d4a7f660e91519516fb03cb6a715f8071909612e616130e91a01ed63ce26441a7e8eac9b49bdc1d1187944f8b60811174e651ce9362dabe451e8801c0a49d96ff5d09b9d2a5ab471e69867b6cb1eaf0f018b5858a8cf59c812100be5799ed34fd5bea857f19b761ef11f911b62a8bc3cd0c5056696062f8d92ac9c3c24b28ebfeec55679c69a29f2c460a546657f46a836bb558d6e5b32ca961d4397b1b54ffda05e259419b480dcb778df50d6c20c77eebf8ea5cf57b117ce2f331c4baf59a1f81cd892ea8c6dedf6fb8645cafbbb7e0b4199ca4a43cf093d6747fb8b3dc430c03a7eac42146bfd1886d65ac1aecb34957e6db5266916332854081a5d902b51bb9ac3252cc33660ac275d9793dc98ba96bb8b22af2d28760a18ad0d80a98e126e592b64df7876bedbf91ddfe29e8104347fae145990b6ae329c5ecbbaf4b5a70167eb90156b85b2872df06b0918e79266611ae931fb9ab4835c3701c18e3f1ba785630bac7d3f50f29ba140ffd4c965e1c0177960dd08f984360ed84d74fa52b38266a3b027c7271c7e22026d86d78dc2e4a6d678489070c001327014f5bb8e4fb1b4518f0f519c445146659d53015167cb1711a3d84e8d682a16ece81ed34f89d029c1d5d074229c6437721552b3c6367afa1375afdf4b1c78218688412808473f7b37a8dabc81eec3abd2336692db8be205a938c78eb79aa8adbe3122a79bd26fe7893561520e3f37af614c9f0864fec1ff04075c692ba359110ace84dd009e6cb3a319beb275ab56bc1a709470335582fea0a11c430e75f9202328ec3a2e36b8c67c7a0324376df1d173f19e45b3dc373b1270ef555c592775d7eaa5810d1db48aa77bbd811862063ddcb7c6b5b5ee31657583bad20f53e8147e488f61990b2ac95e958aa43f6edd4c9c391af8e217cbc7a3acaa66a98851fabfde11b82e549b01d99cd2d7d97048af1f570f9eb35a7163ef6fc9db1b5ffdcd04f7a28ee077bdea22764e88874638026a8f67a4efe009a6fe46cf33ad5c541ba905bf2bcd899ca745d72eb1d6c4be3d3338e1c912a53f1ea43790bc1213b18f824fb0a550cddadd995b03159cbcdf728b5bb37fed320d67d82be7a30cd33c406b4b5ae674777ca3897907f1e9f1031a28d3e66aeba37a87b66e360897c2001ebb87bf49479dbd48dbe7bb81f090f86c1248a43ab4facc568bbb45149187f7a1f4090783e55468b6ee04e88e8a942e8578fc06715e97705714c4497d7c7a291bfa221474225da61a4d240cacb4ad2bf686dad46dad69624eda738be430aee4fa10cc7c950c7a75950d5760dd65f69e1fef110747bdce1fcc2e39b80bb7905267361b695c76dbbb0c0aae886a14e028f8ef981254d4e3912b263c12587524327688a01fe839d56ffd18166a2003577de01bd925257b10c613093c7e8efcdefe611c82733ae3a2002f6661cb3047b108bb54811d22f624dd0b7dd4fa269051e1de5f3cc57a023ddee43cc0a7e63eb0b2cde2b96430ce0952827f6d36f29349c945254c7e227c3faf4db2255240397b5c6badc0b6119b3ed27b296a151e061b66104de42862233b3955713f8fc2cc723793b2a603314690ab8d59f310f0752d3387f79d4f7d5472add0f51a561e7e02a1cc4d7822e069eb9e70f88201819387327a7d046ad15b3e2f72823710f3e5c15fd0a4c31311ccc2a3753155f9fb516be932d8a2326432af08873955a382f617ded3284423f5d088be88963ad39f3783cd6e16066a44bb7e3f3ec3b76d892a18b35b9aca44fcac1b4260b6f6d00907ae80895d464e65ef3e4a956a83ba62ab33b37c9b3468ae6612c6bbb2f5b25bbc873abd50c80f2e00068a11ad16cfbcd1b3283df9e7f6756a703fa01db2521d3a485b314b5058a6d0ebd2eade3c5a62bfe6fcb3e3184de1a1f1dda3f630b84b843f2a89c6c1a3891608aac76bd3313587ecc0c0534362605bcc2fef97281bb5e2628106dfa381c0d894693cf1ead4ef35a4d66043b783db5e55afe99f8e4f2f4aed442922fd5c40d33d33e7fa9bf17bd39e5d4d77596de20602209ab7039bbd4075a9b2754199fb942dd47ce72ab8d7184334c30cd9d080c89044e441f0ef672dd9cdfdefcad8f13d55237f0b80f04741251fdf41242b5bb6a21950952b23aaa168fc23bce442d1c5f6e3c83626d7dd9859994860525170c4ee72b23c21173bee12e2e35c569c754a5f592e1f050a155313d6f554757cb626f062124dd97a18e93055c2ed06cca99b722611a9d0564fad6b2cb9e761ef07c988c2e1e9b13d94e1f9b7c94050d8dee00d9aa19bc3be76f9174e7ced474c462171db47117c42a8967d0f0b2be604f9b0429d18d4396db1cc3964952a30e169e20589014a10c25f71dd81a61dd7869479ebef440b5aa9e1d2ed07b21e76bf5ab6fb001d8ffa6d1cef361e2d545192ff569b676d5117faf7eacede0ec5ececba690cd3fc3904c9029eb172e762281a2ece153ee822e6849aa94a157345ec8b0c5f4ccec14b931c5de86f1484ee86b308cd323a17644bb4314fc1994612705162f9b83d41f619f3aae1f863e2cd4e35fd1a7a667abaebbce3c649fcd0796a80b7e1f5dd6229f10984329b42f0d485c827cdb132c1928828eedf04cefeeaf61e3a92e19251af8dbe3721858fa4b31a7d31802efbd7adcf91b2ae7b9d050937123e68a2aa3017a32997e886b19c406d8619f379d357f9ffe84717037fbdf3cbe6fc2fa2204dd96ef8881fbbbab96c1d2212df59800c20b58f716ff5695190cbd223d877cc0b48b4dfd15d8b54efd79d1cd827bd265e18c4ef859f51cc0e19aef77e85683604520bd5d74ac989ce2516216b659544ac21f0782c6450202c685e77b186e0145c91013e9a16020087de63fa3cc8f1cc41eaf36d899a2796decedf02ef02bb90da9c10f1c79ecd6611ea7f4908ce204107acacc8de80a91524995e9eb785c792f903b47492d4c882bbb4811cf720907e2d1391fe706c655cce6fb07158e74a9e6401e45efa7f4d5686f2df69db5a7cc02f4e894e72887e37e04ba347679f2ca11659fe66abc130445771a04f9835aaa4ceb61864ebe352f4948b33e7cf2609c648422bdb382bfd04bcabfa068fbccd0f12a0015685b28aac97ac29b617538b3cb7ad643c1374fd4dd70dc3e6c155fd5e32ed32a2dbfba6279daf38bb648d23345a368d556cb336b175a7be78d1a46e723ef7b653aae280a3589ec8b177c6ea7715d33cf5066c03766b3c8a751f0c3bc1e473c8b43ddac46aa13bc924ba1582c0889e03f6fcd33f2ffa026a65a86f362292dca22b103df1bc48b7f372a69f040bb61dbad3319af980aebc93d04fe70ada13205c560ab549dff97c6d65491ac877466bfd25af1d423aca17216923f1d6bd307f1a7bed40e7ed9d721cdc9595d5c0b46231647b048d4f3ae696fa811eed970bdc57de4f92a06ce0d0893e8b5aaead9338df5fe76a2b568607cdbfbc8d8184005a265589efa4e692ecad8d6240bf261e1663b5b08821f41489616a4885287b2bd22ec1a16909dfe8151ff4b73615143be679a5c315f7edc273636b4828fd43836b2fa3174d0d3e2dfed737d1fda6d309d181ed30a339a7841e6ee04ed7af143a8c749ff37e84394680f8658c70b31622cc59a5952450c7f80fec0de36f27c23f52a61a69269d5795fc13d4840aacd5294790a275c680603aa47613f978ad09a8e45af6b39702fe34862bba6c1d126297aac5d2db9f08a489c7d365a80b1dabc0fe379b1f0e9601008dedf632942d87f2e4812da7a0aba147aabd810bd9821e36330965caf5d062bea574bca1e391c0bd024026de22f2edf7198cc070b3a3f20c8917922d945c0d0846fd72f431bd183123bc290477e9d8e4af6d952ea8c4fd8d85a76fbcf8d837c880202275d21b8a78a71e84b957152a3c7384a46673d48984bb1d97908ad50120881c5ba85d03d2e5572a42fb45018641eecca6a60c9d8e9cc0d2afeb98d30e7e4d471125c25fb3ef8074b5a2ee1ff4dbdce6af56a71f345a9de648fe9d2bb5f5c26d840ec32ee808bb3535f84f8effaacfed380fd7a02272b89c3a9072ef2dda79b959e4aae11fb4bcf160d1c597ae27e374fc3806d7385371bd2138cf2a953a4779cd1fe8c1bcd14b08b27fca4d08766062a6ec173bafd56943fce53ab87ead3f95e7be47ad0a1982933511f55679115df43ad91f3f73f84cb1474886e4736bf427c974e7144edcaa9fc470f27f84ce6108c68e8eaac3bca3768977c8221b18772610986e2f978878651c749ac5ebe338272ab5c3e5b69bfec252bb513bebe8d5204dd056e499f278e23062351b956723c05cb31799b8eb937ee7716b434fff54dcafe141c20f4841923234d4c27b7686621225441516a46350ec43e03ebb1a25dda4d7755203b47f4f51defca9efcc209fa80db5e18b656707241450139e4a2f407285e03c0180205d341cb901b5842f576b5b4c8a7b0024df170dc3ea2c9cc2a3240bad25167166e1744126f913884e0c3cbf0dcc05d618e1cd1397c6d035827d8934010cda537c1fdbc489f55c0bfc86976f49f75e6d2eddad630c359f8590924e47f0cea7945af51353dcba6c6f85976aef599b4b40667015473db6f930a839ac139892cfc9c8630389b1ae39a7dfea69e19e80315035a7ec58d54964a8e0d81782c448428ba3e6d0aab7e5a74d7f01ec752718e55c9d686e27c3d0579d13884f7afda2f2d990dd13e2d85d5bdc219efcb54b457e36c2b762ecf67ad1699d3ba9f1499a95d75692d306cbf6efe2544535634a11d863ed3aeec22e28918f5184a397bfee138864b112abe74b1375d5e5252fd48166741f1b1173409df87d6802b2d2f1eb859fd3e77c67448c3b83d78cfd5202c12900db91bb877276d5e4ef8f8a6367781b4c4b8de0a1e83c5fdd78da228bf5b362068967cb5be72ab50865b7fdec87b2bc2260aaf9f8a1bcba7d129f395b5d5d7d9d628eab1d623755798f008d4e0f9cadefb76ca2d7376a5ab2fbe54f8046a447e5f8f15b908da29761fb1477cc49a4861ba5a98d705b30fd207275a360ebdc0ce009bd3b4c4c813ab09fdd96910f885a7289c5ab0d18fe58f07420f74d4f32d6b7b192d060ca54146a149dacd29c2c5497ae1f60f74dfb59b638df7d2860319966916098a39fdd3b11da87e587b3cdf1b18fa6d20c3de5466f6bbb778f5bcdd36e5f01e83165ca5a162eadac2b3bf052508db4b66785c22039b5b34bd0c2dce5445dac757cbebed9e360138bb897728d1acd1a2d33079e294459cc8a1d6d9d43903dda483e697aa2ca66587b250bcd7eb992f5e2101569115b6e63e41910b50b77d51239aae536afb3e1261aef40655a7f926f264dd1d2cb0a502fd562d8b45f93d2d367834dcd77fa14cd6403eddcf964ea1877a3e35f65a93f2e908252e38bde28fa7b107d690f6aba623656fad244be2a56c9a2e7b54437def8f79dd687ac6a55f433d40f0358744a733b73d65d31213aec7c3cd7a3c2018859f5b911b68c1917d66e1fa7b361c02a261fcd2c112521730d65b1bbe3744c0ef2b855f734a69ceda9e1f75fa62239a945da6b4470d0d69988edfdd01caa2b78b0a2b1805a7ddce70a480f0c6989a8f1221d007b46f4c206fffc24654f158137870a64f321139b8f61ddc8919b87b0e697e9b0b21e6c89f204592a615dd2e4696c5f0026bd7eb737acda81ccf0dd043a79fad9e5655251b1dfacc623288565b246ce8b4da116b0c5c3fefa2afe571a5c12c08bdeffe354d2cdb52b85f36256fef88802e04988901f66e8ebae6c5c8f28f7299eaa010da748ce893a00f0632728056c8d5408912f17264156e982dfc0b62d91f9daeee3b970c554e7e5f12cb8ffb3a4f0bfbeabaf39b8b5af7cbdd0dd9838a27992bcae391a9ff58a39b6f54562d808d4e0226ea8ffd2dca1ba839e3047c121b110ee71fd66445878731ee0478e1ef2cd76bf18bb26e4f6256ef85960d3e681b99e37b9fb758e4e1b555343ad4e02bd61996231eae62b171aaba802785037da0ea21cadd7b4c090aad3023aa71687e8a1f90a3318b9d2ad808825f69ffac38ef5603bacb405a2b144158342150995196517f937a8319686655ed0473c81be3c034cdcda087281000ffb6a982282d78883487d04b2a8618ba7894ed6e5d322d768aba0acb11a757c320b7ade70f552ce922bf9f7d3f5de1ef8079ff7de36bbbbc488b248532ad35e9c2478407283f8ca103e235836fc281ad863526703ee7255982e395d6820e9a53a3ffb1422dbb2be860285ae1051d00c06c520ea8b7304b920591468b99e68af40207965b82831599e9c0a2b5665cc07d9622b83a94ca97932e272e4e12b77193331e55c15b4fdbffe0bedf842f8ea43219dd3c8d28230061c63c4bcddf5780b6069ee779a8c9e8e0f485b41f831d0b408f8ceb2fffd267c8444bd39c81d44dd778d0df395603476386ad7146fc32e5c329b5ea34be9e5c1ea0b83e354803ebbf2dd47ff7ffb8c7652670663e4e2619d1765e59bac8c415549b38d90026a321b1ee8a00c4e83a02a0993c5134167e4420c7dfb74e23f9e4abc2dc13cba05ad688be9ff2725575460f6314c9fff662c4219b1af41ebf3fff91237fa69b1705d3c13ac8b1defae28da6c1d4d2d880219cb71e193e56a250486a31558fb0dc12fcfaf42de1202085dfa107094d9f707631a274d3dd3a2e53ac9fbd6c12d885331fdd4e4908d49f90a31e0ec7d64ddecac20614c28c8a88b6eff3669dff7aa7fa411ba928f9e659f00a3cde059f015ee7417e523fe821c605b7ca44052b09d458a1c8102ba2484c3e9b6256e37df662473afadc2</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>决策树汇总——ID3、C4.5、CART</title>
     <url>/post/5f5a1d32.html</url>
     <content><![CDATA[<p><p class="description"></p><br><span id="more"></span><br>决策树是机器学习中的经典算法之一，十大机器学习算法中就包含决策树算法(Decision Tree). 顾名思义，决策树是基于树结构进行决策的，根据算法不同会使用多叉树或者二叉树。其实人类在日常生活中，遇到问题时也会使用决策树进行判断。例如西瓜书里有列举挑选西瓜的例子。</p>
@@ -1314,6 +1292,28 @@
       </categories>
       <tags>
         <tag>决策树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>写博客的第100天&amp;北漂的第30天</title>
+    <url>/post/6341d9b.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="d50580c7158a15db14a06dc3f972ec347978e8f1d88a5da7d3f459c450d2f3da">f95347d64da69a575c04959f22b0dbe7a415cdfff9e15cd85c12db37f1f0e2f4b932e1003819d6440b1e019c7d7d854890b192b2ea41fc3e5e2bc0011b825d1468bb17ebb040cfdc1d924f8ca4189491bbd623e88f3b5d6bb8065a477377839d46b299ae8073150cafa034ce1acbb0e3d016cff01b056d2189942fef44e45cac2f1cecdd7572bbd502cf9e71dcb6d0c7c23049717fa95070c3bd395ec269c0720929f70c720addb8c754ca3f325ea52c60b843be2cf2ff328be182c0b104b918fa8f960cb3272b71f648339ab6c4f6785db096c4e18d4696734655eb4bc08b9bcd6ad07425f17527e5d6a502a0fa7704c1f5eb1bc2c568a2eb1003c9b851167800e6dd4592596a597969ebd774f023b06c29a72b6c4cbe6b4734939a882db9470e67a555b9e267e471c76c13efb381de5112051558a86011531753c9b275d269b84cc3e0291711018b71b87e1597ffafcdf18fc358909d808eab00b6282019b07a443e188200fcfccbe67c5f6d497473bf9708eafb9a69136ae6d1066b4ccb4ca94db04e6de8b06c5486ea25c1891fd480fed06cf375d0cb6084ee40d134dcb5749b5a5c13c3fcd1547390ebce7a2ced5133f1df63cd183a56f2b44d2cc19eac70a96742d6f8355ce9bd4f398f6c2055ad717ce9ed13ade72e62d0d8e4b7f40b03311a57f0a571c86c014385153591abd6f0c3b9dde965171a46d54c317e18882b9fe51f4f8a01f6d2388bea953e76ee913e60c9d86a21bcdf1292f2e87c559796699874cb176fd64f9421eb437d601fc2e965d58c14c5069c986e80e52b1a634ad9de9a97d7fc037b632b90819f737609820f923309b90cbb919893e8478333612e86826d12ac9a42565f5f37c0e95643a94d331a56a74043e5f8b94f69e10dd1c66d1676dbef571fca57b02063dee63af9a86bc2c1816f6998f4f1694aa917883fdb24d0fc6425dcf91c828f8c8f9da29d86ddae3e6e09f65ff990424ff92fb5a9711fccec66bb8cc8ad5aac0b70ea1262733bbf28c4fc04de9cd8e5b7320d8c8df3b58bd7a27b3f4853fab21f801644645070bb4884b84c273d7f06f8d6c52bd58ccc1747d7ee7aff57dc1bc6b12147be8a5bac9225c05b28c89db17c91356b3c9d28ac6a76f7b6296fc5557e49624eb75f098095da6861dd9c27979ce88ad6608b739c2ada35139e385de0db50ecdb07b13bfe2c58110cdf2916d2b90429f37823b4ec7b2650b55cee1888775eb7b8208115903c463973751f6bc75beff281881ce6fc4b1c5960f0464982c61827fd00f48330d23b22cc46e9e1fdc4a9434261fb7358570fcf2e596169ff2fe3257d6a4bb92335ab6c00d606b86c7196747d19e3f7abc813d3c63058cdb9650fe2d6ff100d2ad7d074a1a29998f04100ae936e98c1368ee0bd807170f3360fa81b6119fdfe80322027d1a77aecd8d184f4bef1accdf20d28123fda0bb0a6980876a9187a54a396d11ca566e679a5a9640d289c56b631d14d42e4f558ab4063dd5d3ffd806f9e0abd7f033ad7bfb45c50b72f6728ea9b577e90f4076c4286ba8212207f6dc57eedaa0f78bb26e890b22929b0dc5d8d8422843142672dcd1a26d5b72bba7ba5e9b70ce6ebd266eef78da6b8a0d4f1ae7aaeb11b7c4682f4b7b6d5c3822b7818c73fc8cf08c8bde6f21da4785ad4c73da29ad2747ed29b2a7f6fb02c517b0150a451d6bb78595d1acb97b23e754de70c6c82c8f1e29d926f8a051539b2c443d9673f66dfa4896915f4f24d150f858f73d51a593c5478a73af49e7d3624e5638368705e8b5f421f08124487b36197fe252ef807c9c83ad1040b56f875d65bffbf2553ca9779b51d28f673ebf470865b9a131f6bfb012db45aaa5d2cdc7c3c6f1163321a490703e7b7fac8b2c0a00cf37039637d33253189363267e52b2cd31715f34fecf0699b5fe89f886c6b6d1f45d8d168e02a46a95c565bd6fe614bfcea3e8387a45210eb258b350b7ac95164c55d861affef72074d5eda5dfe54292cfd8369ebe4c55203781e7ef853a3e3b954d5592476a158dbba914ce462c214d463c60551a971259b1182fbd4ddace236e61745edea1dc5e5a40ab2d4e2b899176d9a6e20401f45d88032f87ba818a20631b5ee4db6cd039c388cfd2381d862d9dd6c32fe9952eef144aeebc13425aeb819c4ab86fdda7534124a07b4299521ea0f0265bdc171b16ab243dd94b39f74e64100add34f88b415ad1c86f1f0f53611fc4d163aba9b3630958f924691c28f5712fcb2f0e9e1ee6b0cb1481676de96046ea9f827c85fde7d4ab04fd0c208b5bb3bb257eac632fbdddf6f36955a7502a920c0a65583722a9bca329acd1df8a872e5b92dc39d74decd4fbff4338d765ea4c23a237a0671da7240463fc9bc8f000e10fbcfa8f05f293e80271fad5eacaf6653f972e875ec1a2ee344ff3c5fcf538058ee8b3816781a411c34d5afaee97afb758e8c0ad3cd43d44340f2e281c6afa5ddf3cd814b3e2661756e5ddcf4a30e19355edb977d891d9171ce45fdfdca8917691b744233cf5708a9d08133c6b513c02927cc904965fafbcf852bca7b365d69991437926c49b18c03947ff4528a20f3554f3888bdaef28b58a2ab3292d5e7b2d318bad666e4d83fb9b85ef860b844d9c11c25754a38692173bdaee927d047dfca824151642302618401b047bd09b31413060da88f5b79b61b5693e0f5b51fc1aa9a2da50fabc0948d40e68f4fe5c382a3aac00ab4b0773cec5a7d29c9023bb4898e80cb7a3cf34e5242cfd69440be2101dbbd98ce8162cb2e33a1b5e8be28544d1d872571d503fd99ad39b03ec22967890504a7aae8700d806cc73d129344cb812adb83680cd15df6f5477ef0153100c37c439eb54c2d962600f4456f4be9761ad2966821f9fd43e39806a074da9af8c8586dfddf50cf25eaa5461d37cbcbcabff71cb640d389b265bf2c8b3ff2b44787263347d463238fb09bcdb60156803ba7033b15d1b21e2083d74c67509aee7d856379941c384b6aca3162dbd60114ccfd69e087c61eb43193875b1c424641a9589061975f65feebef4cb627500f148d17bac43eb19610ecea1471c028f5e3a17a81027ce815b438a08a6105b181083091fe80754c1e6acfb3ba9e503fe589267efd006ec8f2f5147f38cbef74210f8d6ebce89036919f79c8d763cb14b4fb4fcc28963e47bb8286252bb3443b6ef6902e94b00f9bb4786a7977f213fb5624a427150c89f398f41196cad3e486590ddd8714f9a0c91a548dbb8772975d517910b4f7d433d2eccc5797a9740ae6de08f1d884cb35208e89c1f35a21bafbeec573fb00fa6d6421189186b2bfb0623f274e1d37e0a4916de664c9d304745508a54a3c578300e3cfe3bbec1025b7c97fabf0b672e199ff7edff89972ca32a0e72fdcffac6e4b7533f53e2ab47188656af01928d46678f418f247fc655a6e048fec8d3e5715c6bc6456574e019c0bc0b21778fd679eb796b881a77b1e69e338acb62e730db422b953044d3e67b767655fc703995a90da9920e5f7a89042fc9507b8fea27edd2439a42c9b02fbc5e556e44cc062a511292e7cb307578e587d83a6c3dd5803d5c466a88df903142d4893355826e7ed05bc36a21face0dc79764f6d81b01606e5c20ff4f22dc80906ccf65838b6940eef8bcc11821be537629cdaf516530d30160db6edaeb925851998ca9bab7ab5751c909116a4ca7e0186ad6f74bd12e63eb03ac7d245f02dcd7fdd252766085e0725ccbaafcc257dd29053c5b7fce81b225c04c6e458c61cf51c4192ff1624d6b67fa6bf549873e9a44024b41cebf97a1c3767c9d48b25f3110d62ee68a91c86fe6205e507b82b5bdd6f65112a0cb421ba03bab5ec37255094ec7939487010693f64632f1ba5461c8c2c7f05ad0f234710d7f87931eb6aa6fb7cd18419c4afe793ea94aa1b723e0781a66c07afbe99c466cdb6ec9b3f4aac0baa2169037448c66a9025a62aea5fc62cdb8754027e4ebcbb420f37a9b52f427b8b00ce294decba0c0ac716aee55fe4a78d87b4198066f67359142348ca22c274eae31078e58ede38055f98ba4521b7b9aa632ea5d1a318cab9ea811584edf3e42a75622ffabb0a0ea48baa4f9a2f23c54d73df5d3b7b5d074285da322eb987a12e8934e51cafe306a73074d4c70a03f79cbf708ff37beebbad05a02fc292dcc8f93404eb508229639b9fc56459ee101c5b449bba27b82d11f81d6e74b17f91b21a5a0f8fa4b6f43e7ee0de66e338c23d4ee36766b2141ad8f88c44b805e111d7a9331318786526b16a1065531464b420bf10aaaf92f83ab4a220ccfcd61fa4ba7972ab3e3e9e873d5ce6f1979b4c19c247df6cd8b0735d3c9dd0ff1d1086dd3e6ff34b702aeac2085b078a5b9649a92954370615e309b5023b74eaf3387ae940802634618c4019e9e70ab275ee8868ca5aec3ec99c93cf7717581a482fa7a1f79559a8f4b3842625bfe6e10f55e03f562330d0e8302444e1d176d295f31cd4c4e0d5f4bb9ddee29f23e6bbc560f2d066dbdde7a6fbde64132afb24c6f1baf48d5a38c4687d23d17d3eb8f2802cd22f46901926853ee67e3c2c0b1b803fee7ebfb20f5d28ac59b9cb923a3d801178020bc2a37fd88b2c8b694498625e9d1f84449bdb0aa0f341464914bea2a7c2a7d79b9dace5526a94b9e6a31c977ce3669ea35215c33d672aff30435d1a7eaf2dce24299f4310c3bbe7cb33fcdd78c0260db2ce7b7e9a7dcc72f37c99f50705dce0c044691413b06f78101ae29cb38d71f8a54258bb4fae78c9585957100843fc14422ea85125952e688a51bd363258f32d2f21b41d6c87f3da833fb9116aea15ea007925e64bdfabc8d3d45d585ea0921be0ca035559f74608076bfc0a8239db5cf42678ce7c4bb6d9bc56e7c5649659f7767416303f459cd9df020d7e38c3acf5feaa3ae5b3eb12687d6e95223add3456db8e88cb4f7aab2ac272eefe5975c4400ed8683f17e934928376457b8554d87a2b9e5161b1a9b08279a8e6b4f092218867486dc68ad415681f9752a514afe84b4c108238cd775ea3416b0ed8566e1599a8de9fe2581ba79d9175b76383ea1239f6687a7e120c97b17f0dbeaffe44e2dbda40327f3bc8d6d6a5f6fb9f793518de40a78863961cfb26e0c2c22280e5f13f7dbe6719f4ad33759aa36ae34c262b69abfd538c456d2d8967aaf8a82014474f81b5316934f5105bc2a5ca8ac26e3e6b5b284e287801d10fada9fe560741b019a586f6a09b85297f6d0cd4460c13f7184efe794b2f7ef3ded6c05b6642d4a7f660e91519516fb03cb6a715f8071909612e616130e91a01ed63ce26441a7e8eac9b49bdc1d1187944f8b60811174e651ce9362dabe451e8801c0a49d96ff5d09b9d2a5ab471e69867b6cb1eaf0f018b5858a8cf59c812100be5799ed34fd5bea857f19b761ef11f911b62a8bc3cd0c5056696062f8d92ac9c3c24b28ebfeec55679c69a29f2c460a546657f46a836bb558d6e5b32ca961d4397b1b54ffda05e259419b480dcb778df50d6c20c77eebf8ea5cf57b117ce2f331c4baf59a1f81cd892ea8c6dedf6fb8645cafbbb7e0b4199ca4a43cf093d6747fb8b3dc430c03a7eac42146bfd1886d65ac1aecb34957e6db5266916332854081a5d902b51bb9ac3252cc33660ac275d9793dc98ba96bb8b22af2d28760a18ad0d80a98e126e592b64df7876bedbf91ddfe29e8104347fae145990b6ae329c5ecbbaf4b5a70167eb90156b85b2872df06b0918e79266611ae931fb9ab4835c3701c18e3f1ba785630bac7d3f50f29ba140ffd4c965e1c0177960dd08f984360ed84d74fa52b38266a3b027c7271c7e22026d86d78dc2e4a6d678489070c001327014f5bb8e4fb1b4518f0f519c445146659d53015167cb1711a3d84e8d682a16ece81ed34f89d029c1d5d074229c6437721552b3c6367afa1375afdf4b1c78218688412808473f7b37a8dabc81eec3abd2336692db8be205a938c78eb79aa8adbe3122a79bd26fe7893561520e3f37af614c9f0864fec1ff04075c692ba359110ace84dd009e6cb3a319beb275ab56bc1a709470335582fea0a11c430e75f9202328ec3a2e36b8c67c7a0324376df1d173f19e45b3dc373b1270ef555c592775d7eaa5810d1db48aa77bbd811862063ddcb7c6b5b5ee31657583bad20f53e8147e488f61990b2ac95e958aa43f6edd4c9c391af8e217cbc7a3acaa66a98851fabfde11b82e549b01d99cd2d7d97048af1f570f9eb35a7163ef6fc9db1b5ffdcd04f7a28ee077bdea22764e88874638026a8f67a4efe009a6fe46cf33ad5c541ba905bf2bcd899ca745d72eb1d6c4be3d3338e1c912a53f1ea43790bc1213b18f824fb0a550cddadd995b03159cbcdf728b5bb37fed320d67d82be7a30cd33c406b4b5ae674777ca3897907f1e9f1031a28d3e66aeba37a87b66e360897c2001ebb87bf49479dbd48dbe7bb81f090f86c1248a43ab4facc568bbb45149187f7a1f4090783e55468b6ee04e88e8a942e8578fc06715e97705714c4497d7c7a291bfa221474225da61a4d240cacb4ad2bf686dad46dad69624eda738be430aee4fa10cc7c950c7a75950d5760dd65f69e1fef110747bdce1fcc2e39b80bb7905267361b695c76dbbb0c0aae886a14e028f8ef981254d4e3912b263c12587524327688a01fe839d56ffd18166a2003577de01bd925257b10c613093c7e8efcdefe611c82733ae3a2002f6661cb3047b108bb54811d22f624dd0b7dd4fa269051e1de5f3cc57a023ddee43cc0a7e63eb0b2cde2b96430ce0952827f6d36f29349c945254c7e227c3faf4db2255240397b5c6badc0b6119b3ed27b296a151e061b66104de42862233b3955713f8fc2cc723793b2a603314690ab8d59f310f0752d3387f79d4f7d5472add0f51a561e7e02a1cc4d7822e069eb9e70f88201819387327a7d046ad15b3e2f72823710f3e5c15fd0a4c31311ccc2a3753155f9fb516be932d8a2326432af08873955a382f617ded3284423f5d088be88963ad39f3783cd6e16066a44bb7e3f3ec3b76d892a18b35b9aca44fcac1b4260b6f6d00907ae80895d464e65ef3e4a956a83ba62ab33b37c9b3468ae6612c6bbb2f5b25bbc873abd50c80f2e00068a11ad16cfbcd1b3283df9e7f6756a703fa01db2521d3a485b314b5058a6d0ebd2eade3c5a62bfe6fcb3e3184de1a1f1dda3f630b84b843f2a89c6c1a3891608aac76bd3313587ecc0c0534362605bcc2fef97281bb5e2628106dfa381c0d894693cf1ead4ef35a4d66043b783db5e55afe99f8e4f2f4aed442922fd5c40d33d33e7fa9bf17bd39e5d4d77596de20602209ab7039bbd4075a9b2754199fb942dd47ce72ab8d7184334c30cd9d080c89044e441f0ef672dd9cdfdefcad8f13d55237f0b80f04741251fdf41242b5bb6a21950952b23aaa168fc23bce442d1c5f6e3c83626d7dd9859994860525170c4ee72b23c21173bee12e2e35c569c754a5f592e1f050a155313d6f554757cb626f062124dd97a18e93055c2ed06cca99b722611a9d0564fad6b2cb9e761ef07c988c2e1e9b13d94e1f9b7c94050d8dee00d9aa19bc3be76f9174e7ced474c462171db47117c42a8967d0f0b2be604f9b0429d18d4396db1cc3964952a30e169e20589014a10c25f71dd81a61dd7869479ebef440b5aa9e1d2ed07b21e76bf5ab6fb001d8ffa6d1cef361e2d545192ff569b676d5117faf7eacede0ec5ececba690cd3fc3904c9029eb172e762281a2ece153ee822e6849aa94a157345ec8b0c5f4ccec14b931c5de86f1484ee86b308cd323a17644bb4314fc1994612705162f9b83d41f619f3aae1f863e2cd4e35fd1a7a667abaebbce3c649fcd0796a80b7e1f5dd6229f10984329b42f0d485c827cdb132c1928828eedf04cefeeaf61e3a92e19251af8dbe3721858fa4b31a7d31802efbd7adcf91b2ae7b9d050937123e68a2aa3017a32997e886b19c406d8619f379d357f9ffe84717037fbdf3cbe6fc2fa2204dd96ef8881fbbbab96c1d2212df59800c20b58f716ff5695190cbd223d877cc0b48b4dfd15d8b54efd79d1cd827bd265e18c4ef859f51cc0e19aef77e85683604520bd5d74ac989ce2516216b659544ac21f0782c6450202c685e77b186e0145c91013e9a16020087de63fa3cc8f1cc41eaf36d899a2796decedf02ef02bb90da9c10f1c79ecd6611ea7f4908ce204107acacc8de80a91524995e9eb785c792f903b47492d4c882bbb4811cf720907e2d1391fe706c655cce6fb07158e74a9e6401e45efa7f4d5686f2df69db5a7cc02f4e894e72887e37e04ba347679f2ca11659fe66abc130445771a04f9835aaa4ceb61864ebe352f4948b33e7cf2609c648422bdb382bfd04bcabfa068fbccd0f12a0015685b28aac97ac29b617538b3cb7ad643c1374fd4dd70dc3e6c155fd5e32ed32a2dbfba6279daf38bb648d23345a368d556cb336b175a7be78d1a46e723ef7b653aae280a3589ec8b177c6ea7715d33cf5066c03766b3c8a751f0c3bc1e473c8b43ddac46aa13bc924ba1582c0889e03f6fcd33f2ffa026a65a86f362292dca22b103df1bc48b7f372a69f040bb61dbad3319af980aebc93d04fe70ada13205c560ab549dff97c6d65491ac877466bfd25af1d423aca17216923f1d6bd307f1a7bed40e7ed9d721cdc9595d5c0b46231647b048d4f3ae696fa811eed970bdc57de4f92a06ce0d0893e8b5aaead9338df5fe76a2b568607cdbfbc8d8184005a265589efa4e692ecad8d6240bf261e1663b5b08821f41489616a4885287b2bd22ec1a16909dfe8151ff4b73615143be679a5c315f7edc273636b4828fd43836b2fa3174d0d3e2dfed737d1fda6d309d181ed30a339a7841e6ee04ed7af143a8c749ff37e84394680f8658c70b31622cc59a5952450c7f80fec0de36f27c23f52a61a69269d5795fc13d4840aacd5294790a275c680603aa47613f978ad09a8e45af6b39702fe34862bba6c1d126297aac5d2db9f08a489c7d365a80b1dabc0fe379b1f0e9601008dedf632942d87f2e4812da7a0aba147aabd810bd9821e36330965caf5d062bea574bca1e391c0bd024026de22f2edf7198cc070b3a3f20c8917922d945c0d0846fd72f431bd183123bc290477e9d8e4af6d952ea8c4fd8d85a76fbcf8d837c880202275d21b8a78a71e84b957152a3c7384a46673d48984bb1d97908ad50120881c5ba85d03d2e5572a42fb45018641eecca6a60c9d8e9cc0d2afeb98d30e7e4d471125c25fb3ef8074b5a2ee1ff4dbdce6af56a71f345a9de648fe9d2bb5f5c26d840ec32ee808bb3535f84f8effaacfed380fd7a02272b89c3a9072ef2dda79b959e4aae11fb4bcf160d1c597ae27e374fc3806d7385371bd2138cf2a953a4779cd1fe8c1bcd14b08b27fca4d08766062a6ec173bafd56943fce53ab87ead3f95e7be47ad0a1982933511f55679115df43ad91f3f73f84cb1474886e4736bf427c974e7144edcaa9fc470f27f84ce6108c68e8eaac3bca3768977c8221b18772610986e2f978878651c749ac5ebe338272ab5c3e5b69bfec252bb513bebe8d5204dd056e499f278e23062351b956723c05cb31799b8eb937ee7716b434fff54dcafe141c20f4841923234d4c27b7686621225441516a46350ec43e03ebb1a25dda4d7755203b47f4f51defca9efcc209fa80db5e18b656707241450139e4a2f407285e03c0180205d341cb901b5842f576b5b4c8a7b0024df170dc3ea2c9cc2a3240bad25167166e1744126f913884e0c3cbf0dcc05d618e1cd1397c6d035827d8934010cda537c1fdbc489f55c0bfc86976f49f75e6d2eddad630c359f8590924e47f0cea7945af51353dcba6c6f85976aef599b4b40667015473db6f930a839ac139892cfc9c8630389b1ae39a7dfea69e19e80315035a7ec58d54964a8e0d81782c448428ba3e6d0aab7e5a74d7f01ec752718e55c9d686e27c3d0579d13884f7afda2f2d990dd13e2d85d5bdc219efcb54b457e36c2b762ecf67ad1699d3ba9f1499a95d75692d306cbf6efe2544535634a11d863ed3aeec22e28918f5184a397bfee138864b112abe74b1375d5e5252fd48166741f1b1173409df87d6802b2d2f1eb859fd3e77c67448c3b83d78cfd5202c12900db91bb877276d5e4ef8f8a6367781b4c4b8de0a1e83c5fdd78da228bf5b362068967cb5be72ab50865b7fdec87b2bc2260aaf9f8a1bcba7d129f395b5d5d7d9d628eab1d623755798f008d4e0f9cadefb76ca2d7376a5ab2fbe54f8046a447e5f8f15b908da29761fb1477cc49a4861ba5a98d705b30fd207275a360ebdc0ce009bd3b4c4c813ab09fdd96910f885a7289c5ab0d18fe58f07420f74d4f32d6b7b192d060ca54146a149dacd29c2c5497ae1f60f74dfb59b638df7d2860319966916098a39fdd3b11da87e587b3cdf1b18fa6d20c3de5466f6bbb778f5bcdd36e5f01e83165ca5a162eadac2b3bf052508db4b66785c22039b5b34bd0c2dce5445dac757cbebed9e360138bb897728d1acd1a2d33079e294459cc8a1d6d9d43903dda483e697aa2ca66587b250bcd7eb992f5e2101569115b6e63e41910b50b77d51239aae536afb3e1261aef40655a7f926f264dd1d2cb0a502fd562d8b45f93d2d367834dcd77fa14cd6403eddcf964ea1877a3e35f65a93f2e908252e38bde28fa7b107d690f6aba623656fad244be2a56c9a2e7b54437def8f79dd687ac6a55f433d40f0358744a733b73d65d31213aec7c3cd7a3c2018859f5b911b68c1917d66e1fa7b361c02a261fcd2c112521730d65b1bbe3744c0ef2b855f734a69ceda9e1f75fa62239a945da6b4470d0d69988edfdd01caa2b78b0a2b1805a7ddce70a480f0c6989a8f1221d007b46f4c206fffc24654f158137870a64f321139b8f61ddc8919b87b0e697e9b0b21e6c89f204592a615dd2e4696c5f0026bd7eb737acda81ccf0dd043a79fad9e5655251b1dfacc623288565b246ce8b4da116b0c5c3fefa2afe571a5c12c08bdeffe354d2cdb52b85f36256fef88802e04988901f66e8ebae6c5c8f28f7299eaa010da748ce893a00f0632728056c8d5408912f17264156e982dfc0b62d91f9daeee3b970c554e7e5f12cb8ffb3a4f0bfbeabaf39b8b5af7cbdd0dd9838a27992bcae391a9ff58a39b6f54562d808d4e0226ea8ffd2dca1ba839e3047c121b110ee71fd66445878731ee0478e1ef2cd76bf18bb26e4f6256ef85960d3e681b99e37b9fb758e4e1b555343ad4e02bd61996231eae62b171aaba802785037da0ea21cadd7b4c090aad3023aa71687e8a1f90a3318b9d2ad808825f69ffac38ef5603bacb405a2b144158342150995196517f937a8319686655ed0473c81be3c034cdcda087281000ffb6a982282d78883487d04b2a8618ba7894ed6e5d322d768aba0acb11a757c320b7ade70f552ce922bf9f7d3f5de1ef8079ff7de36bbbbc488b248532ad35e9c2478407283f8ca103e235836fc281ad863526703ee7255982e395d6820e9a53a3ffb1422dbb2be860285ae1051d00c06c520ea8b7304b920591468b99e68af40207965b82831599e9c0a2b5665cc07d9622b83a94ca97932e272e4e12b77193331e55c15b4fdbffe0bedf842f8ea43219dd3c8d28230061c63c4bcddf5780b6069ee779a8c9e8e0f485b41f831d0b408f8ceb2fffd267c8444bd39c81d44dd778d0df395603476386ad7146fc32e5c329b5ea34be9e5c1ea0b83e354803ebbf2dd47ff7ffb8c7652670663e4e2619d1765e59bac8c415549b38d90026a321b1ee8a00c4e83a02a0993c5134167e4420c7dfb74e23f9e4abc2dc13cba05ad688be9ff2725575460f6314c9fff662c4219b1af41ebf3fff91237fa69b1705d3c13ac8b1defae28da6c1d4d2d880219cb71e193e56a250486a31558fb0dc12fcfaf42de1202085dfa107094d9f707631a274d3dd3a2e53ac9fbd6c12d885331fdd4e4908d49f90a31e0ec7d64ddecac20614c28c8a88b6eff3669dff7aa7fa411ba928f9e659f00a3cde059f015ee7417e523fe821c605b7ca44052b09d458a1c8102ba2484c3e9b6256e37df662473afadc2</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -1738,85 +1738,6 @@
       <tags>
         <tag>长尾优化</tag>
         <tag>因果图</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《Unbiased Scene Graph Generation from Biased Training》论文笔记</title>
-    <url>/post/b4822109.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
-<h1 id="任务定义"><a href="#任务定义" class="headerlink" title="任务定义"></a>任务定义</h1><p>场景图生成: 描述目标检测的物体之间，具有怎样的关系</p>
-<h1 id="之前算法存在的问题"><a href="#之前算法存在的问题" class="headerlink" title="之前算法存在的问题"></a>之前算法存在的问题</h1><ul>
-<li>数据集中关系词存在严重的偏见，原因有以下几点:<ol>
-<li>标注时,倾向于简单的关系</li>
-<li>日常生活中确实有些事物的关联性比较多</li>
-<li>语法习惯的问题</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li>往往通过union box和两个物体的类别就预测了两个物体的关系，几乎没有使用visual feature，也就预测不出有意义的关系</li>
-</ul>
-<h1 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h1><ol>
-<li>为了让模型预测更有意义的关系，用了一个causal inference中的概念，即Total Direct Effect（TDE）来取代单纯的网络log-likelihood。在预测关系时更关注visual feature.</li>
-</ol>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-144828@2x.png" alt="enter description here"></p>
-<ol>
-<li>提出了新的评测方法mR@K:把所有谓语类别的Recall单独计算，然后求均值，这样所有类别就一样重要了</li>
-</ol>
-<h2 id="Biased-Training-Models-in-Causal-Graph"><a href="#Biased-Training-Models-in-Causal-Graph" class="headerlink" title="Biased Training Models in Causal Graph"></a>Biased Training Models in Causal Graph</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143055@2x.png" alt="有偏差的训练框架"></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-142859%402x.png" alt="训练简化图"></p>
-<p>节点I: Input Image&amp;Backbone.Backbone部分使用Faster rcnn预训练好的模型，并frozen bockbone的参数。输出检测目标的bounding boxes和图像的特征图.<br>Link I-&gt;X:目标的特征，通过ROI Align提取目标对应的特征<script type="math/tex">R={r_i}</script>，获取目标粗略的分类结果<script type="math/tex">L={l_i}</script>.和MOTIFS和VCTree一样，使用以下方式，编码视觉上下文特征.</p>
-<blockquote>
-<p>MOTIFS中使用双向LSTM，VCTree中使用双向TreeLSTM，早期工作如VTransE中使用全连接层</p>
-</blockquote>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-145409@2x.png" alt="enter description here"></p>
-<p>节点X：目标特征。获取一组目标的特征<script type="math/tex">x_e=(x_i,x_j)</script><br>Link X-Z: 获取对应目标fine-tuned的类别，从<script type="math/tex">x_i</script>解码:</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-145415@2x.png" alt="enter description here"></p>
-<p>节点Z:目标类别，one-hot的向量<br>Link X-&gt;Y: SGG的目标特征输入<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-145423@2x.png" alt="enter description here"></p>
-<p>Link:Z-&gt;Y：SGG的目标类别输入<br>Link:I-&gt;Y:SGG的视觉特征输入<br>节点Y:输出关系词汇<br>Training loss：使用交叉熵损失预测label，为了避免预测Y只使用单一输入的信息，尤其是只使用Z的信息，进一步 使用auxiliary cross-entropy losses, 让每一个分支分别预测y</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/1280X1280.png" alt="enter description here"></p>
-<h2 id="Unbiased-Prediction-by-Causal-Effects"><a href="#Unbiased-Prediction-by-Causal-Effects" class="headerlink" title="Unbiased Prediction by Causal Effects"></a>Unbiased Prediction by Causal Effects</h2><p>机器学习中常见的解决长尾问题的方法:</p>
-<ul>
-<li>数据增强/重新采样</li>
-<li>对数据平衡改进的loss</li>
-<li>从无偏见中分离出有偏见的部分<br>与上述方法的区别是不需要额外训练或层来建模偏差，通过构建两种因果图将原有模型和偏差分离开。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143048@2x.png" alt="enter description here"></li>
-</ul>
-<h3 id="Origin-amp-Intervention-amp-Counterfactual"><a href="#Origin-amp-Intervention-amp-Counterfactual" class="headerlink" title="Origin&amp;Intervention&amp;Counterfactual"></a>Origin&amp;Intervention&amp;Counterfactual</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143107@2x.png" alt="enter description here"></p>
-<ul>
-<li>ntervention:清除因果图中某个节点的输入，并将其置为某个值，公式为:$do(X= \tilde x)$.某节点被干预后，需要该节点输入的其他节点也会受影响</li>
-<li>Counterfactual:让某个节点被干预后，其他需要输入的节点还假设该节点未被干预<br>总结: Counterfactual图实际上抹除了因果图像中object feature。只用image+object label预测两个目标间的关系。</li>
-</ul>
-<h3 id="Total-Direct-Effect-TDE"><a href="#Total-Direct-Effect-TDE" class="headerlink" title="Total Direct Effect (TDE)"></a>Total Direct Effect (TDE)</h3><p>根据两个因果图:</p>
-<ul>
-<li>原始因果图</li>
-<li>Counterfactual因果图(可以认为是偏见)<br>消除偏见:<script type="math/tex; mode=display">TDE=Y_x(u)-Y_{\tilde x,z}(u)</script></li>
-</ul>
-<h1 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h1><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143120@2x.png" alt="enter description here"></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143154@2x.png" alt="enter description here"></p>
-<h1 id="Ablation-Studies"><a href="#Ablation-Studies" class="headerlink" title="Ablation Studies"></a>Ablation Studies</h1><p>对比了几种常用的优化长尾问题的方法</p>
-<ul>
-<li>Focal</li>
-<li>Reweight</li>
-<li>Resample</li>
-<li>X2Y: 直接通过X的输出预测Y</li>
-<li>X2Y-Tr：切断其他分支的联系，只使用X预测Y</li>
-<li>TE:<script type="math/tex">TE=Y_x(u)-Y_{\tilde x}(u)</script></li>
-<li>NIE:<script type="math/tex">NIE=TDE-TE</script></li>
-<li>TDE</li>
-</ul>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143120@2x.png" alt="enter description here"></p>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号!</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="enter description here"></p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>因果图</tag>
-        <tag>场景图生成</tag>
       </tags>
   </entry>
   <entry>
@@ -2407,28 +2328,6 @@ a_3x+b_3y+c_3z=d_3\\
       </tags>
   </entry>
   <entry>
-    <title>毕业</title>
-    <url>/post/9b1b667b.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="25f8fa2490eda42dc29daad69fdd94355436c1f9fe26a9d737a862bdf5b72306">f95347d64da69a575c04959f22b0dbe7a415cdfff9e15cd85c12db37f1f0e2f4dd24d39582d3773505c88be6387334bd9233d4bb71b6e180baa4690f3e7b524b8eb3b25084a8d6d34e434e66bd3dc8732b7b68740769b26f2613408a463d0fcceae69eb910b9518d060bc5124ef445753ef4e979364928028d8374f19c098cea429716fe27cb4e8ed3f6eb32036b3e341b6223ae3a2c8ea1be8ac3a0fcda98cadd13409916e6498ddc14b513c1424f2861aee8873bde1aad5bc8768ca5336ffb24f627d987899fb971f2dbe4d97fe6993e1f469ace7d5799e262bb26620dc41e2e6d3ed892fb8f48e9adf32fe54f4aa96980695a03b600a2cac5e428aaf39a2fd416a16b361886eeb3ae930e66375a824614a75874165f570bda23e8f8d01d0e5b132277dbdaacbea9fb6c9fb2c9ff2f0e62b6027444a673376cfa028910dc650a066b8b81e274d7b131235304f1628f1011bdb0a801e00ab86e833bd54a20e736bd58acd44986d05f6143e0bea808ccabef79585c6e5038a4103f13e4de11d1a7b840bfb36696e69e3c897370c61bac9a753a681eaef1af983177c27dee42d7a2b25c4dd7d6a6e5fb2cff24c2b7a63412cec4fdb920a1ee9a114d23d3d4e21d2c399125c2f35bf6774b0499c3e9832f2f2244ddb01039f8ee0c1ae4918a625e726599b437fed082bce3833172d2bd2433b6c81ce79c8f0492a069905a930a4a68e4cc713473c9ac0fc465cdaf90a6f6b462e24425914f075d5a6f1227f3f3144f195d8ea9bf53a7893bd9547fb57ffdd5937f93852f46ce68860f2f5c9c1b201d54754d7e874676d85f77d9b712bc4848618b7082ce031ed8c46edfda64398d19d7c6374ac0d3bdeb0edb7847fd7b8273badcd9cf67571f0b6e8d57d1e814b44fcae746cf13a75c98e44c22b20b2239f164f588312ce357a76d10b0d41f2bfb9436cbaf017aef6095f6d434523b28448506d9dc3801ec9a5895c0897744124c024ab13e166378d97bcdddc7a425d2512cb533f15c61acb0686613aa7aaec6ab4bdf8b1a0fbb0eb84e7d0a8b37b76e63de8d65dd73a7d693bf1686c141292c977fbcbee543deee2486bcc56b84f64f3f6f23f0c2042457d768d8066ff6b00d2648a1ba5dc9579e09f4768daaf33752c665a038f50ebc434dd75294f2debe8e9120ff09718893c8d3771abdc2563cb37773ddb7dc69ef8605290d59b65f6bb7f074d74dd180dd5d64f484ce924fce6566fab916066916fae9fa7cbb065bcee4f0c2d682b21580cd7ed3cf122b3c6df481d0775e60f365a73ae8becdf85a411a27321f965ca0a02e7b5f529690a4dcbaeed6a7a001607f280e5a73247e9313ed41c2a595edad137833f22ad8de0e0f8ac1d69f780a13755b7d7543c5bed80d1540662c486015c47d2737537f78fa9cfa6c92e4e10cf0fa0ff5e13dff9f6ee911fa278dd20c23ab442e4e3dd3f8f104a4c70e6bee8051adac533c9e939e5d901fe05ddf6785476c3b4332d0aac4b18ae3235fb24054e75e758cb049aabe95c02d751f11c9f2f56d1b5477b16fd9c6e587e1e9e0462eef40dafc9b0bbcfda4466e884873a6b79dc98c937835a33c96162369290d97b932a0f2096dc8093ef2e894cae094ab55771b09139fa6c3ad747deb29104da3839d2c63c9545d89cc86d269882654f9ac37540815d79e95e1b88460fe4ea1c2aed1a93d2cc1648780c1eae8f6a42f126f15306aedfe73490e1fcca0a57cc9d096ca302f872f42e5e44eef4e1a7b885821208ce39bb290f1cdd1284c3fd0bd7a952b76a3cf89de82e7c2061d7c8124b726fdd295b2a5479e741fcdb8e06f330b39019a3e2243856b369ee056f58f748d36aa5ec681d347b6293794c567c3557e04cfe76d4356f76a336c85eac7953514ab9041afa4430d599147468e12c53f13b5898f74b1e0af04259220ed3a954b7f3449b7d5168cfe70b4133661a9211064c4ae3c1bccb58bcbe3dde5e3db7c96448bcda9dbf57c4837c6a4dd8cba25ea96394b676af0e5a2333c790e1e71a3a89a838a1155d3be0b344ad194fc070c8943f613a294a5d2e672521062535bbf0dcacdbfd2e3b9d46bb332704eee75be207f13174f2acda0b622fae681d19edbdf4517ffc111b6eca586b6e439ddc59cf7501f01337caa845d8daa45c55b208432b462433d7c9ace92d18e3ab83ac0744bb5b81e1a858020a17a16509749c6db9577848e3e1c24b92ab8655c53bffda5aa61e764edaccefff15c4a72d09977e6a3897add69b3faa89223c29bcad9058f53d98a4701c4c14372d4d3c88fcd599e43c9836a71200241e3338c6b7ea0bafe1bbf808591a325ff20244b6e0f20acbdf5cc6b5f62e1efaed415586e04d89096edd1b02d86dd0b50188527ae68e41969397131dd73113a7905cf064c2cecff6651a2eda097a64f554a42b4577c5cee441de3da650e541979a601376656ec1c78dc752e012c9157bed00dcdbb320e78bdd638d11714e0441f2c22bf73d4ac4a514eedc87eb79d248bdb10e21723e294debc49023d697da3b248fd8e1ea0382a0f4db985fb26f8a78686822bce5af365487e911e5a9d74fc175474daa5f3ddcce86f5c4e6b9ab1072e66c689e983b340903036ff925f6af2bd58132504032d806da08b18a527c55d59e3c13275a5154ccf9240079fcd23cb38c31530e9bde7c906aa4f37138d1ebbfeb86449b8111c1d6a4207a133cca9aab90cc7d474bdcb1b4548cb28ec425ed53f8b19abefa2131ea95303be0207fdee4a29e8ac63bde3aae4d80b71a558681a48f92d85734ccd0b767e796f386ff57492007aace2db8db0ab519d003e43b70b6b8fc4f9321f8bff529b116db6927fb9b254089a3ae4a5a7c955be9243b4f0a8033cad9c1816e878fd3ff5a39053a01480c2d032a7c2442f65810267331f3f22b80ace6c26e28044c5fdf00054ecc4e38084bba7a7f3fca694891f200dc7b1a3e96e6a27ccb0b60056ca9b478a388b24d710cfb02f5e40288c6f01408e25540a673b1b414e8ab83013a1655a4eb3d73bf10f3bb731ad5d7300c41c2fa2b987fa5bd1520faf7071989573d5f28cf824a6715600d2ddf5a6d1c1040f44ed550ec97ab91ac28e543e090e920d83693422c6bb4f5a8bfbbcd6c21cef96d6a9b14ebf29510df5025098e828370196c27f26b89b48e880980961c17d1276b767f87b4a2014c0d489e9dfd9c6a377f2e7039da6b7a09ed0f67988cf0326a919e25424792fc638df4b4f686085c2930d7ec4077d8f0a87783514bd9f24c90f0cf126854b9870865a5265c6e77c102b80acaa26050be2b8c17ffbd0787a09a449da4aef806ab6a4830e4f887d5f36539caaa4c4b6f16d05b62cefcb81ec6cbac2d012df6693a81d57afcfd38b533ff33e19320f3084e8cabdf8c8f30a1b94b09a8e18a7683200c9c1c5acfa331769d871227b308e73dd603bf3c965ba390130d245a87ddaf590a647a517c09f5b614a7e71cfa15fa432230ae30641510a83844eacec90596da35df32aa6b63f94266c4681549ee17038d96125318b7efab40489c3b790e3c31d99eff98828519b30cdccc75e498174bfe1667ff4bb6018dfb96dda2b46ba425155f3e401513b494f3c18eecd32541dcb89d3696637a71379690921a1c029f428bb283eeb38a355fbf8cf472ef03a585de4f49b457bfda233329da5b8da40a9578e3d72ed041fd16c798d91b923e53cfc1cce3715aa3aff16d9f9ab2541b3ea09df5089b623593de3b727d180d60cff50a75f4c0ec57040b7d2f44fb2c2bdabee05a931f3410ed760673aa06b742b2bbb0feec2d05df986a79ad26bda205f1117be4fc7589ef6c47e868de716af2cac7c2c0a93f6947771f58b930239965a0623c1ff79df2fed13179558d8ec64a804148a8876dd8d7142cab62869754610528b698ed64398ec5a822972225c5ecb4410907caaed8cd4925a00f1bb10ccc1f5e4ca2f26bcb6250d4278e9d286bbd9d59c7de47e3d850b15d15f01ac743caf4344dff94763b86bb3c58349e376154c612d1821ffb4a6c49bfda83dedbc11742cfe1a77bf32aa1c851d2912de3ef3edfef2e03e1472b8235271bb4a9f7e2defa67416d23e93d2293a12e29122791471fc55f61ab476a6dfb4779c2907ca7e8fc4da21b0845eed54d3b81156201dc76f776d756e31d2804e704e41719a8fea3fcdea7dda2952e0149d56ef88a9dc120e40a3833a07c0697e077611c2e887058d80f44b8cc11c2da0dcf76a75be53fb64f157115ad26b066ca7551e7cd875db7633bf5099ee19a9721da3609d9914980dfeaae8c20a1c1978ab23d71c8a9e4504ee3379161ed9bb4c9d42be4e80a599f282e61879b7913afe0198b1fcac9724a06119801dacf06f5c40f1ee2f42c79a0808c4b005104e12b007473e9a9f20843c5fe73a090ebf356902074fc8108b0bdb3e28b92ae8b43e1f5365ae7fccbc7eb12ad2406c4e664b2e3f7f767278f2b8d84052d78c3cc2b3d9446f450dccdd34c023a81919088edc42a86409d66fb160cb3dbde865663fa3e9d6cbe15f4b7a13b93905f73b51f94c96d64855840ef68cc5895b3c900e79e3c027ac5029cbcd9dd897b3160c54f784779377862dbfb729f5e4ff77442d4bc730d1dde8ec98894767a62e4315d9dc687090f42e773446fc255ae40955971f021b407f5d54cfc9256b094d7bd876b2585561d4713093eb68353e22a36e7542d36e08b61c88a450c5b53e6727c7ada69da8caa48c064f7446328339dedf198437f7688b53339108c0c765e37314925295e4638f049ea615dfb1bfa5e4ec9b130ea8a2594881da2076877fbe14d79a5f2c66cc827ae1a8842ffa21bf83f5c6fb62d235ba95aed09d99b20d69c91d1ee8ff35e51babc234fa15f621057b7d1deb28336e31ce024110e0ccb4e7a0133b0c0078ec1449ea291bbd0a12c0a794ce79194a6b771c65fe913165966bde76c4807398095227430a349c115bf91ad30e372d0c9c51436cba829dfcadc74b66d6f51319b26a12d2c88ebe10ef26bb1d15a8572f0c6aa99dbaa32d11f5e6a0f2680572f1f8eea25e8510f141bfc8ede2a30a092d7d817b50c0a897d5fc2b90a1c6ffeb8e85b644215b64449c60d1070c69202d81530de8c77823eb81f0ff8fc72e53c98d651fff22e6a8a3c4ef82b23e717122bbf7e1995f487e830ecf53b32de59cd4a137c07d1c34a8304f603ed13a6d2831b4e77eddfd3638eece938a75b6d3257cfa26bf2b12d328a662d0be18cfad765067b7823a8709f171b0288725f4b688d058ab8251b81f65c026c6dcab89e00f705f552a3ed3d19d47d9796e2f3d0452321192e3e123ef6ba2e44bf8d52ccbf515ca89ff73767197a1e19db7d478e13d10d9e57c1eaa51fc4a07e2f28b03d113d1a75d59fe094e028f3327301ec6f81f4a895ac517f82ae06282c6ee08b1f845d498798ddeccf9eb998f7bd13a2dbeb0a80f102a927768115b1fe82929fad37e2a637d90ad37d80dec8207e8facaec17d49805731dab016136a4e798311845226222d89e5234685e9ec709c5217920ae1f4b8baa76e535191afb4fe4d76af724e7344e382959a104eef30084e9b9239acdb2f6f0bf23ecaf27de59a35eb91361e9abebc9cd6dbc5e7f34f24d355cd1f6feca6ff732e15d459cc44b4be14a3ea3ccf422e72ead4e71addab123e3a1defcff36d8b0ef8f52ce2392f28737b022b7bc6c80f92bf18536767e1ce9efe32c845d2967ab757ac01efd24827260497730705a6d0f69c4824e529661650f12a67cea3edb1bca895f206f84fbe8850ec763516c0ed495e3b7735976588f88d2552bc6c4154dbe7f6721703d41893c45467a0ead0fc10a067aac8619f0a5bc65a986a23903f418d5db68ae9a2fcec5d0b1fb53d7c2ab3f67c0e84f8346512350fb8bd9dd0d1d261e08316ffbaf0d2e4f8a4bb8ad1df9a591c137d649e61b5c20f83a7a148aae2a0b3a368ed7ed3b2d41f996bbf9ca865073d7cc471348d4bd35e1881137738df9414fd18544af9fe34c03e4b34fbf934563055b3b28d8a3e83d2888ef98109cebe4fa25d7b22767eb66035647c43caa25d61c03d0b14de23d818ce482a570d2d0a858cea0acf28939b88c4edcb5a61b83bdc7091d917c2e4b2efc08ec2abac156a54ffc5a119962beb7e7de52752710cdf0e4aee04f7fb5a8e408f9a13550a1a02db30289b763809f38afc5eccc72abff60f59ee33120e4be6b3b095d4568f718f3bddb50868b023af7b93aa2fa838f0ed72430f96cf39b4ae40e8fe062ed18af183efb4a7fa4b7c5d67115fbbcab329cf944325ea2fd2e4163c073b058d81120e5455e3adadb12fb9b9cb0bbe1bd55c171a3d46155369458e637be4f775aa330b96ffd2ad64eef3eb1da3e8bb7194b33cf2a9b092cdd6de187b81504836c72d1921e80f3aff71a59ed65176ae16553f0f646cd47fa7226edab33207df08125d9c6e7f881302e1dd4af72cacb606fda2ab0092630713bfae0d3ef2a5fce60d340b61d65b3892c28a04ab0924bd369d824b75c4d494fc15541c36c1c6fcc7bdb8811f3094f245af9c8072bc96cc74b9651fe9b82c7b232a7041dfa134c900a844d93c0bf0838fa5e7cfaee8e1f265c5a31a613decc3ed55a8accd0256bfc8ff12f6b546830406da7257a507bb46d64c3d4369056ad1ed6f27354748daab87786650e060295b9d02352a31fc967828e78e8340bfb1d12e3f81a085674582daf60c3bd77a02fb59d91c03fd48466a41208cf8881abbceb9dd0244155e373f6b17a8c991a03179b12b67a776ed85921fe5194bb94add838e730918da25b61ec1ebcce8097b811637b35b286a9daec9c6be43edf28efe4d57fb565a836ae24b389846cf057ec30834bfcb1370b680c52c9d8bcc1709b947a9bb480150f62ed67550be98becb2c42e697f59aca1b61684bc92dc86f19fab04f37b5651dcc24ca862914fc434cb7da49cb3420dff80d501bf3b14db751eab0427fb356316265c9a31dadd55eafedfaa8f9f21ec6dc51d2f1e22fe8d37d849cc71958fbbf933013b93c6c739fb191de650880b0cfb1228a7c71bfd9098071c5c387ed29d484709daa3479a1e48b68ffbdd9a9c1c158a6a90368162fbbb2941a951a2b354012f69ebeba313ad031eec7062ab32039fb5f9fdd3caba7725faddadbe5f8de38070377c9980eb3e9447256dd9485f431fa1d1441e42c823bb2e25254fc98988471d65addc711665d184f0bbc81686f2526041a2e591d7b8ddded3ba6a15557d6bbf6d2b39ccbcc2933c8ddc40480892fba953a553467f550d0e8f6ee14241b84e4d16c42f3582daff2dde2d75e55828e2a320ec0d12bf31fdec68ba95eec16a97d607911226a9eacdec8f0ffe6a391f3dea70acc3f1cbe488f0a409551e937abf87de96eea46a71e5d0069694030be39ce25cde439c1d25fb0e8225e23bbcfce81b36444f11da8043e8600c6e1ee974f39aa8b63381134d1f938c93856fcbab1d39aee7409c3d71f658db747bb8c30037c907bbeeda49c8b0ae83c6b5ffa5b1f5474cb3a591343affe40d81ac03c7d59fd324f3a4625809c1f6c4d439250f6eb256354b486b16228158f13cc2a42292d0ff67b767a723c87522b7e5f3cb5cbff533841673a6246662bb4ed068b6aeb6441922d80ba3a715b2b57243663362564579e5a7a8fc1cb14683977e7f5c2b2d5db338db9529b6d84bce4ee48833e2c94780257d7732be27ad655da99629ca1ccfd3a930e6a4755c9c3cb037012b4cce4cee5f30c2e52e1324013919fbe985b56fdc357340f95275910e0cf10da3c6279a02d017</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>极简人类史</title>
     <url>/post/ad14e7f5.html</url>
     <content><![CDATA[<p class="description"></p>
@@ -2524,6 +2423,28 @@ a_3x+b_3y+c_3z=d_3\\
       <tags>
         <tag>读书笔记</tag>
         <tag>历史</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>毕业</title>
+    <url>/post/9b1b667b.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="25f8fa2490eda42dc29daad69fdd94355436c1f9fe26a9d737a862bdf5b72306">f95347d64da69a575c04959f22b0dbe7a415cdfff9e15cd85c12db37f1f0e2f4dd24d39582d3773505c88be6387334bd9233d4bb71b6e180baa4690f3e7b524b8eb3b25084a8d6d34e434e66bd3dc8732b7b68740769b26f2613408a463d0fcceae69eb910b9518d060bc5124ef445753ef4e979364928028d8374f19c098cea429716fe27cb4e8ed3f6eb32036b3e341b6223ae3a2c8ea1be8ac3a0fcda98cadd13409916e6498ddc14b513c1424f2861aee8873bde1aad5bc8768ca5336ffb24f627d987899fb971f2dbe4d97fe6993e1f469ace7d5799e262bb26620dc41e2e6d3ed892fb8f48e9adf32fe54f4aa96980695a03b600a2cac5e428aaf39a2fd416a16b361886eeb3ae930e66375a824614a75874165f570bda23e8f8d01d0e5b132277dbdaacbea9fb6c9fb2c9ff2f0e62b6027444a673376cfa028910dc650a066b8b81e274d7b131235304f1628f1011bdb0a801e00ab86e833bd54a20e736bd58acd44986d05f6143e0bea808ccabef79585c6e5038a4103f13e4de11d1a7b840bfb36696e69e3c897370c61bac9a753a681eaef1af983177c27dee42d7a2b25c4dd7d6a6e5fb2cff24c2b7a63412cec4fdb920a1ee9a114d23d3d4e21d2c399125c2f35bf6774b0499c3e9832f2f2244ddb01039f8ee0c1ae4918a625e726599b437fed082bce3833172d2bd2433b6c81ce79c8f0492a069905a930a4a68e4cc713473c9ac0fc465cdaf90a6f6b462e24425914f075d5a6f1227f3f3144f195d8ea9bf53a7893bd9547fb57ffdd5937f93852f46ce68860f2f5c9c1b201d54754d7e874676d85f77d9b712bc4848618b7082ce031ed8c46edfda64398d19d7c6374ac0d3bdeb0edb7847fd7b8273badcd9cf67571f0b6e8d57d1e814b44fcae746cf13a75c98e44c22b20b2239f164f588312ce357a76d10b0d41f2bfb9436cbaf017aef6095f6d434523b28448506d9dc3801ec9a5895c0897744124c024ab13e166378d97bcdddc7a425d2512cb533f15c61acb0686613aa7aaec6ab4bdf8b1a0fbb0eb84e7d0a8b37b76e63de8d65dd73a7d693bf1686c141292c977fbcbee543deee2486bcc56b84f64f3f6f23f0c2042457d768d8066ff6b00d2648a1ba5dc9579e09f4768daaf33752c665a038f50ebc434dd75294f2debe8e9120ff09718893c8d3771abdc2563cb37773ddb7dc69ef8605290d59b65f6bb7f074d74dd180dd5d64f484ce924fce6566fab916066916fae9fa7cbb065bcee4f0c2d682b21580cd7ed3cf122b3c6df481d0775e60f365a73ae8becdf85a411a27321f965ca0a02e7b5f529690a4dcbaeed6a7a001607f280e5a73247e9313ed41c2a595edad137833f22ad8de0e0f8ac1d69f780a13755b7d7543c5bed80d1540662c486015c47d2737537f78fa9cfa6c92e4e10cf0fa0ff5e13dff9f6ee911fa278dd20c23ab442e4e3dd3f8f104a4c70e6bee8051adac533c9e939e5d901fe05ddf6785476c3b4332d0aac4b18ae3235fb24054e75e758cb049aabe95c02d751f11c9f2f56d1b5477b16fd9c6e587e1e9e0462eef40dafc9b0bbcfda4466e884873a6b79dc98c937835a33c96162369290d97b932a0f2096dc8093ef2e894cae094ab55771b09139fa6c3ad747deb29104da3839d2c63c9545d89cc86d269882654f9ac37540815d79e95e1b88460fe4ea1c2aed1a93d2cc1648780c1eae8f6a42f126f15306aedfe73490e1fcca0a57cc9d096ca302f872f42e5e44eef4e1a7b885821208ce39bb290f1cdd1284c3fd0bd7a952b76a3cf89de82e7c2061d7c8124b726fdd295b2a5479e741fcdb8e06f330b39019a3e2243856b369ee056f58f748d36aa5ec681d347b6293794c567c3557e04cfe76d4356f76a336c85eac7953514ab9041afa4430d599147468e12c53f13b5898f74b1e0af04259220ed3a954b7f3449b7d5168cfe70b4133661a9211064c4ae3c1bccb58bcbe3dde5e3db7c96448bcda9dbf57c4837c6a4dd8cba25ea96394b676af0e5a2333c790e1e71a3a89a838a1155d3be0b344ad194fc070c8943f613a294a5d2e672521062535bbf0dcacdbfd2e3b9d46bb332704eee75be207f13174f2acda0b622fae681d19edbdf4517ffc111b6eca586b6e439ddc59cf7501f01337caa845d8daa45c55b208432b462433d7c9ace92d18e3ab83ac0744bb5b81e1a858020a17a16509749c6db9577848e3e1c24b92ab8655c53bffda5aa61e764edaccefff15c4a72d09977e6a3897add69b3faa89223c29bcad9058f53d98a4701c4c14372d4d3c88fcd599e43c9836a71200241e3338c6b7ea0bafe1bbf808591a325ff20244b6e0f20acbdf5cc6b5f62e1efaed415586e04d89096edd1b02d86dd0b50188527ae68e41969397131dd73113a7905cf064c2cecff6651a2eda097a64f554a42b4577c5cee441de3da650e541979a601376656ec1c78dc752e012c9157bed00dcdbb320e78bdd638d11714e0441f2c22bf73d4ac4a514eedc87eb79d248bdb10e21723e294debc49023d697da3b248fd8e1ea0382a0f4db985fb26f8a78686822bce5af365487e911e5a9d74fc175474daa5f3ddcce86f5c4e6b9ab1072e66c689e983b340903036ff925f6af2bd58132504032d806da08b18a527c55d59e3c13275a5154ccf9240079fcd23cb38c31530e9bde7c906aa4f37138d1ebbfeb86449b8111c1d6a4207a133cca9aab90cc7d474bdcb1b4548cb28ec425ed53f8b19abefa2131ea95303be0207fdee4a29e8ac63bde3aae4d80b71a558681a48f92d85734ccd0b767e796f386ff57492007aace2db8db0ab519d003e43b70b6b8fc4f9321f8bff529b116db6927fb9b254089a3ae4a5a7c955be9243b4f0a8033cad9c1816e878fd3ff5a39053a01480c2d032a7c2442f65810267331f3f22b80ace6c26e28044c5fdf00054ecc4e38084bba7a7f3fca694891f200dc7b1a3e96e6a27ccb0b60056ca9b478a388b24d710cfb02f5e40288c6f01408e25540a673b1b414e8ab83013a1655a4eb3d73bf10f3bb731ad5d7300c41c2fa2b987fa5bd1520faf7071989573d5f28cf824a6715600d2ddf5a6d1c1040f44ed550ec97ab91ac28e543e090e920d83693422c6bb4f5a8bfbbcd6c21cef96d6a9b14ebf29510df5025098e828370196c27f26b89b48e880980961c17d1276b767f87b4a2014c0d489e9dfd9c6a377f2e7039da6b7a09ed0f67988cf0326a919e25424792fc638df4b4f686085c2930d7ec4077d8f0a87783514bd9f24c90f0cf126854b9870865a5265c6e77c102b80acaa26050be2b8c17ffbd0787a09a449da4aef806ab6a4830e4f887d5f36539caaa4c4b6f16d05b62cefcb81ec6cbac2d012df6693a81d57afcfd38b533ff33e19320f3084e8cabdf8c8f30a1b94b09a8e18a7683200c9c1c5acfa331769d871227b308e73dd603bf3c965ba390130d245a87ddaf590a647a517c09f5b614a7e71cfa15fa432230ae30641510a83844eacec90596da35df32aa6b63f94266c4681549ee17038d96125318b7efab40489c3b790e3c31d99eff98828519b30cdccc75e498174bfe1667ff4bb6018dfb96dda2b46ba425155f3e401513b494f3c18eecd32541dcb89d3696637a71379690921a1c029f428bb283eeb38a355fbf8cf472ef03a585de4f49b457bfda233329da5b8da40a9578e3d72ed041fd16c798d91b923e53cfc1cce3715aa3aff16d9f9ab2541b3ea09df5089b623593de3b727d180d60cff50a75f4c0ec57040b7d2f44fb2c2bdabee05a931f3410ed760673aa06b742b2bbb0feec2d05df986a79ad26bda205f1117be4fc7589ef6c47e868de716af2cac7c2c0a93f6947771f58b930239965a0623c1ff79df2fed13179558d8ec64a804148a8876dd8d7142cab62869754610528b698ed64398ec5a822972225c5ecb4410907caaed8cd4925a00f1bb10ccc1f5e4ca2f26bcb6250d4278e9d286bbd9d59c7de47e3d850b15d15f01ac743caf4344dff94763b86bb3c58349e376154c612d1821ffb4a6c49bfda83dedbc11742cfe1a77bf32aa1c851d2912de3ef3edfef2e03e1472b8235271bb4a9f7e2defa67416d23e93d2293a12e29122791471fc55f61ab476a6dfb4779c2907ca7e8fc4da21b0845eed54d3b81156201dc76f776d756e31d2804e704e41719a8fea3fcdea7dda2952e0149d56ef88a9dc120e40a3833a07c0697e077611c2e887058d80f44b8cc11c2da0dcf76a75be53fb64f157115ad26b066ca7551e7cd875db7633bf5099ee19a9721da3609d9914980dfeaae8c20a1c1978ab23d71c8a9e4504ee3379161ed9bb4c9d42be4e80a599f282e61879b7913afe0198b1fcac9724a06119801dacf06f5c40f1ee2f42c79a0808c4b005104e12b007473e9a9f20843c5fe73a090ebf356902074fc8108b0bdb3e28b92ae8b43e1f5365ae7fccbc7eb12ad2406c4e664b2e3f7f767278f2b8d84052d78c3cc2b3d9446f450dccdd34c023a81919088edc42a86409d66fb160cb3dbde865663fa3e9d6cbe15f4b7a13b93905f73b51f94c96d64855840ef68cc5895b3c900e79e3c027ac5029cbcd9dd897b3160c54f784779377862dbfb729f5e4ff77442d4bc730d1dde8ec98894767a62e4315d9dc687090f42e773446fc255ae40955971f021b407f5d54cfc9256b094d7bd876b2585561d4713093eb68353e22a36e7542d36e08b61c88a450c5b53e6727c7ada69da8caa48c064f7446328339dedf198437f7688b53339108c0c765e37314925295e4638f049ea615dfb1bfa5e4ec9b130ea8a2594881da2076877fbe14d79a5f2c66cc827ae1a8842ffa21bf83f5c6fb62d235ba95aed09d99b20d69c91d1ee8ff35e51babc234fa15f621057b7d1deb28336e31ce024110e0ccb4e7a0133b0c0078ec1449ea291bbd0a12c0a794ce79194a6b771c65fe913165966bde76c4807398095227430a349c115bf91ad30e372d0c9c51436cba829dfcadc74b66d6f51319b26a12d2c88ebe10ef26bb1d15a8572f0c6aa99dbaa32d11f5e6a0f2680572f1f8eea25e8510f141bfc8ede2a30a092d7d817b50c0a897d5fc2b90a1c6ffeb8e85b644215b64449c60d1070c69202d81530de8c77823eb81f0ff8fc72e53c98d651fff22e6a8a3c4ef82b23e717122bbf7e1995f487e830ecf53b32de59cd4a137c07d1c34a8304f603ed13a6d2831b4e77eddfd3638eece938a75b6d3257cfa26bf2b12d328a662d0be18cfad765067b7823a8709f171b0288725f4b688d058ab8251b81f65c026c6dcab89e00f705f552a3ed3d19d47d9796e2f3d0452321192e3e123ef6ba2e44bf8d52ccbf515ca89ff73767197a1e19db7d478e13d10d9e57c1eaa51fc4a07e2f28b03d113d1a75d59fe094e028f3327301ec6f81f4a895ac517f82ae06282c6ee08b1f845d498798ddeccf9eb998f7bd13a2dbeb0a80f102a927768115b1fe82929fad37e2a637d90ad37d80dec8207e8facaec17d49805731dab016136a4e798311845226222d89e5234685e9ec709c5217920ae1f4b8baa76e535191afb4fe4d76af724e7344e382959a104eef30084e9b9239acdb2f6f0bf23ecaf27de59a35eb91361e9abebc9cd6dbc5e7f34f24d355cd1f6feca6ff732e15d459cc44b4be14a3ea3ccf422e72ead4e71addab123e3a1defcff36d8b0ef8f52ce2392f28737b022b7bc6c80f92bf18536767e1ce9efe32c845d2967ab757ac01efd24827260497730705a6d0f69c4824e529661650f12a67cea3edb1bca895f206f84fbe8850ec763516c0ed495e3b7735976588f88d2552bc6c4154dbe7f6721703d41893c45467a0ead0fc10a067aac8619f0a5bc65a986a23903f418d5db68ae9a2fcec5d0b1fb53d7c2ab3f67c0e84f8346512350fb8bd9dd0d1d261e08316ffbaf0d2e4f8a4bb8ad1df9a591c137d649e61b5c20f83a7a148aae2a0b3a368ed7ed3b2d41f996bbf9ca865073d7cc471348d4bd35e1881137738df9414fd18544af9fe34c03e4b34fbf934563055b3b28d8a3e83d2888ef98109cebe4fa25d7b22767eb66035647c43caa25d61c03d0b14de23d818ce482a570d2d0a858cea0acf28939b88c4edcb5a61b83bdc7091d917c2e4b2efc08ec2abac156a54ffc5a119962beb7e7de52752710cdf0e4aee04f7fb5a8e408f9a13550a1a02db30289b763809f38afc5eccc72abff60f59ee33120e4be6b3b095d4568f718f3bddb50868b023af7b93aa2fa838f0ed72430f96cf39b4ae40e8fe062ed18af183efb4a7fa4b7c5d67115fbbcab329cf944325ea2fd2e4163c073b058d81120e5455e3adadb12fb9b9cb0bbe1bd55c171a3d46155369458e637be4f775aa330b96ffd2ad64eef3eb1da3e8bb7194b33cf2a9b092cdd6de187b81504836c72d1921e80f3aff71a59ed65176ae16553f0f646cd47fa7226edab33207df08125d9c6e7f881302e1dd4af72cacb606fda2ab0092630713bfae0d3ef2a5fce60d340b61d65b3892c28a04ab0924bd369d824b75c4d494fc15541c36c1c6fcc7bdb8811f3094f245af9c8072bc96cc74b9651fe9b82c7b232a7041dfa134c900a844d93c0bf0838fa5e7cfaee8e1f265c5a31a613decc3ed55a8accd0256bfc8ff12f6b546830406da7257a507bb46d64c3d4369056ad1ed6f27354748daab87786650e060295b9d02352a31fc967828e78e8340bfb1d12e3f81a085674582daf60c3bd77a02fb59d91c03fd48466a41208cf8881abbceb9dd0244155e373f6b17a8c991a03179b12b67a776ed85921fe5194bb94add838e730918da25b61ec1ebcce8097b811637b35b286a9daec9c6be43edf28efe4d57fb565a836ae24b389846cf057ec30834bfcb1370b680c52c9d8bcc1709b947a9bb480150f62ed67550be98becb2c42e697f59aca1b61684bc92dc86f19fab04f37b5651dcc24ca862914fc434cb7da49cb3420dff80d501bf3b14db751eab0427fb356316265c9a31dadd55eafedfaa8f9f21ec6dc51d2f1e22fe8d37d849cc71958fbbf933013b93c6c739fb191de650880b0cfb1228a7c71bfd9098071c5c387ed29d484709daa3479a1e48b68ffbdd9a9c1c158a6a90368162fbbb2941a951a2b354012f69ebeba313ad031eec7062ab32039fb5f9fdd3caba7725faddadbe5f8de38070377c9980eb3e9447256dd9485f431fa1d1441e42c823bb2e25254fc98988471d65addc711665d184f0bbc81686f2526041a2e591d7b8ddded3ba6a15557d6bbf6d2b39ccbcc2933c8ddc40480892fba953a553467f550d0e8f6ee14241b84e4d16c42f3582daff2dde2d75e55828e2a320ec0d12bf31fdec68ba95eec16a97d607911226a9eacdec8f0ffe6a391f3dea70acc3f1cbe488f0a409551e937abf87de96eea46a71e5d0069694030be39ce25cde439c1d25fb0e8225e23bbcfce81b36444f11da8043e8600c6e1ee974f39aa8b63381134d1f938c93856fcbab1d39aee7409c3d71f658db747bb8c30037c907bbeeda49c8b0ae83c6b5ffa5b1f5474cb3a591343affe40d81ac03c7d59fd324f3a4625809c1f6c4d439250f6eb256354b486b16228158f13cc2a42292d0ff67b767a723c87522b7e5f3cb5cbff533841673a6246662bb4ed068b6aeb6441922d80ba3a715b2b57243663362564579e5a7a8fc1cb14683977e7f5c2b2d5db338db9529b6d84bce4ee48833e2c94780257d7732be27ad655da99629ca1ccfd3a930e6a4755c9c3cb037012b4cce4cee5f30c2e52e1324013919fbe985b56fdc357340f95275910e0cf10da3c6279a02d017</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -2683,6 +2604,85 @@ a_3x+b_3y+c_3z=d_3\\
       </tags>
   </entry>
   <entry>
+    <title>《Unbiased Scene Graph Generation from Biased Training》论文笔记</title>
+    <url>/post/b4822109.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<h1 id="任务定义"><a href="#任务定义" class="headerlink" title="任务定义"></a>任务定义</h1><p>场景图生成: 描述目标检测的物体之间，具有怎样的关系</p>
+<h1 id="之前算法存在的问题"><a href="#之前算法存在的问题" class="headerlink" title="之前算法存在的问题"></a>之前算法存在的问题</h1><ul>
+<li>数据集中关系词存在严重的偏见，原因有以下几点:<ol>
+<li>标注时,倾向于简单的关系</li>
+<li>日常生活中确实有些事物的关联性比较多</li>
+<li>语法习惯的问题</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li>往往通过union box和两个物体的类别就预测了两个物体的关系，几乎没有使用visual feature，也就预测不出有意义的关系</li>
+</ul>
+<h1 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h1><ol>
+<li>为了让模型预测更有意义的关系，用了一个causal inference中的概念，即Total Direct Effect（TDE）来取代单纯的网络log-likelihood。在预测关系时更关注visual feature.</li>
+</ol>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-144828@2x.png" alt="enter description here"></p>
+<ol>
+<li>提出了新的评测方法mR@K:把所有谓语类别的Recall单独计算，然后求均值，这样所有类别就一样重要了</li>
+</ol>
+<h2 id="Biased-Training-Models-in-Causal-Graph"><a href="#Biased-Training-Models-in-Causal-Graph" class="headerlink" title="Biased Training Models in Causal Graph"></a>Biased Training Models in Causal Graph</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143055@2x.png" alt="有偏差的训练框架"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-142859%402x.png" alt="训练简化图"></p>
+<p>节点I: Input Image&amp;Backbone.Backbone部分使用Faster rcnn预训练好的模型，并frozen bockbone的参数。输出检测目标的bounding boxes和图像的特征图.<br>Link I-&gt;X:目标的特征，通过ROI Align提取目标对应的特征<script type="math/tex">R={r_i}</script>，获取目标粗略的分类结果<script type="math/tex">L={l_i}</script>.和MOTIFS和VCTree一样，使用以下方式，编码视觉上下文特征.</p>
+<blockquote>
+<p>MOTIFS中使用双向LSTM，VCTree中使用双向TreeLSTM，早期工作如VTransE中使用全连接层</p>
+</blockquote>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-145409@2x.png" alt="enter description here"></p>
+<p>节点X：目标特征。获取一组目标的特征<script type="math/tex">x_e=(x_i,x_j)</script><br>Link X-Z: 获取对应目标fine-tuned的类别，从<script type="math/tex">x_i</script>解码:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-145415@2x.png" alt="enter description here"></p>
+<p>节点Z:目标类别，one-hot的向量<br>Link X-&gt;Y: SGG的目标特征输入<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-145423@2x.png" alt="enter description here"></p>
+<p>Link:Z-&gt;Y：SGG的目标类别输入<br>Link:I-&gt;Y:SGG的视觉特征输入<br>节点Y:输出关系词汇<br>Training loss：使用交叉熵损失预测label，为了避免预测Y只使用单一输入的信息，尤其是只使用Z的信息，进一步 使用auxiliary cross-entropy losses, 让每一个分支分别预测y</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/1280X1280.png" alt="enter description here"></p>
+<h2 id="Unbiased-Prediction-by-Causal-Effects"><a href="#Unbiased-Prediction-by-Causal-Effects" class="headerlink" title="Unbiased Prediction by Causal Effects"></a>Unbiased Prediction by Causal Effects</h2><p>机器学习中常见的解决长尾问题的方法:</p>
+<ul>
+<li>数据增强/重新采样</li>
+<li>对数据平衡改进的loss</li>
+<li>从无偏见中分离出有偏见的部分<br>与上述方法的区别是不需要额外训练或层来建模偏差，通过构建两种因果图将原有模型和偏差分离开。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143048@2x.png" alt="enter description here"></li>
+</ul>
+<h3 id="Origin-amp-Intervention-amp-Counterfactual"><a href="#Origin-amp-Intervention-amp-Counterfactual" class="headerlink" title="Origin&amp;Intervention&amp;Counterfactual"></a>Origin&amp;Intervention&amp;Counterfactual</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143107@2x.png" alt="enter description here"></p>
+<ul>
+<li>ntervention:清除因果图中某个节点的输入，并将其置为某个值，公式为:$do(X= \tilde x)$.某节点被干预后，需要该节点输入的其他节点也会受影响</li>
+<li>Counterfactual:让某个节点被干预后，其他需要输入的节点还假设该节点未被干预<br>总结: Counterfactual图实际上抹除了因果图像中object feature。只用image+object label预测两个目标间的关系。</li>
+</ul>
+<h3 id="Total-Direct-Effect-TDE"><a href="#Total-Direct-Effect-TDE" class="headerlink" title="Total Direct Effect (TDE)"></a>Total Direct Effect (TDE)</h3><p>根据两个因果图:</p>
+<ul>
+<li>原始因果图</li>
+<li>Counterfactual因果图(可以认为是偏见)<br>消除偏见:<script type="math/tex; mode=display">TDE=Y_x(u)-Y_{\tilde x,z}(u)</script></li>
+</ul>
+<h1 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h1><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143120@2x.png" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143154@2x.png" alt="enter description here"></p>
+<h1 id="Ablation-Studies"><a href="#Ablation-Studies" class="headerlink" title="Ablation Studies"></a>Ablation Studies</h1><p>对比了几种常用的优化长尾问题的方法</p>
+<ul>
+<li>Focal</li>
+<li>Reweight</li>
+<li>Resample</li>
+<li>X2Y: 直接通过X的输出预测Y</li>
+<li>X2Y-Tr：切断其他分支的联系，只使用X预测Y</li>
+<li>TE:<script type="math/tex">TE=Y_x(u)-Y_{\tilde x}(u)</script></li>
+<li>NIE:<script type="math/tex">NIE=TDE-TE</script></li>
+<li>TDE</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143120@2x.png" alt="enter description here"></p>
+<blockquote class="blockquote-center">
+<p><strong><font size="5">欢迎关注我的公众号!</font></strong></p>
+
+</blockquote>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="enter description here"></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>因果图</tag>
+        <tag>场景图生成</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Caffe版Faster R-CNN可视化——网络模型,图像特征,Loss图,PR曲线</title>
     <url>/post/79a2296e.html</url>
     <content><![CDATA[<h2 id="可视化网络模型"><a href="#可视化网络模型" class="headerlink" title="可视化网络模型"></a>可视化网络模型</h2><p>&emsp;&emsp;Caffe目前有两种常用的可视化模型方式：</p>
@@ -2768,6 +2768,132 @@ a_3x+b_3y+c_3z=d_3\\
         <tag>卷积神经网络</tag>
         <tag>Faster R-CNN</tag>
         <tag>可视化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SAM</title>
+    <url>/post/70b40a92.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<p><strong>论文链接:</strong><a href="https://arxiv.org/abs/2304.02643">https://arxiv.org/abs/2304.02643</a></p>
+<p><strong>代码链接:</strong><a href="https://github.com/lllyasviel/ControlNet">https://github.com/lllyasviel/ControlNet</a></p>
+<p><strong>Demo链接:</strong><a href="https://segment-anything.com/demo">https://segment-anything.com/demo</a></p>
+<p>SAM从任务、模型、数据三部分展开写作，和模型的创新比较起来，任务定义和数据的工作更加出彩，官网也给出了demo，能直观感受SAM的效果，这篇blog也会围绕这几部分展开。</p>
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><ul>
+<li><strong>鼠标悬停:</strong> 显示的是悬停位置的分割结果，例如下图中将鼠标放到手的位置.<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/1.png" alt=""></li>
+</ul>
+<ul>
+<li><strong>点击:</strong> 分割包含该点的物体，会按最小分割的结果展示出来，如果想分割的物体大于展示的结果，可以在物体的其他部分也点击下。</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/2.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/3.png" alt=""></p>
+<ul>
+<li><strong>box:</strong> 框定一个box，分割box中的物体<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/4.png" alt=""></li>
+</ul>
+<ul>
+<li><strong>everything:</strong> 将图片中所有物体的分割都展示出来<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/5.png" alt=""></li>
+</ul>
+<h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/6.png" alt=""></p>
+<p>任务的设计灵感来自于NLP领域，例如NLP中可以通过预测next token作为预训练任务，而在下游任务中可以使用prompt engineering做应用。因此，为了建立分割的基础模型，任务的设计目标是也需要具有类似的能力。<br>这里作者扩展了下NLP里prompt在图像分割里的用法， prompt可以是以下几种类型：</p>
+<ul>
+<li>point</li>
+<li>box</li>
+<li>mask</li>
+<li>任意格式的文本</li>
+</ul>
+<p>为了支持以下的几种输入prompt格式，要求模型能够区分具有混淆意义的prompt，例如下图中，一个point的prompt可能有多种分割方式.这多种分割方式对于模型来说都是有效的。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/7.png" alt=""></p>
+<p>预训练:  将上面提到的多种sequence的prompt告诉模型，训练目标是让模型输出对应promt的分割结果，并且期望模型输出的结果和GT尽可能一致。区别于之前的交互式分割算法，SAM基本能治通过一次交互就能得到很合理的分割结果。要达到这个目的，需要设计非常独特的模型结构和loss。</p>
+<p>zero-shot transfer：需要模型对任何prompt，得到合适的分割结果。例如，如果要做实例分割，可以把检测得到的box作为prompt，SAM就能去做实例分割</p>
+<p>related tasks: 分割里有很多子任务，例如边缘分割，语义分割等，SAM能完成所有已知的分割任务和还没有作为一个方向的分割任务。之前已经有类似的可以做多种分割的模型(solo), 但是这些模型有多个子子输出，然后做排列组合可以得到多种分割结果。而SAM通过prompt将多个分割任务合并在一起。</p>
+<p>总而言之，作者是希望SAM能够分割一切，并且能相CLIP一样，能应用到最开始没有想到的领域。</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/8.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/9.png" alt=""></p>
+<p>模型的结构如上图所示. prompt会经过<code>prompt encoder</code>, 图像会经过<code>image encoder</code>。然后将两部分embedding经过一个轻量化的<code>mask decoder</code>得到融合后的特征。encoder部分使用的都是已有模型，decoder使用transformer。这部分论文中介绍的相对比较少，下面会结合代码一起梳理下:</p>
+<ul>
+<li><p><strong>image encoder：</strong> 使用的是用ViT走位backbone的MAE模型。在交互式分割的展示中，image encoder只会运行一次。在实验中，分别有用到ViT-H, ViT-L, ViT-B三种大小的模型作为image encoder。代码如下,<a href="https://github.com/facebookresearch/segment-anything/blob/6fdee8f2727f4506cfbbe553e23b895e27956588/segment_anything/build_sam.py#L47">build_sam#L47</a> </p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">sam_model_registry = &#123;</span><br><span class="line">    <span class="string">&quot;default&quot;</span>: <span class="keyword">build_sam_vit_h,</span></span><br><span class="line"><span class="keyword"></span>    <span class="string">&quot;vit_h&quot;</span>: <span class="keyword">build_sam_vit_h,</span></span><br><span class="line"><span class="keyword"></span>    <span class="string">&quot;vit_l&quot;</span>: <span class="keyword">build_sam_vit_l,</span></span><br><span class="line"><span class="keyword"></span>    <span class="string">&quot;vit_b&quot;</span>: <span class="keyword">build_sam_vit_b,</span></span><br><span class="line"><span class="keyword"></span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>prompt encoder：</strong> prompt总共有point,box, mask, text四种，会将其分为三类。<strong>pint和box可以作为一类使用position encodings</strong>, <strong>text可以使用CLIP作为encoder</strong>, <strong>而mask是一种密集型的prompt，可以使用卷积作为encoder</strong>.<a href="https://github.com/facebookresearch/segment-anything/blob/6fdee8f2727f4506cfbbe553e23b895e27956588/segment_anything/modeling/prompt_encoder.py#LL128C5-L128C5">prompt_encoder.py#LL128C5-L128C5</a> prompt_encoder的代码如下所示，其中用position embedding分别实现了point和box query两种稀疏embedding，用卷积实现了mask query密集embedding.，</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">def forward(</span><br><span class="line">        self,</span><br><span class="line">        points: Optional[Tuple[torch.Tensor, torch.Tensor]],</span><br><span class="line">        boxes: Optional[torch.Tensor],</span><br><span class="line">        masks: Optional[torch.Tensor],</span><br><span class="line">    ) -&gt; Tuple[torch.Tensor, torch.Tensor]:</span><br><span class="line">        <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">        Embeds different types of prompts, returning both sparse <span class="built_in">and</span> dense</span><br><span class="line">        embeddings.</span><br><span class="line"></span><br><span class="line">        Arguments:</span><br><span class="line">          points (tuple(torch.Tensor, torch.Tensor) <span class="built_in">or</span> none): point coordinates</span><br><span class="line">            <span class="built_in">and</span> labels <span class="keyword">to</span> embed.</span><br><span class="line">          boxes (torch.Tensor <span class="built_in">or</span> none): boxes <span class="keyword">to</span> embed</span><br><span class="line">          masks (torch.Tensor <span class="built_in">or</span> none): masks <span class="keyword">to</span> embed</span><br><span class="line"></span><br><span class="line">        Returns:</span><br><span class="line">          torch.Tensor: sparse embeddings <span class="keyword">for</span> the points <span class="built_in">and</span> boxes, with shape</span><br><span class="line">            BxNx(embed_dim), where <span class="keyword">N</span> <span class="keyword">is</span> determined by the <span class="keyword">number</span> of <span class="built_in">input</span> points</span><br><span class="line">            <span class="built_in">and</span> boxes.</span><br><span class="line">          torch.Tensor: dense embeddings <span class="keyword">for</span> the masks, in the shape</span><br><span class="line">            Bx(embed_dim)<span class="keyword">x</span>(embed_H)<span class="keyword">x</span>(embed_W)</span><br><span class="line">        <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">        bs = self._get_batch_size(points, boxes, masks)</span><br><span class="line">        sparse_embeddings = torch.<span class="built_in">empty</span>((bs, <span class="number">0</span>, self.embed_dim), device=self._get_device())</span><br><span class="line">        <span class="keyword">if</span> points <span class="keyword">is</span> not None:</span><br><span class="line">            coords, labels = points</span><br><span class="line">            point_embeddings = self._embed_points(coords, labels, pad=(boxes <span class="keyword">is</span> None))     # position embedding</span><br><span class="line">            sparse_embeddings = torch.<span class="keyword">cat</span>([sparse_embeddings, point_embeddings], dim=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> boxes <span class="keyword">is</span> not None:</span><br><span class="line">            box_embeddings = self._embed_boxes(boxes)   # position embedding</span><br><span class="line">            sparse_embeddings = torch.<span class="keyword">cat</span>([sparse_embeddings, box_embeddings], dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> masks <span class="keyword">is</span> not None:</span><br><span class="line">            dense_embeddings = self._embed_masks(masks)    # conv embedding</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dense_embeddings = self.no_mask_embed.weight.reshape(<span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).<span class="built_in">expand</span>(</span><br><span class="line">                bs, -<span class="number">1</span>, self.image_embedding_size[<span class="number">0</span>], self.image_embedding_size[<span class="number">1</span>]</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sparse_embeddings, dense_embeddings</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>mask decoder：</strong>: 使用一个transformer将image embedding和prompt embedding做双向的cross-attention；并且也有prompt embedding的self-attention。也有MLP和linear classifier分类分割区域。mask decoder, <a href="https://github.com/facebookresearch/segment-anything/blob/6fdee8f2727f4506cfbbe553e23b895e27956588/segment_anything/modeling/transformer.py#L151">transformer.py#L151</a>这里的queries是query embedding，keys是image embedding，query_pe和queries一样，key_pe是需要加到image embedding上的位置编码。query embedding会经过self attention。query embedding和image embedding会做双向的cross-attention, 具体实现方式是如上代码所示，image embedding会作为query，query embedding会作为key和value；同样的，query embedding会作为query，image embedding会作为key和value。</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">def forward(</span><br><span class="line">        self,</span><br><span class="line">        image_embedding: Tensor,</span><br><span class="line">        image_pe: Tensor,</span><br><span class="line">        point_embedding: Tensor,</span><br><span class="line">    ) -&gt; Tuple[Tensor, Tensor]:</span><br><span class="line">        <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">        Args:</span><br><span class="line">          image_embedding (torch.Tensor): image <span class="keyword">to</span> attend <span class="keyword">to</span>. Should <span class="keyword">be</span> shape</span><br><span class="line">            B <span class="keyword">x</span> embedding_dim <span class="keyword">x</span> h <span class="keyword">x</span> <span class="keyword">w</span> <span class="keyword">for</span> any h <span class="built_in">and</span> <span class="keyword">w</span>.</span><br><span class="line">          image_pe (torch.Tensor): the positional encoding <span class="keyword">to</span> <span class="built_in">add</span> <span class="keyword">to</span> the image. Must</span><br><span class="line">            have the same shape <span class="keyword">as</span> image_embedding.</span><br><span class="line">          point_embedding (torch.Tensor): the embedding <span class="keyword">to</span> <span class="built_in">add</span> <span class="keyword">to</span> the query points.</span><br><span class="line">            Must have shape B <span class="keyword">x</span> N_points <span class="keyword">x</span> embedding_dim <span class="keyword">for</span> any N_points.</span><br><span class="line"></span><br><span class="line">        Returns:</span><br><span class="line">          torch.Tensor: the processed point_embedding</span><br><span class="line">          torch.Tensor: the processed image_embedding</span><br><span class="line">        <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">        # BxCxHxW -&gt; BxHWxC == B <span class="keyword">x</span> N_image_tokens <span class="keyword">x</span> C</span><br><span class="line">        bs, <span class="keyword">c</span>, h, <span class="keyword">w</span> = image_embedding.shape</span><br><span class="line">        image_embedding = image_embedding.flatten(<span class="number">2</span>).permute(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">        image_pe = image_pe.flatten(<span class="number">2</span>).permute(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        # Prepare queries</span><br><span class="line">        queries = point_embedding</span><br><span class="line">        <span class="built_in">keys</span> = image_embedding</span><br><span class="line"></span><br><span class="line">        # Apply transformer blocks <span class="built_in">and</span> final layernorm</span><br><span class="line">        <span class="keyword">for</span> layer in self.layers:</span><br><span class="line">            queries, <span class="built_in">keys</span> = layer(</span><br><span class="line">                queries=queries,</span><br><span class="line">                <span class="built_in">keys</span>=<span class="built_in">keys</span>,</span><br><span class="line">                query_pe=point_embedding,</span><br><span class="line">                key_pe=image_pe,</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">        # Apply the final attention layer from the points <span class="keyword">to</span> the image</span><br><span class="line">        q = queries + point_embedding</span><br><span class="line">        <span class="keyword">k</span> = <span class="built_in">keys</span> + image_pe</span><br><span class="line">        attn_out = self.final_attn_token_to_image(q=q, <span class="keyword">k</span>=<span class="keyword">k</span>, v=<span class="built_in">keys</span>)</span><br><span class="line">        queries = queries + attn_out</span><br><span class="line">        queries = self.norm_final_attn(queries)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> queries, <span class="built_in">keys</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>解决混淆的输入</strong>: 对于一个prompt，模型会输出3个mask，实际上也可以输出更多的分割结果，3个可以看作一个物体的整体、部分、子部分，基本能满足大多数情况。使用IOU的方式，排序mask。在反向传播时，参与计算的只有loss最小的mask相关的参数.</p>
+</li>
+<li><p><strong>高效</strong>: 这里主要指的是<strong>prompt encoder</strong>和<strong>mask decoder</strong>。在web浏览器上，CPU计算只用约50ms</p>
+</li>
+<li><p><strong>loss和训练细节</strong>: 主要使用的是focal loss和dice loss。每一个mask，会随机产生11种prompt与之配对。</p>
+</li>
+</ul>
+<h2 id="数据引擎"><a href="#数据引擎" class="headerlink" title="数据引擎"></a>数据引擎</h2><p>不像CLIP中图像文本对通过互联网容易获取，分割的数据获取成本巨大。SAM开源了一个10亿张图片的分割数据集。在SAM中设计了一个数据引擎用于获取分割的数据，数据引擎主要分为以下三部分:</p>
+<ul>
+<li><p>辅助标注: 简单来说就是用可以获取到的开源分割数据训练一个初始的SAM模型V0版本，再用V0在没有分割标注的数据上生成预标注，人工check模型的结果并作修改和确认。得到新的数据后，再将新的数据加入到训练集重新训练SAM得到V1版本,再循环标注数据和迭代模型。总共进行6次训练。开始的时候数据集比较少，使用的ViT-B模型，最终会使用ViT-H模型。 这里面还有一些效率提升的数据，例如随着模型的迭代，每个mask的标注耗时从34s到14s。SAM模型在每张图片上生成的mask从20到44个。在该阶段数据集最终有12万张图片，430万个mask</p>
+</li>
+<li><p>半自动化标注: 通过第一阶段后，已经有一个不错的SAM模型能生成分割结果。<strong>半自动化标注</strong>的目的是增加mask的多样性。具体做法是训练一个检测模型，用于检测SAM生成的mask结果是否可信，只保留可信的mask结果，然后将图片给人工标注。人工标注会在可信的mask基础上标注出其他的分割框。经过5次的迭代后，数据集新增了18万张图片，590万mask。</p>
+</li>
+</ul>
+<p><strong>自动标注</strong>: 经过前面两个阶段后，SAM有了较好的结果，能分割出图片中的目标，并且对于混淆的prompt也有了较好的输出。这个模型可以自动的对一些图片做标注。自动标注的时候需要有一些筛选策略，模型输出的结果可能还是会出现一些错误。主要有以下三种方式做筛选</p>
+<ul>
+<li>SAM模型有一个IOU prediction的模块能输出mask的confidence，如下图所示<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/10.png" alt=""></li>
+</ul>
+<ul>
+<li><p>stable mask的判断，具体的方法是在得到分割结果前对logit加正向和负向的扰动，如果两次扰动生成的分割结果IOU大于0.95，则认为生成的mask是可靠的</p>
+</li>
+<li><p>NMS过滤掉重复的mask</p>
+</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/11.png" alt=""></p>
+<h2 id="数据质量"><a href="#数据质量" class="headerlink" title="数据质量"></a>数据质量</h2><p> 图像: 包含11M高分辨率(3300<em>4950)的图像，其他的一些开源数据集，例如COCO分辨率较低(480</em>640)<br>Mask: 包含1.1B的mask，99.1%都是模型生成的。作者实验了下，只使用模型生成的mask和即使用模型生成也使用人工标注的mask，模型的效果是相当的。因此发布的数据集里只包含模型生成的mask<br>Mask 质量: 抽取了一部分mask数据做人工的精标，精标前后有94%的mask具有90%以上的IOU。而其他的一些开源数据集只有85-91%的IOU</p>
+<p>下面也从mask的数量，每种mask尺寸的占比和mask占外接矩形比例等多方面和其他数据集做了对比<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/12.png" alt=""></p>
+<p>数据来源分布<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/13.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/14.png" alt=""></p>
+<p>不同性别，肤色，年龄人群分割效果的差异对比<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/15.png" alt=""></p>
+<h2 id="zero-short-Transfer实验"><a href="#zero-short-Transfer实验" class="headerlink" title="zero-short Transfer实验"></a>zero-short Transfer实验</h2><p>评估的数据集都是SAM模型训练时的不同，并且包含水下，第一视角等没有在SAM中出现过场景的图片</p>
+<h2 id="point-mask"><a href="#point-mask" class="headerlink" title="point mask"></a>point mask</h2><p>这里对比的是用point作为prompt对比分割的结果, 在绝大部分数据集中都优于RITM(当前的SOTA) </p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/16.png" alt=""></p>
+<h2 id="边缘检测"><a href="#边缘检测" class="headerlink" title="边缘检测"></a>边缘检测</h2><p>SAM在训练的时候就是采用的包含point prompt的方式，作者这里还对比了一些在训练时没有包含的方式，边界检测就是其中一种。SAM在使用边界检测时，使用方式是在图片上铺上16*16均匀的point prompt，每个prompt产生3个mask，再经过NMS后。通过Sobel filtering得到边缘检测的结果。SAM的结果倾向于提取更丰富的边缘，因此在指标上recall和专门做边缘检测的模型相当，precision会低些。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/17.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/18.png" alt=""></p>
+<h2 id="目标检测"><a href="#目标检测" class="headerlink" title="目标检测"></a>目标检测</h2><p>分割的结果取bbox，就能做目标检测了.整体指标低于ViTDet，但是在中等常见和不太常见的目标上效果优于ViTDet</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/19.png" alt=""></p>
+<h2 id="实例分割"><a href="#实例分割" class="headerlink" title="实例分割"></a>实例分割</h2><p>先用一个目标检测算法，用目标检测得到的box作为prompt输入到SAM，就可以做实例分割了。实验的结果分为了定量(用测试集的GT)和定性(人来评判好坏)两种。定量的指标不如BiTDet—H,定性的指标SAM优于ViTDet。作者给出的解释是COCO数据集标注效果一般(在人看来甚至不如SAM和ViTDet模型输出的结果)，因此ViTDet在COCO上做训练时拟合到了一些错误的偏差，但错误的偏差和标注相似，因此定量的指标不如ViTDet</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/20.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/21.png" alt=""></p>
+<h2 id="Text-to-Mask"><a href="#Text-to-Mask" class="headerlink" title="Text to Mask"></a>Text to Mask</h2><p>这里指的是用文本作为prompt，然后分割出文本提到的目标。作者在训练的时候取的是图片中目标尺寸大于100*100的目标，用CLIP提取image embedding(text embedding也行，因为CLIP的image embedding和text embedding是对齐的)，作为prompt encoder模块的输出，用于训练SAM模型。这一部分没有和其他方法对比，也由于效果不太稳定，在官方的demo中没有展示</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/22.png" alt=""></p>
+<h2 id="消融实验"><a href="#消融实验" class="headerlink" title="消融实验"></a>消融实验</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/23.png" alt=""></p>
+<p>有以下的结论:<br>左边的图，数据来源的影响:</p>
+<ul>
+<li>加入半自动标注的数据和自动标注的数据性能都有很大的提升</li>
+<li>只用模型生成的数据与额外加上人工标注的数据差异不大</li>
+</ul>
+<p>中间的图, 数据量的影响:</p>
+<ul>
+<li>数据量从0.1M到1M，模型性能提升很大</li>
+<li>数据量从1M到11M，模型性能变化不明显，实际使用中1M差不多足够</li>
+</ul>
+<p>右边的图, image encoder的影响:</p>
+<ul>
+<li>ViT-B到ViT-L提升很大</li>
+<li>ViT-L到ViT-H提升一般，实际使用ViT-L足够</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>SAM的热度也非常高，同样作为FB的工作，SAM仅仅放出来两个月，github上star的数量已经超过了detectron2三年的总和。SAM的期望是能将该模型作为图像领域的基础模型(foundation model)，像CLIP那样能在各个领域大放异常，或者像GPT一样能统一NLP领域。SAM也确实在很多场景得到了应用，例如开源的SD中也融合了SAM，可以做很多有趣的应用，例如从假人模特身上用SAM得到衣服的mask，再结合ControlNet，就可以生成不同的人穿着同样的衣服。</p>
+<p>最开始自媒体宣传的文章也是《CV领域不存在了》,《CV界的GPT3》类似的标题，SAM确实是在统一上迈出了很大的一步，但实际上CV领域的统一还有很多挑战。NLP领域中的Bert用完型填空和GPT预测下一个token的预训练在非常多的任务上表现了很好的泛化性，甚至在一些没有训练过的任务上能取得比一些专家模型更好的效果。</p>
+<ul>
+<li><p>任务和数据上的不统一，CV领域的分类是输出类别，检测输出bbox，分割输出mask。虽然个别任务可以复用，但是整体缺乏一个通用的任务。任务上的不统一，数据上也很难做到统一，分类的任务有很多数据，但是检测和分割的数据就要少非常多，并且标注成本巨大。单纯训练分类作为backbone也很难解决其他任务，检测和分割的算法依然需要做大量的优化</p>
+</li>
+<li><p>CV领域的任务缺乏孕育大模型的土壤，CV任务一直在考虑模型的计算量，显存占用。如果将每个像素看作一个token，一张512*512的图片就有26万个token。如果transformer最开始出现在CV领域，面临的问题是显存和计算量都比resnet差，并且效果也远不如resnet。如果没有transformer极大的促进了NLP领域的发展，CV领域可能也不会重新思考transfomer能增大感受野，能有更好的泛化能力。</p>
+</li>
+<li><p>还没有找到CV领域【高维】的任务。NLP领域的完形填空和对话确实是一种很高维的任务。模型能完成这些任务，一些NER或者RE之类的底层任务也能很好的被解决。目前CV领域有一些尝试做foundation model，例如对比学习或者像SAM，在一些任务上表现了不错的泛化性，可能是这些方法能统一其他任务，但目前的发展还不太够，也可能是其他一些还没出现/发展起来的任务。但这种【高维】的任务一定能通过一些方式降维解决目前几乎所有的CV基础任务。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>分割</tag>
+        <tag>大模型</tag>
       </tags>
   </entry>
   <entry>

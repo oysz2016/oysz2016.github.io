@@ -163,7 +163,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,7 +174,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -219,6 +219,126 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/4ec18e58.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+      <meta itemprop="name" content="冲弱">
+      <meta itemprop="description" content="输出即获得，分享即反哺">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冲弱's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/4ec18e58.html" class="post-title-link" itemprop="url">卷积神经网络的结构与相关算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-04-25 12:08:42" itemprop="dateCreated datePublished" datetime="2018-04-25T12:08:42+08:00">2018-04-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2019-03-17 13:49:17" itemprop="dateModified" datetime="2019-03-17T13:49:17+08:00">2019-03-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">深度学习笔记</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/4ec18e58.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/4ec18e58.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>&emsp;&emsp;早在上世纪50年代，美国神经生物学家David Hubel通过研究猫和猴子的瞳孔区域与大脑皮层神经元的对应关系就发现视觉系统的信息处理方式是分级的。这一发现，促成了神经网络在图像处理上的发展。<br>&emsp;&emsp;神经网络的发展史可以分为三个阶段，第一个阶段是Frank Rosenblatt提出的感知机模型[1]，感知机模型的逻辑简单有效，但不能处理异或等非线性问题。第二个阶段是Rumelhart等提出的反向传播算法[2]，该算法使用梯度更新权值，使多层神经网络的训练成为可能。第三个阶段得益于计算机硬件的发展和大数据时代的到来，促进了深度神经网络的发展。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/4ec18e58.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -488,13 +608,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>站点总字数:
     </span>
-    <span title="站点总字数">130k</span>
+    <span title="站点总字数">136k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>站点阅读时长:
     </span>
-    <span title="站点阅读时长">1:58</span>
+    <span title="站点阅读时长">2:03</span>
   </span>
 </div>
 <div class="busuanzi-count">
