@@ -2771,132 +2771,6 @@ a_3x+b_3y+c_3z=d_3\\
       </tags>
   </entry>
   <entry>
-    <title>SAM</title>
-    <url>/post/70b40a92.html</url>
-    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
-<p><strong>论文链接:</strong><a href="https://arxiv.org/abs/2304.02643">https://arxiv.org/abs/2304.02643</a></p>
-<p><strong>代码链接:</strong><a href="https://github.com/lllyasviel/ControlNet">https://github.com/lllyasviel/ControlNet</a></p>
-<p><strong>Demo链接:</strong><a href="https://segment-anything.com/demo">https://segment-anything.com/demo</a></p>
-<p>SAM从任务、模型、数据三部分展开写作，和模型的创新比较起来，任务定义和数据的工作更加出彩，官网也给出了demo，能直观感受SAM的效果，这篇blog也会围绕这几部分展开。</p>
-<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><ul>
-<li><strong>鼠标悬停:</strong> 显示的是悬停位置的分割结果，例如下图中将鼠标放到手的位置.<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/1.png" alt=""></li>
-</ul>
-<ul>
-<li><strong>点击:</strong> 分割包含该点的物体，会按最小分割的结果展示出来，如果想分割的物体大于展示的结果，可以在物体的其他部分也点击下。</li>
-</ul>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/2.png" alt=""></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/3.png" alt=""></p>
-<ul>
-<li><strong>box:</strong> 框定一个box，分割box中的物体<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/4.png" alt=""></li>
-</ul>
-<ul>
-<li><strong>everything:</strong> 将图片中所有物体的分割都展示出来<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/5.png" alt=""></li>
-</ul>
-<h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/6.png" alt=""></p>
-<p>任务的设计灵感来自于NLP领域，例如NLP中可以通过预测next token作为预训练任务，而在下游任务中可以使用prompt engineering做应用。因此，为了建立分割的基础模型，任务的设计目标是也需要具有类似的能力。<br>这里作者扩展了下NLP里prompt在图像分割里的用法， prompt可以是以下几种类型：</p>
-<ul>
-<li>point</li>
-<li>box</li>
-<li>mask</li>
-<li>任意格式的文本</li>
-</ul>
-<p>为了支持以下的几种输入prompt格式，要求模型能够区分具有混淆意义的prompt，例如下图中，一个point的prompt可能有多种分割方式.这多种分割方式对于模型来说都是有效的。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/7.png" alt=""></p>
-<p>预训练:  将上面提到的多种sequence的prompt告诉模型，训练目标是让模型输出对应promt的分割结果，并且期望模型输出的结果和GT尽可能一致。区别于之前的交互式分割算法，SAM基本能治通过一次交互就能得到很合理的分割结果。要达到这个目的，需要设计非常独特的模型结构和loss。</p>
-<p>zero-shot transfer：需要模型对任何prompt，得到合适的分割结果。例如，如果要做实例分割，可以把检测得到的box作为prompt，SAM就能去做实例分割</p>
-<p>related tasks: 分割里有很多子任务，例如边缘分割，语义分割等，SAM能完成所有已知的分割任务和还没有作为一个方向的分割任务。之前已经有类似的可以做多种分割的模型(solo), 但是这些模型有多个子子输出，然后做排列组合可以得到多种分割结果。而SAM通过prompt将多个分割任务合并在一起。</p>
-<p>总而言之，作者是希望SAM能够分割一切，并且能相CLIP一样，能应用到最开始没有想到的领域。</p>
-<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/8.png" alt=""></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/9.png" alt=""></p>
-<p>模型的结构如上图所示. prompt会经过<code>prompt encoder</code>, 图像会经过<code>image encoder</code>。然后将两部分embedding经过一个轻量化的<code>mask decoder</code>得到融合后的特征。encoder部分使用的都是已有模型，decoder使用transformer。这部分论文中介绍的相对比较少，下面会结合代码一起梳理下:</p>
-<ul>
-<li><p><strong>image encoder：</strong> 使用的是用ViT走位backbone的MAE模型。在交互式分割的展示中，image encoder只会运行一次。在实验中，分别有用到ViT-H, ViT-L, ViT-B三种大小的模型作为image encoder。代码如下,<a href="https://github.com/facebookresearch/segment-anything/blob/6fdee8f2727f4506cfbbe553e23b895e27956588/segment_anything/build_sam.py#L47">build_sam#L47</a> </p>
-<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">sam_model_registry = &#123;</span><br><span class="line">    <span class="string">&quot;default&quot;</span>: <span class="keyword">build_sam_vit_h,</span></span><br><span class="line"><span class="keyword"></span>    <span class="string">&quot;vit_h&quot;</span>: <span class="keyword">build_sam_vit_h,</span></span><br><span class="line"><span class="keyword"></span>    <span class="string">&quot;vit_l&quot;</span>: <span class="keyword">build_sam_vit_l,</span></span><br><span class="line"><span class="keyword"></span>    <span class="string">&quot;vit_b&quot;</span>: <span class="keyword">build_sam_vit_b,</span></span><br><span class="line"><span class="keyword"></span>&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>prompt encoder：</strong> prompt总共有point,box, mask, text四种，会将其分为三类。<strong>pint和box可以作为一类使用position encodings</strong>, <strong>text可以使用CLIP作为encoder</strong>, <strong>而mask是一种密集型的prompt，可以使用卷积作为encoder</strong>.<a href="https://github.com/facebookresearch/segment-anything/blob/6fdee8f2727f4506cfbbe553e23b895e27956588/segment_anything/modeling/prompt_encoder.py#LL128C5-L128C5">prompt_encoder.py#LL128C5-L128C5</a> prompt_encoder的代码如下所示，其中用position embedding分别实现了point和box query两种稀疏embedding，用卷积实现了mask query密集embedding.，</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">def forward(</span><br><span class="line">        self,</span><br><span class="line">        points: Optional[Tuple[torch.Tensor, torch.Tensor]],</span><br><span class="line">        boxes: Optional[torch.Tensor],</span><br><span class="line">        masks: Optional[torch.Tensor],</span><br><span class="line">    ) -&gt; Tuple[torch.Tensor, torch.Tensor]:</span><br><span class="line">        <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">        Embeds different types of prompts, returning both sparse <span class="built_in">and</span> dense</span><br><span class="line">        embeddings.</span><br><span class="line"></span><br><span class="line">        Arguments:</span><br><span class="line">          points (tuple(torch.Tensor, torch.Tensor) <span class="built_in">or</span> none): point coordinates</span><br><span class="line">            <span class="built_in">and</span> labels <span class="keyword">to</span> embed.</span><br><span class="line">          boxes (torch.Tensor <span class="built_in">or</span> none): boxes <span class="keyword">to</span> embed</span><br><span class="line">          masks (torch.Tensor <span class="built_in">or</span> none): masks <span class="keyword">to</span> embed</span><br><span class="line"></span><br><span class="line">        Returns:</span><br><span class="line">          torch.Tensor: sparse embeddings <span class="keyword">for</span> the points <span class="built_in">and</span> boxes, with shape</span><br><span class="line">            BxNx(embed_dim), where <span class="keyword">N</span> <span class="keyword">is</span> determined by the <span class="keyword">number</span> of <span class="built_in">input</span> points</span><br><span class="line">            <span class="built_in">and</span> boxes.</span><br><span class="line">          torch.Tensor: dense embeddings <span class="keyword">for</span> the masks, in the shape</span><br><span class="line">            Bx(embed_dim)<span class="keyword">x</span>(embed_H)<span class="keyword">x</span>(embed_W)</span><br><span class="line">        <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">        bs = self._get_batch_size(points, boxes, masks)</span><br><span class="line">        sparse_embeddings = torch.<span class="built_in">empty</span>((bs, <span class="number">0</span>, self.embed_dim), device=self._get_device())</span><br><span class="line">        <span class="keyword">if</span> points <span class="keyword">is</span> not None:</span><br><span class="line">            coords, labels = points</span><br><span class="line">            point_embeddings = self._embed_points(coords, labels, pad=(boxes <span class="keyword">is</span> None))     # position embedding</span><br><span class="line">            sparse_embeddings = torch.<span class="keyword">cat</span>([sparse_embeddings, point_embeddings], dim=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> boxes <span class="keyword">is</span> not None:</span><br><span class="line">            box_embeddings = self._embed_boxes(boxes)   # position embedding</span><br><span class="line">            sparse_embeddings = torch.<span class="keyword">cat</span>([sparse_embeddings, box_embeddings], dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> masks <span class="keyword">is</span> not None:</span><br><span class="line">            dense_embeddings = self._embed_masks(masks)    # conv embedding</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dense_embeddings = self.no_mask_embed.weight.reshape(<span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).<span class="built_in">expand</span>(</span><br><span class="line">                bs, -<span class="number">1</span>, self.image_embedding_size[<span class="number">0</span>], self.image_embedding_size[<span class="number">1</span>]</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sparse_embeddings, dense_embeddings</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>mask decoder：</strong>: 使用一个transformer将image embedding和prompt embedding做双向的cross-attention；并且也有prompt embedding的self-attention。也有MLP和linear classifier分类分割区域。mask decoder, <a href="https://github.com/facebookresearch/segment-anything/blob/6fdee8f2727f4506cfbbe553e23b895e27956588/segment_anything/modeling/transformer.py#L151">transformer.py#L151</a>这里的queries是query embedding，keys是image embedding，query_pe和queries一样，key_pe是需要加到image embedding上的位置编码。query embedding会经过self attention。query embedding和image embedding会做双向的cross-attention, 具体实现方式是如上代码所示，image embedding会作为query，query embedding会作为key和value；同样的，query embedding会作为query，image embedding会作为key和value。</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">def forward(</span><br><span class="line">        self,</span><br><span class="line">        image_embedding: Tensor,</span><br><span class="line">        image_pe: Tensor,</span><br><span class="line">        point_embedding: Tensor,</span><br><span class="line">    ) -&gt; Tuple[Tensor, Tensor]:</span><br><span class="line">        <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">        Args:</span><br><span class="line">          image_embedding (torch.Tensor): image <span class="keyword">to</span> attend <span class="keyword">to</span>. Should <span class="keyword">be</span> shape</span><br><span class="line">            B <span class="keyword">x</span> embedding_dim <span class="keyword">x</span> h <span class="keyword">x</span> <span class="keyword">w</span> <span class="keyword">for</span> any h <span class="built_in">and</span> <span class="keyword">w</span>.</span><br><span class="line">          image_pe (torch.Tensor): the positional encoding <span class="keyword">to</span> <span class="built_in">add</span> <span class="keyword">to</span> the image. Must</span><br><span class="line">            have the same shape <span class="keyword">as</span> image_embedding.</span><br><span class="line">          point_embedding (torch.Tensor): the embedding <span class="keyword">to</span> <span class="built_in">add</span> <span class="keyword">to</span> the query points.</span><br><span class="line">            Must have shape B <span class="keyword">x</span> N_points <span class="keyword">x</span> embedding_dim <span class="keyword">for</span> any N_points.</span><br><span class="line"></span><br><span class="line">        Returns:</span><br><span class="line">          torch.Tensor: the processed point_embedding</span><br><span class="line">          torch.Tensor: the processed image_embedding</span><br><span class="line">        <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">        # BxCxHxW -&gt; BxHWxC == B <span class="keyword">x</span> N_image_tokens <span class="keyword">x</span> C</span><br><span class="line">        bs, <span class="keyword">c</span>, h, <span class="keyword">w</span> = image_embedding.shape</span><br><span class="line">        image_embedding = image_embedding.flatten(<span class="number">2</span>).permute(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">        image_pe = image_pe.flatten(<span class="number">2</span>).permute(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        # Prepare queries</span><br><span class="line">        queries = point_embedding</span><br><span class="line">        <span class="built_in">keys</span> = image_embedding</span><br><span class="line"></span><br><span class="line">        # Apply transformer blocks <span class="built_in">and</span> final layernorm</span><br><span class="line">        <span class="keyword">for</span> layer in self.layers:</span><br><span class="line">            queries, <span class="built_in">keys</span> = layer(</span><br><span class="line">                queries=queries,</span><br><span class="line">                <span class="built_in">keys</span>=<span class="built_in">keys</span>,</span><br><span class="line">                query_pe=point_embedding,</span><br><span class="line">                key_pe=image_pe,</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">        # Apply the final attention layer from the points <span class="keyword">to</span> the image</span><br><span class="line">        q = queries + point_embedding</span><br><span class="line">        <span class="keyword">k</span> = <span class="built_in">keys</span> + image_pe</span><br><span class="line">        attn_out = self.final_attn_token_to_image(q=q, <span class="keyword">k</span>=<span class="keyword">k</span>, v=<span class="built_in">keys</span>)</span><br><span class="line">        queries = queries + attn_out</span><br><span class="line">        queries = self.norm_final_attn(queries)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> queries, <span class="built_in">keys</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>解决混淆的输入</strong>: 对于一个prompt，模型会输出3个mask，实际上也可以输出更多的分割结果，3个可以看作一个物体的整体、部分、子部分，基本能满足大多数情况。使用IOU的方式，排序mask。在反向传播时，参与计算的只有loss最小的mask相关的参数.</p>
-</li>
-<li><p><strong>高效</strong>: 这里主要指的是<strong>prompt encoder</strong>和<strong>mask decoder</strong>。在web浏览器上，CPU计算只用约50ms</p>
-</li>
-<li><p><strong>loss和训练细节</strong>: 主要使用的是focal loss和dice loss。每一个mask，会随机产生11种prompt与之配对。</p>
-</li>
-</ul>
-<h2 id="数据引擎"><a href="#数据引擎" class="headerlink" title="数据引擎"></a>数据引擎</h2><p>不像CLIP中图像文本对通过互联网容易获取，分割的数据获取成本巨大。SAM开源了一个10亿张图片的分割数据集。在SAM中设计了一个数据引擎用于获取分割的数据，数据引擎主要分为以下三部分:</p>
-<ul>
-<li><p>辅助标注: 简单来说就是用可以获取到的开源分割数据训练一个初始的SAM模型V0版本，再用V0在没有分割标注的数据上生成预标注，人工check模型的结果并作修改和确认。得到新的数据后，再将新的数据加入到训练集重新训练SAM得到V1版本,再循环标注数据和迭代模型。总共进行6次训练。开始的时候数据集比较少，使用的ViT-B模型，最终会使用ViT-H模型。 这里面还有一些效率提升的数据，例如随着模型的迭代，每个mask的标注耗时从34s到14s。SAM模型在每张图片上生成的mask从20到44个。在该阶段数据集最终有12万张图片，430万个mask</p>
-</li>
-<li><p>半自动化标注: 通过第一阶段后，已经有一个不错的SAM模型能生成分割结果。<strong>半自动化标注</strong>的目的是增加mask的多样性。具体做法是训练一个检测模型，用于检测SAM生成的mask结果是否可信，只保留可信的mask结果，然后将图片给人工标注。人工标注会在可信的mask基础上标注出其他的分割框。经过5次的迭代后，数据集新增了18万张图片，590万mask。</p>
-</li>
-</ul>
-<p><strong>自动标注</strong>: 经过前面两个阶段后，SAM有了较好的结果，能分割出图片中的目标，并且对于混淆的prompt也有了较好的输出。这个模型可以自动的对一些图片做标注。自动标注的时候需要有一些筛选策略，模型输出的结果可能还是会出现一些错误。主要有以下三种方式做筛选</p>
-<ul>
-<li>SAM模型有一个IOU prediction的模块能输出mask的confidence，如下图所示<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/10.png" alt=""></li>
-</ul>
-<ul>
-<li><p>stable mask的判断，具体的方法是在得到分割结果前对logit加正向和负向的扰动，如果两次扰动生成的分割结果IOU大于0.95，则认为生成的mask是可靠的</p>
-</li>
-<li><p>NMS过滤掉重复的mask</p>
-</li>
-</ul>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/11.png" alt=""></p>
-<h2 id="数据质量"><a href="#数据质量" class="headerlink" title="数据质量"></a>数据质量</h2><p> 图像: 包含11M高分辨率(3300<em>4950)的图像，其他的一些开源数据集，例如COCO分辨率较低(480</em>640)<br>Mask: 包含1.1B的mask，99.1%都是模型生成的。作者实验了下，只使用模型生成的mask和即使用模型生成也使用人工标注的mask，模型的效果是相当的。因此发布的数据集里只包含模型生成的mask<br>Mask 质量: 抽取了一部分mask数据做人工的精标，精标前后有94%的mask具有90%以上的IOU。而其他的一些开源数据集只有85-91%的IOU</p>
-<p>下面也从mask的数量，每种mask尺寸的占比和mask占外接矩形比例等多方面和其他数据集做了对比<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/12.png" alt=""></p>
-<p>数据来源分布<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/13.png" alt=""></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/14.png" alt=""></p>
-<p>不同性别，肤色，年龄人群分割效果的差异对比<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/15.png" alt=""></p>
-<h2 id="zero-short-Transfer实验"><a href="#zero-short-Transfer实验" class="headerlink" title="zero-short Transfer实验"></a>zero-short Transfer实验</h2><p>评估的数据集都是SAM模型训练时的不同，并且包含水下，第一视角等没有在SAM中出现过场景的图片</p>
-<h2 id="point-mask"><a href="#point-mask" class="headerlink" title="point mask"></a>point mask</h2><p>这里对比的是用point作为prompt对比分割的结果, 在绝大部分数据集中都优于RITM(当前的SOTA) </p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/16.png" alt=""></p>
-<h2 id="边缘检测"><a href="#边缘检测" class="headerlink" title="边缘检测"></a>边缘检测</h2><p>SAM在训练的时候就是采用的包含point prompt的方式，作者这里还对比了一些在训练时没有包含的方式，边界检测就是其中一种。SAM在使用边界检测时，使用方式是在图片上铺上16*16均匀的point prompt，每个prompt产生3个mask，再经过NMS后。通过Sobel filtering得到边缘检测的结果。SAM的结果倾向于提取更丰富的边缘，因此在指标上recall和专门做边缘检测的模型相当，precision会低些。</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/17.png" alt=""></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/18.png" alt=""></p>
-<h2 id="目标检测"><a href="#目标检测" class="headerlink" title="目标检测"></a>目标检测</h2><p>分割的结果取bbox，就能做目标检测了.整体指标低于ViTDet，但是在中等常见和不太常见的目标上效果优于ViTDet</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/19.png" alt=""></p>
-<h2 id="实例分割"><a href="#实例分割" class="headerlink" title="实例分割"></a>实例分割</h2><p>先用一个目标检测算法，用目标检测得到的box作为prompt输入到SAM，就可以做实例分割了。实验的结果分为了定量(用测试集的GT)和定性(人来评判好坏)两种。定量的指标不如BiTDet—H,定性的指标SAM优于ViTDet。作者给出的解释是COCO数据集标注效果一般(在人看来甚至不如SAM和ViTDet模型输出的结果)，因此ViTDet在COCO上做训练时拟合到了一些错误的偏差，但错误的偏差和标注相似，因此定量的指标不如ViTDet</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/20.png" alt=""></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/21.png" alt=""></p>
-<h2 id="Text-to-Mask"><a href="#Text-to-Mask" class="headerlink" title="Text to Mask"></a>Text to Mask</h2><p>这里指的是用文本作为prompt，然后分割出文本提到的目标。作者在训练的时候取的是图片中目标尺寸大于100*100的目标，用CLIP提取image embedding(text embedding也行，因为CLIP的image embedding和text embedding是对齐的)，作为prompt encoder模块的输出，用于训练SAM模型。这一部分没有和其他方法对比，也由于效果不太稳定，在官方的demo中没有展示</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/22.png" alt=""></p>
-<h2 id="消融实验"><a href="#消融实验" class="headerlink" title="消融实验"></a>消融实验</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/23.png" alt=""></p>
-<p>有以下的结论:<br>左边的图，数据来源的影响:</p>
-<ul>
-<li>加入半自动标注的数据和自动标注的数据性能都有很大的提升</li>
-<li>只用模型生成的数据与额外加上人工标注的数据差异不大</li>
-</ul>
-<p>中间的图, 数据量的影响:</p>
-<ul>
-<li>数据量从0.1M到1M，模型性能提升很大</li>
-<li>数据量从1M到11M，模型性能变化不明显，实际使用中1M差不多足够</li>
-</ul>
-<p>右边的图, image encoder的影响:</p>
-<ul>
-<li>ViT-B到ViT-L提升很大</li>
-<li>ViT-L到ViT-H提升一般，实际使用ViT-L足够</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>SAM的热度也非常高，同样作为FB的工作，SAM仅仅放出来两个月，github上star的数量已经超过了detectron2三年的总和。SAM的期望是能将该模型作为图像领域的基础模型(foundation model)，像CLIP那样能在各个领域大放异常，或者像GPT一样能统一NLP领域。SAM也确实在很多场景得到了应用，例如开源的SD中也融合了SAM，可以做很多有趣的应用，例如从假人模特身上用SAM得到衣服的mask，再结合ControlNet，就可以生成不同的人穿着同样的衣服。</p>
-<p>最开始自媒体宣传的文章也是《CV领域不存在了》,《CV界的GPT3》类似的标题，SAM确实是在统一上迈出了很大的一步，但实际上CV领域的统一还有很多挑战。NLP领域中的Bert用完型填空和GPT预测下一个token的预训练在非常多的任务上表现了很好的泛化性，甚至在一些没有训练过的任务上能取得比一些专家模型更好的效果。</p>
-<ul>
-<li><p>任务和数据上的不统一，CV领域的分类是输出类别，检测输出bbox，分割输出mask。虽然个别任务可以复用，但是整体缺乏一个通用的任务。任务上的不统一，数据上也很难做到统一，分类的任务有很多数据，但是检测和分割的数据就要少非常多，并且标注成本巨大。单纯训练分类作为backbone也很难解决其他任务，检测和分割的算法依然需要做大量的优化</p>
-</li>
-<li><p>CV领域的任务缺乏孕育大模型的土壤，CV任务一直在考虑模型的计算量，显存占用。如果将每个像素看作一个token，一张512*512的图片就有26万个token。如果transformer最开始出现在CV领域，面临的问题是显存和计算量都比resnet差，并且效果也远不如resnet。如果没有transformer极大的促进了NLP领域的发展，CV领域可能也不会重新思考transfomer能增大感受野，能有更好的泛化能力。</p>
-</li>
-<li><p>还没有找到CV领域【高维】的任务。NLP领域的完形填空和对话确实是一种很高维的任务。模型能完成这些任务，一些NER或者RE之类的底层任务也能很好的被解决。目前CV领域有一些尝试做foundation model，例如对比学习或者像SAM，在一些任务上表现了不错的泛化性，可能是这些方法能统一其他任务，但目前的发展还不太够，也可能是其他一些还没出现/发展起来的任务。但这种【高维】的任务一定能通过一些方式降维解决目前几乎所有的CV基础任务。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>分割</tag>
-        <tag>大模型</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《Deep Facial Expression Recognition:A Survey》论文笔记</title>
     <url>/post/5d962f61.html</url>
     <content><![CDATA[<p class="description"></p>
@@ -3324,6 +3198,133 @@ a_3x+b_3y+c_3z=d_3\\
       <tags>
         <tag>扩散模型</tag>
         <tag>生成模型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一篇文章搞懂Segment Anything(SAM)</title>
+    <url>/post/70b40a92.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<p><strong>论文链接:</strong><a href="https://arxiv.org/abs/2304.02643">https://arxiv.org/abs/2304.02643</a></p>
+<p><strong>代码链接:</strong><a href="https://github.com/lllyasviel/ControlNet">https://github.com/lllyasviel/ControlNet</a></p>
+<p><strong>Demo链接:</strong><a href="https://segment-anything.com/demo">https://segment-anything.com/demo</a></p>
+<p>SAM从任务、模型、数据三部分展开写作，和模型的创新比较起来，任务定义和数据的工作更加出彩，官网也给出了demo，能直观感受SAM的效果，这篇blog也会围绕这几部分展开。</p>
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><p>demo中有开放point, box, everything三种方式。由于text prompt效果不太稳定，demo和代码中都没有该部分。</p>
+<ul>
+<li><strong>鼠标悬停:</strong> 显示的是悬停位置的分割结果，例如下图中将鼠标放到手的位置.<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/1.png" alt=""></li>
+</ul>
+<ul>
+<li><strong>点击:</strong> 分割包含该点的物体，会按最小分割的结果展示出来，如果想分割的物体大于展示的结果，可以在物体的其他部分也点击下。</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/2.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/3.png" alt=""></p>
+<ul>
+<li><strong>box:</strong> 框定一个box，分割box中的物体<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/4.png" alt=""></li>
+</ul>
+<ul>
+<li><strong>everything:</strong> 将图片中所有物体的分割都展示出来<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/5.png" alt=""></li>
+</ul>
+<h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/6.png" alt=""></p>
+<p>任务的设计灵感来自于NLP领域，例如NLP中可以通过预测next token作为预训练任务，而在下游任务中可以使用prompt engineering做应用。因此，为了建立分割的基础模型，任务的设计目标是也需要具有类似的能力。<br>这里作者扩展了下NLP里prompt在图像分割里的用法， prompt可以是以下几种类型：</p>
+<ul>
+<li>point</li>
+<li>box</li>
+<li>mask</li>
+<li>任意格式的文本</li>
+</ul>
+<p>为了支持以下的几种输入prompt格式，要求模型能够区分具有混淆意义的prompt，例如下图中，一个point的prompt可能有多种分割方式.这多种分割方式对于模型来说都是有效的。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/7.png" alt=""></p>
+<p>预训练:  将上面提到的多种sequence的prompt告诉模型，训练目标是让模型输出对应promt的分割结果，并且期望模型输出的结果和GT尽可能一致。区别于之前的交互式分割算法，SAM基本能治通过一次交互就能得到很合理的分割结果。要达到这个目的，需要设计非常独特的模型结构和loss。</p>
+<p>zero-shot transfer：需要模型对任何prompt，得到合适的分割结果。例如，如果要做实例分割，可以把检测得到的box作为prompt，SAM就能去做实例分割</p>
+<p>related tasks: 分割里有很多子任务，例如边缘分割，语义分割等，SAM能完成所有已知的分割任务和还没有作为一个方向的分割任务。之前已经有类似的可以做多种分割的模型(solo), 但是这些模型有多个子子输出，然后做排列组合可以得到多种分割结果。而SAM通过prompt将多个分割任务合并在一起。</p>
+<p>总而言之，作者是希望SAM能够分割一切，并且能相CLIP一样，能应用到最开始没有想到的领域。</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/8.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/9.png" alt=""></p>
+<p>模型的结构如上图所示. prompt会经过<code>prompt encoder</code>, 图像会经过<code>image encoder</code>。然后将两部分embedding经过一个轻量化的<code>mask decoder</code>得到融合后的特征。encoder部分使用的都是已有模型，decoder使用transformer。这部分论文中介绍的相对比较少，下面会结合代码一起梳理下:</p>
+<ul>
+<li><p><strong>image encoder：</strong> 使用的是用ViT走位backbone的MAE模型。在交互式分割的展示中，image encoder只会运行一次。在实验中，分别有用到ViT-H, ViT-L, ViT-B三种大小的模型作为image encoder。代码如下,<a href="https://github.com/facebookresearch/segment-anything/blob/6fdee8f2727f4506cfbbe553e23b895e27956588/segment_anything/build_sam.py#L47">build_sam#L47</a> </p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">sam_model_registry = &#123;</span><br><span class="line">    <span class="string">&quot;default&quot;</span>: <span class="keyword">build_sam_vit_h,</span></span><br><span class="line"><span class="keyword"></span>    <span class="string">&quot;vit_h&quot;</span>: <span class="keyword">build_sam_vit_h,</span></span><br><span class="line"><span class="keyword"></span>    <span class="string">&quot;vit_l&quot;</span>: <span class="keyword">build_sam_vit_l,</span></span><br><span class="line"><span class="keyword"></span>    <span class="string">&quot;vit_b&quot;</span>: <span class="keyword">build_sam_vit_b,</span></span><br><span class="line"><span class="keyword"></span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>prompt encoder：</strong> prompt总共有point,box, mask, text四种，会将其分为三类。<strong>pint和box可以作为一类使用position encodings</strong>, <strong>text可以使用CLIP作为encoder</strong>, <strong>而mask是一种密集型的prompt，可以使用卷积作为encoder</strong>.<a href="https://github.com/facebookresearch/segment-anything/blob/6fdee8f2727f4506cfbbe553e23b895e27956588/segment_anything/modeling/prompt_encoder.py#LL128C5-L128C5">prompt_encoder.py#LL128C5-L128C5</a> prompt_encoder的代码如下所示，其中用position embedding分别实现了point和box query两种稀疏embedding，用卷积实现了mask query密集embedding.，</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">def forward(</span><br><span class="line">        self,</span><br><span class="line">        points: Optional[Tuple[torch.Tensor, torch.Tensor]],</span><br><span class="line">        boxes: Optional[torch.Tensor],</span><br><span class="line">        masks: Optional[torch.Tensor],</span><br><span class="line">    ) -&gt; Tuple[torch.Tensor, torch.Tensor]:</span><br><span class="line">        <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">        Embeds different types of prompts, returning both sparse <span class="built_in">and</span> dense</span><br><span class="line">        embeddings.</span><br><span class="line"></span><br><span class="line">        Arguments:</span><br><span class="line">          points (tuple(torch.Tensor, torch.Tensor) <span class="built_in">or</span> none): point coordinates</span><br><span class="line">            <span class="built_in">and</span> labels <span class="keyword">to</span> embed.</span><br><span class="line">          boxes (torch.Tensor <span class="built_in">or</span> none): boxes <span class="keyword">to</span> embed</span><br><span class="line">          masks (torch.Tensor <span class="built_in">or</span> none): masks <span class="keyword">to</span> embed</span><br><span class="line"></span><br><span class="line">        Returns:</span><br><span class="line">          torch.Tensor: sparse embeddings <span class="keyword">for</span> the points <span class="built_in">and</span> boxes, with shape</span><br><span class="line">            BxNx(embed_dim), where <span class="keyword">N</span> <span class="keyword">is</span> determined by the <span class="keyword">number</span> of <span class="built_in">input</span> points</span><br><span class="line">            <span class="built_in">and</span> boxes.</span><br><span class="line">          torch.Tensor: dense embeddings <span class="keyword">for</span> the masks, in the shape</span><br><span class="line">            Bx(embed_dim)<span class="keyword">x</span>(embed_H)<span class="keyword">x</span>(embed_W)</span><br><span class="line">        <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">        bs = self._get_batch_size(points, boxes, masks)</span><br><span class="line">        sparse_embeddings = torch.<span class="built_in">empty</span>((bs, <span class="number">0</span>, self.embed_dim), device=self._get_device())</span><br><span class="line">        <span class="keyword">if</span> points <span class="keyword">is</span> not None:</span><br><span class="line">            coords, labels = points</span><br><span class="line">            point_embeddings = self._embed_points(coords, labels, pad=(boxes <span class="keyword">is</span> None))     # position embedding</span><br><span class="line">            sparse_embeddings = torch.<span class="keyword">cat</span>([sparse_embeddings, point_embeddings], dim=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> boxes <span class="keyword">is</span> not None:</span><br><span class="line">            box_embeddings = self._embed_boxes(boxes)   # position embedding</span><br><span class="line">            sparse_embeddings = torch.<span class="keyword">cat</span>([sparse_embeddings, box_embeddings], dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> masks <span class="keyword">is</span> not None:</span><br><span class="line">            dense_embeddings = self._embed_masks(masks)    # conv embedding</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dense_embeddings = self.no_mask_embed.weight.reshape(<span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).<span class="built_in">expand</span>(</span><br><span class="line">                bs, -<span class="number">1</span>, self.image_embedding_size[<span class="number">0</span>], self.image_embedding_size[<span class="number">1</span>]</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sparse_embeddings, dense_embeddings</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>mask decoder：</strong>: 使用一个transformer将image embedding和prompt embedding做双向的cross-attention；并且也有prompt embedding的self-attention。也有MLP和linear classifier分类分割区域。mask decoder, <a href="https://github.com/facebookresearch/segment-anything/blob/6fdee8f2727f4506cfbbe553e23b895e27956588/segment_anything/modeling/transformer.py#L151">transformer.py#L151</a>这里的queries是query embedding，keys是image embedding，query_pe和queries一样，key_pe是需要加到image embedding上的位置编码。query embedding会经过self attention。query embedding和image embedding会做双向的cross-attention, 具体实现方式是如上代码所示，image embedding会作为query，query embedding会作为key和value；同样的，query embedding会作为query，image embedding会作为key和value。</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">def forward(</span><br><span class="line">        self,</span><br><span class="line">        image_embedding: Tensor,</span><br><span class="line">        image_pe: Tensor,</span><br><span class="line">        point_embedding: Tensor,</span><br><span class="line">    ) -&gt; Tuple[Tensor, Tensor]:</span><br><span class="line">        <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">        Args:</span><br><span class="line">          image_embedding (torch.Tensor): image <span class="keyword">to</span> attend <span class="keyword">to</span>. Should <span class="keyword">be</span> shape</span><br><span class="line">            B <span class="keyword">x</span> embedding_dim <span class="keyword">x</span> h <span class="keyword">x</span> <span class="keyword">w</span> <span class="keyword">for</span> any h <span class="built_in">and</span> <span class="keyword">w</span>.</span><br><span class="line">          image_pe (torch.Tensor): the positional encoding <span class="keyword">to</span> <span class="built_in">add</span> <span class="keyword">to</span> the image. Must</span><br><span class="line">            have the same shape <span class="keyword">as</span> image_embedding.</span><br><span class="line">          point_embedding (torch.Tensor): the embedding <span class="keyword">to</span> <span class="built_in">add</span> <span class="keyword">to</span> the query points.</span><br><span class="line">            Must have shape B <span class="keyword">x</span> N_points <span class="keyword">x</span> embedding_dim <span class="keyword">for</span> any N_points.</span><br><span class="line"></span><br><span class="line">        Returns:</span><br><span class="line">          torch.Tensor: the processed point_embedding</span><br><span class="line">          torch.Tensor: the processed image_embedding</span><br><span class="line">        <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">        # BxCxHxW -&gt; BxHWxC == B <span class="keyword">x</span> N_image_tokens <span class="keyword">x</span> C</span><br><span class="line">        bs, <span class="keyword">c</span>, h, <span class="keyword">w</span> = image_embedding.shape</span><br><span class="line">        image_embedding = image_embedding.flatten(<span class="number">2</span>).permute(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">        image_pe = image_pe.flatten(<span class="number">2</span>).permute(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        # Prepare queries</span><br><span class="line">        queries = point_embedding</span><br><span class="line">        <span class="built_in">keys</span> = image_embedding</span><br><span class="line"></span><br><span class="line">        # Apply transformer blocks <span class="built_in">and</span> final layernorm</span><br><span class="line">        <span class="keyword">for</span> layer in self.layers:</span><br><span class="line">            queries, <span class="built_in">keys</span> = layer(</span><br><span class="line">                queries=queries,</span><br><span class="line">                <span class="built_in">keys</span>=<span class="built_in">keys</span>,</span><br><span class="line">                query_pe=point_embedding,</span><br><span class="line">                key_pe=image_pe,</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">        # Apply the final attention layer from the points <span class="keyword">to</span> the image</span><br><span class="line">        q = queries + point_embedding</span><br><span class="line">        <span class="keyword">k</span> = <span class="built_in">keys</span> + image_pe</span><br><span class="line">        attn_out = self.final_attn_token_to_image(q=q, <span class="keyword">k</span>=<span class="keyword">k</span>, v=<span class="built_in">keys</span>)</span><br><span class="line">        queries = queries + attn_out</span><br><span class="line">        queries = self.norm_final_attn(queries)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> queries, <span class="built_in">keys</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>解决混淆的输入</strong>: 对于一个prompt，模型会输出3个mask，实际上也可以输出更多的分割结果，3个可以看作一个物体的整体、部分、子部分，基本能满足大多数情况。使用IOU的方式，排序mask。在反向传播时，参与计算的只有loss最小的mask相关的参数.</p>
+</li>
+<li><p><strong>高效</strong>: 这里主要指的是<strong>prompt encoder</strong>和<strong>mask decoder</strong>。在web浏览器上，CPU计算只用约50ms</p>
+</li>
+<li><p><strong>loss和训练细节</strong>: 主要使用的是focal loss和dice loss。每一个mask，会随机产生11种prompt与之配对。</p>
+</li>
+</ul>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><h3 id="数据引擎"><a href="#数据引擎" class="headerlink" title="数据引擎"></a>数据引擎</h3><p>不像CLIP中图像文本对通过互联网容易获取，分割的数据获取成本巨大。SAM开源了一个10亿张图片的分割数据集。在SAM中设计了一个数据引擎用于获取分割的数据，数据引擎主要分为以下三部分:</p>
+<ul>
+<li><p>辅助标注: 简单来说就是用可以获取到的开源分割数据训练一个初始的SAM模型V0版本，再用V0在没有分割标注的数据上生成预标注，人工check模型的结果并作修改和确认。得到新的数据后，再将新的数据加入到训练集重新训练SAM得到V1版本,再循环标注数据和迭代模型。总共进行6次训练。开始的时候数据集比较少，使用的ViT-B模型，最终会使用ViT-H模型。 这里面还有一些效率提升的数据，例如随着模型的迭代，每个mask的标注耗时从34s到14s。SAM模型在每张图片上生成的mask从20到44个。在该阶段数据集最终有12万张图片，430万个mask</p>
+</li>
+<li><p>半自动化标注: 通过第一阶段后，已经有一个不错的SAM模型能生成分割结果。<strong>半自动化标注</strong>的目的是增加mask的多样性。具体做法是训练一个检测模型，用于检测SAM生成的mask结果是否可信，只保留可信的mask结果，然后将图片给人工标注。人工标注会在可信的mask基础上标注出其他的分割框。经过5次的迭代后，数据集新增了18万张图片，590万mask。</p>
+</li>
+</ul>
+<p><strong>自动标注</strong>: 经过前面两个阶段后，SAM有了较好的结果，能分割出图片中的目标，并且对于混淆的prompt也有了较好的输出。这个模型可以自动的对一些图片做标注。自动标注的时候需要有一些筛选策略，模型输出的结果可能还是会出现一些错误。主要有以下三种方式做筛选</p>
+<ul>
+<li>SAM模型有一个IOU prediction的模块能输出mask的confidence，如下图所示<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/10.png" alt=""></li>
+</ul>
+<ul>
+<li><p>stable mask的判断，具体的方法是在得到分割结果前对logit加正向和负向的扰动，如果两次扰动生成的分割结果IOU大于0.95，则认为生成的mask是可靠的</p>
+</li>
+<li><p>NMS过滤掉重复的mask</p>
+</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/11.png" alt=""></p>
+<h3 id="数据质量"><a href="#数据质量" class="headerlink" title="数据质量"></a>数据质量</h3><p> 图像: 包含11M高分辨率(3300<em>4950)的图像，其他的一些开源数据集，例如COCO分辨率较低(480</em>640)<br>Mask: 包含1.1B的mask，99.1%都是模型生成的。作者实验了下，只使用模型生成的mask和即使用模型生成也使用人工标注的mask，模型的效果是相当的。因此发布的数据集里只包含模型生成的mask<br>Mask 质量: 抽取了一部分mask数据做人工的精标，精标前后有94%的mask具有90%以上的IOU。而其他的一些开源数据集只有85-91%的IOU</p>
+<p>下面也从mask的数量，每种mask尺寸的占比和mask占外接矩形比例等多方面和其他数据集做了对比<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/12.png" alt=""></p>
+<p>数据来源分布<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/13.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/14.png" alt=""></p>
+<p>不同性别，肤色，年龄人群分割效果的差异对比<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/15.png" alt=""></p>
+<h2 id="zero-short-Transfer实验"><a href="#zero-short-Transfer实验" class="headerlink" title="zero-short Transfer实验"></a>zero-short Transfer实验</h2><p>评估的数据集都是SAM模型训练时的不同，并且包含水下，第一视角等没有在SAM中出现过场景的图片</p>
+<h3 id="point-mask"><a href="#point-mask" class="headerlink" title="point mask"></a>point mask</h3><p>这里对比的是用point作为prompt对比分割的结果, 在绝大部分数据集中都优于RITM(当前的SOTA) </p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/16.png" alt=""></p>
+<h3 id="边缘检测"><a href="#边缘检测" class="headerlink" title="边缘检测"></a>边缘检测</h3><p>SAM在训练的时候就是采用的包含point prompt的方式，作者这里还对比了一些在训练时没有包含的方式，边界检测就是其中一种。SAM在使用边界检测时，使用方式是在图片上铺上16*16均匀的point prompt，每个prompt产生3个mask，再经过NMS后。通过Sobel filtering得到边缘检测的结果。SAM的结果倾向于提取更丰富的边缘，因此在指标上recall和专门做边缘检测的模型相当，precision会低些。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/17.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/18.png" alt=""></p>
+<h3 id="目标检测"><a href="#目标检测" class="headerlink" title="目标检测"></a>目标检测</h3><p>分割的结果取bbox，就能做目标检测了.整体指标低于ViTDet，但是在中等常见和不太常见的目标上效果优于ViTDet</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/19.png" alt=""></p>
+<h3 id="实例分割"><a href="#实例分割" class="headerlink" title="实例分割"></a>实例分割</h3><p>先用一个目标检测算法，用目标检测得到的box作为prompt输入到SAM，就可以做实例分割了。实验的结果分为了定量(用测试集的GT)和定性(人来评判好坏)两种。定量的指标不如BiTDet—H,定性的指标SAM优于ViTDet。作者给出的解释是COCO数据集标注效果一般(在人看来甚至不如SAM和ViTDet模型输出的结果)，因此ViTDet在COCO上做训练时拟合到了一些错误的偏差，但错误的偏差和标注相似，因此定量的指标不如ViTDet</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/20.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/21.png" alt=""></p>
+<h3 id="Text-to-Mask"><a href="#Text-to-Mask" class="headerlink" title="Text to Mask"></a>Text to Mask</h3><p>这里指的是用文本作为prompt，然后分割出文本提到的目标。作者在训练的时候取的是图片中目标尺寸大于100*100的目标，用CLIP提取image embedding(text embedding也行，因为CLIP的image embedding和text embedding是对齐的)，作为prompt encoder模块的输出，用于训练SAM模型。这一部分没有和其他方法对比，也由于效果不太稳定，在官方的demo中没有展示</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/22.png" alt=""></p>
+<h2 id="消融实验"><a href="#消融实验" class="headerlink" title="消融实验"></a>消融实验</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/SAM/23.png" alt=""></p>
+<p>有以下的结论:<br>左边的图，数据来源的影响:</p>
+<ul>
+<li>加入半自动标注的数据和自动标注的数据性能都有很大的提升</li>
+<li>只用模型生成的数据与额外加上人工标注的数据差异不大</li>
+</ul>
+<p>中间的图, 数据量的影响:</p>
+<ul>
+<li>数据量从0.1M到1M，模型性能提升很大</li>
+<li>数据量从1M到11M，模型性能变化不明显，实际使用中1M差不多足够</li>
+</ul>
+<p>右边的图, image encoder的影响:</p>
+<ul>
+<li>ViT-B到ViT-L提升很大</li>
+<li>ViT-L到ViT-H提升一般，实际使用ViT-L足够</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>SAM的热度也非常高，同样作为FB的工作，SAM仅仅放出来两个月，github上star的数量已经超过了detectron2三年的总和。SAM的期望是能将该模型作为图像领域的基础模型(foundation model)，像CLIP那样能在各个领域大放异常，或者像GPT一样能统一NLP领域。SAM也确实在很多场景得到了应用，例如开源的SD中也融合了SAM，可以做很多有趣的应用，例如从假人模特身上用SAM得到衣服的mask，再结合ControlNet，就可以生成不同的人穿着同样的衣服。</p>
+<p>最开始自媒体宣传的文章也是《CV领域不存在了》,《CV界的GPT3》类似的标题，SAM确实是在统一上迈出了很大的一步，但实际上CV领域的统一还有很多挑战。NLP领域中的Bert用完型填空和GPT预测下一个token的预训练在非常多的任务上表现了很好的泛化性，甚至在一些没有训练过的任务上能取得比一些专家模型更好的效果。</p>
+<ul>
+<li><p>任务和数据上的不统一，CV领域的分类是输出类别，检测输出bbox，分割输出mask。虽然个别任务可以复用，但是整体缺乏一个通用的任务。任务上的不统一，数据上也很难做到统一，分类的任务有很多数据，但是检测和分割的数据就要少非常多，并且标注成本巨大。单纯训练分类作为backbone也很难解决其他任务，检测和分割的算法依然需要做大量的优化</p>
+</li>
+<li><p>CV领域的任务缺乏孕育大模型的土壤，CV任务一直在考虑模型的计算量，显存占用。如果将每个像素看作一个token，一张512*512的图片就有26万个token。如果transformer最开始出现在CV领域，面临的问题是显存和计算量都比resnet差，并且效果也远不如resnet。如果没有transformer极大的促进了NLP领域的发展，CV领域可能也不会重新思考transfomer能增大感受野，能有更好的泛化能力。</p>
+</li>
+<li><p>还没有找到CV领域【高维】的任务。NLP领域的完形填空和对话确实是一种很高维的任务。模型能完成这些任务，一些NER或者RE之类的底层任务也能很好的被解决。目前CV领域有一些尝试做foundation model，例如对比学习或者像SAM，在一些任务上表现了不错的泛化性，可能是这些方法能统一其他任务，但目前的发展还不太够，也可能是其他一些还没出现/发展起来的任务。但这种【高维】的任务一定能通过一些方式降维解决目前几乎所有的CV基础任务。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>分割</tag>
+        <tag>大模型</tag>
       </tags>
   </entry>
 </search>
