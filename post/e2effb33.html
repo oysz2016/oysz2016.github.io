@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wukong.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/32_32_wukong.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/16_16_wukong.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="一篇文章搞懂iBOT">
+<meta property="og:url" content="https://oysz2016.github.io/post/e2effb33.html">
+<meta property="og:site_name" content="冲弱&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/4.png">
+<meta property="article:published_time" content="2023-07-01T12:52:46.193Z">
+<meta property="article:modified_time" content="2023-07-02T02:17:51.834Z">
+<meta property="article:author" content="冲弱">
+<meta property="article:tag" content="大模型">
+<meta property="article:tag" content="对比学习">
+<meta property="article:tag" content="MIM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/4.png">
+
+
+<link rel="canonical" href="https://oysz2016.github.io/post/e2effb33.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/e2effb33.html","path":"post/e2effb33.html","title":"一篇文章搞懂iBOT"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>一篇文章搞懂iBOT | 冲弱's Blog</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="waline-five-pi.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style><link rel="alternate" href="/atom.xml" title="冲弱's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">冲弱's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">多阅读 多积累</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-comment"><a href="/comment/" rel="section"><i class="fa fa-comment fa-fw"></i>评论</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">背景知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BEIT"><span class="nav-number">1.1.</span> <span class="nav-text">BEIT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DINO"><span class="nav-number">1.2.</span> <span class="nav-text">DINO</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IBOT"><span class="nav-number">2.</span> <span class="nav-text">IBOT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">3.1.</span> <span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#KNN-amp-linear-prob"><span class="nav-number">3.1.1.</span> <span class="nav-text">KNN&amp;linear prob</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#finetune"><span class="nav-number">3.1.2.</span> <span class="nav-text">finetune</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Semi-supervised-Learning"><span class="nav-number">3.1.3.</span> <span class="nav-text">Semi-supervised Learning</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E6%B8%B8%E4%BB%BB%E5%8A%A1"><span class="nav-number">3.2.</span> <span class="nav-text">下游任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%92%8C%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1"><span class="nav-number">3.2.1.</span> <span class="nav-text">目标检测和分割任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.2.2.</span> <span class="nav-text">迁移学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MIM%E5%AD%A6%E4%B9%A0%E5%88%B0%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">3.3.</span> <span class="nav-text">MIM学习到模式的可视化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="冲弱"
+      src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+  <p class="site-author-name" itemprop="name">冲弱</p>
+  <div class="site-description" itemprop="description">输出即获得，分享即反哺</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ouyang-sz@foxmail.com" title="E-Mail → mailto:ouyang-sz@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/user/5ae26032f265da0b9f3ffeb2" title="掘金 → https:&#x2F;&#x2F;juejin.im&#x2F;user&#x2F;5ae26032f265da0b9f3ffeb2" rel="noopener" target="_blank"><i class="fa fa-spinner fa-fw"></i>掘金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/ou-yang-shi-zhuang/activities" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ou-yang-shi-zhuang&#x2F;activities" rel="noopener" target="_blank"><i class="fab fa-zhihu fa-fw"></i>知乎</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+    
+    <div class="post-gallery-image">
+      <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/4.png" itemprop="contentUrl">
+    </div>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/e2effb33.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+      <meta itemprop="name" content="冲弱">
+      <meta itemprop="description" content="输出即获得，分享即反哺">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冲弱's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一篇文章搞懂iBOT
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-01 20:52:46" itemprop="dateCreated datePublished" datetime="2023-07-01T20:52:46+08:00">2023-07-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-02 10:17:51" itemprop="dateModified" datetime="2023-07-02T10:17:51+08:00">2023-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/e2effb33.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/e2effb33.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><p class="description"></p><br><span id="more"></span></p>
+<p>本文首发于公众号“<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/0JXKGXerN07NLbCRJJSpOg">CVTALK</a>”。</p>
+<p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2111.07832">https://arxiv.org/abs/2111.07832</a></p>
+<p><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/bytedance/ibot">https://github.com/bytedance/ibot</a></p>
+<p>iBOT完整的名字是<strong>I</strong>MAGE <strong>B</strong>ERT PRE-TRAINING WITH <strong>O</strong>NLINE <strong>T</strong>OKENIZER， 和BEIT: BERT Pre-Training of Image Transformers的名字很相似，iBOT确实受启发于BEIT，另外还使用到了对比学习之前的SOTA——DINO。<strong>可以看作是BEIT和DINO的结合</strong>，既然和另外两篇文章关系这么大，正好笔者之前也没有写过BEIT和DINO的文章，在介绍iBOT的时候会尽量把BEIT和DINO也给尽量详细的总结出来。</p>
+<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><h3 id="BEIT"><a href="#BEIT" class="headerlink" title="BEIT"></a>BEIT</h3><p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.08254">https://arxiv.org/abs/2106.08254</a></p>
+<p><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/microsoft/unilm/tree/master/beit">https://github.com/microsoft/unilm/tree/master/beit</a></p>
+<p>BEIT这篇论文的标题是<strong>BEIT: BERT Pre-Training of Image Transformers</strong>，从标题可以看出BEIT受启发于之前在文本领域大火的BERT模型，使用Transformer在图像场景中使用类似BERT中完形填空的方式做预训练。BEIT的名字来源于 <strong><em>B</em></strong>idirectional <strong><em>E</em></strong>ncoder representation from <strong><em>I</em></strong>mage <strong><em>T</em></strong>ransformers， 即图像transformer的双向编码器。</p>
+<p><strong>既然BEIT的思路受启发于Bert，Bert可以说是非常耳熟能详了，为了更好的理解BEIT算法，在回顾的时候，笔者也尽量按照类比Bert中的做法说明BEIT在图像领域中应用的差异。</strong></p>
+<p>在Bert或者说NLP中，一般前两步都是Tokenization和Numeralization:</p>
+<ul>
+<li><strong>Tokenization</strong>: 分词化，目的是将输入文本划分成一个个小的单元，保证每个单元拥有相对完整和独立的语义。根据划分粒度的差异可以分为字、字词(subword)、词三种粒度。</li>
+<li><strong>Numeralization</strong>: 数字化，经过了分词后，为了方便后续的算法处理，需要将词转化为数字。做法是构造一个词表-索引对应的字典，将分词后的数据转化为数字。</li>
+</ul>
+<p>在BEIT中，也有类似的操作，叫做image patch和visual token:</p>
+<ul>
+<li><strong>image patch</strong>: 和VIT中一样，将H<em>W的图像划分成P </em> P个小的单元，每个单元的大小为$N=HW/P^2$。比较经典的划分方式是将224 <em> 224的图片，划分patch数量为16 </em> 16，则每个单元格大小为14 * 14</li>
+<li><strong>visual token</strong>: NLP中的分词得到的单元是可以穷举的，而在图像中，每一个patch的信息不能直接像NLP中根据分词的结果构建索引。这里使用了<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2102.12092">discrete vaiational autoencoder</a>(dVAE)。<strong>BEIT中并没有训练dVAE模型，而是直接使用的DALLE中训练好的。</strong> <strong>dVAE的思想仿照了词汇表，构建了一个特征向量表</strong>，称为<strong>visual codebook</strong>，大小是8192，代表着存储了8192个特征向量。<strong>使用的方法是经过image patch后的图片经过encoder得到feature map，用这个feature map和codebook中的特征向量比对，选取codebook中最相似的特征向量作为后续使用的特征向量，而这个特征向量也会对应一串数字。</strong> 这样就可以完成图片特征的向量化</li>
+</ul>
+<blockquote>
+<p>在图像中使用visual token有两个好处。<strong>第一个显而易见从feature map转换为对应的数字可以节省计算空间</strong>，<strong>第二个是区别于MAE的方法，MAE中从像素还原图片，会促使模型学习到非常细节的高频特征，而BEIT从visual token还原出图像，迫使模型学习低频的特征，模型可能具有更好的分类能力。</strong></p>
+</blockquote>
+<p>Bert中的预训练任务是将token mask掉，用其他没有mask掉的token预测被mask掉的部分，完成完形填空。回到BEIT中也是类似的思路，将image patch转换为visual token之后，也可以通过mask掉部分image patch，<strong>通过其他的image patch预测出被mask掉的部分，完成图像的’完形填空’。</strong></p>
+<p>BEIT的结构如下图所示:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/1.png" alt=""></p>
+<p>图中上半部分是dVAE的训练流程，<strong>再强调下，BEIT中没有训练dVAE</strong>，因此decoder复原图像的部分在BEIT的流程中实际是不存在的；其余的部分就是和image transformer的部分。dVAE和image transformer一样对整张图划分为4<em>4的网络，通过dVAE会得到每个patch的visual token，image transformer中的训练目标是预测被mask掉部分的visual token。图中<br><em>*Masked Image Modeling Head</em></em>是一个softmax分类器，目标是被mask掉部分经过transformer后的embedding和分类出的类别和visual token是一致的。</p>
+<h3 id="DINO"><a href="#DINO" class="headerlink" title="DINO"></a>DINO</h3><p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.14294">https://arxiv.org/abs/2104.14294</a></p>
+<p><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/dino">https://github.com/facebookresearch/dino</a></p>
+<p>DINO是一篇用对比学习做自监督的文章，模型的结构和BYOL相似。网络的架构如下:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/2.png" alt=""></p>
+<p>DINO名字的来源是self-<strong><em>di</em></strong>stillation with <strong><em>no</em></strong> labels， 没有标签数据的自蒸馏，<strong>原因是采用自监督学习的方式，并且自己跟自己学习。</strong>既然是蒸馏的任务，那就需要student和teacher了，DINO将MOCO中的encoder和momentum encoder分别改成了student和teacher的命名方式。</p>
+<p>DINO的伪代码如下图所示:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/3.png" alt=""></p>
+<p><strong>DINO继承了其他对比学习的方法中伪代码清晰易懂的优良传统，既然DINO和BYOL相似，可以看作是BYOL的改进工作，下面在介绍DINO伪代码的同时，将其与BYOL的差异一并阐述:</strong></p>
+<ul>
+<li>初始化teacher和student网络，teacher网络的参数和student一致。student网络结构和BYOL基本一致，<strong>区别在于backbone部分使用了VIT，并且没有使用projection head和prediction head作为限制模型坍塌的结构</strong></li>
+<li>一个batch的图片x， 经过两种不同的增广分别得到x1， x2；</li>
+<li>x1和x2分别经过student网络和teacher网络，得到s1，s2，t1，t2;</li>
+<li><strong>算loss的时候平均s1&amp;s2和t1&amp;t2的交叉熵loss，值得注意的是在交叉熵损失里，加入了centering和sharpening避免模型坍塌</strong>。DINO的作者认为这是比BN和添加projection head&amp;prediction head更好的方式。下面具体介绍下:<ul>
+<li><strong>centering是将一个batch中的样本特征算一个均值， 计算loss时样本的特征需要减去该均值，centering实际上的作用和BN比较相似</strong></li>
+<li><strong>sharpening是将centering之后的特征除以特定的值<code>tpt</code>做为最后计算交叉熵的特征</strong></li>
+<li>具体代码为: <code>t = softmax((t - C) / tpt， dim=1)</code></li>
+</ul>
+</li>
+<li>梯度反传并更新student网络</li>
+<li>与BYOL和MOCO一样，采用动量更新的方式，更新teacher网络的参数</li>
+<li><strong>采用动量的方式，更新<code>center</code>的参数。</strong></li>
+</ul>
+<h2 id="IBOT"><a href="#IBOT" class="headerlink" title="IBOT"></a>IBOT</h2><p>介绍完了DINO和BEIT之后，终于要迎来主角iBOT了。这里引用iBOT论文中的原话总结iBOT:</p>
+<blockquote>
+<p>self-distillation as a token-generation self-supervised objective </p>
+</blockquote>
+<p>即结合了自蒸馏和重建visual token的自监督算法。</p>
+<p>iBOT的网络结构图如下图所示:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/4.png" alt=""></p>
+<p><strong>在前面的方法一样，为了加深理解，在介绍iBOT方法的时候，将其与DINO和BEIT做对比:</strong></p>
+<ul>
+<li>和DINO一样，一个batch的图像x，经过两种不同的增广方式得到$\mu$和$\nu$</li>
+<li>和DINO一样，$\mu$和$\nu$分别要胫骨student和teacher两个网络，不一样的是student中的图片要和BEIT中一样mask掉一部分</li>
+<li><strong>student和teacher网络的输出会有两部分，一部分是和DINO中类似的$h_{s}^{[CLS]}$，另一部分是和BEIT中类似的$h_{t}^{patch}$</strong></li>
+<li>训练的目标有两部分，<strong>一部分是和DINO类似</strong>，student的$\mu$和$\nu$经过image path，mask之后输出$\hat{\mu}_{s}^{[CLS]}$和$\hat{\nu}_{s}^{[CLS]}$， teacher类似输出$\mu_{s}^{[CLS]}$和$\nu_{s}^{[CLS]}$， 平均$\hat{\mu}_{s}^{[CLS]}$&amp;$\mu_{s}^{[CLS]}$和$\hat{\nu}_{s}^{[CLS]}$&amp;$\nu_{s}^{[CLS]}$的交叉熵损失。<strong>第二部分和BEIT类似</strong>，student的$\mu$和$\nu$经过image path，mask之后输出被mask的patch的特征$\hat{\mu}_{s}^{patch}$和$\hat{\nu}_{s}^{patch}$，teacher类似，和student对应的patch输出为$\mu_{s}^{patch}$和$\nu_{s}^{patch}$， 期望是student得到的visual token和teacher没有被mask部分的visual token一致。两部分loss的公式如下:<ul>
+<li><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/13.png" alt=""></li>
+<li><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/14.png" alt=""></li>
+</ul>
+</li>
+<li>和DINO中一样， teacher网络的参数通过student的参数做动量更新</li>
+<li><strong>和BEIT中不一样的是iBOT强调了MIM的学习，dVAE的部分也是参与训练的</strong>。论文题目中也特地提到了online tokenizer。</li>
+</ul>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p><strong>iBOT也算是对比学习的一种方法，因此比较重要的指标就是能否提取到比较好的图片表征</strong>，下面是和其他方法在imageNet分类任务上的对比，iBOT是优于DINO和其他方法的。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/5.png" alt=""></p>
+<h4 id="KNN-amp-linear-prob"><a href="#KNN-amp-linear-prob" class="headerlink" title="KNN&amp;linear prob"></a>KNN&amp;linear prob</h4><p>下面是用KNN和linear probing的imageNet上能取得的效果。<strong>KNN的实验是将网络backbone的特征冻结，模型的输出训练KNN进行分类</strong>；<strong>linear probing也是将backbone的特征冻结，加一个linear prob层，只训练linear prob完成分类。</strong><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/6.png" alt=""></p>
+<h4 id="finetune"><a href="#finetune" class="headerlink" title="finetune"></a>finetune</h4><p>fintune的效果，可以看做是用所有的数据finetune整个网络<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/7.png" alt=""></p>
+<h4 id="Semi-supervised-Learning"><a href="#Semi-supervised-Learning" class="headerlink" title="Semi-supervised Learning"></a>Semi-supervised Learning</h4><p>增加一个linear prob层用于分类，只使用1%或者10%的数据训练网络的backbone和linear prob分类器。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/8.png" alt=""></p>
+<h3 id="下游任务"><a href="#下游任务" class="headerlink" title="下游任务"></a>下游任务</h3><p>看完了分类后，下面是在其他的下游任务上的效果</p>
+<h4 id="目标检测和分割任务"><a href="#目标检测和分割任务" class="headerlink" title="目标检测和分割任务"></a>目标检测和分割任务</h4><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/9.png" alt=""></p>
+<h4 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h4><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/10.png" alt=""></p>
+<h3 id="MIM学习到模式的可视化"><a href="#MIM学习到模式的可视化" class="headerlink" title="MIM学习到模式的可视化"></a>MIM学习到模式的可视化</h3><p>和dVAE一样，展示了一些MIM所学习到的东西，<strong>作者发现iBOT对于局部语义有非常好的可视化效果</strong>，下图左边两张是车灯和狗的耳朵，聚类出的图片也基本属于这两个类别；右边两张展示的则是局部的纹理，聚类出的图片也是非常相似的。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/11.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>之前介绍的SAM中使用的image encoder是MAE，<strong>因为MAE能复原图像，表明MAE学习到了比较好的图像表征。</strong>对比学习的训练方式也能让模型学习到很好的图像表征，在DINO和在iBOT基础上优化的DINO2对特征做的可视化图片都能表明，对比学习的任务学出来的特征甚至比一些专门做分割训练的模型，具有更好的特征。<strong>iBOT将MIM和Contrastive Learning两种思想结合起来还是非常有意思的，而且论文中提到，student和teacher网络中MIM和Contrastive Learning的MLP层共享参数，能获得更好的效果，说明两个任务结合在一起是可以互相促进的。也许这也是图片领域foundation model的一种实现路径!</strong></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/iBOT/12.png" alt="DINO中attention可视化图"></p>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wechatpay.jpg" alt="冲弱 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/alipay.jpg" alt="冲弱 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>冲弱
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://oysz2016.github.io/post/e2effb33.html" title="一篇文章搞懂iBOT">https://oysz2016.github.io/post/e2effb33.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.zhihu.com/people/ou-yang-shi-zhuang/posts">
+          <span class="icon">
+            <i class="fab fa-zhihu"></i>
+          </span>
+
+          <span class="label">ZhiHu</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://juejin.cn/user/4353721775688920">
+          <span class="icon">
+            <i class="fa fa-spinner"></i>
+          </span>
+
+          <span class="label">JueJin</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" rel="tag"> <i class="fa fa-tag"></i> 大模型</a>
+              <a href="/tags/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/" rel="tag"> <i class="fa fa-tag"></i> 对比学习</a>
+              <a href="/tags/MIM/" rel="tag"> <i class="fa fa-tag"></i> MIM</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wpac-rating-container">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/70b40a92.html" rel="prev" title="一篇文章搞懂Segment Anything(SAM)">
+                  <i class="fa fa-chevron-left"></i> 一篇文章搞懂Segment Anything(SAM)
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冲弱</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>站点总字数:
+    </span>
+    <span title="站点总字数">141k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>站点阅读时长:
+    </span>
+    <span title="站点阅读时长">2:08</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5adaebc9009ff58b" async="async"></script>
+  </div>
+  <div id="site-runtime">
+  <span class="post-meta-item-icon">
+    <i class="fa fa-clock-o"></i>
+  </span>
+  <span id="runtime"></span>
+</div>
+
+<script language="javascript">
+  function isPC() {
+    var userAgentInfo = navigator.userAgent;
+    var agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    for (var i = 0; i < agents.length; i++) {
+      if (userAgentInfo.indexOf(agents[i]) > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function siteTime(openOnPC, start) {
+    window.setTimeout("siteTime(openOnPC, start)", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+      start = new Date("2018-04-23 09:00:00 +0800");
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var date = now.getDate();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    var diff = now - start;
+
+    var diffYears = Math.floor(diff / years);
+    var diffDays = Math.floor((diff / days) - diffYears * 365);
+    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+
+    if (openOnPC) {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + " years " + diffDays + " days " + diffHours + " hours " + diffMinutes + " mins " + diffSeconds + " secs";
+    } else {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + "y " + diffDays + "d " + diffHours + "h " + diffMinutes + "m " + diffSeconds + "s";
+    }
+  }
+
+  var showOnMobile = true;
+  var openOnPC = isPC();
+  var start = new Date();
+  siteTime(openOnPC, start);
+
+  if (!openOnPC && !showOnMobile) {
+    document.getElementById('site-runtime').style.display = 'none';
+  }
+</script>
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+  <script src="https://embed.widgetpack.com/widget.js" async></script>
+  <script class="next-config" data-name="rating" type="application/json">{"enable":true,"id":11277,"color":"f79533"}</script>
+  <script src="/js/third-party/rating.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/e2effb33.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>
