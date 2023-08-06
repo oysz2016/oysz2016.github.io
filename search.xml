@@ -3560,6 +3560,88 @@ a_3x+b_3y+c_3z=d_3\\
       </categories>
       <tags>
         <tag>CVPR2023</tag>
+        <tag>通用人工智能</tag>
+        <tag>多步骤推理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HuggingGPT——GPT与HuggingFace的火花</title>
+    <url>/post/17a33c92.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<p><strong>论文链接:</strong> <a href="https://arxiv.org/abs/2303.17580">https://arxiv.org/abs/2303.17580</a></p>
+<p><strong>代码链接:</strong> <a href="https://github.com/microsoft/JARVIS">https://github.com/microsoft/JARVIS</a></p>
+<p>上一篇介绍过<a href="https://mp.weixin.qq.com/s/VXe6CHI_29Rw8xaOjfbqOQ">Visual Programming</a>, HiggingGPT的思想和其非常类似，也是用大语言模型做任务的拆解，再调用HuggingFace上的模型完成任务。</p>
+<p><strong>因为太相似了，因此这篇文章主要介绍下HuggingGPT的实现方式，相对篇幅会短点，如果你对这类的文章感兴趣，可以看梳理的更详细的Visual Programming。</strong></p>
+<p>HuggingGPT论文中的提供的例子还是很惊艳的，面对更加问题更加复杂的问题都能解决。而且HuggingGPT不光局限于视觉这一个模态，而是将任务划分为了NLP、CV、audio、video四种场景，每个场景都可以调用HuggingFace上的模型解决</p>
+<p>HuggingGPT完成一个任务可以分为以下几步:</p>
+<ul>
+<li><strong>任务规划:</strong> 使用ChatGPT分析请求，将请求拆解成一系列下游任务</li>
+<li><strong>模型选择:</strong> 根据拆解出的任务，和HuggingFace上模型的描述，选择合适的模型</li>
+<li><strong>任务执行:</strong> 根据拆解的任务和选择的模型，调用模型并将结果返回和ChatGPT</li>
+<li><strong>生成答案:</strong> ChatGPT汇总各个模型的结果，返回最终的答案</li>
+</ul>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><h3 id="任务规划"><a href="#任务规划" class="headerlink" title="任务规划"></a>任务规划</h3><p>有两种方式，分别是<strong>Specification-based Instruction</strong>和<strong>Demonstration-based Parsing</strong></p>
+<p><strong>Specification-based Instruction:</strong> 提供规范的模版，期望LLM可以遵循一些特殊的规范(例如JSON)解析任务, 格式为<code>[&#123;&quot;task&quot;: task, &quot;id&quot;, task_id, &quot;dep&quot;: dependency_task_ids, &quot;args&quot;: &#123;&quot;text&quot;: text, &quot;image&quot;: URL, &quot;audio&quot;: URL, &quot;video&quot;: URL&#125;&#125;]</code></p>
+<ul>
+<li>task: 任务的类型，可以选择的类型如下:</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/HuggingGPT/1.png" alt=""></p>
+<ul>
+<li>id: 对任务唯一的标识</li>
+<li>dep: 依赖</li>
+<li>augs: 参数</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/HuggingGPT/2.png" alt=""></p>
+<p><strong>Demonstration-based Parsing:</strong> 为了让GPT更好的理解任务规划的意图,可以在prompt中提供一些演示。例如希望做什么样的任务，这个任务期望的任务规划结果</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/HuggingGPT/3.png" alt=""></p>
+<h3 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h3><p>完成任务规划后，需要选择最优的模型。HuggingGPT使用的是Hugging Face上的模型描述。让GPT选择最贴近任务，且效果最好的模型。因为文本长度的限制，不能把所有模型描述都作为prompt，需要根据先任务类型做筛选，再根据下载量排序，选择top-K的模型id和描述作为候选.<br>输入的prompt是提供一个模型列表,要求从中选择出最好的模型。输出是模型的id及选择的原因<code>&#123;&quot;id&quot;: &quot;id&quot;, &quot;reason&quot;: &quot;your detail reason for the choice&quot;&#125;</code></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/HuggingGPT/4.png" alt=""></p>
+<h3 id="任务执行"><a href="#任务执行" class="headerlink" title="任务执行"></a>任务执行</h3><p>完成前两步后，这一步就是具体的模型执行。其中一个挑战是不同任务之间可能会存在依赖关系,解决方法是使用特殊的符号<code>&lt;resource&gt;</code>，代表着依赖关系，例如<code>&lt;resource&gt;-task_id</code>代表依赖task_id的任务。HuggingGPT在执行的时候会将该符号替换为先决任务。在执行的过程中，能保证先执行前置任务.</p>
+<h3 id="生成答案"><a href="#生成答案" class="headerlink" title="生成答案"></a>生成答案</h3><p>Hugging GPT汇总之前三个步骤的信息，生成最终的答案.Prompt中也要求，直截了当的回答问题，并以第一人称的视角展示分析和模型的推理结果，如果包含输出文件的路径，需要补充出来，且如果回答不了问题，也需要告知</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/HuggingGPT/5.png" alt=""></p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="定性结果"><a href="#定性结果" class="headerlink" title="定性结果"></a>定性结果</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/HuggingGPT/6.png" alt=""></p>
+<p>任务: 生成一张女孩在读书的图像，且女孩的姿势和示例中的男孩相同，用你的声音描述生成的新图像</p>
+<p>任务规划: </p>
+<ul>
+<li>1: 检测姿态</li>
+<li>2: 根据姿态和文本”a reading girl”生成图像, 依赖任务1</li>
+<li>3: 图像分类，作为描述图片的一部分信息, 依赖任务2</li>
+<li>4: 目标检测, 获取物体框的类别和坐标，依赖任务2</li>
+<li>5: 图生文, 作为描述图片的一部分信息, 依赖任务2</li>
+<li>6: 文生音, 结合所有信息，及完成任务的过程总结输出，并转为音频, 依赖任务5</li>
+</ul>
+<p>模型选择：按task类型在Hugging Face选择模型</p>
+<p>任务执行&amp;回答问题</p>
+<h3 id="定性评估"><a href="#定性评估" class="headerlink" title="定性评估"></a>定性评估</h3><p>因为任务规划是整个方法的第一个模块，也决定了整个pipeline的效果，因此也可以看作是最重要的模块。主要分为三种类型:</p>
+<ul>
+<li><strong>Single Task:</strong> 问题的执行步骤只能拆分成一个任务，当标注的任务名称和预测的完全一致时，认为是正确。 评测精度/召回/F1</li>
+<li><strong>Sequential Task:</strong> 问题的执行步骤能被拆分成一系列顺序执行的任务。评测精度/召回/F1的编辑距离</li>
+<li><strong>Graph Task:</strong> 问题的执行步骤能被拆分成有向无环图组成的任务，因为图中有多种拓扑结构，仅使用F1不能反映LLM任务规划的能力，因为使用的是效果更好的LLM模型——GPT4评估所使用的LLM模型任务规划的好坏。</li>
+</ul>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>使用GPT-4生成规划任务的伪标签，也邀请一些专家标注了一些复杂的请求。对比了Alpaca-7b、Vicuna-7b和GPT3.5三个模型的好坏</p>
+<p>下面对比的是用GPT-4生成伪标签的数据集上，三个模型的评测效果。GPT3.5在基本所有任务上都优于另外两个模型。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/HuggingGPT/7.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/HuggingGPT/8.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/HuggingGPT/9.png" alt=""></p>
+<p>下面对比的是在人工生成的模型上，Alpaca-7b、Vicuna-7b、GPT3.5和GPT-4模型的效果对比, 前三个模型的表现和用GPT-4生成伪标签的相似，并且GPT-4的效果大幅领先。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/HuggingGPT/10.png" alt=""></p>
+<h2 id="存在的一些问题"><a href="#存在的一些问题" class="headerlink" title="存在的一些问题"></a>存在的一些问题</h2><ul>
+<li>严重依赖LLM的能力，因此提高LLM任务规划的能力非常重要</li>
+<li>整个系统的效率不高，整个系统高度依赖LLM，在解决一个较复杂问题的流程中会多次调用LLM，影响耗时。</li>
+<li>Token长度的限制，在HuggingGPT中使用了一些规则让LLM对于判断的模型描述大大减少。但仍然存在可能超出长度限制的问题，因此总结模型描述也是一个问题。(LLM也具有总结一段文本的能力，应该也可以用LLM先总结描述，再执行判断)</li>
+<li>整个系统效果不太稳定，因此LLM的输出结果是不可控的</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>HuggingGPT在该方法不足的部分提到了关于效率的问题，依赖LLM模型确实会带来耗时的增加。人类在思考的时候也会有类似的问题，《思考的快与慢》的序中有这样一则点评描写两种思维系统在所花时间上的差异。</p>
+<blockquote>
+<p>生活就像点菜，饥饿时菜会点得特别多，但吃一阵就会意识到浪费；如果慢条斯理地盘算怎么点菜，别人已经要吃完了。这就是决策的复杂性。</p>
+</blockquote>
+<p>有的场景更适合系统一，而有的场景更适合系统二。这两种解决问题的方式都很有价值, 而且这两篇文章类似系统二的思考方式可能是现有条件下实现通用智能最好的方式</p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>通用人工智能</tag>
+        <tag>多步骤推理</tag>
       </tags>
   </entry>
 </search>
