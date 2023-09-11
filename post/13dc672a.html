@@ -23,28 +23,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="因果图的思想优化长尾问题">
-<meta property="og:url" content="https://oysz2016.github.io/post/3a13345e.html">
+<meta property="og:title" content="ALBEF:Align before Fuse">
+<meta property="og:url" content="https://oysz2016.github.io/post/13dc672a.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/9.png">
-<meta property="article:published_time" content="2023-01-01T04:00:43.755Z">
-<meta property="article:modified_time" content="2023-01-01T04:21:49.320Z">
+<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/1.png">
+<meta property="article:published_time" content="2023-09-11T02:33:27.961Z">
+<meta property="article:modified_time" content="2023-09-11T12:40:50.662Z">
 <meta property="article:author" content="冲弱">
-<meta property="article:tag" content="长尾优化">
-<meta property="article:tag" content="因果图">
+<meta property="article:tag" content="CVPR2023">
+<meta property="article:tag" content="通用人工智能">
+<meta property="article:tag" content="多步骤推理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/9.png">
+<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/1.png">
 
 
-<link rel="canonical" href="https://oysz2016.github.io/post/3a13345e.html">
+<link rel="canonical" href="https://oysz2016.github.io/post/13dc672a.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/3a13345e.html","path":"post/3a13345e.html","title":"因果图的思想优化长尾问题"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/13dc672a.html","path":"post/13dc672a.html","title":"ALBEF:Align before Fuse"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>因果图的思想优化长尾问题 | 冲弱's Blog</title>
+<title>ALBEF:Align before Fuse | 冲弱's Blog</title>
   
 
 
@@ -153,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">背景知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%A0%E6%9E%9C%E5%85%B3%E7%B3%BB"><span class="nav-number">1.1.</span> <span class="nav-text">因果关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text">因果推断中的变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Propensity-Score"><span class="nav-number">1.3.</span> <span class="nav-text">Propensity Score</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%94%E8%80%85%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">笔者总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALBEF"><span class="nav-number">2.</span> <span class="nav-text">ALBEF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Architecture"><span class="nav-number">2.1.</span> <span class="nav-text">Model Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pre-training-Objectives"><span class="nav-number">2.2.</span> <span class="nav-text">Pre-training Objectives</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E9%87%8F%E8%92%B8%E9%A6%8F"><span class="nav-number">2.3.</span> <span class="nav-text">动量蒸馏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%84%E6%B5%8B%E5%9C%BA%E6%99%AF"><span class="nav-number">3.1.</span> <span class="nav-text">评测场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluation-on-the-Proposed-Methods"><span class="nav-number">3.2.</span> <span class="nav-text">Evaluation on the Proposed Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluation-on-Image-Text-Retrieval"><span class="nav-number">3.3.</span> <span class="nav-text">Evaluation on Image-Text Retrieval</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluation-on-VQA-NLVR-and-VE"><span class="nav-number">3.4.</span> <span class="nav-text">Evaluation on VQA, NLVR, and VE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weakly-supervised-Visual-Grounding"><span class="nav-number">3.5.</span> <span class="nav-text">Weakly-supervised Visual Grounding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ablation-Study"><span class="nav-number">3.6.</span> <span class="nav-text">Ablation Study</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -234,12 +235,12 @@
   <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
     
     <div class="post-gallery-image">
-      <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/9.png" itemprop="contentUrl">
+      <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/1.png" itemprop="contentUrl">
     </div>
     </div>
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/3a13345e.html">
+    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/13dc672a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
@@ -252,7 +253,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          因果图的思想优化长尾问题
+          ALBEF:Align before Fuse
         </h1>
 
         <div class="post-meta-container">
@@ -264,7 +265,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-01-01 12:00:43 / 修改时间：12:21:49" itemprop="dateCreated datePublished" datetime="2023-01-01T12:00:43+08:00">2023-01-01</time>
+      <time title="创建时间：2023-09-11 10:33:27 / 修改时间：20:40:50" itemprop="dateCreated datePublished" datetime="2023-09-11T10:33:27+08:00">2023-09-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -292,8 +293,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/post/3a13345e.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/3a13345e.html" itemprop="commentCount"></span>
+    <a title="waline" href="/post/13dc672a.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/13dc672a.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -304,14 +305,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.8k</span>
+      <span>2.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -322,45 +323,69 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><p class="description"></p><br><span id="more"></span></p>
-<p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2009.12991">https://arxiv.org/abs/2009.12991</a><br><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/KaihuaTang/Long-Tailed-Recognition.pytorch">https://github.com/KaihuaTang/Long-Tailed-Recognition.pytorch</a><br>这篇文章和之前有介绍过的一篇场景图生成的文章<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2002.11949">Unbiased Scene Graph Generation from Biased Training</a>思想比较类似, 作者也是同一个团队。贴一个<a href="https://oysz2016.github.io/post/b4822109.html">传送门</a>，方便感兴趣的同学浏览。<br>之所以说思想类似，是因为这两篇文章不仅都用来解决长尾问题，而且都用到了<strong>因果图</strong>的的思想。在看这篇论文的时候，有些内容读起来还是很难理解的，查阅了一些<strong>统计学</strong>和<strong>因果关系</strong>的相关概念才觉得清晰了些。这些理论也非常有意思，看完后我觉得在阅读这篇文章前还是很有必要学习的。在写这篇blog的时候，我也尽量把需要用到的背景知识整理出来，方便理解。</p>
-<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><h3 id="因果关系"><a href="#因果关系" class="headerlink" title="因果关系"></a>因果关系</h3><p>关于因果关系，在<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/111306353">https://zhuanlan.zhihu.com/p/111306353</a>中有详细的背景知识。为了方便阅读和加深自己的理解。我在这里精简的引用下，更详细的内容可以去阅读大佬的知乎文章。</p>
+        <p><p class="description"></p><br><span id="more"></span><br>本文首发于公众号“<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/QhDyTSgs6-4asN4XFY1LYA">CVTALK</a>”。</p>
+<p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2107.07651">https://arxiv.org/abs/2107.07651</a></p>
+<p><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/salesforce/ALBEF">https://github.com/salesforce/ALBEF</a></p>
+<p><strong>作者Blog链接:</strong><a target="_blank" rel="noopener" href="https://blog.salesforceairesearch.com/align-before-fuse/">https://blog.salesforceairesearch.com/align-before-fuse/</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>语言和视觉是人类感知世界的两个最基本的渠道，因此多模态的算法里经常会将语言和视觉的模态结合。这一类方法被称为<strong>VLP(Vision-and-Language Pre-training)</strong>。然而现有的方法主要有以下局限.</p>
+<p>之前多模态的方法大致可以分为两类，一类例如VL-Bert等，<strong>重点在于使用transformer作为encoder获取图像和文本交互的特征</strong>，由于视觉文本特征在transformer之前并没有对齐，因此在transformer任务中获取交互特征很具有挑战。为了让模型更容易学习交互特征，这类方法往往需要高分辨率的图像作为输入，并且需要预训练目标检测器(在<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2102.03334">ViLT</a>中尝试移除目标检测器，但效果有明显下降)。<strong>这类方法在需要结合视觉和文本的推理任务上效果较好，例如NLVR和VQA等任务中。</strong><br>第二种方法例如CLIP和ALIGN，<strong>重点在于分别学习图像和文本模型的任务，做特征对齐，使用对比学习让两个模态的特征都具有其他模态的信息</strong>。<strong>这类方法在图像-文本的检索任务上表现良好，但由于相比第一种方法缺乏图像和文本的交互特征，在更复杂的图像-文本交互任务上表现一般。</strong></p>
+<p>在作者的<a target="_blank" rel="noopener" href="https://blog.salesforceairesearch.com/align-before-fuse/">blog</a>中提到了之前方法的另外一点局限性:</p>
 <blockquote>
-<p>《The Book of Why》中将因果理论的探索类比成一个向上的阶梯，包含三个层级：Seeing，Doing和Imaging。<br><strong>第一层级: Association 关联</strong>，对应的是大多数机器学习算法和动物。该层级强调基于被动的观察（passive observation）来预测，通过观察来寻找规律，并非真正的因果。<strong>其本质就是条件概率P(Y|X)，在观察到X的条件下Y发生的概率，也是传统机器学习里被广泛应用的。</strong><br><strong>第二层级：Intervention干预</strong>, 干预指的是消除因果关系中的混杂影响，推导出真正的因果关系，如随机对照试验。<br><strong>第三层级：Counterfactual 反事实</strong>，counterfactual和干预intervention区分的关键在于“hindsight”(事后来看)，即反事实强调在对结果已知观测的基础上再对反事实的问题进行解答。</p>
-<h3 id="因果推断中的变量"><a href="#因果推断中的变量" class="headerlink" title="因果推断中的变量"></a>因果推断中的变量</h3><p>因果推断中有一些专业术语用来表示在因果中不同变量的角色，主要分为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%B9%B2%E6%93%BE%E5%9B%A0%E7%B4%A0">混淆变量(confounder)</a>，<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E4%BB%8B%E8%AE%8A%E9%A0%85">中介变项(mediator)</a>，<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%B0%8D%E6%92%9E%E5%9B%A0%E5%AD%90">对撞因子(collider)</a><br><strong>混淆变量</strong>比较通俗的例子是老年人因为退休了会更有时间晨炼，但老年人却比年轻人更容易得癌症，如果不控制年龄的分布，就会得到晨炼的人容易得癌症。这里的年龄就是混淆变量，需要被控制<br><strong>中介效应</strong>指的是从一个变量到另一个变量，中间会有些其他的变量带来影响。比如吃药能带来疾病的好转，可能是药本身起了作用，也可能是心理安慰。比较极端的例子是是不是就会出现用面粉做假药的新闻，对于患者而言，药本身可能没起到作用，但可能由于吃了“药”，觉得自己马上会好，比较积极的心态带来了身体的好转。<br><strong>对撞因子</strong>指的是同时被两个以上变量影响的因素，而这些影响对撞因子的变量之间不见得有因果关系。例如在NBA球员中，会发现身高比较高的人得分率并没有很高，这是因为身高矮的人能进NBA必然是用其他优势弥补了劣势。<strong>身高</strong>和<strong>得分率</strong>之间并没有明显的因果关系，而他们都决定能不能<strong>进NBA</strong>。仔细思考就会发现对撞因子的例子很容易造成幸存者偏差。</p>
-<h3 id="Propensity-Score"><a href="#Propensity-Score" class="headerlink" title="Propensity Score"></a>Propensity Score</h3><p><strong>倾向评分匹配(Propensity Score Matching)</strong> 是一种统计学的方法，指的是在<strong>观察研究中</strong>，由于种种原因，<strong>数据偏差（bias）</strong> 和 <strong>混杂变量（confounding variable）</strong> 较多，<strong>倾向评分匹配的方法正是为了减少这些偏差和混杂变量的影响，以便对实验组和对照组进行更合理的比较。</strong><br>为了能较好说明这个方法的价值，可以用理科里学的随机对照实验(Randomized Controlled Trial data)做对比。随机对照试验在样本量足够的情况下是很科学的评判变量对结果影响的实验方法，但很多时候是不符合科研伦理的，比如要研究吸烟是否有害健康，如果招收大量人员，然后随机分配到吸烟组和不吸烟组，这种实验设计不太容易实现，而且也存在危害测试人员健康的可能。而这个研究课题其实很容易通过<strong>观察的研究数据</strong>进行实验，面对观察的研究数据，如果不加调整，很容易获得错误的结论，比如拿吸烟组健康状况最好的一些人和不吸烟组健康状况最不好的一些人作对比，得出吸烟对于健康并无负面影响的结论。从统计学角度分析原因，这是因为观察研究并未采用随机分组的方法，无法基于大数定理的作用，在实验组和对照组之间削弱混杂变量的影响，很容易产生系统性的偏差。<strong>倾向评分匹配</strong>就是用来解决这个问题，消除组别之间的干扰因素。</p>
-<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p><strong>Re-Balanced Training:</strong> re-blance的方法主要有两种，分别是re-sampling和re-weighting。<br><strong>Hard Example Mining:</strong> 不关注于每个类别样本数量的先验分布，而是关注于难样本用于缓解长尾问题，代表方法是focal loss<br><strong>Transfer Learning/Two-Stage Approach:</strong> 作者总结的这类工作的特点是将头部类的knowledge转移到尾部类，用以改善长尾问题。其中比较有代表性的是<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1910.09217">Decoupling</a>算法，和受Decoupling启发的<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1912.02413">BBN</a>算法。BBN在之前的<a href="https://oysz2016.github.io/post/b4822109.html">关于长尾问题的文章</a>中也有过总结。<br><strong>Causal Inference:</strong> 因果图推理作者主要列举了一些这方面的著作，当然也提到了自己在场景图生成中的文章</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>作者将视角聚焦于梯度优化器中常用的track——<strong>Momentum</strong>。在讲解作者是怎么做的之前，让我们回顾下Momentum。Momentum的思想是累积一个历史的梯度信息用来加速优化器，好处主要有以下两点:</p>
+<p>预训练的数据主要来源于互联网，数据来源并不干净。MLM等任务容易对噪声过拟合，从而影响到最终的特征。</p>
+</blockquote>
+<h2 id="ALBEF"><a href="#ALBEF" class="headerlink" title="ALBEF"></a>ALBEF</h2><p>ALBEF的名字来源于<u><strong>AL</strong></u>ign the image and text representations <u><strong>BE</strong></u>fore <u><strong>F</strong></u>using。论文的标题中也强调了Align before Fuse。区别于其他多模态方法，这篇文章提出在融合视觉-文本两个模态的特征之前，先做不同模态之间特征的对齐。出发点结合了上文提到的两类VLP方法的优点，并且减缓了脏数据对预训练的影响。</p>
+<p>ALBEF的网络结构如下图所示:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/1.png" alt=""></p>
+<p>ALBEF的结构并不复杂，弄清楚几个模块和loss也就明白其中的奥妙了。ALBEF包含3个encoder、3个loss和动量蒸馏模块。</p>
+<h3 id="Model-Architecture"><a href="#Model-Architecture" class="headerlink" title="Model Architecture"></a>Model Architecture</h3><p>encoder部分如下:</p>
 <ul>
-<li>每次梯度更新的时候，不仅考虑了当前梯度的方向，同时也考虑了之前更新的方向，在梯度优化时，不会抖动的那么随意</li>
-<li>Momentum相当于给梯度优化的方向施加了一个惯性，参数优化时容易突破局部最优解，更可能找到全局最优解.</li>
+<li>image encoder: 12层的ViT-B/16</li>
+<li>text encoder: bert中的前6层</li>
+<li>multimodal encoder: Bert中的后6层，因为不同特征间需要attention，相比另外两个encoder多了cross attention的结构</li>
 </ul>
-</blockquote>
-<p><strong>上面是一些比较定性的分析，关于Momentum为什么能work?</strong><a target="_blank" rel="noopener" href="https://distill.pub/2017/momentum/">https://distill.pub/2017/momentum/</a>做了非常好的可视化，可以直观的感受到Momentum为梯度优化带来的改变<br>下面的两张图分别是没有Momentum和使用合理参数设置Momentum对模型优化带来的差异，可以看到Momentum能提高网络训练的稳定性，并且同样的迭代次数更容易收敛到全局最优。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/1.png" alt=""><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/2.png" alt=""><br>回归正题，对于长尾分布的数据集，正是由于Momentum会受之前梯度信息的影响，Momentum所产生的惯性，会带来马太效应，即模型的优化方向会倾向于让模型对头部类的效果更好。<br>作者将Momentum对网络的作用用因果图抽象了出来，如figure 1(a)所示<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/3.png" alt=""><br>上图中，<strong>X代表backbone提取到的特征</strong>，<strong>M代表优化器中的动量</strong>，<strong>Y代表预测结果</strong>，<strong>D代表动量所产生的惯性，由于是长尾数据集，这里的D特指对头部类优化的惯性，而在balanced的数据集中，D对每个类别的贡献是一样的</strong>。图中的箭头表示彼此的影响，例如，X-&gt;Y以为着，Y的得出收到X的影响。从因果图中的关系可以看出<strong>节点M和节点D分别代表混淆变量(confounder)和中介效应(mediator)</strong>。<br><strong>M-&gt;X</strong>代表的是特征图X的是在动量M的影响下训练的,figure 1(b)中可视化了动量M对不同类别的影响，可以发现头部类在动量中占比较大。<br>知道了混淆变量和中介效应之后，需要做的就是<strong>消除这些变量对模型带来的偏见</strong>。和<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2002.11949">Unbiased Scene Graph Generation from Biased Training</a>中类似，接下来需要构建TDE(Total Direct Effect)用于消除偏见，公式如下:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/10_4.png" alt=""><br>和公式对应的因果图如Figure 3<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/4.png" alt=""><br>在计算TDE时需要抹除掉混淆变量M对X的影响，但没有办法得到M的分布。在<a target="_blank" rel="noopener" href="http://bayes.cs.ucla.edu/jsm-july2012-pdf.pdf">Causal inference in statistics: A primer</a>的书中有提到<strong>Inverse Probability Weighting</strong>的公式，这个公式给出了一种思路，即没有办法得到M的分布时，可以看M和X有没有一一对应关系。在这个方法里，M和X确实是有对应关系的。所以可以将对X的采样看成是对M的近似<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/5.png" alt=""><br>这里将weights和features的通道/维度划分成k组，可以认为是做了k倍的细粒度采样。这样的好处是通过multi-head多重采样能更好的近似。<br>M能够做近似之后，还需要考虑 <strong>倾向评分(Propensity Score)</strong> 的影响，在这个问题中需要对所有类别做归一化的统一分布，也就是考虑每个类别的模长。下面就是得到的Propensity Score的公式, 其中第一项是类别感知的, 其中第一项是class-specific，第二项是class-agnostic。需要第二项的原因是因为从Figure 1(b)中可以看出x也具有bias。</p>
-<script type="math/tex; mode=display">g(i, x^k; w^k_i)=||x^k|| \cdot ||w_i^k|| + \gamma||x^k||</script><p>则公式2中的第一项$P (Y = i|do(X = x))$可以表示为<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/6.png" alt=""><br>公式2中的第二项和第一项的区别在于使用了空数据$x_0$替代x。而其他项保持不变，这一部分是构建反事实的因果图，相当于让网络仅通过M和D得到Y，而x没起到作用。可以把这部分看作是偏差。<br>最终的TDE如下式：<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/7.png" alt=""></p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>和其他方法的对比如下:<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/8.png" alt=""><br>关于本文方法和其他方法的差异，可以用下图表示。</p>
+<h3 id="Pre-training-Objectives"><a href="#Pre-training-Objectives" class="headerlink" title="Pre-training Objectives"></a>Pre-training Objectives</h3><p>训练目标主要包含三个预训练任务:</p>
 <ul>
-<li>在baseline的数据集上有问题是由于训练数据是长尾的，而测试数据是balanced的，存在<strong>分布不匹配</strong>。</li>
-<li><strong>One-stage Re-balancing</strong>的方法本质是<strong>改变了训练数据的分布，这种方式会带来错误的模型建模</strong>；</li>
-<li><strong>Two-stage Re-balancing</strong>的方法是第一阶段先通过原始的数据对模型建模，第二阶段再优化分类器，<strong>对分类器边界做调整</strong>，所以能work</li>
-<li>而本文的方法是在测试的时候将分布做了移动<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Long-Tailed%20Classification%20by%20Keeping%20the%20Good%20and%20Removing%20the%20Bad%20Momentum%20Causal%20Effect/9.png" alt=""><br><strong>优势:</strong></li>
-<li><strong>不需要复杂的stage训练方式</strong></li>
-<li><strong>可适用于多个任务，如图片分类，检测之类</strong></li>
-<li><strong>不需要依赖数据的分布, 感觉这个优势对于online的训练比较有意义, 因为其他的训练方式其实都可以获取到数据的数据分布。</strong><h2 id="笔者总结"><a href="#笔者总结" class="headerlink" title="笔者总结"></a>笔者总结</h2>要使用作者提供的 <a target="_blank" rel="noopener" href="https://github.com/KaihuaTang/Long-Tailed-Recognition.pytorch">https://github.com/KaihuaTang/Long-Tailed-Recognition.pytorch</a> 代码中的<strong>CausalNormClassifier</strong>总结起来有几个要点, 为方便理解，下面要点中的超链接会索引到具体的代码:</li>
-<li>训练的时候需要用<a target="_blank" rel="noopener" href="https://github.com/KaihuaTang/Long-Tailed-Recognition.pytorch/blob/9726439a702614e99a02e2ba321ec4e56491239e/classification/models/CausalNormClassifier.py#L54">multi-head normalized classifier</a></li>
-<li>训练时需要记录<a target="_blank" rel="noopener" href="https://github.com/KaihuaTang/Long-Tailed-Recognition.pytorch/blob/9726439a702614e99a02e2ba321ec4e56491239e/classification/run_networks.py#L215">移动的平均特征</a></li>
-<li>测试的时候需要用<strong>counterfactual TDE inference</strong>，即<a target="_blank" rel="noopener" href="https://github.com/KaihuaTang/Long-Tailed-Recognition.pytorch/blob/9726439a702614e99a02e2ba321ec4e56491239e/classification/models/CausalNormClassifier.py#L43">去除具有头部类倾向的部分</a><br>让我们回顾上面的图7，在作者<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/259569655">博客</a>的评论部分，有非常简洁的总结, 在这里引用下：<blockquote>
-<ol>
-<li>decouple两阶段都是在train过程中，一阶段长尾分布下训练representation + classifier；二阶段直接通过暴力resample来调整classifier。</li>
-<li>de-confound也可以看做两阶段，一阶段在train过程中，通过重采样和normalized的措施来训练representation + classifier；二阶段放在了test过程中，用一阶段中统计的bias来缓解测试中的class bias，得到TDE。<br>这两篇文章都很巧妙的使用了因果图。虽然很多trick可解释性确实不太强，不过细细思考起来，一些算法流程对整体算法的影响还是比较make sence。私以为在如果算法框架中有些trick能带来收益的同时，也会让带来一些问题负面的影响，就很适合用因果图的思想消除负面影响，不过这确实很考验对于问题的抽象能力和对因果图的理解<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号!</font></strong></p>
-
-</blockquote>
-<img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="enter description here"></li>
-</ol>
-</blockquote>
-</li>
+<li>image-Text contrastive learning(ITC): <strong>目标是在特征融合前对齐视觉和文本的特征以获取更好的单模态特征。</strong>受启发于moco，维护了两个队列分别存储动量编码器中的图像和文本特征。使用infoNCE loss分别计算image-to-text和text-to-image的损失。具体可以看下代码</li>
 </ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/2.png" alt="维护batch size大小的队列"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/3.png" alt="计算encoder的特征和momentum encoder特征，infoNCE loss，更新队列"></p>
+<ul>
+<li>Image-Text Matching(ITM): <strong>预测图像和文本是否匹配。</strong>一般的ITM任务相对简单，loss能降到非常低，ALBEF为了让这项预训练任务变得更有意义，挖掘了困难的负样本。具体做法是在ITC任务中infoNCE loss有相似度的信息，选取和相似度最高，但不匹配的样本作为负样本。损失函数是交叉熵损失。</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/4.png" alt=""></p>
+<ul>
+<li>Masked Language Modeling(MLM): <strong>训练语言模型。</strong>随机将15%的文本mask，利用图像和文本的上下文还原mask的区域，使用交叉熵损失。为了避免脏数据的影响，使用的是伪标签。具体而言存在teacher模型，从student模型采用指数滑动平均(Exponential Moving Average, EMA)的方式更新其参数，而student模型的学习标签是teacher模型预测的embedding。</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/5.png" alt="MLM任务loss"></p>
+<h3 id="动量蒸馏"><a href="#动量蒸馏" class="headerlink" title="动量蒸馏"></a>动量蒸馏</h3><p>由于预训练的图像文本对基本都来自互联网，存在脏数据。一般表现在文本中包含图像中没有的信息，或者图像中包含文本没有的信息。对于MLM和ITC任务会有较大的影响。<strong>因此受启发于moco，使用动量更新的方式构建teacher网络，利用teacher网络产生的伪标签作为监督信号。</strong>具体的实现方式可以参考上面ITC和MLM的代码。</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="评测场景"><a href="#评测场景" class="headerlink" title="评测场景"></a>评测场景</h3><p>预训练好的模型应用在了5个场景，用于评估效果:</p>
+<ul>
+<li><strong>Image-Text Retrieval:</strong> 包含两个任务，图像到文本的检索和文本到图像的检索</li>
+<li><strong>Visual Entailment:</strong> 视觉推理任务，预测图片和文本的关系是包含、中立还是相反的。</li>
+<li><strong>Visual Question Answering:</strong> 提供图片和问题，预测答案</li>
+<li><strong>Natural Language for Visual Reasoning:</strong> 预测提供的文本是否描述了图片</li>
+<li><strong>Visual Grounding:</strong> 在图像中定位出文本中描述的物体的坐标</li>
+</ul>
+<h3 id="Evaluation-on-the-Proposed-Methods"><a href="#Evaluation-on-the-Proposed-Methods" class="headerlink" title="Evaluation on the Proposed Methods"></a>Evaluation on the Proposed Methods</h3><p>展示了ALBEF使用不同模块在下游任务上的效果</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/6.png" alt=""></p>
+<h3 id="Evaluation-on-Image-Text-Retrieval"><a href="#Evaluation-on-Image-Text-Retrieval" class="headerlink" title="Evaluation on Image-Text Retrieval"></a>Evaluation on Image-Text Retrieval</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/7.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/8.png" alt=""><br>上面的图分别展示了微调和zero-shot在图文检索任务和之前方法的对比</p>
+<h3 id="Evaluation-on-VQA-NLVR-and-VE"><a href="#Evaluation-on-VQA-NLVR-and-VE" class="headerlink" title="Evaluation on VQA, NLVR, and VE"></a>Evaluation on VQA, NLVR, and VE</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/9.png" alt=""></p>
+<p><strong>使用4M的图片做预训练取得了比之前模型更好的效果，并且数据集增大到14M性能普遍有进一步提升。并且由于没有使用检测器，并且输入图片分辨率更低，推理耗时比VILLA减少10倍</strong></p>
+<h3 id="Weakly-supervised-Visual-Grounding"><a href="#Weakly-supervised-Visual-Grounding" class="headerlink" title="Weakly-supervised Visual Grounding"></a>Weakly-supervised Visual Grounding</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/10.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/11.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/12.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/13.png" alt=""></p>
+<p>在不同任务上可视化cross attention的特征图，和文本描述的区域匹配</p>
+<h3 id="Ablation-Study"><a href="#Ablation-Study" class="headerlink" title="Ablation Study"></a>Ablation Study</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/14.png" alt=""><br>研究了在文本-图像检索任务上困难负样本在图文检索任务上的影响</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/15.png" alt=""><br>在NLVR任务中研究了文本分配(text assignment, TA任务)和不同特征共享方式的影响，细节配置可以看文章的第五部分(Downstream V+L Tasks)</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>ALBEF比之前多模态的方法效果好有几个关键点:</p>
+<ul>
+<li><strong>在融合不同模态特征前，做了特征的对齐</strong></li>
+<li><strong>使用momentum distillation避免了噪声数据在预训练的影响</strong></li>
+<li><strong>区别于之前ITC任务使用了难负例</strong></li>
+</ul>
+<p><strong>并且由于没有目标检测器，下游任务使用时使用更小的图片输入，耗时会极大的缩小</strong></p>
 
     </div>
 
@@ -407,7 +432,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://oysz2016.github.io/post/3a13345e.html" title="因果图的思想优化长尾问题">https://oysz2016.github.io/post/3a13345e.html</a>
+      <a href="https://oysz2016.github.io/post/13dc672a.html" title="ALBEF:Align before Fuse">https://oysz2016.github.io/post/13dc672a.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -453,8 +478,9 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E9%95%BF%E5%B0%BE%E4%BC%98%E5%8C%96/" rel="tag"> <i class="fa fa-tag"></i> 长尾优化</a>
-              <a href="/tags/%E5%9B%A0%E6%9E%9C%E5%9B%BE/" rel="tag"> <i class="fa fa-tag"></i> 因果图</a>
+              <a href="/tags/CVPR2023/" rel="tag"> <i class="fa fa-tag"></i> CVPR2023</a>
+              <a href="/tags/%E9%80%9A%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag"> <i class="fa fa-tag"></i> 通用人工智能</a>
+              <a href="/tags/%E5%A4%9A%E6%AD%A5%E9%AA%A4%E6%8E%A8%E7%90%86/" rel="tag"> <i class="fa fa-tag"></i> 多步骤推理</a>
           </div>
 
         
@@ -466,14 +492,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/post/d10097db.html" rel="prev" title="扩散模型汇总——从DDPM到DALLE2">
-                  <i class="fa fa-chevron-left"></i> 扩散模型汇总——从DDPM到DALLE2
+                <a href="/post/17a33c92.html" rel="prev" title="HuggingGPT——GPT与HuggingFace的火花">
+                  <i class="fa fa-chevron-left"></i> HuggingGPT——GPT与HuggingFace的火花
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/post/5f5a1d32.html" rel="next" title="决策树汇总——ID3、C4.5、CART">
-                  决策树汇总——ID3、C4.5、CART <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -633,7 +656,7 @@
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/3a13345e.html"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/13dc672a.html"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {

@@ -3644,4 +3644,80 @@ a_3x+b_3y+c_3z=d_3\\
         <tag>多步骤推理</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ALBEF:Align before Fuse</title>
+    <url>/post/13dc672a.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span><br>本文首发于公众号“<a href="https://mp.weixin.qq.com/s/QhDyTSgs6-4asN4XFY1LYA">CVTALK</a>”。</p>
+<p><strong>论文链接:</strong> <a href="https://arxiv.org/abs/2107.07651">https://arxiv.org/abs/2107.07651</a></p>
+<p><strong>代码链接:</strong><a href="https://github.com/salesforce/ALBEF">https://github.com/salesforce/ALBEF</a></p>
+<p><strong>作者Blog链接:</strong><a href="https://blog.salesforceairesearch.com/align-before-fuse/">https://blog.salesforceairesearch.com/align-before-fuse/</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>语言和视觉是人类感知世界的两个最基本的渠道，因此多模态的算法里经常会将语言和视觉的模态结合。这一类方法被称为<strong>VLP(Vision-and-Language Pre-training)</strong>。然而现有的方法主要有以下局限.</p>
+<p>之前多模态的方法大致可以分为两类，一类例如VL-Bert等，<strong>重点在于使用transformer作为encoder获取图像和文本交互的特征</strong>，由于视觉文本特征在transformer之前并没有对齐，因此在transformer任务中获取交互特征很具有挑战。为了让模型更容易学习交互特征，这类方法往往需要高分辨率的图像作为输入，并且需要预训练目标检测器(在<a href="https://arxiv.org/abs/2102.03334">ViLT</a>中尝试移除目标检测器，但效果有明显下降)。<strong>这类方法在需要结合视觉和文本的推理任务上效果较好，例如NLVR和VQA等任务中。</strong><br>第二种方法例如CLIP和ALIGN，<strong>重点在于分别学习图像和文本模型的任务，做特征对齐，使用对比学习让两个模态的特征都具有其他模态的信息</strong>。<strong>这类方法在图像-文本的检索任务上表现良好，但由于相比第一种方法缺乏图像和文本的交互特征，在更复杂的图像-文本交互任务上表现一般。</strong></p>
+<p>在作者的<a href="https://blog.salesforceairesearch.com/align-before-fuse/">blog</a>中提到了之前方法的另外一点局限性:</p>
+<blockquote>
+<p>预训练的数据主要来源于互联网，数据来源并不干净。MLM等任务容易对噪声过拟合，从而影响到最终的特征。</p>
+</blockquote>
+<h2 id="ALBEF"><a href="#ALBEF" class="headerlink" title="ALBEF"></a>ALBEF</h2><p>ALBEF的名字来源于<u><strong>AL</strong></u>ign the image and text representations <u><strong>BE</strong></u>fore <u><strong>F</strong></u>using。论文的标题中也强调了Align before Fuse。区别于其他多模态方法，这篇文章提出在融合视觉-文本两个模态的特征之前，先做不同模态之间特征的对齐。出发点结合了上文提到的两类VLP方法的优点，并且减缓了脏数据对预训练的影响。</p>
+<p>ALBEF的网络结构如下图所示:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/1.png" alt=""></p>
+<p>ALBEF的结构并不复杂，弄清楚几个模块和loss也就明白其中的奥妙了。ALBEF包含3个encoder、3个loss和动量蒸馏模块。</p>
+<h3 id="Model-Architecture"><a href="#Model-Architecture" class="headerlink" title="Model Architecture"></a>Model Architecture</h3><p>encoder部分如下:</p>
+<ul>
+<li>image encoder: 12层的ViT-B/16</li>
+<li>text encoder: bert中的前6层</li>
+<li>multimodal encoder: Bert中的后6层，因为不同特征间需要attention，相比另外两个encoder多了cross attention的结构</li>
+</ul>
+<h3 id="Pre-training-Objectives"><a href="#Pre-training-Objectives" class="headerlink" title="Pre-training Objectives"></a>Pre-training Objectives</h3><p>训练目标主要包含三个预训练任务:</p>
+<ul>
+<li>image-Text contrastive learning(ITC): <strong>目标是在特征融合前对齐视觉和文本的特征以获取更好的单模态特征。</strong>受启发于moco，维护了两个队列分别存储动量编码器中的图像和文本特征。使用infoNCE loss分别计算image-to-text和text-to-image的损失。具体可以看下代码</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/2.png" alt="维护batch size大小的队列"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/3.png" alt="计算encoder的特征和momentum encoder特征，infoNCE loss，更新队列"></p>
+<ul>
+<li>Image-Text Matching(ITM): <strong>预测图像和文本是否匹配。</strong>一般的ITM任务相对简单，loss能降到非常低，ALBEF为了让这项预训练任务变得更有意义，挖掘了困难的负样本。具体做法是在ITC任务中infoNCE loss有相似度的信息，选取和相似度最高，但不匹配的样本作为负样本。损失函数是交叉熵损失。</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/4.png" alt=""></p>
+<ul>
+<li>Masked Language Modeling(MLM): <strong>训练语言模型。</strong>随机将15%的文本mask，利用图像和文本的上下文还原mask的区域，使用交叉熵损失。为了避免脏数据的影响，使用的是伪标签。具体而言存在teacher模型，从student模型采用指数滑动平均(Exponential Moving Average, EMA)的方式更新其参数，而student模型的学习标签是teacher模型预测的embedding。</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/5.png" alt="MLM任务loss"></p>
+<h3 id="动量蒸馏"><a href="#动量蒸馏" class="headerlink" title="动量蒸馏"></a>动量蒸馏</h3><p>由于预训练的图像文本对基本都来自互联网，存在脏数据。一般表现在文本中包含图像中没有的信息，或者图像中包含文本没有的信息。对于MLM和ITC任务会有较大的影响。<strong>因此受启发于moco，使用动量更新的方式构建teacher网络，利用teacher网络产生的伪标签作为监督信号。</strong>具体的实现方式可以参考上面ITC和MLM的代码。</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="评测场景"><a href="#评测场景" class="headerlink" title="评测场景"></a>评测场景</h3><p>预训练好的模型应用在了5个场景，用于评估效果:</p>
+<ul>
+<li><strong>Image-Text Retrieval:</strong> 包含两个任务，图像到文本的检索和文本到图像的检索</li>
+<li><strong>Visual Entailment:</strong> 视觉推理任务，预测图片和文本的关系是包含、中立还是相反的。</li>
+<li><strong>Visual Question Answering:</strong> 提供图片和问题，预测答案</li>
+<li><strong>Natural Language for Visual Reasoning:</strong> 预测提供的文本是否描述了图片</li>
+<li><strong>Visual Grounding:</strong> 在图像中定位出文本中描述的物体的坐标</li>
+</ul>
+<h3 id="Evaluation-on-the-Proposed-Methods"><a href="#Evaluation-on-the-Proposed-Methods" class="headerlink" title="Evaluation on the Proposed Methods"></a>Evaluation on the Proposed Methods</h3><p>展示了ALBEF使用不同模块在下游任务上的效果</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/6.png" alt=""></p>
+<h3 id="Evaluation-on-Image-Text-Retrieval"><a href="#Evaluation-on-Image-Text-Retrieval" class="headerlink" title="Evaluation on Image-Text Retrieval"></a>Evaluation on Image-Text Retrieval</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/7.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/8.png" alt=""><br>上面的图分别展示了微调和zero-shot在图文检索任务和之前方法的对比</p>
+<h3 id="Evaluation-on-VQA-NLVR-and-VE"><a href="#Evaluation-on-VQA-NLVR-and-VE" class="headerlink" title="Evaluation on VQA, NLVR, and VE"></a>Evaluation on VQA, NLVR, and VE</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/9.png" alt=""></p>
+<p><strong>使用4M的图片做预训练取得了比之前模型更好的效果，并且数据集增大到14M性能普遍有进一步提升。并且由于没有使用检测器，并且输入图片分辨率更低，推理耗时比VILLA减少10倍</strong></p>
+<h3 id="Weakly-supervised-Visual-Grounding"><a href="#Weakly-supervised-Visual-Grounding" class="headerlink" title="Weakly-supervised Visual Grounding"></a>Weakly-supervised Visual Grounding</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/10.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/11.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/12.png" alt=""></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/13.png" alt=""></p>
+<p>在不同任务上可视化cross attention的特征图，和文本描述的区域匹配</p>
+<h3 id="Ablation-Study"><a href="#Ablation-Study" class="headerlink" title="Ablation Study"></a>Ablation Study</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/14.png" alt=""><br>研究了在文本-图像检索任务上困难负样本在图文检索任务上的影响</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/ALBEF/15.png" alt=""><br>在NLVR任务中研究了文本分配(text assignment, TA任务)和不同特征共享方式的影响，细节配置可以看文章的第五部分(Downstream V+L Tasks)</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>ALBEF比之前多模态的方法效果好有几个关键点:</p>
+<ul>
+<li><strong>在融合不同模态特征前，做了特征的对齐</strong></li>
+<li><strong>使用momentum distillation避免了噪声数据在预训练的影响</strong></li>
+<li><strong>区别于之前ITC任务使用了难负例</strong></li>
+</ul>
+<p><strong>并且由于没有目标检测器，下游任务使用时使用更小的图片输入，耗时会极大的缩小</strong></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>CVPR2023</tag>
+        <tag>通用人工智能</tag>
+        <tag>多步骤推理</tag>
+      </tags>
+  </entry>
 </search>
