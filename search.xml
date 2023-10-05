@@ -3722,6 +3722,7 @@ a_3x+b_3y+c_3z=d_3\\
     <title>BLIP——统一理解与生成的多模态模型</title>
     <url>/post/23099eb6.html</url>
     <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<p>本文首发于公众号“<a href="https://mp.weixin.qq.com/s/_rgWfJxmTNigA9L68NqVnw">CVTALK</a>”。</p>
 <p><strong>论文链接:</strong><a href="https://arxiv.org/abs/2201.12086"><strong>https://arxiv.org/abs/2201.12086</strong></a><br /><strong>代码链接:</strong><a href="https://github.com/salesforce/BLIP"><strong>https://github.com/salesforce/BLIP</strong></a><br /> <strong>作者blog链接:</strong><a href="https://blog.salesforceairesearch.com/blip-bootstrapping-language-image-pretraining/"><strong>https://blog.salesforceairesearch.com/blip-bootstrapping-language-image-pretraining/</strong></a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>BLIP的来源于标题中的<strong>B</strong>ootstrapping <strong>L</strong>anguage-<strong>I</strong>mage <strong>P</strong>re-training for Unified Vision-Language Understanding and Generation。从标题可以看出来BLIP也是文本-图像的预训练模型，并且目的是统一视觉-语言的理解和生成任务。同时支持和理解&amp;生成任务正是BLIP和之前任务的差异。<br />BLIP可以看作是<a href="https://zhuanlan.zhihu.com/p/655552483">ALBEF</a>的续作，一作是同一个人，并且都是多模态的领域，多模态任务展现出了比单模态更好的效果，但存在一些局限性:</p>
 <ul>
