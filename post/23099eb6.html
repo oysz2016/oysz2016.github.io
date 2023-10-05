@@ -23,28 +23,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何阅读一本书">
-<meta property="og:url" content="https://oysz2016.github.io/post/43b16a18.html">
+<meta property="og:title" content="BLIP——统一理解与生成的多模态模型">
+<meta property="og:url" content="https://oysz2016.github.io/post/23099eb6.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%B0%81%E9%9D%A2.png?imageMogr2/thumbnail/!60p">
-<meta property="og:image" content="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/%E5%B0%8F%E4%B9%A6%E5%8C%A0/1552801555033.jpg">
-<meta property="article:published_time" content="2018-04-30T06:33:39.454Z">
-<meta property="article:modified_time" content="2019-03-17T05:49:31.052Z">
+<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/1.png">
+<meta property="article:published_time" content="2023-09-28T10:07:18.324Z">
+<meta property="article:modified_time" content="2023-10-05T02:42:42.156Z">
 <meta property="article:author" content="冲弱">
-<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="多模态">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%B0%81%E9%9D%A2.png?imageMogr2/thumbnail/!60p">
+<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/1.png">
 
 
-<link rel="canonical" href="https://oysz2016.github.io/post/43b16a18.html">
+<link rel="canonical" href="https://oysz2016.github.io/post/23099eb6.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/43b16a18.html","path":"post/43b16a18.html","title":"如何阅读一本书"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/23099eb6.html","path":"post/23099eb6.html","title":"BLIP——统一理解与生成的多模态模型"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>如何阅读一本书 | 冲弱's Blog</title>
+<title>BLIP——统一理解与生成的多模态模型 | 冲弱's Blog</title>
   
 
 
@@ -153,7 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E7%9A%84%E6%B4%BB%E5%8A%9B%E4%B8%8E%E8%89%BA%E6%9C%AF"><span class="nav-number">2.</span> <span class="nav-text">阅读的活力与艺术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%8A%A8%E7%9A%84%E9%98%85%E8%AF%BB%EF%BC%9A%E5%A6%82%E4%BD%95%E5%81%9A%E4%B8%80%E4%B8%AA%E8%87%AA%E6%88%91%E8%A6%81%E6%B1%82%E7%9A%84%E9%98%85%E8%AF%BB%E8%80%85"><span class="nav-number">2.1.</span> <span class="nav-text">主动的阅读：如何做一个自我要求的阅读者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E7%9A%84%E7%9B%AE%E6%A0%87%EF%BC%9A%E4%B8%BA%E4%BA%86%E8%8E%B7%E5%BE%97%E8%B5%84%E8%AE%AF%E8%80%8C%E8%AF%BB%EF%BC%8C%E4%BB%A5%E5%8F%8A%E6%B1%82%E5%BE%97%E7%90%86%E8%A7%A3%E8%80%8C%E8%AF%BB"><span class="nav-number">2.2.</span> <span class="nav-text">阅读的目标：为了获得资讯而读，以及求得理解而读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E5%B0%B1%E6%98%AF%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.3.</span> <span class="nav-text">阅读就是学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%80%81%E5%B8%88%E7%9A%84%E5%87%BA%E5%B8%AD%E4%B8%8E%E7%BC%BA%E5%B8%AD"><span class="nav-number">2.4.</span> <span class="nav-text">老师的出席与缺席</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E7%9A%84%E5%B1%82%E6%AC%A1"><span class="nav-number">3.</span> <span class="nav-text">阅读的层次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E8%A7%86%E9%98%85%E8%AF%BB"><span class="nav-number">4.</span> <span class="nav-text">检视阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E9%98%85%E8%AF%BB"><span class="nav-number">5.</span> <span class="nav-text">分析阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%E9%98%85%E8%AF%BB%EF%BC%9A%E9%98%85%E8%AF%BB%E7%9A%84%E6%9C%80%E7%BB%88%E7%9B%AE%E6%A0%87"><span class="nav-number">6.</span> <span class="nav-text">主题阅读：阅读的最终目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E4%B8%8E%E5%BF%83%E6%99%BA%E7%9A%84%E6%88%90%E9%95%BF%EF%BC%9A"><span class="nav-number">7.</span> <span class="nav-text">阅读与心智的成长：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BLIP"><span class="nav-number">2.</span> <span class="nav-text">BLIP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Architecture"><span class="nav-number">2.1.</span> <span class="nav-text">Model Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pre-training-Objectives"><span class="nav-number">2.2.</span> <span class="nav-text">Pre-training Objectives</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Image-Text-Contrastive-Loss-ITC"><span class="nav-number">2.2.1.</span> <span class="nav-text">Image-Text Contrastive Loss(ITC)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Image-Text-Matching-Loss-ITM"><span class="nav-number">2.2.2.</span> <span class="nav-text">Image-Text Matching Loss (ITM)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Language-Modeling-Loss-LM"><span class="nav-number">2.2.3.</span> <span class="nav-text">Language Modeling Loss (LM)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CapFilt"><span class="nav-number">2.3.</span> <span class="nav-text">CapFilt</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-Discussions"><span class="nav-number">3.</span> <span class="nav-text">Experiments and Discussions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Effect-of-CapFilt"><span class="nav-number">3.1.</span> <span class="nav-text">Effect of CapFilt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Diversity-is-Key-for-Synthetic-Captions"><span class="nav-number">3.2.</span> <span class="nav-text">Diversity is Key for Synthetic Captions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-Sharing-and-Decoupling"><span class="nav-number">3.3.</span> <span class="nav-text">Parameter Sharing and Decoupling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comparison-with-State-of-the-arts"><span class="nav-number">4.</span> <span class="nav-text">Comparison with State-of-the-arts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -231,10 +230,15 @@
 
 <div class="post-block">
   
-  
+  <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+    
+    <div class="post-gallery-image">
+      <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/1.png" itemprop="contentUrl">
+    </div>
+    </div>
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/43b16a18.html">
+    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/23099eb6.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
@@ -247,7 +251,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          如何阅读一本书
+          BLIP——统一理解与生成的多模态模型
         </h1>
 
         <div class="post-meta-container">
@@ -258,14 +262,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-04-30 14:33:39" itemprop="dateCreated datePublished" datetime="2018-04-30T14:33:39+08:00">2018-04-30</time>
+      <time title="创建时间：2023-09-28 18:07:18" itemprop="dateCreated datePublished" datetime="2023-09-28T18:07:18+08:00">2023-09-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2019-03-17 13:49:31" itemprop="dateModified" datetime="2019-03-17T13:49:31+08:00">2019-03-17</time>
+      <time title="修改时间：2023-10-05 10:42:42" itemprop="dateModified" datetime="2023-10-05T10:42:42+08:00">2023-10-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -273,7 +277,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
         </span>
     </span>
 
@@ -293,8 +297,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/post/43b16a18.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/43b16a18.html" itemprop="commentCount"></span>
+    <a title="waline" href="/post/23099eb6.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/23099eb6.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -305,7 +309,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.3k</span>
+      <span>3.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -323,107 +327,86 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/封面.png?imageMogr2/thumbnail/!60p" alt="enter description here"><span id="more"></span></p>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>&emsp;&emsp;趁着五一的闲暇，在家里读完了《如何阅读一本书》。这本书很偏学术风，逻辑性很强，前两章引出了阅读的四个层次，往后的章节都是对前两章的补充。每一章节的结束基本都有对整章内容的总结。<br>&emsp;&emsp;作者在开篇提到，收音机、电视取代了以往由书本所提供的部分功能，就像照片取代了图画或艺术设计的部分功能一样。但不可否认，书籍的作用是不可取代的。这本书的初版是在1940年出版，距今有70多年。相比较于这版书出版的年代，90后的一代可以称为随着互联网成长起来的一代，因此拥有而且能适应更多的资讯获取方式，各种公众号以及自媒体会将整理好的信息推送给用户。利用碎片时间获取信息很有必要，也是一个良性的发展。然而很多有用的知识，是需要潜下心来系统的去看书，才能获取的。10多年的教育使大多数人都具备了阅读的能力，并且对如何去阅读一本书有了自己的习惯。我常常觉得我的习惯不太好，为了能在有限的时间，用更优质的方法去选择和阅读一本值得读的书。因此在五一读的第一本书便是用来纠正自己阅读习惯的。下面分享一下这本书的读书笔记。</p>
-<h2 id="阅读的活力与艺术"><a href="#阅读的活力与艺术" class="headerlink" title="阅读的活力与艺术"></a>阅读的活力与艺术</h2><p>&emsp;&emsp;阅读是一件说简单也简单，说复杂也复杂的活动。单从阅读能为我们带来什么这个角度来说，无非有这几点：理解力、娱乐和资讯。在阅读之前带着好的目标能有事半功倍的效果，</p>
-<h3 id="主动的阅读：如何做一个自我要求的阅读者"><a href="#主动的阅读：如何做一个自我要求的阅读者" class="headerlink" title="主动的阅读：如何做一个自我要求的阅读者"></a>主动的阅读：如何做一个自我要求的阅读者</h3><ul>
-<li>阅读是一件可以主动的事</li>
-<li>阅读越主动，效果越好<br>&emsp;&emsp;以棒球赛为例，作者=投球手；读者=捕手。区别在于，读书不止有读的好与读的差两种状态。而更靠近读的好还是读得差，取决于阅读时多么主动，以及投入多少心思和阅读技巧。<br>阅读的时候，让自己昏昏入睡比保持清醒要容易的多。在阅读时处于哪种状态，主要取决于一个人的阅读目标。作者指出，许多人都能清楚的区分想要从书中获益还是取乐，但最后仍然无法按目标阅读。原因在于不知道怎样做一个自我要求的阅读者。在阅读一本书时想打瞌睡，并不是不想努力，而是不知道如何努力。要学会主动阅读<br><strong>主动阅读的基础</strong>：阅读时提出问题，并尝试自己解答</li>
-<li>这本书再谈论什么</li>
-<li>哪些部分详细描述了</li>
-<li>这本书的观点对吗</li>
-<li>这本书的信息跟你有什么关系</li>
-</ul>
-<p>&emsp;&emsp;<strong>如何让一本书真正属于自己</strong>：学会做笔记，阅读一本书像是与作者对话。而笔记能表达自己与作者之间相异或相同的观点。做笔记的方法：</p>
+        <p><p class="description"></p><br><span id="more"></span></p>
+<p><strong>论文链接:</strong><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2201.12086"><strong>https://arxiv.org/abs/2201.12086</strong></a><br /><strong>代码链接:</strong><a target="_blank" rel="noopener" href="https://github.com/salesforce/BLIP"><strong>https://github.com/salesforce/BLIP</strong></a><br /> <strong>作者blog链接:</strong><a target="_blank" rel="noopener" href="https://blog.salesforceairesearch.com/blip-bootstrapping-language-image-pretraining/"><strong>https://blog.salesforceairesearch.com/blip-bootstrapping-language-image-pretraining/</strong></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>BLIP的来源于标题中的<strong>B</strong>ootstrapping <strong>L</strong>anguage-<strong>I</strong>mage <strong>P</strong>re-training for Unified Vision-Language Understanding and Generation。从标题可以看出来BLIP也是文本-图像的预训练模型，并且目的是统一视觉-语言的理解和生成任务。同时支持和理解&amp;生成任务正是BLIP和之前任务的差异。<br />BLIP可以看作是<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/655552483">ALBEF</a>的续作，一作是同一个人，并且都是多模态的领域，多模态任务展现出了比单模态更好的效果，但存在一些局限性:</p>
 <ul>
-<li>画底线</li>
-<li>标记重点符号</li>
-<li>在空白处编号，理清作者的思路</li>
-<li>圈出关键字或句子</li>
-<li>在书的空白处做笔记</li>
-</ul>
-<p>&emsp;&emsp;<strong>培养阅读习惯</strong>:习惯是第二天性，让阅读变得自然。任何原创性的东西都有规则和技巧可循，如绘画和雕塑。<br>&emsp;&emsp;<strong>从许多规则中养成一个习惯</strong>：任何技能在不熟练的时候，都显得笨手笨脚，熟悉了后能将复杂的步骤连贯起来，变得优美且和谐。</p>
-<h3 id="阅读的目标：为了获得资讯而读，以及求得理解而读"><a href="#阅读的目标：为了获得资讯而读，以及求得理解而读" class="headerlink" title="阅读的目标：为了获得资讯而读，以及求得理解而读"></a>阅读的目标：为了获得资讯而读，以及求得理解而读</h3><p>&emsp;&emsp;作者鼓励如果想要从一本书获取到有用的东西，而不是打发时间，最好是为了提升理解力和资讯。事实上，在获取到理解力与资讯的同时，就具有了消遣的效果。<br>&emsp;&emsp;<strong>阅读这个词可以区分为两种含义：</strong></p>
-<ul>
-<li>阅读与自己理解力相近的读物，如报纸：能增加资讯，却不能增加理解力</li>
-<li>阅读的书籍或听的演讲，对方水平远高于自己:理解更多的事情（<strong>知乎上关于知识的定义</strong>）</li>
-</ul>
-<h3 id="阅读就是学习"><a href="#阅读就是学习" class="headerlink" title="阅读就是学习"></a>阅读就是学习</h3><p>&emsp;&emsp;法国文艺复兴时期的人文主义思想家蒙田说：初学者的无知在于未学，而学者的无知在学后。后者被英国诗人亚历山大.蒲伯称为书呆子，读的广却读不通。要避免都的多就是读的好的观点，要学会选择值得阅读的书籍，在读书时思考，还要运用感觉和想象力。</p>
-<h3 id="老师的出席与缺席"><a href="#老师的出席与缺席" class="headerlink" title="老师的出席与缺席"></a>老师的出席与缺席</h3><p>&emsp;&emsp;阅读一本书只能靠自己，更像是跟着一位缺席的老师学习，因此阅读书籍时更需要主动，也要通过各种方式运用书籍和作者交流。</p>
-<h2 id="阅读的层次"><a href="#阅读的层次" class="headerlink" title="阅读的层次"></a>阅读的层次</h2><p>&emsp;&emsp;阅读的层次是递进的，而且的向下包含的。四种阅读层次：</p>
-<ul>
-<li>初级阅读（elementary reading）:能认字，这是基础，能明白每个字的意思，才能明白句子背后的含义。</li>
-<li>检视阅读（inspectional reading）略读，在很短时间读完一本书</li>
-<li>分析阅读（analytical reading），全盘完整的阅读，寻求理解</li>
-<li>主题阅读(syntopical reading)，在阅读时，比较很多相关的书<br>对于中国的国情，每一个受过义务教育的人都能精通初级阅读。因此主要看作者分享的后续阅读方法。</li>
-</ul>
-<h2 id="检视阅读"><a href="#检视阅读" class="headerlink" title="检视阅读"></a>检视阅读</h2><p>&emsp;&emsp;精通了初级阅读才能熟练的检视阅读，检视阅读一共有两种：</p>
-<ul>
-<li>有系统的粗读：目标是快速发现一本书值不值得多花时间阅读。略读是以最小的时间代价了解作者为什么写这样一本书以及这本书是否对自己有用。关于略读的一些建议：1.先看书名页，看序 2.研究目录页 3.如果有索引，也要检阅下 4.出版者的介绍 5.挑几个跟主题相关的篇章看看 6.翻看几页</li>
-<li>粗浅的阅读：并不是说草草的读完了事，而是遇到不懂的地方，记录下来，先略过。集中精神读完弄得懂的地方。享受读书的快乐，洞察全书的意义。稍后再专心研究不懂的地方。</li>
-</ul>
-<p>&emsp;&emsp;阅读的速度很重要，不同的书籍用不同的速度阅读。<strong>训练阅读速度的方法</strong>：眼睛一次只能读一个字或句子，但大脑能在一瞥之间掌握一个句子或段落。要学会跟着大脑的快速运转看书，而不是眼部的慢动作。训练自己快速阅读的方式：用手指着读，手移动的速度稍比自己的阅读速度快，强迫自己以更快的速度阅读。</p>
-<h2 id="分析阅读"><a href="#分析阅读" class="headerlink" title="分析阅读"></a>分析阅读</h2><p><strong>书籍分类的重要性</strong>：在阅读前要知道自己读的是那一类书<br><strong>书名与内容的关系</strong>：阅读书名可以让读者在阅读之前，获得一些基本的资讯</p>
-<p>&emsp;&emsp;分析阅读的规则：</p>
-<ul>
-<li><p>分析阅读的第一阶段：找出一本书在谈些什么</p>
-<ul>
-<li>依照书的种类与主题分析</li>
-<li>使用一个单一的句子或最多几句话叙述整本书的内容。</li>
-<li>将书中重要篇章列举出来，说明是如何按照顺序则称一个整体的架构<br>后两条规则可以帮助写作，因为写作和阅读是一体两面的事情，一个作品应该有整体感，逻辑清晰，前后连贯。</li>
-<li>找出作者要问的问题，或作者想要解决的问题</li>
+<li><strong>模型角度: </strong>目前多模态的任务主要分为两种，分别是encoder-based model和encoder-decoder model, 都存在一些问题<ul>
+<li><strong>encoder-based model: </strong>典型代表是CLIP, 因为预训练的时候没有生成任务，所以在下游任务中很难支持生成任务。例如CLIP不能完成image caption任务.</li>
+<li><strong>encoder-decoder model: </strong>典型代表是SimVLM，该类方法目前在图文检索任务中的效果非常差</li>
 </ul>
 </li>
-<li><p>分析阅读的第二阶段：诠释一本书的内容规则</p>
+<li><strong>数据角度: </strong>通过互联网上爬取到的图像文本对，含有很多噪声</li>
+</ul>
+<p>相对于ALBEF，BLIP中提出了MED和CapFilt两个模块解决上面提到的两个局限性</p>
+<h2 id="BLIP"><a href="#BLIP" class="headerlink" title="BLIP"></a>BLIP</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/1.png" alt=""></p>
+<p>BLIP的网络结构如上图所示, 还是和ALBEF一样，将其拆分为几个部分。BLIP网络的构成包含3个encoder和1个decoder、3个预训练任务还有数据相关的CapFilt模块</p>
+<h3 id="Model-Architecture"><a href="#Model-Architecture" class="headerlink" title="Model Architecture"></a>Model Architecture</h3><p>MED的全称是multimodal mixture of encoder-decoder，即包含encoder和decoder的多模态融合，encoder的任务可以做多模态的理解，而decoder任务可以做多模态的生成。分别有以下部分:</p>
 <ul>
-<li>诠释作者使用的关键字，与作者达成共识</li>
-<li>从最重要的句子中抓出作者的重要主旨</li>
-<li>找出作者的论述 ，重新架构这些论述的前因后果，以明白作者的主张</li>
-<li>确定作者已经解决了哪些问题，还有哪些是未解决的</li>
+<li><strong>单模态encoder: </strong>该部分包含两个encoder，分别是image encoder和text encoder，也是Figure 2中的前两个模块。分别对使用VIT和BERT提取图像和文本的特征。</li>
+<li><strong>基于图像的文本encoder: </strong>该部分和Text encoder的区别在于引入了image encoder产生的特征做cross attention。因为包含图像和文本特征，会用来做图像文本匹配(ITM)任务</li>
+<li><strong>基于图像的文本解码器: </strong>该部分和基于图像的文本encoder的区别在于将自注意力层替换为了因果自注意力层。用于做语言模型(LM)的任务.</li>
 </ul>
-</li>
-<li><p>分析阅读的第三阶段：评价一本书的规则</p>
+<p>需要注意的是text相关的encoder和decoder有三个，text encoder和Image-grounded Text encoder的共有结构特征是共享的，为了标记差异，在文本的开头分别用”[CLS]”和”[Encoder]”标记。而Image-grounded Text decoder中使用”[Decoder]”</p>
+<h3 id="Pre-training-Objectives"><a href="#Pre-training-Objectives" class="headerlink" title="Pre-training Objectives"></a>Pre-training Objectives</h3><p>在预训练中有三个优化目标，有两个基于理解的预训练任务和一个基于生成的预训练任务组成。计算量比较大的image encoder只需要运算一次。</p>
+<h4 id="Image-Text-Contrastive-Loss-ITC"><a href="#Image-Text-Contrastive-Loss-ITC" class="headerlink" title="Image-Text Contrastive Loss(ITC)"></a>Image-Text Contrastive Loss(ITC)</h4><p>该部分和ALBEF中一致，目的都是为了对齐视觉和文本模态的特征，并且也使用了momentum encoder产生伪标签作为监督信号。在代码实现上也和ALBEF中的ITC loss完全一致<br /><br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/2.png" alt=""></p>
+<h4 id="Image-Text-Matching-Loss-ITM"><a href="#Image-Text-Matching-Loss-ITM" class="headerlink" title="Image-Text Matching Loss (ITM)"></a>Image-Text Matching Loss (ITM)</h4><p>该部分同样了ALBEF中一致，训练目标都是判断图像和文本是否匹配，并且也挖掘了难负样本。代码实现上也和ALBEF中ITM loss的计算完全一致<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/3.png" alt=""></p>
+<h4 id="Language-Modeling-Loss-LM"><a href="#Language-Modeling-Loss-LM" class="headerlink" title="Language Modeling Loss (LM)"></a>Language Modeling Loss (LM)</h4><p>该部分不同于ALBEF中的LM loss，在ALBEF中参考的是Bert中的完形填空任务，目的是完成语言模型的训练，并且能对齐图像和文本的特征。但和Bert类似的任务用途是做语义的理解，并不能做生成任务。因此在BLIP中更类似于GPT中预测下一个token的任务，区别在于BLIP中做的是image caption的任务，即生成图像对应的文本描述。<strong>在LM中和ITM中共享了具有共同结构的参数，可以提高模型训练效率，也能从多任务学习中获益.</strong><br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/4.png" alt=""></p>
+<h3 id="CapFilt"><a href="#CapFilt" class="headerlink" title="CapFilt"></a>CapFilt</h3><p>在ALBEF中也讨论了用于预训练的图像-文本对是从互联网上获取，但这部分数据质量不高，在ALBEF中使用了momentum distillation产生软标签减小噪声数据的影响。momentum的trick在BLIP中也有，但BLIP中有更进一步减少脏数据的影响——试图将预训练数据的质量变高。粗略的理解可以看下图Figure 1，在MED的预训练任务中包含生成字幕的预训练任务也有判断图文是否匹配的预训练任务，因此可以让模型生成图片的描述(Captioner)，再通过Filter用于判断图像和文本是否匹配。在图1中，原始的图文不匹配，在最终预训练时会被过滤掉，而Captioner生成的文本和图片匹配，则在最终预训练时会保留生成的数据。<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/5.png" alt=""></p>
+<p>更具体的CapFilt可以参考下图，原始的数据集包含两部分:</p>
 <ul>
-<li>除非已经能诠释书的架构，否则不要轻易批评</li>
-<li>证明作者知识的不足</li>
-<li>证明作者错误的地方</li>
-<li>证明作者的不合逻辑</li>
-<li>证明作者的分析与理由是不完整的</li>
+<li>互联网上收集的(Iw,Tw)，存在脏数据</li>
+<li>人工标注(Ih,Th), 可以认为是干净数据</li>
 </ul>
-</li>
-</ul>
-<h2 id="主题阅读：阅读的最终目标"><a href="#主题阅读：阅读的最终目标" class="headerlink" title="主题阅读：阅读的最终目标"></a>主题阅读：阅读的最终目标</h2><p>&emsp;&emsp;主题阅读的准备阶段：</p>
+<p>在Model pretraining模块中会使用包含互联网收集和人工标注两部分数据用于MED部分的预训练，然后会只使用人工标注的干净数据做不同预训练任务的微调:</p>
 <ul>
-<li>针对要研究的主题，参考图书馆目录以及书中的索引。找到与主题相关的书籍</li>
-<li>浏览整理出的书单，确定哪些与要研究的主题相关。明确各个书与主题的相关程度。</li>
+<li>只微调MED中的ITC&amp;ITM任务，让模型有更好的图像文本理解能力，用于在Filtering。判断图像和文本是否匹配，文本的来源可以是互联网收集的和图像匹配的文本，也可以是captioning生成的文本</li>
+<li>只微调MED中的LM任务，让模型有更好的生成字幕能力</li>
 </ul>
-<p>&emsp;&emsp;在讨论某个主题的书时，所涉及到的往往不止是一本书。主题阅读的五个步骤：</p>
+<p>经过Filtering后会保留下来的数据有三部分:</p>
 <ul>
-<li>找到相关章节，关心的重点应该在具体的内容，而不是整本书</li>
-<li>分析阅读中说与作者达成共识。但面对不同的作者描述同样的观点，会有不同的字眼。需要找出他们之间的共识。</li>
-<li>建立一个主旨，列出一连串的问题，从书中找答案</li>
-<li>理清主要及次要的议题。将作者针对不同各个问题的不同意见整理在各个议题旁。</li>
-<li>将问题与议题按顺序排列，以凸显主题。</li>
+<li>人工标注的数据(Iw,Tw)</li>
+<li>互联网收集的图像和文本匹配的数据(Iw,Tw)</li>
+<li>Captioner生成的和图像匹配的数据(Iw,Ts)</li>
 </ul>
-<h2 id="阅读与心智的成长："><a href="#阅读与心智的成长：" class="headerlink" title="阅读与心智的成长："></a>阅读与心智的成长：</h2><p>&emsp;&emsp;好书能带来心智的成长，提升阅读能力，能教会你了解这个世界以及自己。不仅是读的更好，还更懂得生命；变得有智慧与知识，对人类生命中永恒的真理有更深刻的认识。在读书的时候不光要会阅读，也要能分辨哪些书能给自己带来成长。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>不要被书中的难点吓到，90%的书知道个大概就好，想要了解的地方再深究；</li>
-<li>阅读时要系统的总结，梳理文章的内容</li>
-<li>学会做笔记，包括画重点，记录章节，页数以及自己针对某段话的思考</li>
-<li>选择优质的书籍，不要将时间浪费在不好的书上</li>
-<li>阅读时有以下重点：<ul>
-<li>带着问题和目的主动的阅读</li>
-<li>整理文章的脉络</li>
-<li>与“书本”交流，时常问自己这本书这一章是解决什么问题，哪些观点对或者不对，值得借鉴和应该避免的错误</li>
-<li>将书本引入自己的知识结构中</li>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/6.png" alt=""></p>
+<h2 id="Experiments-and-Discussions"><a href="#Experiments-and-Discussions" class="headerlink" title="Experiments and Discussions"></a>Experiments and Discussions</h2><h3 id="Effect-of-CapFilt"><a href="#Effect-of-CapFilt" class="headerlink" title="Effect of CapFilt"></a>Effect of CapFilt</h3><p>关于CapFilter的效果在下表Table 1中可以看到，<strong>分别使用Captioner和Filter都可以提升下游任务上的效果，并且增大数据集的规模，提升会更明显。</strong></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/7.png" alt=""></p>
+<p>下图展示了互联网上搜集到的文本和Captioner生成文本数据中一些噪声的示例。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/8.png" alt=""></p>
+<h3 id="Diversity-is-Key-for-Synthetic-Captions"><a href="#Diversity-is-Key-for-Synthetic-Captions" class="headerlink" title="Diversity is Key for Synthetic Captions"></a>Diversity is Key for Synthetic Captions</h3><p>这一部分将CapFilt中Captioner生成字幕采取nucleus sampling(top-p)和beam search两种解码方式的差异，对比如下<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/9.png" alt=""></p>
+<p>Nucleus的方式效果更好，相比Beam search的方法，前者生成的文本更加多样(不过也带来了更多的噪声数据)</p>
+<h3 id="Parameter-Sharing-and-Decoupling"><a href="#Parameter-Sharing-and-Decoupling" class="headerlink" title="Parameter Sharing and Decoupling"></a>Parameter Sharing and Decoupling</h3><p>在预训练阶段，使用14M的数据做预训练。与不共享相比，共享除了Self Attention之外的能获得更好的效果，也能减少模型参数量，提升效率。而如果SA和CA层共享，由于编码和解码任务的冲突，模型的能力会变差</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/10.png" alt=""></p>
+<p>在CapFilt阶段，下表中研究了captioner和filter保持和预训练中一样的参数共享方式或者解耦的差异，结果保持一样的参数共享方式，性能会有退化。作者将其归因于<strong>confirmation bias</strong>。因为如果Captioner和Filter也存在参数共享，Captioner生成的字幕会变得不容易被Filter判断为有噪声的数据。<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/11.png" alt=""></p>
+<h2 id="Comparison-with-State-of-the-arts"><a href="#Comparison-with-State-of-the-arts" class="headerlink" title="Comparison with State-of-the-arts"></a>Comparison with State-of-the-arts</h2><p>主要比较了几个多模态的任务:</p>
+<ul>
+<li>Image-Text Retrieval</li>
 </ul>
-</li>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/12.png" alt=""></p>
+<ul>
+<li>Image Captioning</li>
 </ul>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://blog-1258449291.cos.ap-chengdu.myqcloud.com/小书匠/1552801555033.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/13.png" alt=""></p>
+<ul>
+<li>Visual Question Answering (VQA)</li>
+<li>Natural Language Visual Reasoning (NLVR2)</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/14.png" alt=""></p>
+<ul>
+<li>Visual Dialog (VisDial)</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/15.png" alt=""></p>
+<ul>
+<li>Zero-shot Transfer to Video-Language Tasks</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP/16.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>BLIP和ALBEF的结构很相似，但关注点从除了单模态和多模态特征融合到开始关注文本的生成能力，其中一个预训练任务从类似Bert替换成了类似GPT，也顺应了NLP领域中的这一趋势。并且和其他大模型一样，更加关注数据的质量，用CapFilt模块获取了质量更高的数据。</p>
 
     </div>
 
@@ -470,7 +453,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://oysz2016.github.io/post/43b16a18.html" title="如何阅读一本书">https://oysz2016.github.io/post/43b16a18.html</a>
+      <a href="https://oysz2016.github.io/post/23099eb6.html" title="BLIP——统一理解与生成的多模态模型">https://oysz2016.github.io/post/23099eb6.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -516,7 +499,7 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"> <i class="fa fa-tag"></i> 读书笔记</a>
+              <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" rel="tag"> <i class="fa fa-tag"></i> 多模态</a>
           </div>
 
         
@@ -528,14 +511,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/post/79a2296e.html" rel="prev" title="Caffe版Faster R-CNN可视化——网络模型,图像特征,Loss图,PR曲线">
-                  <i class="fa fa-chevron-left"></i> Caffe版Faster R-CNN可视化——网络模型,图像特征,Loss图,PR曲线
+                <a href="/post/13dc672a.html" rel="prev" title="ALBEF:Align before Fuse">
+                  <i class="fa fa-chevron-left"></i> ALBEF:Align before Fuse
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/post/ef0c22d1.html" rel="next" title="从0到1:开启商业与未来的秘密">
-                  从0到1:开启商业与未来的秘密 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -691,11 +671,11 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/43b16a18.html"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/23099eb6.html"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
