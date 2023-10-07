@@ -23,28 +23,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="《Unbiased Scene Graph Generation from Biased Training》论文笔记">
-<meta property="og:url" content="https://oysz2016.github.io/post/b4822109.html">
+<meta property="og:title" content="BLIP2——优化多大模态训练成本">
+<meta property="og:url" content="https://oysz2016.github.io/post/38f4a12a.html">
 <meta property="og:site_name" content="冲弱&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/bg.png">
-<meta property="article:published_time" content="2022-10-15T08:26:18.047Z">
-<meta property="article:modified_time" content="2023-01-01T04:01:59.574Z">
+<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/1.png">
+<meta property="article:published_time" content="2023-10-05T02:49:18.899Z">
+<meta property="article:modified_time" content="2023-10-07T08:28:10.454Z">
 <meta property="article:author" content="冲弱">
-<meta property="article:tag" content="因果图">
-<meta property="article:tag" content="场景图生成">
+<meta property="article:tag" content="多模态">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/bg.png">
+<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/1.png">
 
 
-<link rel="canonical" href="https://oysz2016.github.io/post/b4822109.html">
+<link rel="canonical" href="https://oysz2016.github.io/post/38f4a12a.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/b4822109.html","path":"post/b4822109.html","title":"《Unbiased Scene Graph Generation from Biased Training》论文笔记"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/38f4a12a.html","path":"post/38f4a12a.html","title":"BLIP2——优化多大模态训练成本"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>《Unbiased Scene Graph Generation from Biased Training》论文笔记 | 冲弱's Blog</title>
+<title>BLIP2——优化多大模态训练成本 | 冲弱's Blog</title>
   
 
 
@@ -153,7 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">任务定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%8B%E5%89%8D%E7%AE%97%E6%B3%95%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">之前算法存在的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Methods"><span class="nav-number">3.</span> <span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Biased-Training-Models-in-Causal-Graph"><span class="nav-number">3.1.</span> <span class="nav-text">Biased Training Models in Causal Graph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unbiased-Prediction-by-Causal-Effects"><span class="nav-number">3.2.</span> <span class="nav-text">Unbiased Prediction by Causal Effects</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Origin-amp-Intervention-amp-Counterfactual"><span class="nav-number">3.2.1.</span> <span class="nav-text">Origin&amp;Intervention&amp;Counterfactual</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Total-Direct-Effect-TDE"><span class="nav-number">3.2.2.</span> <span class="nav-text">Total Direct Effect (TDE)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Experiments"><span class="nav-number">4.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ablation-Studies"><span class="nav-number">5.</span> <span class="nav-text">Ablation Studies</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">2.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Architecture"><span class="nav-number">2.1.</span> <span class="nav-text">Model Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bootstrap-Vision-Language-Representation-Learning-from-a-Frozen-Image-Encoder"><span class="nav-number">2.2.</span> <span class="nav-text">Bootstrap Vision-Language Representation Learning from a Frozen Image Encoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bootstrap-Vision-to-Language-Generative-Learning-from-a-Frozen-LLM"><span class="nav-number">2.3.</span> <span class="nav-text">Bootstrap Vision-to-Language Generative Learning from a Frozen LLM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiment"><span class="nav-number">3.</span> <span class="nav-text">Experiment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Instructed-Zero-shot-Image-to-Text-Generation"><span class="nav-number">3.1.</span> <span class="nav-text">Instructed Zero-shot Image-to-Text Generation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Image-Captioning"><span class="nav-number">3.2.</span> <span class="nav-text">Image Captioning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Visual-Question-Answering"><span class="nav-number">3.3.</span> <span class="nav-text">Visual Question Answering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Image-Text-Retrieval"><span class="nav-number">3.4.</span> <span class="nav-text">Image-Text Retrieval</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -234,12 +233,12 @@
   <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
     
     <div class="post-gallery-image">
-      <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/bg.png" itemprop="contentUrl">
+      <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/1.png" itemprop="contentUrl">
     </div>
     </div>
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/b4822109.html">
+    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/38f4a12a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
@@ -252,7 +251,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          《Unbiased Scene Graph Generation from Biased Training》论文笔记
+          BLIP2——优化多大模态训练成本
         </h1>
 
         <div class="post-meta-container">
@@ -263,14 +262,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-10-15 16:26:18" itemprop="dateCreated datePublished" datetime="2022-10-15T16:26:18+08:00">2022-10-15</time>
+      <time title="创建时间：2023-10-05 10:49:18" itemprop="dateCreated datePublished" datetime="2023-10-05T10:49:18+08:00">2023-10-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-01 12:01:59" itemprop="dateModified" datetime="2023-01-01T12:01:59+08:00">2023-01-01</time>
+      <time title="修改时间：2023-10-07 16:28:10" itemprop="dateModified" datetime="2023-10-07T16:28:10+08:00">2023-10-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -298,8 +297,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/post/b4822109.html#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/post/b4822109.html" itemprop="commentCount"></span>
+    <a title="waline" href="/post/38f4a12a.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/38f4a12a.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -310,14 +309,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.5k</span>
+      <span>3.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -329,72 +328,55 @@
     
     <div class="post-body" itemprop="articleBody">
         <p><p class="description"></p><br><span id="more"></span></p>
-<h1 id="任务定义"><a href="#任务定义" class="headerlink" title="任务定义"></a>任务定义</h1><p>场景图生成: 描述目标检测的物体之间，具有怎样的关系</p>
-<h1 id="之前算法存在的问题"><a href="#之前算法存在的问题" class="headerlink" title="之前算法存在的问题"></a>之前算法存在的问题</h1><ul>
-<li>数据集中关系词存在严重的偏见，原因有以下几点:<ol>
-<li>标注时,倾向于简单的关系</li>
-<li>日常生活中确实有些事物的关联性比较多</li>
-<li>语法习惯的问题</li>
-</ol>
-</li>
-</ul>
+<p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2301.12597"><strong>https://arxiv.org/abs/2301.12597</strong></a><br /><strong>代码链接:</strong> <a target="_blank" rel="noopener" href="https://github.com/salesforce/LAVIS/tree/main/projects/blip2"><strong>https://github.com/salesforce/LAVIS/tree/main/projects/blip2</strong></a><br /> <strong>DEMO链接:</strong> <a target="_blank" rel="noopener" href="https://blog.salesforceairesearch.com/blip-bootstrapping-language-image-pretraining/"><strong>https://blog.salesforceairesearch.com/blip-bootstrapping-language-image-pretraining/</strong></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>BLIP2是<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/_rgWfJxmTNigA9L68NqVnw">BLIP</a>的续作，<strong>解决的是多模态大模型训练成本越来越高昂的问题</strong>。在多模态模型中，参数量和计算成本比较高的分别是image encoder和text encoder。<br /><strong>前面的相关文章介绍了<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/QhDyTSgs6-4asN4XFY1LYA">ALBEF</a>和<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/_rgWfJxmTNigA9L68NqVnw">BLIP</a>，在这篇文章的开始会先了解下BLIP2的大概结构和改动。</strong><br /><strong>在BLIP2中为了减少计算成本，将image encoder和text encoder的部分冻结；提出了轻量级的Q-Former模块，对齐图像和文本的特征。</strong><br /><strong>BLIP2提出了一个两阶段的预训练任务</strong>，如下图所示:<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/1.png" alt=""></p>
 <ul>
-<li>往往通过union box和两个物体的类别就预测了两个物体的关系，几乎没有使用visual feature，也就预测不出有意义的关系</li>
+<li><strong>第一阶段: Vision-and-Language Representation Learning。表征学习，用Q-Former对齐Image Encoder和LLM之间的特征</strong></li>
+<li><strong>第二阶段: Vision-to-Language Generative Learning。生成学习，Q-Former提取到和文本最相关的图像特征，结合图文使用LLM获取其文本生成的能力。</strong></li>
 </ul>
-<h1 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h1><ol>
-<li>为了让模型预测更有意义的关系，用了一个causal inference中的概念，即Total Direct Effect（TDE）来取代单纯的网络log-likelihood。在预测关系时更关注visual feature.</li>
-</ol>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-144828@2x.png" alt="enter description here"></p>
-<ol>
-<li>提出了新的评测方法mR@K:把所有谓语类别的Recall单独计算，然后求均值，这样所有类别就一样重要了</li>
-</ol>
-<h2 id="Biased-Training-Models-in-Causal-Graph"><a href="#Biased-Training-Models-in-Causal-Graph" class="headerlink" title="Biased Training Models in Causal Graph"></a>Biased Training Models in Causal Graph</h2><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143055@2x.png" alt="有偏差的训练框架"></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-142859%402x.png" alt="训练简化图"></p>
-<p>节点I: Input Image&amp;Backbone.Backbone部分使用Faster rcnn预训练好的模型，并frozen bockbone的参数。输出检测目标的bounding boxes和图像的特征图.<br>Link I-&gt;X:目标的特征，通过ROI Align提取目标对应的特征<script type="math/tex">R={r_i}</script>，获取目标粗略的分类结果<script type="math/tex">L={l_i}</script>.和MOTIFS和VCTree一样，使用以下方式，编码视觉上下文特征.</p>
-<blockquote>
-<p>MOTIFS中使用双向LSTM，VCTree中使用双向TreeLSTM，早期工作如VTransE中使用全连接层</p>
-</blockquote>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-145409@2x.png" alt="enter description here"></p>
-<p>节点X：目标特征。获取一组目标的特征<script type="math/tex">x_e=(x_i,x_j)</script><br>Link X-Z: 获取对应目标fine-tuned的类别，从<script type="math/tex">x_i</script>解码:</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-145415@2x.png" alt="enter description here"></p>
-<p>节点Z:目标类别，one-hot的向量<br>Link X-&gt;Y: SGG的目标特征输入<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-145423@2x.png" alt="enter description here"></p>
-<p>Link:Z-&gt;Y：SGG的目标类别输入<br>Link:I-&gt;Y:SGG的视觉特征输入<br>节点Y:输出关系词汇<br>Training loss：使用交叉熵损失预测label，为了避免预测Y只使用单一输入的信息，尤其是只使用Z的信息，进一步 使用auxiliary cross-entropy losses, 让每一个分支分别预测y</p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/1280X1280.png" alt="enter description here"></p>
-<h2 id="Unbiased-Prediction-by-Causal-Effects"><a href="#Unbiased-Prediction-by-Causal-Effects" class="headerlink" title="Unbiased Prediction by Causal Effects"></a>Unbiased Prediction by Causal Effects</h2><p>机器学习中常见的解决长尾问题的方法:</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Model-Architecture"><a href="#Model-Architecture" class="headerlink" title="Model Architecture"></a>Model Architecture</h3><p>Q-Former的结构和预训练任务如下图所示:<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/2.png" alt=""></p>
+<p><strong>Q-Former中包含两个Transformer:</strong></p>
 <ul>
-<li>数据增强/重新采样</li>
-<li>对数据平衡改进的loss</li>
-<li>从无偏见中分离出有偏见的部分<br>与上述方法的区别是不需要额外训练或层来建模偏差，通过构建两种因果图将原有模型和偏差分离开。<br><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143048@2x.png" alt="enter description here"></li>
+<li>与被冻结的Image Encoder交互提取视觉特征的<strong>image transformer</strong>，输入包含可学习的Quires和Image Encoder的输出特征。</li>
+<li>可以作为text encoder也可以作为text decoder的<strong>text transformer</strong></li>
 </ul>
-<h3 id="Origin-amp-Intervention-amp-Counterfactual"><a href="#Origin-amp-Intervention-amp-Counterfactual" class="headerlink" title="Origin&amp;Intervention&amp;Counterfactual"></a>Origin&amp;Intervention&amp;Counterfactual</h3><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143107@2x.png" alt="enter description here"></p>
+<p>Q-Former的参数初始化通过<code>BERTbase</code>，而cross attention层随机初始化。Q-Former的总参数量为1.88亿。Q-Former中包含32个queries，纬度为768，而Image Encoder在结构为ViT-L/14时输出的特征维度为(257, 1024)。在预训练的时候会迫使image Encoder和Q-Former的bottleneck结构通过learned queries提取到和文本最相关的视觉信息。</p>
+<h3 id="Bootstrap-Vision-Language-Representation-Learning-from-a-Frozen-Image-Encoder"><a href="#Bootstrap-Vision-Language-Representation-Learning-from-a-Frozen-Image-Encoder" class="headerlink" title="Bootstrap Vision-Language Representation Learning from a Frozen Image Encoder"></a>Bootstrap Vision-Language Representation Learning from a Frozen Image Encoder</h3><p>该阶段的目的是训练Q-Former，使其可以提取到与提供文本最相关的视觉特征，和BLIP类似包含三个预训练任务：</p>
 <ul>
-<li>ntervention:清除因果图中某个节点的输入，并将其置为某个值，公式为:$do(X= \tilde x)$.某节点被干预后，需要该节点输入的其他节点也会受影响</li>
-<li>Counterfactual:让某个节点被干预后，其他需要输入的节点还假设该节点未被干预<br>总结: Counterfactual图实际上抹除了因果图像中object feature。只用image+object label预测两个目标间的关系。</li>
+<li><strong>Image-Text Contrastive Loss(ITC):</strong> 图像-文本对比学习，对齐图像和文本特征</li>
+<li><strong>Image-grounded Text Generation(ITG):</strong> 用于做image caption任务，和BLIP中的LM任务的差异在于图像特征的来源并不是image encoder，而是learned queries</li>
+<li><strong>Image-Text Matching (ITM):</strong> 判断图像和文本是否匹配，用于对齐特征</li>
 </ul>
-<h3 id="Total-Direct-Effect-TDE"><a href="#Total-Direct-Effect-TDE" class="headerlink" title="Total Direct Effect (TDE)"></a>Total Direct Effect (TDE)</h3><p>根据两个因果图:</p>
+<p>这些任务会共享参数，由于任务的差异，为了避免信息泄漏，query token和text token之间有不一样mask的策略:<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/3.png" alt=""></p>
 <ul>
-<li>原始因果图</li>
-<li>Counterfactual因果图(可以认为是偏见)<br>消除偏见:<script type="math/tex; mode=display">TDE=Y_x(u)-Y_{\tilde x,z}(u)</script></li>
+<li><strong>ITM:</strong> 为了做匹配任务，在该任务中使用的是<strong>Bi-directional Self-Attention</strong>, 需要知道图像和文本彼此的特征才能做查询，因此不需要mask。</li>
+<li><strong>ITG:</strong> 在该任务中，需要用生成描述图像对应的文本。<strong>为了避免信息泄漏，query不能看到文本的内容,因此做query的时候，text的部分需要mask</strong>；<strong>而在文本生成的部分，只能看到之前已经生成的文本，未生成的部分也需要mask。</strong></li>
+<li><strong>ITC:</strong> 在该任务中，<strong>可以参考Figure .2，learned queries和input text分别经过self attention和MLP之后做对比学习任务，为了避免信息泄漏，Q和T之前彼此需要mask。</strong></li>
 </ul>
-<h1 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h1><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143120@2x.png" alt="enter description here"></p>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143154@2x.png" alt="enter description here"></p>
-<h1 id="Ablation-Studies"><a href="#Ablation-Studies" class="headerlink" title="Ablation Studies"></a>Ablation Studies</h1><p>对比了几种常用的优化长尾问题的方法</p>
+<h3 id="Bootstrap-Vision-to-Language-Generative-Learning-from-a-Frozen-LLM"><a href="#Bootstrap-Vision-to-Language-Generative-Learning-from-a-Frozen-LLM" class="headerlink" title="Bootstrap Vision-to-Language Generative Learning from a Frozen LLM"></a>Bootstrap Vision-to-Language Generative Learning from a Frozen LLM</h3><p>在该阶段的目的是连接Q-Former和冻结参数的LLM，获取LLM的文本生成能力。如下图三所示，包含两个预训练任务。<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/4.png" alt=""></p>
+<p>使用全连接层讲Q-Former输出的特征对齐到和LLM相同的维度，Q-Former提取的视觉特征用来约束LLM的生成，可以为LLM提供最有用的视觉信息。<strong>Q-Former的存在避免了为了对齐图像-文本特征而训练LLM带来的灾难性遗忘的问题(catastrophic forgetting problem)。</strong><br />该阶段的预训练任务包含两个:</p>
 <ul>
-<li>Focal</li>
-<li>Reweight</li>
-<li>Resample</li>
-<li>X2Y: 直接通过X的输出预测Y</li>
-<li>X2Y-Tr：切断其他分支的联系，只使用X预测Y</li>
-<li>TE:<script type="math/tex">TE=Y_x(u)-Y_{\tilde x}(u)</script></li>
-<li>NIE:<script type="math/tex">NIE=TDE-TE</script></li>
-<li>TDE</li>
+<li><strong>LLM Decoder: 根据Q-Former提供的视觉表示从投开始生成文本</strong></li>
+<li><strong>LLM Encoder+LLM Decoder: 将文本拆分成两部分，前缀文本和Q-Former的特征通过编码器，解码器用于生成剩下的文本</strong><h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><h3 id="Instructed-Zero-shot-Image-to-Text-Generation"><a href="#Instructed-Zero-shot-Image-to-Text-Generation" class="headerlink" title="Instructed Zero-shot Image-to-Text Generation"></a>Instructed Zero-shot Image-to-Text Generation</h3></li>
 </ul>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/WX20221006-143120@2x.png" alt="enter description here"></p>
-<blockquote class="blockquote-center">
-<p><strong><font size="5">欢迎关注我的公众号!</font></strong></p>
-
-</blockquote>
-<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="enter description here"></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/5.png" alt=""></p>
+<p>BLIP2的框架能够有效的让LLM理解图像，并且保留文本生成能力。下图中展示了在visual knowledge reasoning、visual commensense reasoning、visual conversatio、personalized image-to-text generation等方面的可视化能力<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/6.png" alt=""></p>
+<h3 id="Image-Captioning"><a href="#Image-Captioning" class="headerlink" title="Image Captioning"></a>Image Captioning</h3><p>在image caption任务上微调了BLIP模型，”a photo of”作为LLM的初始输入。在微调过程中冻结LLM，更新image encoder和Q-former的参数。使用了COCO训练数据做微调，并在COCO的测试集测试效果，也在NoCaps验证集上作了zero-shot的实验.<br />结果如下表所示，BLIP2在NoCaps数据机上达到了SOTA，表明了对out-domain的数据也有很好的泛化性。</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/7.png" alt=""></p>
+<h3 id="Visual-Question-Answering"><a href="#Visual-Question-Answering" class="headerlink" title="Visual Question Answering"></a>Visual Question Answering</h3><p>使用了VQA数据集微调，和Image Caption任务一样，在微调过程中冻结了LLM，更新image encoder和Q-former的参数。LLM的输入是Q-Former的输出和问题，需要生成答案。为了提取与问题更相关的图像特征，在Q-Former的text-encoder中会将问题作为输入，用于引导Q-Former中的Cross attention产生和问题相关的图像特征。下表展示了VQA任务上的效果.<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/8.png" alt=""></p>
+<h3 id="Image-Text-Retrieval"><a href="#Image-Text-Retrieval" class="headerlink" title="Image-Text Retrieval"></a>Image-Text Retrieval</h3><p>使用了COCO数据微调，由于图像-文本检索任务不需要LLM的生成能力，因此该任务只需要对Q-Former相关的模块微调。对比如下：<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/9.png" alt=""></p>
+<p>ITC和ITM对图文检索任务非常重要，但ITG任务的添加也会带来收益，原因是可以让queries生成和输入文本最相关的特征，提高视觉特征的xiaoguo 。<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/10.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>BLIP2论文中最关键的部分在于Q-Former。在初看BLIP2时让我想到了将transformer应用到目标检测领域的DETR，DETR中的decoder部分的输入包含object queries。关于obejct queries究竟学到了什么在DETR中有简单的说明:<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/BLIP2/11.png" alt=""></p>
+<p>DETR中object queries的实现：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.query_embed = nn.Embedding(num_queries, hidden_dim)</span><br></pre></td></tr></table></figure><br>100个隐藏层维度为256的embedding，<strong>每个query中注入了不同object的位置信息和类别信息。</strong><br />Q-Former中的learn queries也是类似:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.query_tokens = nn.Parameter(torch.zeros(<span class="number">1</span>, config.num_query_tokens, config.qformer_config.hidden_size))</span><br></pre></td></tr></table></figure><br>32个隐藏层维度为hidden_size的embedding，<strong>每个query用于编码和文本最相关的视觉特征。</strong></p>
 
     </div>
 
@@ -441,7 +423,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://oysz2016.github.io/post/b4822109.html" title="《Unbiased Scene Graph Generation from Biased Training》论文笔记">https://oysz2016.github.io/post/b4822109.html</a>
+      <a href="https://oysz2016.github.io/post/38f4a12a.html" title="BLIP2——优化多大模态训练成本">https://oysz2016.github.io/post/38f4a12a.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -487,8 +469,7 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E5%9B%A0%E6%9E%9C%E5%9B%BE/" rel="tag"> <i class="fa fa-tag"></i> 因果图</a>
-              <a href="/tags/%E5%9C%BA%E6%99%AF%E5%9B%BE%E7%94%9F%E6%88%90/" rel="tag"> <i class="fa fa-tag"></i> 场景图生成</a>
+              <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" rel="tag"> <i class="fa fa-tag"></i> 多模态</a>
           </div>
 
         
@@ -500,14 +481,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/post/f84aad11.html" rel="prev" title="《GAN》论文笔记">
-                  <i class="fa fa-chevron-left"></i> 《GAN》论文笔记
+                <a href="/post/23099eb6.html" rel="prev" title="BLIP——统一理解与生成的多模态模型">
+                  <i class="fa fa-chevron-left"></i> BLIP——统一理解与生成的多模态模型
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/post/8592ee55.html" rel="next" title="长尾优化汇总">
-                  长尾优化汇总 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -667,7 +645,7 @@
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/b4822109.html"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/38f4a12a.html"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
