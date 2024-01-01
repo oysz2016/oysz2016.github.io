@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wukong.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/32_32_wukong.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/16_16_wukong.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"oysz2016.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="一篇文章搞懂Vit-RGTS">
+<meta property="og:url" content="https://oysz2016.github.io/post/982d4e39.html">
+<meta property="og:site_name" content="冲弱&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/7.png">
+<meta property="article:published_time" content="2023-12-22T15:02:45.712Z">
+<meta property="article:modified_time" content="2024-01-01T04:58:30.330Z">
+<meta property="article:author" content="冲弱">
+<meta property="article:tag" content="对比学习">
+<meta property="article:tag" content="DINO">
+<meta property="article:tag" content="模型优化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/7.png">
+
+
+<link rel="canonical" href="https://oysz2016.github.io/post/982d4e39.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://oysz2016.github.io/post/982d4e39.html","path":"post/982d4e39.html","title":"一篇文章搞懂Vit-RGTS"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>一篇文章搞懂Vit-RGTS | 冲弱's Blog</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="waline-five-pi.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="冲弱's Blog" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">冲弱's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">多阅读 多积累</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-comment"><a href="/comment/" rel="section"><i class="fa fa-comment fa-fw"></i>评论</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Artifacts%E5%85%B7%E6%9C%89%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">2.1.</span> <span class="nav-text">Artifacts具有的特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Artifacts-are-high-norm-outlier-tokens"><span class="nav-number">2.1.1.</span> <span class="nav-text">Artifacts are high-norm outlier tokens</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Outliers-appear-during-the-training-of-large-models"><span class="nav-number">2.1.2.</span> <span class="nav-text">Outliers appear during the training of large models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High-norm-tokens-appear-where-patch-information-is-redundant"><span class="nav-number">2.1.3.</span> <span class="nav-text">High-norm tokens appear where patch information is redundant</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High-norm-tokens-hold-little-local-information"><span class="nav-number">2.1.4.</span> <span class="nav-text">High-norm tokens hold little local information</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Artifacts-hold-global-information"><span class="nav-number">2.1.5.</span> <span class="nav-text">Artifacts hold global information</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%87%E8%AE%BE%E5%92%8C%E4%BC%98%E5%8C%96"><span class="nav-number">2.2.</span> <span class="nav-text">假设和优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#registers-token%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">3.1.</span> <span class="nav-text">registers token的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="nav-number">3.2.</span> <span class="nav-text">消融实验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#reg-token%E7%9A%84%E6%95%B0%E9%87%8F"><span class="nav-number">3.2.1.</span> <span class="nav-text">reg token的数量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LOST%E7%AE%97%E6%B3%95%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">3.2.2.</span> <span class="nav-text">LOST算法的影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Registers%E7%9A%84%E5%AE%9A%E5%9E%8B%E5%88%86%E6%9E%90"><span class="nav-number">3.2.3.</span> <span class="nav-text">Registers的定型分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="冲弱"
+      src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+  <p class="site-author-name" itemprop="name">冲弱</p>
+  <div class="site-description" itemprop="description">输出即获得，分享即反哺</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ouyang-sz@foxmail.com" title="E-Mail → mailto:ouyang-sz@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.im/user/5ae26032f265da0b9f3ffeb2" title="掘金 → https:&#x2F;&#x2F;juejin.im&#x2F;user&#x2F;5ae26032f265da0b9f3ffeb2" rel="noopener" target="_blank"><i class="fa fa-spinner fa-fw"></i>掘金</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/ou-yang-shi-zhuang/activities" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ou-yang-shi-zhuang&#x2F;activities" rel="noopener" target="_blank"><i class="fab fa-zhihu fa-fw"></i>知乎</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+    
+    <div class="post-gallery-image">
+      <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/7.png" itemprop="contentUrl">
+    </div>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://oysz2016.github.io/post/982d4e39.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E6%B4%BE%E5%A4%A7%E6%98%9F.png">
+      <meta itemprop="name" content="冲弱">
+      <meta itemprop="description" content="输出即获得，分享即反哺">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冲弱's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一篇文章搞懂Vit-RGTS
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-22 23:02:45" itemprop="dateCreated datePublished" datetime="2023-12-22T23:02:45+08:00">2023-12-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-01 12:58:30" itemprop="dateModified" datetime="2024-01-01T12:58:30+08:00">2024-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/post/982d4e39.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/post/982d4e39.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><p class="description"></p><br><span id="more"></span></p>
+<p>本文首发于公众号“<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/wY5i1qa5MHKVIpkpqsSjeQ">CVTALK</a>”。</p>
+<p><strong>论文链接:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.16588"><strong>https://arxiv.org/abs/2309.16588</strong></a><br /></p>
+<p><strong>代码链接(复现版本):</strong> <a target="_blank" rel="noopener" href="https://github.com/kyegomez/Vit-RGTS"><strong>https://github.com/kyegomez/Vit-RGTS</strong></a></p>
+<h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>这篇文章的动机是发现在<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2109.14279">LOST</a>算法中，<strong>将其中的DINOv1替换为DINOv2，发现效果变得非常差。</strong> 进而一步步分析原因，并提出解决方案优化包括DINOv2在内具有共性的ViT算法。</p>
+<p><br /><strong>虽然和这篇文章使用的方法关系不大，但还是先简单介绍下LOST算法，可以更好理解DINOv2是哪里变差，影响到了下游任务。</strong></p>
+<p><br />LOST的全称为《Localizing Objects with Self-Supervised Transformers and no Labels》，即使用transorformer的无监督目标检测。受启发于DINO中展示的特征图，在DINO可视化的特征图中，前景目标区域会被激活，很适合做语义分割和目标检测。<strong>因此LOST提出了使用DINO特征图做目标检测的算法。</strong> 大概思路是在特征图上找到初始的种子点，然后向四周扩散，逐渐找到目标的区域。<br /></p>
+<p><strong>LOST需要借助前景目标区域被激活的特征图，DINOv1好用，但替换为DINOv2却效果很差，说明DINOv2的特征图出了些问题。</strong> 因此作者使用同一张输入图片，在包括DINO系列在内的有监督和无监督VIT算法上做了特征图可视化。效果如下:<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/1.png" alt=""><br><br /></p>
+<p>从可视化上看出人意料，但又在情理之中，<strong>并不是DINOv2太差，而是DINOv1太好。除了DINOv1外，其他的网络特征图都出现了一些异常的点。并且异常点都不在前景区域，而是平平无奇的背景。</strong><br /></p>
+<p>基于这一奇怪的现象，作者做了一系列分析，明确原因后优化了特征图中的这些异常点</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="Artifacts具有的特性"><a href="#Artifacts具有的特性" class="headerlink" title="Artifacts具有的特性"></a>Artifacts具有的特性</h3><h4 id="Artifacts-are-high-norm-outlier-tokens"><a href="#Artifacts-are-high-norm-outlier-tokens" class="headerlink" title="Artifacts are high-norm outlier tokens"></a><strong>Artifacts are high-norm outlier tokens</strong></h4><p>文中将这种具有高范数的异常值称为<strong>artifacts</strong>。从下图左侧可以看到DINOv2中<strong>artifacts的patch相对于其他patch有更高的norm分</strong>。右侧中将不同patch的norm分做了统计，<strong>其中大于norm分大于150的patch被称为artifacts。</strong><br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/2.png" alt=""></p>
+<h4 id="Outliers-appear-during-the-training-of-large-models"><a href="#Outliers-appear-during-the-training-of-large-models" class="headerlink" title="Outliers appear during the training of large models"></a>Outliers appear during the training of large models</h4><p>对不同参数的模型和迭代时间也做了分析，如下图所示,(a)、(b)、(c)的图分别反映出了三个特征:</p>
+<p>-<strong>artifacts更容易出现在trasnformer的中高层</strong><br>-<strong>随着训练时间的变长，artifacts会变多</strong><br>-<strong>trasnformer越大，artifacts出现的越多</strong></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/3.png" alt=""></p>
+<h4 id="High-norm-tokens-appear-where-patch-information-is-redundant"><a href="#High-norm-tokens-appear-where-patch-information-is-redundant" class="headerlink" title="High-norm tokens appear where patch information is redundant"></a><strong>High-norm tokens appear where patch information is redundant</strong></h4><p><strong>下图表明了artifacts会出现在和周围patch非常相似的地方。</strong><br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/4.png" alt=""></p>
+<h4 id="High-norm-tokens-hold-little-local-information"><a href="#High-norm-tokens-hold-little-local-information" class="headerlink" title="High-norm tokens hold little local information"></a><strong>High-norm tokens hold little local information</strong></h4><p><strong>artifacts包含的局部特征较少</strong>。作者用两个实验验证了这个猜想，如下图所示。分别做了position prediction和reconstruction的任务，这两个任务分别是预测token在图像中的位置和重建对应token的像素，都是很依赖局部特征的任务。但从表现上来看，artifacts相对于其他的patch效果要差很多<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/5.png" alt=""></p>
+<h4 id="Artifacts-hold-global-information"><a href="#Artifacts-hold-global-information" class="headerlink" title="Artifacts hold global information"></a><strong>Artifacts hold global information</strong></h4><p><strong>既然artifacts包含的局部信息少，又验证了下全局信息，发现artifacts确实是学习到了一些全局的特征。</strong> 作者分别在多个数据集上，用[CLS]和normal、artifacts对应的token做了分类任务，发现artifacts对应的token虽然比不上拥有全局特征的[CLS]，但比normal的token要好上非常多。<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/6.png" alt=""></p>
+<h3 id="假设和优化"><a href="#假设和优化" class="headerlink" title="假设和优化"></a>假设和优化</h3><p>上面提到了artifacts的特点，基于这些特点，作者也作出解释:<strong>大的模型和长时间的迭代，会让模型关注到一些冗余的token，将这些token中原来的局部特征替换为能保存全局信息的特征。</strong><br /></p>
+<p><strong>按照这种解释，实际上artifacts的token并没有什么问题，出现在冗余的部分，也可以靠其周围的token补充局部信息。但是这种特性会导致在特定任务上的效果变差，例如最开始提到的LOST想使用VIT特征的任务上。</strong><br /></p>
+<p><strong>为了优化掉artifacts，借鉴了memory transformer的模块，在训练的时候会加入一些registers toekn，这些token和cls一样是可学习的，但会在训练完之后扔掉。</strong><br /></p>
+<p>本文的网络结构如下图所示:</p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/7.png" alt=""></p>
+<p>memory transformer提出是为了优化NLP中的翻译任务，在本文中为了避免出现artifacts，新增了一些registers token，<strong>希望让网络中的这些registers token学习到全局的特征，而不要让应该学习局部特征的token变成拥有全局信息的artifacts token</strong>，训练完成后再将registers token扔掉。</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="registers-token的影响"><a href="#registers-token的影响" class="headerlink" title="registers token的影响"></a>registers token的影响</h3><p>分别在有监督的DeiT，无监督的OpenCLIP和DINO都做了实验。如下图所示，图(a)是冻结了特征，仅训练linear prob，图(b)是对OpenCLIP做zero-shot。可以发现，<strong>使用本文的方法添加registers token前后，效果没有变差，甚至还有略微变好。</strong><br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/8.png" alt=""></p>
+<p><br />并且加了registers token之后，token的norm分布会好很多，不会有artifacts token。如下图所示:<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/9.png" alt=""></p>
+<h3 id="消融实验"><a href="#消融实验" class="headerlink" title="消融实验"></a>消融实验</h3><h4 id="reg-token的数量"><a href="#reg-token的数量" class="headerlink" title="reg token的数量"></a>reg token的数量</h4><p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/10.png" alt=""></p>
+<p><br /></p>
+<p><strong>本文的实验中，最重要的一个超参数就是registers token的数量，因此评估了在分类，检测和分割任务上，reg token数量的影响。</strong> 在相对密集的任务，即NYUd数据集的语义分割任务上，1个reg token会有较小的效果，作者认为在这种任务上1个足以使artifacts token消失，模型能获得更好的局部特征。而在imageNet的分类任务上，reg token的数量越多越好。</p>
+<h4 id="LOST算法的影响"><a href="#LOST算法的影响" class="headerlink" title="LOST算法的影响"></a>LOST算法的影响</h4><p>上文的动机部分提到了DINOv2中的artifacts token对LOST之类的算法不太友好，因此也专门评估了使用本文的方法后，DINOv2在LOST上的效果，从下表可以看到是有大幅提升的<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/11.png" alt=""></p>
+<h4 id="Registers的定型分析"><a href="#Registers的定型分析" class="headerlink" title="Registers的定型分析"></a>Registers的定型分析</h4><p>这一部分是想判断Registers token学习到了什么样的特征，将拥有全局特征的[CLS]和Registers token的注意力图做了可视化。<strong>发现不同于[CLS]激活了所有前景的全局特征，不同Registers token关注的物体会有所不同。</strong><br /></p>
+<p>出现这样的情况还是挺有意思的，可惜的是文中并没有做进一步的挖掘分析。<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/VIT-RGTS/12.png" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章并没有在DINO的基础上提点，而是发现了DINOv2的注意力图存在一些异常点，一步步分析这些异常点的特点，最终优化掉这些异常点。虽然没有涨点，但文中发现的一些现象，还是很有意思的。<br /></p>
+<p>为什么性能更强的DINOv2会出现在DINOv1中没有的情况，论文中给出的解释是DINOv2训练的时间更长，数据量更大。从artifacts产生的特点来看确实是这样。但从去掉了artifacts前后，在通用的分类，检测，分割等下游任务上，指标并没有什么变化，可以说明artifacts的存在并没有带来负面影响。<br /></p>
+<p>模型在学习的过程中，可能觉得相似区域部分的局部特征太简单了，一些不安分的token开始学习“不该”由自己承担的全局特征。而register的引入可以看作是一种解耦的方式，引入特殊的token承担更多的全局信息的角色，避免正常的token“跑偏”。<br /></p>
+<p>回到artifacts，感觉还有很多特性可以分析下；而register token，在没有像DETR中加入learnable queries的前提下，不同reg token的注意力图能关注到不同的物体，也很神奇，这一部分文中给出的信息较少不知道是否在所有图像中，reg token是否都有类似的特性。</p>
+
+    </div>
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/wechatpay.jpg" alt="冲弱 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/alipay.jpg" alt="冲弱 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>冲弱
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://oysz2016.github.io/post/982d4e39.html" title="一篇文章搞懂Vit-RGTS">https://oysz2016.github.io/post/982d4e39.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.zhihu.com/people/ou-yang-shi-zhuang/posts">
+          <span class="icon">
+            <i class="fab fa-zhihu"></i>
+          </span>
+
+          <span class="label">ZhiHu</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://juejin.cn/user/4353721775688920">
+          <span class="icon">
+            <i class="fa fa-spinner"></i>
+          </span>
+
+          <span class="label">JueJin</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/" rel="tag"> <i class="fa fa-tag"></i> 对比学习</a>
+              <a href="/tags/DINO/" rel="tag"> <i class="fa fa-tag"></i> DINO</a>
+              <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" rel="tag"> <i class="fa fa-tag"></i> 模型优化</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wpac-rating-container">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/a77440e0.html" rel="prev" title="一篇文章搞懂EVA">
+                  <i class="fa fa-chevron-left"></i> 一篇文章搞懂EVA
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/42dab9a8.html" rel="next" title="CNN版的MAE——SparK">
+                  CNN版的MAE——SparK <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冲弱</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>站点总字数:
+    </span>
+    <span title="站点总字数">167k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>站点阅读时长:
+    </span>
+    <span title="站点阅读时长">2:31</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5adaebc9009ff58b" async="async"></script>
+  </div>
+  <div id="site-runtime">
+  <span class="post-meta-item-icon">
+    <i class="fa fa-clock-o"></i>
+  </span>
+  <span id="runtime"></span>
+</div>
+
+<script language="javascript">
+  function isPC() {
+    var userAgentInfo = navigator.userAgent;
+    var agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    for (var i = 0; i < agents.length; i++) {
+      if (userAgentInfo.indexOf(agents[i]) > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function siteTime(openOnPC, start) {
+    window.setTimeout("siteTime(openOnPC, start)", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+      start = new Date("2018-04-23 09:00:00 +0800");
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var date = now.getDate();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    var diff = now - start;
+
+    var diffYears = Math.floor(diff / years);
+    var diffDays = Math.floor((diff / days) - diffYears * 365);
+    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+
+    if (openOnPC) {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + " years " + diffDays + " days " + diffHours + " hours " + diffMinutes + " mins " + diffSeconds + " secs";
+    } else {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + "y " + diffDays + "d " + diffHours + "h " + diffMinutes + "m " + diffSeconds + "s";
+    }
+  }
+
+  var showOnMobile = true;
+  var openOnPC = isPC();
+  var start = new Date();
+  siteTime(openOnPC, start);
+
+  if (!openOnPC && !showOnMobile) {
+    document.getElementById('site-runtime').style.display = 'none';
+  }
+</script>
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+  <script src="https://embed.widgetpack.com/widget.js" async></script>
+  <script class="next-config" data-name="rating" type="application/json">{"enable":true,"id":11277,"color":"f79533"}</script>
+  <script src="/js/third-party/rating.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"waline-five-pi.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"dark":"auto","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tieba","https://unpkg.com/@waline/emojis@1.0.1/tw-emoji"],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/post/982d4e39.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>
