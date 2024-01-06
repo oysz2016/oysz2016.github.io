@@ -4071,4 +4071,69 @@ a_3x+b_3y+c_3z=d_3\\
         <tag>CNN</tag>
       </tags>
   </entry>
+  <entry>
+    <title>一篇文章搞懂LLaVA</title>
+    <url>/post/85f0ce49.html</url>
+    <content><![CDATA[<p><p class="description"></p><br><span id="more"></span></p>
+<p>本文首发于公众号“<a href="https://mp.weixin.qq.com/s/gcy9oVJyCEigQVxir_2Bxg">CVTALK</a>”。</p>
+<p><strong>论文链接:</strong><a href="http://arxiv.org/abs/2304.08485"><strong>http://arxiv.org/abs/2304.08485</strong></a><br /><strong>代码链接:</strong><a href="https://github.com/haotian-liu/LLaVA"><strong>https://github.com/haotian-liu/LLaVA</strong></a><br /><strong>demo链接:</strong><a href="https://llava-vl.github.io/"><strong>https://llava-vl.github.io/</strong></a><br />LLaVA的论文名为《visual instruction-tuning》，instruction tuning在NLP中很常见，例如InstructionGPT，ChatGPT，FLAN-T5中都使用到了该技术。instruction tuning可以提升LLM对于零样本和少样本的泛化能力。<br />LLaVA的出发点是目前有大量的图像-文本配对的数据集，但这些数据集的关联含义比较浅。</p>
+<h2 id="GPT-assisted-Visual-Instruction-Data-Generation"><a href="#GPT-assisted-Visual-Instruction-Data-Generation" class="headerlink" title="GPT-assisted Visual Instruction Data Generation"></a>GPT-assisted Visual Instruction Data Generation</h2><p>该部分简单来说是想借助GPT-4的能力，丰富image-text数据集中的文本信息，例如在一个数据集包含以下两种信息:</p>
+<ul>
+<li>从image caption的任务获取到caption的文本</li>
+<li>从目标检测或者分割的任务获取到物体在图片中的坐标和类别</li>
+</ul>
+<p>让GPT-4结合caption和boxes的信息，回答三种类型的问题:</p>
+<ul>
+<li>conversation: 一些简单的对话，例如图中是一辆怎样的车；图中是位于哪里的停车场；人在图像中做什么</li>
+<li>detailed description: 一些更细节的描述，期望能结合caption和boxes详细的描述图中的信息</li>
+<li>complex reasoning: 一些更复杂因果分析，可以结合前两种类型的问题做推理，例如图片中的人面临的挑战是什么。</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/LLaVA/1.png" alt=""><br /></p>
+<p>关于不同的类型的问题，也需要设计精细的prompt:</p>
+<ul>
+<li>conversation: 对话。需要设计一系列不同的问题，包括目标的类别、数量、动作、位置、相对位置等；并且提出的问题需要有明确的答案；</li>
+<li>detailed description: 对图像丰富且全面的描述。作者创建了一个问题列表，会从中随机抽取一个问题，针对为题让GPT4生成详细的图片描述，下图中给出了详细的图像描述的问题列表</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/LLaVA/2.png" alt=""><br /></p>
+<ul>
+<li><p>complex reasoning: 复杂的推理。上面两种类型更多的是描述图片中存在的信息，而该问题需要在前两步的基础上遵循严格的逻辑，推理出一些信息出来。</p>
+<h2 id="Visual-Instruction-Tuning"><a href="#Visual-Instruction-Tuning" class="headerlink" title="Visual Instruction Tuning"></a>Visual Instruction Tuning</h2><h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p>LLaVA的网络架构如下图所示，主要有几部分组成:</p>
+</li>
+<li><p>Language Model: LLaMA，生成word embedding</p>
+</li>
+<li>Vision Encoder: CLIP的视觉编码器ViT-L/14, 使用的是最后一层transformer的grid feature，也就是一张图片会编码出不止1个token</li>
+<li>projection: 线性层，将image feature映射到word embedding。实际上是做了一个投影，将视觉特征$Z_v$投影到$H_v$，其中$H_v$和文本特征$H_q$在同一特征维度。</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/LLaVA/3.png" alt=""><br /><br /></p>
+<p>在Flamingo中的cross attention和BLIP中的Q-Former，与上面的projection有相似的功能，不过projection更像是个丐版的映射，简洁的达到了目的，但效果应该没有另外两篇文章中较复杂模块的效果好。</p>
+<h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><p>使用的数据是使用GPT生成的视觉Instruction数据，该数据集是对话的形式，模型在训练时只预测assistant应该如何回答和终止的信息<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/LLaVA/4.png" alt=""><br /></p>
+<p><br />在训练时会分为两步:</p>
+<ul>
+<li>Pre-training for Feature Alignment.这一步会冻结LLM和visual encoder的权重，训练projection，将图像特征$H_v$和LLM的wrod embeeding对齐。这一步使用的数据是图像和简单的文本描述，示例如下图所示.</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/LLaVA/5.png" alt=""><br /></p>
+<ul>
+<li>Fine-tuning End-to-End. 这一步会冻结viusual encoder，训练projection和LLM。在训练时有以下两个任务:<ul>
+<li><strong>Multimodal Chatbot.</strong> 在该任务中使用的是生成的158k的数据，包含conversation、detailed description和complex reasoning三种生成方式，并且每种数据被均匀采样，在conversation中会采用多轮的对话，而另两种事单轮的</li>
+<li><strong>Science QA.</strong> 该任务和<strong>Multimodal Chatbot</strong>差不多，区别在于使用的是公开的数据集<a href="https://arxiv.org/abs/2209.09513">ScienceQA benchmark</a><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="Multimodal-Chatbot"><a href="#Multimodal-Chatbot" class="headerlink" title="Multimodal Chatbot"></a>Multimodal Chatbot</h3>该部分首先做了些定型的分析，下图中展示的是在GPT-4中有提到的一张图片，本文对比了LLaVA，GPT-4、BLIP-2和Flamingo四种多模态大语言模型的交互。得益于构建的数据集有比较复杂的问答，LLaVA的回答更全面。<br /></li>
+</ul>
+</li>
+</ul>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/LLaVA/6.png" alt=""><br /></p>
+<p><br />下面就是些定量的评估, 下面对比了LLaVA和GPT-4模型，并使用GPT-4对两者的输出结果在1-10之间打分。LLaVA的相对得分达到了GPT-4的85.1%<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/LLaVA/7.png" alt=""><br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/LLaVA/8.png" alt=""><br /></p>
+<h3 id="Science-QA"><a href="#Science-QA" class="headerlink" title="Science QA"></a>Science QA</h3><p>在Science QA数据集上达到了新的SOTA，平均分数为92.53%.<br /></p>
+<p><img data-src="https://myblog-1258449291.cos.ap-beijing.myqcloud.com/Blog/LLaVA/9.png" alt=""><br /></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在LLaVA的时期，多模态的instruction tuning的研究比较少，本文通过GPT-4构建了一个多模态的Instruction数据集，并且在多模态聊天上达到了接近GPT-4的效果，在Science QA数据集上达到了新的SOTA，从作者放出的demo来看，也有一定的OCR识别能力。<br />网络的结构非常简单，实验部分做的<br /></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>多模态</tag>
+        <tag>LLM</tag>
+      </tags>
+  </entry>
 </search>
